@@ -359,7 +359,7 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                        <li item-expanded='true'><a href="editproject.jsp">Project Details
                     <ul>
                         <li><a href="editproject.jsp">Project Information</a></li>
-                        <li><a href="application.jsp">Application Details</a></li>
+                        <li><a href="AppEmphasize_application.jsp">Application Details</a></li>
                         </ul>
                         </li>
                         <li item-expanded='true'> <a href="tree1.jsp">Application Prioritization</a>

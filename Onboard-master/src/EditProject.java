@@ -122,7 +122,7 @@ try
           System.err.println(e.getMessage());
         }
         // return response
-        response.sendRedirect("application.jsp");
+        response.sendRedirect("AppEmphasize_application.jsp");
 }
 
 }

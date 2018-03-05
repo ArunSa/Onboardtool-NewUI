@@ -177,7 +177,7 @@ if(rs.next()){
                        <li item-expanded='true'><a href="editproject.jsp">Project Details
                     <ul>
                         <li item-selected='true'><a href="editproject.jsp">Project Information</a></li>
-                        <li><a href="application1.jsp">Application Details</a></li>
+                        <li><a href="AppEmphasize_application.jsp">Application Details</a></li>
                         </ul>
                         </li>
                         <li item-expanded='true'> <a href="tree.jsp">Application Prioritization</a>

@@ -2,15 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
  <meta charset="UTF-8" />
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Projects</title>
-
-    <meta name="keywords" content="jQuery Tree, Tree Widget, TreeView" />
-    <meta name="description" content="The jqxTree displays a hierarchical collection of items. You
-        can populate it from 'UL' or by using its 'source' property." />
-
+ <meta name="description" content="Blueprint: View Mode Switch" />
+ <meta name="keywords" content="view mode, switch, css, style, grid, list, template" />
+ 
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
      <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
@@ -29,251 +28,53 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-         <script type="text/javascript" src="js_in_pages/application1.js"></script>
-   
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // Create jqxTree
-            $('#jqxTree').jqxTree({ height: '400px', width: '300px' });
-            $('#jqxTree').css('visibility', 'visible');
-            var contextMenu = $("#jqxMenu").jqxMenu({ width: '120px',  height: '56px', autoOpenPopup: false, mode: 'popup' });
-            var clickedItem = null;
-            
-            var attachContextMenu = function () {
-                // open the context menu when the user presses the mouse right button.
-                $("#jqxTree li").on('mousedown', function (event) {
-                    var target = $(event.target).parents('li:first')[0];
-                    var rightClick = isRightClick(event);
-                    if (rightClick && target != null) {
-                        $("#jqxTree").jqxTree('selectItem', target);
-                        var scrollTop = $(window).scrollTop();
-                        var scrollLeft = $(window).scrollLeft();
-                        contextMenu.jqxMenu('open', parseInt(event.clientX) + 5 + scrollLeft, parseInt(event.clientY) + 5 + scrollTop);
-                        return false;
-                    }
-                });
-            }
-            attachContextMenu();
-            $("#jqxMenu").on('itemclick', function (event) {
-                var item = $.trim($(event.args).text());
-                switch (item) {
-                    case "Add Item":
-                        var selectedItem = $('#jqxTree').jqxTree('selectedItem');
-                        if (selectedItem != null) {
-                            $('#jqxTree').jqxTree('addTo', { label: 'Item' }, selectedItem.element);
-                            attachContextMenu();
-                        }
-                        break;
-                    case "Remove Item":
-                        var selectedItem = $('#jqxTree').jqxTree('selectedItem');
-                        if (selectedItem != null) {
-                            $('#jqxTree').jqxTree('removeItem', selectedItem.element);
-                            attachContextMenu();
-                        }
-                        break;
-                }
-            });
-            // disable the default browser's context menu.
-            $(document).on('contextmenu', function (e) {
-                if ($(e.target).parents('.jqx-tree').length > 0) {
-                    return false;
-                }
-                return true;
-            });
-            function isRightClick(event) {
-                var rightclick;
-                if (!event) var event = window.event;
-                if (event.which) rightclick = (event.which == 3);
-                else if (event.button) rightclick = (event.button == 2);
-                return rightclick;
-            }
-        });
-    </script>
-
-<script>
-    $(document).ready(function(){
-      var date_input=$('input[name="Startdate"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy/mm/dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-    $(document).ready(function(){
-      var date_input=$('input[name="Intdate"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy/mm/dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-    $(document).ready(function(){
-      var date_input=$('input[name="Plandate"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy/mm/dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-    $(document).ready(function(){
-      var date_input=$('input[name="Execdate"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy/mm/dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-    $(document).ready(function(){
-      var date_input=$('input[name="Hyperdate"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy/mm/dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-    $(document).ready(function(){
-      var date_input=$('input[name="Enddate"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy/mm/dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-</script> 
-<style>.bar {
-  background-color: lightblue;
-  height: 100%;
-  text-align:center;
-} 
-  </style>
-<script type="text/javascript">
-    function EnableDisableTextBox(chkROD) {
-        var txtROD = document.getElementById("txtROD");
-        txtROD.disabled = chkROD.checked ? false : true;
-        if (!txtROD.disabled) {
-            txtROD.focus();
-        }
-        
-    }
-</script>
-<script type="text/javascript">
-
-    var link,color;
-
- function disable_link() { 
-
-  document.getElementById('testlink').disabled=true;
-
-  link = document.getElementById('testlink').href;
-
-  document.getElementById('testlink').removeAttribute('href');
-  //document.getElementById('testlink').style.color = "grey";
-
-   } 
-
-
- function enable_link() { 
-
-  document.getElementById('testlink').setAttribute("href",link);
-
-   } 
-
-
-</script>
-<script>
-
-$(function() {
-    $("#datamig").change(function() {
-        if ($(this).val() == "yes") {
-            console.log(true);
-            $("#textbox").removeAttr("disabled");
-        }
-        else {
-            console.log(false);
-            $("#textbox").attr("disabled", "disabled");
-        }
-    });
-});
-$(function() {
-    $("#datamig").change(function() {
-        if ($(this).val() == "yes") {
-            console.log(true);
-            $("#textbox1").removeAttr("disabled");
-        }
-        else {
-            console.log(false);
-            $("#textbox1").attr("disabled", "disabled");
-        }
-    });
-});
-
-
-</script>
-<script type="text/javascript">
-    function ShowHideDiv() {
-        var adMigrated = document.getElementById("adMigrated");
-        var adMigratedDet = document.getElementById("adMigratedDet");
-        adMigratedDet.style.display = adMigrated.value == "Y" ? "block" : "none";
-    }
-</script>
-
-<script type="text/javascript">
-    function ShowHideDiv() {
-        var arcNeed = document.getElementById("arcNeed");
-        var arcReason = document.getElementById("arcReason");
-        arcReason.style.display = arcNeed.value == "N" ? "block" : "none";
-        var arcComment = document.getElementById("arcComment");
-        arcComment.style.display = arcNeed.value == "O" ? "block" : "none";
-    }
-</script>
-
-
-  </head>
-<body class="top-navbar-fixed">
+         <script type="text/javascript" src="js_in_pages/application.js"></script>
+</head>
   
+<body class="top-navbar-fixed">
   
 <%@page language="java"%>
 <%@page import="java.sql.*"%>
-
-	
+<%@ page import="onboard.DBconnection" %>
 <%
-Connection con = null;
-String url = "jdbc:mysql://localhost:3306/";
-String db = "strutsdb";
-String driver = "com.mysql.jdbc.Driver";
-String userName ="root";
-String password="password123";
 
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+response.setHeader("Expires", "0"); // Proxies.
+
+if (session.getAttribute("username")==null)
+{
+	response.sendRedirect("Login.html");
+}
+%>
+<%
 int sumcount=0;
 Statement st1;
 try {
-	String det=(String)session.getAttribute("theName");
-Class.forName(driver).newInstance();
-con = DriverManager.getConnection(url+db,userName,password);
-String query1 = "select * from appinfo";
-st1 = con.createStatement();
-ResultSet rs1 = st1.executeQuery(query1);
-String query3 = "select * from projinfo where id = "+det;
+	HttpSession details=request.getSession();
+	String Role_info=(String)details.getAttribute("app_emp");
+	String Project_Id=(String)session.getAttribute("theName");
+	String Project_name="";
+	String Application=(String)details.getAttribute("applications");
+	String Project_Name=(String)details.getAttribute("projects");
+	DBconnection d=new DBconnection();
+	Connection con = (Connection)d.getConnection();
+
+String query3 = "select * from projinfo where id = "+Project_Id;
 Statement st3 = con.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
+if(rs3.next())
+Project_name=rs3.getString("projectname");
+
+System.out.println("Project_name of the project is "+Project_name);
+String query1="";
+if(Project_Name.equals("all"))
+	 query1 = "select * from appinfo where prjname = '"+Project_name+"'";
+else
+	 query1 = "select * from appinfo where prjname = '"+Project_Name+"' and appname='"+Application+"'";
+st1 = con.createStatement();
+ResultSet rs1 = st1.executeQuery(query1);
+
 
 %>
 
@@ -320,6 +121,7 @@ ResultSet rs3 = st3.executeQuery(query3);
             </nav>
  
  
+    
             <div class="content-wrapper">
                 <div class="content-container">
             
@@ -400,24 +202,6 @@ ResultSet rs3 = st3.executeQuery(query3);
                     </div>
                     <!-- /.left-sidebar -->
             
-   <script>
-  $(function () {
-    // 6 create an instance when the DOM is ready
-    $('#jstree').jstree();
-    // 7 bind to events triggered on the tree
-    $('#jstree').on("changed.jstree", function (e, data) {
-      console.log(data.selected);
-    });
-    // 8 interact with the tree - either way is OK
-    $('button').on('click', function () {
-      $('#jstree').jstree(true).select_node('child_node_1');
-      $('#jstree').jstree('select_node', 'child_node_1');
-      $.jstree.reference('#jstree').select_node('child_node_1');
-    });
-  });
-  </script>
-
-                    
             
 <section>
 
@@ -425,6 +209,21 @@ ResultSet rs3 = st3.executeQuery(query3);
       <div class="container">
                     <h1 class="page-header">Projects</h1>
                       <div class="main">
+                      
+<%
+String initiate=(String)session.getAttribute("Ideation and Initiate");
+String plan=(String)session.getAttribute("Plan");
+String execute=(String)session.getAttribute("Execute");
+String hypercare=(String)session.getAttribute("Closure");
+if(initiate == null)
+	initiate="0";
+if(plan == null)
+	plan="0";
+if(execute == null)
+	execute="0";
+if(hypercare == null)
+	hypercare="0";
+%>                            
 
 <div class="row">
 
@@ -432,32 +231,36 @@ ResultSet rs3 = st3.executeQuery(query3);
   <div class="form-group">
   <center><label >Initiate</label></center>
   <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar" style="width: <%=initiate%>%" aria-valuenow="<%=initiate %>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=initiate %>%</span></div>
 </div></div></div>
 
   <div class="col-md-3">
   <div class="form-group">
   <center><label >Plan</label></center>
   <div class="progress">
-  <div id="one" class="bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar1" style="width: <%=plan%>%" aria-valuenow="<%=plan%>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=plan %>%</span></div>
 </div></div></div>
 
   <div class="col-md-3">
   <div class="form-group">
   <center><label >Execute</label></center>
   <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar2" style="width: <%=execute %>%" aria-valuenow="<%=execute %>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=execute %>%</span></div>
 </div></div></div>
 
  <div class="col-md-3">
  <div class="form-group">
- <center><label >Hypercare</label></center>
+ <center><label >Closure</label></center>
  <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar3" style="width: <%=hypercare %>%" aria-valuenow="<%=hypercare %>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=hypercare %>%</span></div>
 </div></div></div>
 </div>
-         
-                
+<jsp:include page="progress_details.jsp" >
+<jsp:param name="Initiate" value="<%=initiate %>"/>
+<jsp:param name="Plan" value="<%=plan %>"/>
+<jsp:param name="Execute" value="<%=execute %>"/>
+<jsp:param name="Hypercare" value="<%=hypercare %>"/>
+</jsp:include>
                     <div class="panel-group" id="panels1"> 
                     <br/><br/><br/>
                                                        
@@ -466,43 +269,31 @@ ResultSet rs3 = st3.executeQuery(query3);
                                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse2"> Application Information  </a> </h4> 
                             </div>  
                                                        
-                            <div id="collapse2" class="panel-collapse collapse"> 
+                            <div id="collapse2" class="panel-collapse"> 
                                 <div class="panel-body text-left">
                                 
                                 
 <div class="table-responsive" id="table-scroll"> 
-    
-    <!-- Initialization 
-                * js-dynamitable => dynamitable trigger (table)
-                -->
+ 
     <table class="js-dynamitable     table table-bordered" id="myTable">
       
-      <!-- table heading -->
       <thead>
-        
-        <!-- Sortering
-                        * js-sorter-asc => ascending sorter trigger
-                        * js-sorter-desc => desending sorter trigger
-                        -->
+ 
         <tr>
           <th>Application Name <span class="js-sorter-desc     glyphicon glyphicon-chevron-down pull-right"></span> <span class="js-sorter-asc     glyphicon glyphicon-chevron-up pull-right"></span> </th>
          
         </tr>
-        
-        <!-- Filtering
-                        * js-filter => filter trigger (input, select)
-                        -->
+
        
       </thead>
       
-      <!-- table body -->
       <tbody>
       <%
 while(rs1.next()){
 %>
         <tr>
         
-          <td class="edit_row" style="cursor:pointer"><%=rs1.getString(1) %></td>
+          <td class="edit_row" style="cursor:pointer"><%=rs1.getString("appname") %></td>
          
          
         </tr>
@@ -514,41 +305,28 @@ while(rs1.next()){
   </div>
   <br />
                 
+                 
                                             <label class="control-label" for="formInput198">
                                                Application Name&nbsp;
 </label>
-                                            <input type="text" class="form-control" id="formInput198" placeholder="Application Name" name="appname" >
-                                                                               <input type="submit" class="btn btn-primary btn pull-left" name ="p1" value="Add">
+                                            <input type="text" class="form-control" id="app_name" placeholder="Application Name" name="appname" >
+                                            <input type="hidden" class="form-control" id="formInput198" placeholder="Application Name" name="prjname" value="<%=rs3.getString("projectname") %>" >
+                                     </br>
+                              <input type="submit" id="bttn"  class="btn btn-primary btn pull-left" name ="p1" value="Add">
                 
+                            
+                               <input type="text" id="role_info" value="<%= Role_info %>" style="display:none">  
                                 </div>                                 
                             </div>                             
-                        </div>         
-                          </form>  
-                    <button type="button" class="btn btn-default" onclick="location.href='appemp.jsp';">Back</button>
-                                
-           <%
-
-}
-catch(Exception e){
-e.printStackTrace();
-}
-%>
-             
-       </div>
-   <center>
-      <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="grid.jsp" tabindex="-1">Previous</a>
-    </li>
-    
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
-</center>
-
+                        </div>     
+                       
+                    <button type="button" class="btn btn-default" onclick="location.href='editproject.jsp';">Back</button>
+                    <button type="button" class="btn btn-success pull-right" onclick="location.href='tree1.jsp';">Save & Continue...</button>
+                                        
+                                 
+                          </form>                                                                              
+                           
+           
                    <!-- /.row -->
 </section>
                         <!-- /.section -->
@@ -558,7 +336,21 @@ e.printStackTrace();
 
         </div>
         <!-- /.main-wrapper -->
+                                                                                                                       
+ <script>
+ if(document.getElementById('Role_info').value=="R")
+	 checkk();
+ </script>        
+                                                                                        
+                                
+           <%
 
+}
+catch(Exception e){
+e.printStackTrace();
+}
+%>
+                   
 
         <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -614,7 +406,7 @@ e.printStackTrace();
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 
-</body>
-</html>
+  </body>
 
+</html>
 

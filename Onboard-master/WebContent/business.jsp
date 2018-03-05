@@ -247,10 +247,10 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                        <li item-expanded='true'><a href="editproject.jsp">Project Details
                     <ul>
                         <li><a href="editproject.jsp">Project Information</a></li>
-                        <li><a href="application1.jsp">Application Details</a></li>
+                        <li><a href="AppEmphasize_application.jsp">Application Details</a></li>
                         </ul>
                         </li>
-                        <li item-expanded='true'> <a href="tree.jsp">Application Prioritization</a>
+                        <li item-expanded='true'> <a href="tree1.jsp">Application Prioritization</a>
                          <ul>
                                 <li > Parameters</li>
                                 <li>Archival Complexity Calculation</li>

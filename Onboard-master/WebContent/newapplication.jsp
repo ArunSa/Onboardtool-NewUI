@@ -99,7 +99,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                        <li item-expanded='true'>Project Details
                     <ul>
                         <li><a href="editproject.jsp">Project Information</a></li>
-                        <li><a href="application1.jsp">Application Details</a></li>
+                        <li><a href="AppEmphasize_application.jsp">Application Details</a></li>
                         </ul>
                         </li>
                         <li item-expanded='true'> <a href="tree.jsp">Application Prioritization</a>

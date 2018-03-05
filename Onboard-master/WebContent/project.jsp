@@ -130,7 +130,7 @@
                                         <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
