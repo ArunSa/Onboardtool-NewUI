@@ -7,7 +7,6 @@
  
  <link rel="stylesheet" href="styles/styles.css" type="text/css" />
     
-    
      <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
@@ -27,11 +26,17 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-         <script type="text/javascript" src="js_in_pages/newproject.js"></script>
     <style type="text/css">
             .breadcrumb-div {
                 background-color: #e7e7e7;
                 color: #010101; }
+                #nav_userid{
+             color:green;
+             }
+               
+              #nav_role{
+              color:blue;
+              }  
         </style>
 
 
@@ -64,14 +69,14 @@ function valid1()
  
 var project_name = document.getElementsByName("projectname")[0].value;
  
-var descr = document.getElementsByName("descr")[0].value;
-var appno = document.getElementsByName("appno")[0].value;
-var Startdate = document.getElementsByName("Startdate")[0].value;
-var Intdate = document.getElementsByName("Intdate")[0].value;
-var Plandate = document.getElementsByName("Plandate")[0].value;
-var Execdate = document.getElementsByName("Execdate")[0].value;
-var Hyperdate = document.getElementsByName("Hyperdate")[0].value;
-var Enddate = document.getElementsByName("Enddate")[0].value;
+var description = document.getElementsByName("descr")[0].value;
+var application_no = document.getElementsByName("appno")[0].value;
+var ProjectStartdate = document.getElementsByName("Startdate")[0].value;
+var InitiateStartdate = document.getElementsByName("Intdate")[0].value;
+var PlanStartdate = document.getElementsByName("Plandate")[0].value;
+var ExecuteStartdate = document.getElementsByName("Execdate")[0].value;
+var HyperStartdate = document.getElementsByName("Hyperdate")[0].value;
+var ProjectEnddate = document.getElementsByName("Enddate")[0].value;
 var flag=0;
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
@@ -113,7 +118,7 @@ flag=1;
 
  
 
-if (project_name == "" || descr == "" || Startdate == "" || Enddate == "" )
+if (project_name == "" || description == "" || ProjectStartdate == "" || ProjectEnddate == "" )
 {
 alert("Please fill the mandatory fields");
 return false;
@@ -180,8 +185,10 @@ var f=document.loginForm;
                 			
                             <!-- /.nav navbar-nav -->
  <ul class="nav navbar-nav navbar-right">
-                       
- 
+       <%
+                         String uname=(String)details.getAttribute("username");
+                         String role=(String)details.getAttribute("role");%>                   
+	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
 <li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
@@ -198,8 +205,7 @@ var f=document.loginForm;
             <div class="content-wrapper">
                 <div class="content-container">
             
-            
-            
+
                     <!-- ========== LEFT SIDEBAR ========== -->
                     <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                         <div class="sidebar-content" id='jqxWidget'>
@@ -228,9 +234,9 @@ var f=document.loginForm;
                                     <li class="has-children">
                                         <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject1.php"> <span>Parameters</span></a></li>
-                                            <li><a href="editproject.php"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a href="editproject1.php"> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
                                         </ul>
                                     </li>
 
@@ -294,7 +300,7 @@ var f=document.loginForm;
                             <div class="row breadcrumb-div">
                                 <div class="col-sm-6">
                                     <ul class="breadcrumb">
-                                        <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+                                        <li><a href="project.jsp"><i class="fa fa-home"></i> Home</a></li>
                                         <li class="active">New Projects</li>
                                     </ul>
                                 </div>
@@ -321,13 +327,12 @@ var f=document.loginForm;
                                             </div>
                                         <div class="panel-body p-20">
                                         
-                                         
-                                    
+                   
                                         <form role="form">
                                         
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput198">
-                                           <div class="required_fie">   Project Name&nbsp; </div> 
+                                           <div class="required_fie">   Project Name&nbsp;<span class="text-danger">*</span> </div> 
 </label>
                <input type="text" class="form-control" id="formInput198" placeholder="Project Name" name="projectname" required/>
               
@@ -337,9 +342,9 @@ var f=document.loginForm;
                                 
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput229">
-                                            <div class="required_fie">Description&nbsp;</div>
+                                            <div class="required_fie">Description&nbsp;<span class="text-danger">*</span></div>
 </label>
-                                            <input type="text" class="form-control" id="formInput229" placeholder="Description" name="descr" >
+                                            <input type="text" class="form-control" id="formInput229" placeholder="Description" name="descr" required>
                                         </div>
                                        <div class="form-group row log-date">
           <div class="col-md-12">
@@ -348,62 +353,58 @@ var f=document.loginForm;
           </div>
           
         </div>  
-                                         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label  ">
-            <div class="required_fie">Project Start Date&nbsp;</div></label>
-            <input placeholder="dd/mm/yyyy" id="Project_Start_Date" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required/>
+         
+		<div class="form-group row log-date">
+          <div class="col-md-12" id="basicExample">
+            <label class="control-label"><div class="required_fie">Project Start Date&nbsp;<span class="text-danger">*</span></div></label>
+            <input placeholder="dd/mm/yyyy" id="Project_Start_Date" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" required/>
           </div>
-          
         </div>  
         
         <div class="form-group row log-date">
-          <div class="col-md-12">
+          <div class="col-md-12" id="basicExample">
             <label class="control-label "> Initiate Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="Initiate_start_date" name="Intdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="dd/mm/yyyy" id="Initiate_start_date" name="Intdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
           </div>
-          
         </div>  
         
         <div class="form-group row log-date">
-          <div class="col-md-12">
+          <div class="col-md-12" id="basicExample">
             <label class="control-label required">Plan Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="P_S_date" name="Plandate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="dd/mm/yyyy" id="P_S_date" name="Plandate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
           </div>
-          
         </div>    
         
         <div class="form-group row log-date">
-          <div class="col-md-12">
+          <div class="col-md-12" id="basicExample">
             <label class="control-label required">Execution Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="Exec_start_date" name="Execdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="dd/mm/yyyy" id="Exec_start_date" name="Execdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
           </div>
-          
         </div>            
         
         <div class="form-group row log-date">
-          <div class="col-md-12">
+          <div class="col-md-12" id="basicExample">
             <label class="control-label required">Hypercare Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="Hyper_care_date" name="Hyperdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="dd/mm/yyyy" id="Hyper_care_date" name="Hyperdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
           </div>
-          
         </div>  
+        
         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label required"><div class="required_fie">Project End Date&nbsp;</div></label>
-            <input placeholder="dd/mm/yyyy" id="Project_end_date" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+          <div class="col-md-12" id="basicExample">
+            <label class="control-label required"><div class="required_fie">Project End Date&nbsp;<span class="text-danger">*</span></div></label>
+            <input placeholder="dd/mm/yyyy" id="Project_end_date" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" required>
           </div>
-          
         </div>                 
-                           <button type="button" class="btn btn-primary pull-left" onclick="valid1()">Save</button>&nbsp;
+                            
+                        <br/>                
+                       <button type="button" class="btn btn-primary btn pull-left" onclick="valid1()">Save</button>&nbsp;
                     <button type="button" class="btn btn-default" onclick="location.href='project.jsp';">Back</button>
-                                        
-                                                                           </form>    
+                                     
                                 </div>                                 
                             </div>                             
-                        </div>         
-                        <br/>                
-                      
+                        </div>            
+                                                                           </form>                               
+                
                                     <!-- /.col-md-6 -->
 
                                 </div>
