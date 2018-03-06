@@ -145,7 +145,7 @@ class Samp
 		
 	}
 }
-// For Archival Execution
+
 class Exec
 {
 	String level,name,id,refid,index;
