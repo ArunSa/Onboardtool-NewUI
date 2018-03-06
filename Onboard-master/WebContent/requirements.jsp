@@ -189,7 +189,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                
                             </ul>
                         </li>
-                         <li><a href="applnprior1.jsp">Application-Prioritized</a></li>
+                         <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</a></li>
                     </ul>
                 </li>
                  <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>

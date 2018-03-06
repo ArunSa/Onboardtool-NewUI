@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 
  <meta charset="UTF-8" />
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,13 +28,13 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-         <script type="text/javascript" src="js_in_pages/application.js"></script>
+        <script type="text/javascript" src="js_in_pages/applnprior1.js"></script>
+   
 </head>
-  
 <body class="top-navbar-fixed">
-  
-<%@page language="java"%>
+    <%@page language="java"%>
 <%@page import="java.sql.*"%>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page import="onboard.DBconnection" %>
 <%
 
@@ -47,39 +47,47 @@ if (session.getAttribute("username")==null)
 	response.sendRedirect("Login.html");
 }
 %>
+
 <%
-int sumcount=0;
-Statement st1;
+double ans=0.0;
 try {
+	int  App_Priorities;
 	HttpSession details=request.getSession();
-	String Role_info=(String)details.getAttribute("app_emp");
-	String Project_Id=(String)session.getAttribute("theName");
-	String Project_name="";
-	String Application=(String)details.getAttribute("applications");
+	String ID=(String)session.getAttribute("theName");
+	String Application_Name=(String)details.getAttribute("applications");
 	String Project_Name=(String)details.getAttribute("projects");
 	DBconnection d=new DBconnection();
-	Connection con = (Connection)d.getConnection();
+	Connection conn = (Connection)d.getConnection();
+String query3 = "select * from projinfo where id = "+ID;
 
-String query3 = "select * from projinfo where id = "+Project_Id;
-Statement st3 = con.createStatement();
+String Project_name="";
+
+Statement st1 = conn.createStatement();
+Statement st2 = conn.createStatement();
+Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 if(rs3.next())
-Project_name=rs3.getString("projectname");
-
-System.out.println("Project_name of the project is "+Project_name);
+	Project_name=rs3.getString("projectname");
+session.setAttribute("newname",Project_name);
 String query1="";
 if(Project_Name.equals("all"))
-	 query1 = "select * from appinfo where prjname = '"+Project_name+"'";
+	 query1 = "select * from appinfo where prjname = '"+Project_name+"' and complexity is not null";
 else
-	 query1 = "select * from appinfo where prjname = '"+Project_Name+"' and appname='"+Application+"'";
-st1 = con.createStatement();
+	 query1 = "select * from appinfo where prjname = '"+Project_Name+"' and appname='"+Application_Name+"' and complexity is not null";
 ResultSet rs1 = st1.executeQuery(query1);
+String query2= "select count(prjname) As total from appinfo where prjname='"+Project_name+"' and complexity is not null";
+ResultSet rs2 = st2.executeQuery(query2);
+{
+%>
 
+<%if(rs2.next())
+{
+App_Priorities=rs2.getInt("total");
+System.out.println(App_Priorities);
 
 %>
 
- 
-<form class="form-signin" name="loginForm" method="post" action="IntsantApp">
+<form class="form-signin" name="loginForm" method="post">
 
  <div class="main-wrapper">
             
@@ -106,8 +114,12 @@ ResultSet rs1 = st1.executeQuery(query1);
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
                             <!-- /.nav navbar-nav -->
- <ul class="nav navbar-nav navbar-right">
- 
+<ul class="nav navbar-nav navbar-right">
+<li><%
+                         String uid=(String)details.getAttribute("username");
+                         String roles=(String)details.getAttribute("role");%>
+ <p><%=uid%>&nbsp;logged in as &nbsp;<span><%=roles%></span></p>
+</li> 
 <li><a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
@@ -121,7 +133,6 @@ ResultSet rs1 = st1.executeQuery(query1);
             </nav>
  
  
-    
             <div class="content-wrapper">
                 <div class="content-container">
             
@@ -147,7 +158,7 @@ ResultSet rs1 = st1.executeQuery(query1);
                                         <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
@@ -201,8 +212,8 @@ ResultSet rs1 = st1.executeQuery(query1);
                         <!-- /.sidebar-content -->
                     </div>
                     <!-- /.left-sidebar -->
-            
-            
+           
+                    
 <section>
 
     <div class="row">
@@ -210,11 +221,11 @@ ResultSet rs1 = st1.executeQuery(query1);
                     <h1 class="page-header">Projects</h1>
                       <div class="main">
                       
-<%
+          <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
 String plan=(String)session.getAttribute("Plan");
 String execute=(String)session.getAttribute("Execute");
-String hypercare=(String)session.getAttribute("Closure");
+String hypercare=(String)session.getAttribute("HyperCare");
 if(initiate == null)
 	initiate="0";
 if(plan == null)
@@ -238,7 +249,7 @@ if(hypercare == null)
   <div class="form-group">
   <center><label >Plan</label></center>
   <div class="progress">
-  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar1" style="width: <%=plan%>%" aria-valuenow="<%=plan%>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=plan %>%</span></div>
+  <div  class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar1" style="width: <%=plan%>%" aria-valuenow="<%=plan%>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=plan %>%</span></div>
 </div></div></div>
 
   <div class="col-md-3">
@@ -261,72 +272,141 @@ if(hypercare == null)
 <jsp:param name="Execute" value="<%=execute %>"/>
 <jsp:param name="Hypercare" value="<%=hypercare %>"/>
 </jsp:include>
-                    <div class="panel-group" id="panels1"> 
-                    <br/><br/><br/>
-                                                       
-<div class="panel panel-default">
-        <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse2"> Application Information  </a> </h4> 
-                            </div>  
-                                                       
-                            <div id="collapse2" class="panel-collapse"> 
-                                <div class="panel-body text-left">
+                              
+         <div class="row">
+		
+        
+            <div class="row bs-wizard" style="border-bottom:0;">
+                
+                <div class="col-xs-3 bs-wizard-step complete">
+                  <div class="text-center bs-wizard-stepnum">Project Information</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot" style="color:white">1</a>
+                
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Cost Complexity Calculation</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot" style="color:white">2</a>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Prioritized Applications</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot" style="color:white">3</a>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+                  <div class="text-center bs-wizard-stepnum">Final</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                </div>
+            </div>
+            <br/>
+        
+        
+        
+	</div>
+        
                                 
                                 
-<div class="table-responsive" id="table-scroll"> 
- 
-    <table class="js-dynamitable     table table-bordered" id="myTable">
+  <div class="table-responsive" id="table-scroll"  > 
+   
+    <table class="js-dynamitable table table-bordered" id="myTable" >
       
       <thead>
- 
-        <tr>
-          <th>Application Name <span class="js-sorter-desc     glyphicon glyphicon-chevron-down pull-right"></span> <span class="js-sorter-asc     glyphicon glyphicon-chevron-up pull-right"></span> </th>
-         
-        </tr>
 
-       
+        <tr>
+          <th>Application Name</th>
+          <th>Complexity</th>
+          <th>Estimated Size of xDB </th>
+          <th>Estimated Service Cost </th>
+          <th>Priorities</th>
+         
+    </tr>
+        
+        
       </thead>
-      
-      <tbody>
-      <%
+     
+      <tbody>   
+        
+      <%int i=0	; %>
+          <%
+        
 while(rs1.next()){
+
 %>
+
         <tr>
         
-          <td class="edit_row" style="cursor:pointer"><%=rs1.getString("appname") %></td>
+          <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><input type="text" id="project_name<%=i%>" name="project_name<%=i%>" value="<%=rs1.getString("appname") %>"></span></td>
+          <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("complexity") %>"></span></td>
+          <td class="row_t" style="cursor:pointer" id="33"><span class="test"><input type="text" id="est_db_size<%=i%>" name="est_db_size<%=i%>" value="<%=rs1.getString("est_db_size") %>"></span></td>
+          <td class="row_d" style="cursor:pointer" id="44"><span class="test"><input type="text" id="est_cst<%=i%>" name="est_cst<%=i%>" value="<%=rs1.getString("est_cst") %>"></span></td>
+          <td class="row_d" id="55">
+          <span class="test"><input type="text" name="priority<%=i %>" id="priority<%=i %>" value="<%=rs2.getInt("total")-i %>"></span>
+        </td>
+
+       
          
          
         </tr>
-      <%
-}
-%>      
-      </tbody>
+        <%
+i++;        
+} 
+        
+	
+        %>
+        
+    </tbody>
     </table>
+ 
+      <script>
+// JavaScript script from: http://coursesweb.net/javascript/
+
+// gets all the .edit_row cells, registers click to each one
+var edit_row = document.querySelectorAll('#myTable .edit_row');
+for(var i=0; i<edit_row.length; i++) {
+  edit_row[i].addEventListener('click', function(e){
+    // get parent row, add data from its cells in form fields
+    var tr_parent = this.parentNode;
+    document.getElementById('proj_name').value = tr_parent.querySelector('.edit_row').innerHTML;
+    document.getElementById('complexity').value = tr_parent.querySelector('.row_s').innerHTML;
+    document.getElementById('est_db_size').value = tr_parent.querySelector('.row_t').innerHTML;
+    document.getElementById('est_cst').value = tr_parent.querySelector('.row_d').innerHTML;
+    }, false);
+}
+
+</script>
+     
   </div>
   <br />
-                
-                 
-                                            <label class="control-label" for="formInput198">
-                                               Application Name&nbsp;
-</label>
-                                            <input type="text" class="form-control" id="app_name" placeholder="Application Name" name="appname" >
-                                            <input type="hidden" class="form-control" id="formInput198" placeholder="Application Name" name="prjname" value="<%=rs3.getString("projectname") %>" >
-                                     </br>
-                              <input type="submit" id="bttn"  class="btn btn-primary btn pull-left" name ="p1" value="Add">
-                
-                            
-                               <input type="text" id="role_info" value="<%= Role_info %>" style="display:none">  
-                                </div>                                 
-                            </div>                             
-                        </div>     
-                       
-                    <button type="button" class="btn btn-default" onclick="location.href='editproject.jsp';">Back</button>
-                    <button type="button" class="btn btn-success pull-right" onclick="location.href='tree1.jsp';">Save & Continue...</button>
-                                        
-                                 
-                          </form>                                                                              
+                                
+                        
+                            <br/>
+                      
+         
+                                                                                            
+                                   
+                                   
+<button type="button" class="btn btn-primary" onclick="call()" >Submit</button>     
+     
+                    <a href="tree1.jsp" class="btn btn-default" class="btn pull-right">Cancel</a>
+                    
+                    <a href="tree1.jsp" style="float:right">Click here to enter data for application</a>
+                                      <% } 
+                                      
+%> 
                            
-           
+                                </div>                                 
+                            </div>
+                             <%
+
+}}
+catch(Exception e){}
+%>
+
                    <!-- /.row -->
 </section>
                         <!-- /.section -->
@@ -336,22 +416,7 @@ while(rs1.next()){
 
         </div>
         <!-- /.main-wrapper -->
-                                                                                                                       
- <script>
- if(document.getElementById('Role_info').value=="R")
-	 checkk();
- </script>        
-                                                                                        
-                                
-           <%
-
-}
-catch(Exception e){
-e.printStackTrace();
-}
-%>
-                   
-
+                           
         <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script src="js/jquery-ui/jquery-ui.min.js"></script>
@@ -405,8 +470,6 @@ e.printStackTrace();
         <script type="text/javascript" src="js/date-picker/moment.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-
-  </body>
-
+                           
+</body>
 </html>
-

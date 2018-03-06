@@ -304,7 +304,7 @@ function call()
 {
 	var f=document.loginForm;
     f.method="post";
-    f.action="applnprior1.jsp";
+    f.action="AppEmphasize_applnprior1.jsp";
     f.submit();
 	}
 </script>
@@ -402,7 +402,7 @@ total=rs2.getInt("total");
                                 
                             </ul>
                         </li>
-                        <li item-selected='true'><a href="applnprior.jsp">Application-Prioritized</a></li>
+                        <li item-selected='true'><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</a></li>
                        <li> <a href="demo.jsp">ROI Calculation</a></li>
                         <li>Estimates</li>
 
@@ -521,7 +521,7 @@ $(document).ready(function () {
                     
              
                                 
-     <tr><a href="applnprior.jsp"  class="btn btn-success" class="btn pull-right"><span class="glyphicon glyphicon-download-edit"></span>Back</a>                      
+     <tr><a href="AppEmphasize_applnprior1.jsp"  class="btn btn-success" class="btn pull-right"><span class="glyphicon glyphicon-download-edit"></span>Back</a>                      
                 <button id="exportview" class="btn btn-primary" ><span class="glyphicon glyphicon-download-alt"></span> Export PDF</button> </tr></br>  <br>                 
  <div class="panel panel-default" >              
                 

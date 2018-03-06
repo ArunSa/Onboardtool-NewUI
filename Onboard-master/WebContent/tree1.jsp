@@ -370,7 +370,7 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                 
                             </ul>
                         </li>
-                        <li><a href="applnprior1.jsp">Application-Prioritized</a></li>
+                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</a></li>
           
 
                     </ul>

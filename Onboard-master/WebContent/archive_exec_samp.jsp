@@ -199,7 +199,7 @@ if(rs4.next()){
                              
                             </ul>
                         </li>
-                        <li><a href="applnprior1.jsp">Application-Prioritized</li>
+                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</li>
 
                     </ul>
                 </li>

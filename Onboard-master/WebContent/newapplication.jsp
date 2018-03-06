@@ -110,7 +110,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                                 
                             </ul>
                         </li>
-                        <li><a href="applnprior.jsp">Application-Prioritized</li>
+                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</li>
                         
                        <li> <a href="demo.jsp">ROI Calculation</a></li>
                         <li>Estimates</li>
