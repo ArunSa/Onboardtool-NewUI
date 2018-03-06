@@ -101,7 +101,7 @@ public class Project extends HttpServlet {
 		          preparedStmt.setString   (8, Hyperdate);
 		          preparedStmt.setString (9, Enddate);
 		          preparedStmt.execute();
-		          System.out.println("Created Project Succesfully");
+		          
 		          String query4 = " insert into app_prior (prj_name, IA_lic_cst, IA_maint_cst, Infrastrct_cst, strg_est, lab_cst, proj_name, data_size, data_source, curnt_users, complexity, est_archive, est_scrn, est_db_size, est_hrs, est_cst, ttl_IA_cst, ttl_infra_cst, ttl_IA_prdct_cst, ttl, ttl_cst_fr_app, add_cst_fr_contigency, add_cst, IA_app_sprt_cst, est_archive_cst,no_of_app_complexity, read_date,sme_date)"
 		  	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
           
@@ -170,7 +170,7 @@ public class Project extends HttpServlet {
 		          System.err.println(e.getMessage());
 		        }
 		        // return response
-		        response.sendRedirect("project.jsp");
+		        response.sendRedirect("Project_List.jsp");
 				
 
 

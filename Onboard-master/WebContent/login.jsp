@@ -1,48 +1,135 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>atozknowledge.com demo loginjsp</title>
-<script type='text/javascript'
-  src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-   <meta name="keywords" content="jQuery Tree, Tree Widget, TreeView" />
-    <meta name="description" content="The jqxTree displays a hierarchical collection of items. You
-        can populate it from 'UL' or by using its 'source' property." />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
-    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="scripts/demos.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxpanel.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxtree.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<style>
-.well
-{
- margin: 100px auto;
- padding: 20px 20px;
-  border: 2px solid black;
-  background:;
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
+<title>ONBOARD</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+
+<link href="styles/styles.css" rel="stylesheet">
+
+    <style>
+    
+    body{
+    width:100%;
+    background-repeat: no-repeat;
+    background-position: 0px 0px 10px; 
+    }
+   .glyphicon {
+    font-size: 20px;
+}
+    #uname,#pwd
+    {
+    margin:0;
+    background-color:white;
+    border-radius:0px;
+    border-left:transparent;
+    border-right:transparent;
+    border-bottom:solid white 1px;
+    border-top:transparent;
+    color:#34495E;
+    
+    }
+    #main_col
+    {
+    background-color:#3276B1;
+    border-radius:0px;
+    border-left:transparent;
+    border-right:transparent;
+    border-bottom:transparent;
+    border-top:transparent;
+    color:#fff;
+    
+    }
+
+.text-gray { color: #4c4d4d !important; }
+
+.full-body { margin:5% auto; padding:0; overflow-X:hidden; }
   
- }
-</style>
-</head>
+form {
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  padding: 20px 20px;
+ color:black;
+  font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+   border-radius: none; 
+}
+
+.recov-pass, .recov-user {
+  width:100%;
+    position: relative;
+  margin: 0 auto;
+  display: inline-block;
+    padding: 20px 20px;
+  font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+   border-radius: 5px;
+   text-align:center;
+}
+    
+    ::-webkit-input-placeholder { 
+ color:white;
+}
+
+body {
+  background: url(../onboard/images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login-form {
+    font: 16px/2em Lato, serif;
+  margin: 20px auto;
+}
+
+.btn-shad { border: none;
+     }
+
+
+.progress-bar {
+    color: #000 !important;
+    background-color: #3498db !important; }
+
+
+form[role=login] {
+  color: #5d5d5d;
+  background: #e2e1e145;
+  padding: 26px;
+}
+  form[role=login] img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 35px;
+  }
+  form[role=login] input,
+  form[role=login] button {
+    font-size: 18px;
+    margin: 16px 0;
+  }
+  form[role=login] > div {
+    text-align: center;
+  }
+  
+.form-links {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 50px;
+}
+  .form-links a {
+    color: #fff;
+  }
+
+    </style></head>
 <%
 
 class Samp
@@ -245,7 +332,7 @@ if(exec_det==0)
 	e[10]=new Exec("3", "Build and Test", "103", "", "11");
 	e[11]=new Exec("4", "Configuration", "136", "103", "12");
 	e[12]=new Exec("5", "Technical Design Document-Development", "145", "136", "13");
-	e[13]=new Exec("5", "Technical Design Document – Approval", "144", "136", "14");
+	e[13]=new Exec("5", "Technical Design Document ? Approval", "144", "136", "14");
 	e[14]=new Exec("5", "Shell Application Set up", "143", "136", "15");
 	e[15]=new Exec("5", "Ingestion Configuration", "142", "136", "16");
 	e[16]=new Exec("5", "Build & Configuration Screens and Reports", "141", "136", "17");
@@ -326,15 +413,13 @@ if(userid.equals("admin")&&pwd.equals("admin"))
 	details.setAttribute("intake","X");
 	details.setAttribute("archive_exec","X");
 
-    String redirectURL = "project.jsp";
+    String redirectURL = "Project_List.jsp";
 
     response.sendRedirect(redirectURL);
 }else{
 if(rs.next()) 
 {
-	//encryption et=new encryption();
-	//String decrypted_pass=et.decrypt(rs.getString(5));
-	//System.out.println("decrypt "+decrypted_pass);
+	
 	if((rs.getString(5).equals(pwd))) 
 { 
 	details.setAttribute("role",rs.getString(7));
@@ -356,7 +441,7 @@ if(rs.next())
 	
 	
 	
-		        String redirectURL = "project.jsp";
+		        String redirectURL = "Project_List.jsp";
 	
 		        response.sendRedirect(redirectURL);
 	

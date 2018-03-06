@@ -91,7 +91,11 @@
                             <!-- /.nav navbar-nav -->
  <ul class="nav navbar-nav navbar-right">
  
-<li><a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a>
+  <%
+                         String uname=(String)details.getAttribute("username");
+                         String role=(String)details.getAttribute("role");%>                   
+	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
+<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
 					
@@ -120,7 +124,7 @@
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -130,7 +134,7 @@
                                         <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="AppEmphasize_application.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
@@ -144,7 +148,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="AppEmphasize_applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_Applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -196,7 +200,7 @@
                       <div class="main">
 <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
 <div class="cbp-vm-options">
-<button type="button" class="btn btn-primary pull-right" name="newpr" onclick="location.href='AppEmphasize_newproject.jsp';" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+<button type="button" class="btn btn-primary pull-right" name="newpr" onclick="location.href='AppEmphasize_Newproject.jsp';" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
   New Project
 </button>
 <a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected gr" data-view="cbp-vm-view-grid">Grid View</a>

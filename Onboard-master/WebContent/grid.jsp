@@ -124,7 +124,7 @@ if(rs.next())
 <div class="container">
 <nav class="navbar-fixed-top" style="background:#3276B1">
             <div class="container-fluid">
-                    <a class="navbar-brand" href="project.jsp" style="color:white" id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
+                    <a class="navbar-brand" href="Project_List.jsp" style="color:white" id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
               <%
               details.setAttribute("nameofproject",rs.getString("projectname"));
               %>

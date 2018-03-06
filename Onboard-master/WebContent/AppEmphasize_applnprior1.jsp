@@ -148,7 +148,7 @@ System.out.println(App_Priorities);
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -158,7 +158,7 @@ System.out.println(App_Priorities);
                                         <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="AppEmphasize_application.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
@@ -172,7 +172,7 @@ System.out.println(App_Priorities);
                                     </li>
 
                                     <li>
-                                        <a href="AppEmphasize_applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_Applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
