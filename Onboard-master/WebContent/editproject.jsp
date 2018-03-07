@@ -51,7 +51,7 @@ String roles=(String)details.getAttribute("role");
 String info=(String)details.getAttribute("app_emp");
 String username=(String)details.getAttribute("u_Name");
 String Project_Name=(String)details.getAttribute("nameofproject");
-System.out.println("the username is "+username);
+System.out.println("the prjname is "+Project_Name);
 
 try {
 String det=(String)session.getAttribute("theName");
@@ -69,15 +69,18 @@ String strDate=ft.format(date);
 String strTime=ft1.format(date);
 while(visit_rs.next())
 {
+ if(visit_rs.getString(6)!=null)
+	{
 	if(visit_rs.getString(1).equals(username) && visit_rs.getString(2).equals(strDate) && visit_rs.getString(3).equals("App Emphasize Module") && visit_rs.getString(6).equals(Project_Name) )
 	{
 		Statement stmtt = conn.createStatement();
-         String queryy = "update visits set count=count+1,time='"+strTime+"' where uname='"+username+"' and module='App Emphasize Module' and Projects='"+Project_Name+"'";
+         String queryy = "update visits set count=count+1,time='"+strTime+"' where uname='"+username+"' and module='App Emphasize Module' and Projects='"+Project_Name+"' and date ='"+strDate+"'";
          int count = stmtt.executeUpdate(queryy);
          flag=0;
+         break;
 	}
-	else
-		System.out.println(++knt+" Noo");
+}
+
 }
 System.out.println("the flag value is "+flag);
 if(flag==1)
