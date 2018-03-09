@@ -321,7 +321,6 @@ if(hypercare == null)
           <th>Application Name</th>
           <th>Complexity</th>
           <th>Estimated Size of xDB </th>
-          <th>Estimated Service Cost </th>
           <th>Priorities</th>
          
     </tr>
@@ -343,8 +342,7 @@ while(rs1.next()){
           <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><input type="text" id="project_name<%=i%>" name="project_name<%=i%>" value="<%=rs1.getString("appname") %>"></span></td>
           <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("complexity") %>"></span></td>
           <td class="row_t" style="cursor:pointer" id="33"><span class="test"><input type="text" id="est_db_size<%=i%>" name="est_db_size<%=i%>" value="<%=rs1.getString("est_db_size") %>"></span></td>
-          <td class="row_d" style="cursor:pointer" id="44"><span class="test"><input type="text" id="est_cst<%=i%>" name="est_cst<%=i%>" value="<%=rs1.getString("est_cst") %>"></span></td>
-          <td class="row_d" id="55">
+           <td class="row_d" id="55">
           <span class="test"><input type="text" name="priority<%=i %>" id="priority<%=i %>" value="<%=rs2.getInt("total")-i %>"></span>
         </td>
 
