@@ -152,12 +152,12 @@ System.out.println(App_Priorities);
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
@@ -321,6 +321,7 @@ if(hypercare == null)
           <th>Application Name</th>
           <th>Complexity</th>
           <th>Estimated Size of xDB </th>
+          <th>Estimated Service Cost </th>
           <th>Priorities</th>
          
     </tr>
@@ -342,7 +343,8 @@ while(rs1.next()){
           <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><input type="text" id="project_name<%=i%>" name="project_name<%=i%>" value="<%=rs1.getString("appname") %>"></span></td>
           <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("complexity") %>"></span></td>
           <td class="row_t" style="cursor:pointer" id="33"><span class="test"><input type="text" id="est_db_size<%=i%>" name="est_db_size<%=i%>" value="<%=rs1.getString("est_db_size") %>"></span></td>
-           <td class="row_d" id="55">
+          <td class="row_d" style="cursor:pointer" id="44"><span class="test"><input type="text" id="est_cst<%=i%>" name="est_cst<%=i%>" value="<%=rs1.getString("est_cst") %>"></span></td>
+          <td class="row_d" id="55">
           <span class="test"><input type="text" name="priority<%=i %>" id="priority<%=i %>" value="<%=rs2.getInt("total")-i %>"></span>
         </td>
 
@@ -390,9 +392,9 @@ for(var i=0; i<edit_row.length; i++) {
                                    
 <button type="button" class="btn btn-primary" onclick="call()" >Submit</button>     
      
-                    <a href="tree1.jsp" class="btn btn-default" class="btn pull-right">Cancel</a>
+                    <a href="AppEmphasize_Calculation.jsp" class="btn btn-default" class="btn pull-right">Cancel</a>
                     
-                    <a href="tree1.jsp" style="float:right">Click here to enter data for application</a>
+                    <a href="AppEmphasize_Calculation.jsp" style="float:right">Click here to enter data for application</a>
                                       <% } 
                                       
 %> 

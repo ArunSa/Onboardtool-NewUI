@@ -141,12 +141,12 @@ ResultSet rs1 = st1.executeQuery(query1);
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
@@ -165,32 +165,32 @@ ResultSet rs1 = st1.executeQuery(query1);
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -320,8 +320,8 @@ while(rs1.next()){
                             </div>                             
                         </div>     
                        
-                    <button type="button" class="btn btn-default" onclick="location.href='editproject.jsp';">Back</button>
-                    <button type="button" class="btn btn-success pull-right" onclick="location.href='tree1.jsp';">Save & Continue...</button>
+                    <button type="button" class="btn btn-default" onclick="location.href='AppEmphasize_EditProject.jsp';">Back</button>
+                    <button type="button" class="btn btn-success pull-right" onclick="location.href='AppEmphasize_CostCalculation.jsp';">Save & Continue...</button>
                                         
                                  
                           </form>                                                                              

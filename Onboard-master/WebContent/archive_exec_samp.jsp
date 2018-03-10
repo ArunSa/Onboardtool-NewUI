@@ -187,11 +187,11 @@ if(rs4.next()){
                     <ul>
                        <li item-expanded='true'>Project Details
                     <ul>
-                        <li item-selected='true'><a href="editproject.jsp">Project Information</a></li>
-                        <li><a href="AppEmphasize_application.jsp">Application Details</a></li>
+                        <li item-selected='true'><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
+                        <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
                         </ul>
                         </li>
-                        <li item-expanded='true'> <a href="tree1.jsp">Application Prioritization</a>
+                        <li item-expanded='true'> <a href="AppEmphasize_Calculation.jsp">Application Prioritization</a>
                          <ul>
                                 <li >Parameters</li>
                                 <li>Archival Complexity Calculation</li>

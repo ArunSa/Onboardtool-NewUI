@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<title>Project Information</title>
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- 
-    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
-   
- <script type="text/javascript" src="js_in_pages/tree1.js"></script>
-<script type="text/javascript" src="js_in_pages/tree.js"></script>
-  <link rel="stylesheet" href="js_in_pages/tree1.css" type="text/css" />
-    <script type="text/javascript" src="scripts/demos.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxpanel.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxtree.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
-   
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
     
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> 
-   
-   
- 
-    
+     <!-- ========== COMMON STYLES ========== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
+
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
+
+        <!-- ========== THEME CSS ========== -->
+        <link rel="stylesheet" href="css/main.css" media="screen" >
+
+        <!-- ========== MODERNIZR ========== -->
+        <script src="js/modernizr/modernizr.min.js"></script>
+        
+    <style type="text/css">
+            .breadcrumb-div {
+                background-color: #e7e7e7;
+                color: #010101; }
+        </style>
+
+  <script src="js_in_pages/tree1.js"></script>
+  
 </head>
-<body class='default'>
+<body class="top-navbar-fixed">
+
     <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="java.text.NumberFormat" %>
@@ -86,236 +96,183 @@ String sum=result.getString(1);
 
 
 <script type="text/javascript">
-  var e;
+  var total;
  function updatesum() {
-var x=document.loginForm.data_size.value;
-  var y=document.loginForm.curnt_users.value;
+var datasize=document.loginForm.data_size.value;
+  var currentuser=document.loginForm.curnt_users.value;
 
-var a,b,c,d,z;
-if(x.charAt(0)=='<' && y.charAt(1)=='1'&&y.length<=3)
+var temp,temp1,temp2,temp3,total,result;
+
+if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexity.value ="Low";
+document.loginForm.complexitcurrentuser.value ="Low";
 }
-if(x.charAt(0)=='<' && y.charAt(1)=='2')
+if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexity.value ="Low";
+document.loginForm.complexitcurrentuser.value ="Low";
 }
-if(x.charAt(0)=='<' && y.charAt(1)=='5')
+if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexity.value ="Low to Medium";
+document.loginForm.complexitcurrentuser.value ="Low to Medium";
 }
-if(x.charAt(0)=='<' && y.charAt(1)=='1'&&y.length==4)
+if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexity.value ="Low to Medium";
+document.loginForm.complexitcurrentuser.value ="Low to Medium";
 }
-if(x.charAt(0)=='<' && y.charAt(0)=='1')
+if(datasize.charAt(0)=='<' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='1' && y.charAt(1)=='1'&&y.length<=3)
+if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexity.value ="Low";
+document.loginForm.complexitcurrentuser.value ="Low";
 }
-if(x.charAt(0)=='1' && y.charAt(1)=='2')
+if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexity.value ="Low to Medium";
+document.loginForm.complexitcurrentuser.value ="Low to Medium";
 }
-if(x.charAt(0)=='1' && y.charAt(1)=='5')
+if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexity.value ="Low to Medium";
+document.loginForm.complexitcurrentuser.value ="Low to Medium";
 }
-if(x.charAt(0)=='1' && y.charAt(1)=='1'&&y.length==4)
+if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='1' && y.charAt(0)=='1')
+if(datasize.charAt(0)=='1' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='2' && y.charAt(1)=='1'&&y.length<=3)
+if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexity.value ="Low to Medium";
+document.loginForm.complexitcurrentuser.value ="Low to Medium";
 }
-if(x.charAt(0)=='2' && y.charAt(1)=='2')
+if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexity.value ="Low to Medium";
+document.loginForm.complexitcurrentuser.value ="Low to Medium";
 }
-if(x.charAt(0)=='2' && y.charAt(1)=='5')
+if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='2' && y.charAt(1)=='1'&&y.length==4)
+if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='2' && y.charAt(0)=='1')
+if(datasize.charAt(0)=='2' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexity.value ="Medium to High";
+document.loginForm.complexitcurrentuser.value ="Medium to High";
 }
-if(x.charAt(0)=='5' && y.charAt(1)=='1'&&y.length<=3)
+if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexity.value ="Low to Medium";
+document.loginForm.complexitcurrentuser.value ="Low to Medium";
 }
-if(x.charAt(0)=='5' && y.charAt(1)=='2')
+if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='5' && y.charAt(1)=='5')
+if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='5' && y.charAt(1)=='1'&&y.length==4)
+if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexity.value ="Medium to High";
+document.loginForm.complexitcurrentuser.value ="Medium to High";
 }
-if(x.charAt(0)=='5' && y.charAt(0)=='1')
+if(datasize.charAt(0)=='5' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexity.value ="Medium to High";
+document.loginForm.complexitcurrentuser.value ="Medium to High";
 }
-if(x.charAt(0)=='>' && y.charAt(1)=='1'&&y.length<=3)
+if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='>' && y.charAt(1)=='2')
+if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexity.value ="Medium";
+document.loginForm.complexitcurrentuser.value ="Medium";
 }
-if(x.charAt(0)=='>' && y.charAt(1)=='5')
+if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexity.value ="Medium to High";
+document.loginForm.complexitcurrentuser.value ="Medium to High";
 }
-if(x.charAt(0)=='>' && y.charAt(1)=='1'&&y.length==4)
+if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexity.value ="Medium to High";
+document.loginForm.complexitcurrentuser.value ="Medium to High";
 }
-if(x.charAt(0)=='>' && y.charAt(0)=='1')
+if(datasize.charAt(0)=='>' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexity.value ="High";
+document.loginForm.complexitcurrentuser.value ="High";
 }
-if(document.loginForm.complexity.value=="Low")
+if(document.loginForm.complexitcurrentuser.value=="Low")
 {
 document.loginForm.est_archive.value =700;
 document.loginForm.est_scrn.value ="<=5";
-z=1;
+result=1;
 }
-if(document.loginForm.complexity.value=="Low to Medium")
+if(document.loginForm.complexitcurrentuser.value=="Low to Medium")
 {
 document.loginForm.est_archive.value =1000;
 document.loginForm.est_scrn.value ="<=10";
-z=2;
+result=2;
 }
-if(document.loginForm.complexity.value=="Medium")
+if(document.loginForm.complexitcurrentuser.value=="Medium")
 {
 document.loginForm.est_archive.value =1400;
 document.loginForm.est_scrn.value ="<=20";
-z=3;
+result=3;
 }
-if(document.loginForm.complexity.value=="Medium to High")
+if(document.loginForm.complexitcurrentuser.value=="Medium to High")
 {
 document.loginForm.est_archive.value =1800;
 document.loginForm.est_scrn.value ="<=25";
-z=4;
+result=4;
 }
-if(document.loginForm.complexity.value=="High")
+if(document.loginForm.complexitcurrentuser.value=="High")
 {
 document.loginForm.est_archive.value =2500;
 document.loginForm.est_scrn.value ="<=30";
-z=5;
+result=5;
 }
-var qqq=<%=appno%>;
-document.loginForm.est_db_size.value=(document.loginForm.no_of_app_complexity.value*0.001*document.loginForm.strg_est.value).toFixed(2);
-document.loginForm.est_hrs.value =(document.loginForm.no_of_app_complexity.value*document.loginForm.est_archive.value).toFixed(2);
-a=(100*document.loginForm.est_hrs.value);
-document.loginForm.est_cst.value="$"+a.toFixed(2);
-b=document.loginForm.est_db_size.value*document.loginForm.IA_lic_cst.value;
-document.loginForm.ttl_IA_cst.value ="$"+b.toFixed(2);
-c=10000*document.loginForm.est_db_size.value;
-document.loginForm.ttl_infra_cst.value="$"+c.toFixed(2);
-d=5*b*0.01*document.loginForm.IA_maint_cst.value
-document.loginForm.ttl_IA_prdct_cst.value ="$"+d.toFixed(2);
-e=a+b+c+d;
-document.loginForm.ttl.value="$"+e.toFixed(2);
-document.loginForm.tootal.value=e.toFixed(2);
-document.loginForm.ttl_cst_fr_app.value=<%=sum%>+(e.toFixed(2)-0);
+var appnumber=<%=appno%>;
+document.loginForm.est_db_size.value=(document.loginForm.no_of_app_complexitcurrentuser.value*0.001*document.loginForm.strg_est.value).toFixed(2);
+document.loginForm.est_hrs.value =(document.loginForm.no_of_app_complexitcurrentuser.value*document.loginForm.est_archive.value).toFixed(2);
+temp=(100*document.loginForm.est_hrs.value);
+document.loginForm.est_cst.value="$"+temptoFixed(2);
+temp1=document.loginForm.est_db_size.value*document.loginForm.IA_lic_cst.value;
+document.loginForm.ttl_IA_cst.value ="$"+temp1.toFixed(2);
+temp2=10000*document.loginForm.est_db_size.value;
+document.loginForm.ttl_infra_cst.value="$"+temp2.toFixed(2);
+temp3=5*temp3*0.01*document.loginForm.IA_maint_cst.value
+document.loginForm.ttl_IA_prdct_cst.value ="$"+temp3.toFixed(2);
+total=temp+temp1+temp2+temp3;
+document.loginForm.ttl.value="$"+total.toFixed(2);
+document.loginForm.tootal.value=total.toFixed(2);
+document.loginForm.ttl_cst_fr_app.value=<%=sum%>+(total.toFixed(2)-0);
 document.loginForm.est_archive_cst.value="$"+document.loginForm.ttl_cst_fr_app.value.toFixed(2); 
 }
 function add()
 {
-var i;
-i=(document.loginForm.ttl_cst_fr_app.value-0)+(document.loginForm.add_cst_fr_contigency.value-0)+(document.loginForm.add_cst.value-0)+(document.loginForm.IA_app_sprt_cst.value-0);
-document.loginForm.est_archive_cst.value="$"+i.toFixed(2); 
+var sum;
+sum=(document.loginForm.ttl_cst_fr_app.value-0)+(document.loginForm.add_cst_fr_contigenccurrentuser.value-0)+(document.loginForm.add_cst.value-0)+(document.loginForm.IA_app_sprt_cst.value-0);
+document.loginForm.est_archive_cst.value="$"+sum.toFixed(2); 
 }
 </script>
-<script>
-function switchColors0()
-{
- 
-links=document.getElementsByTagName("li") ;  
-var element=document.getElementById("xxx");
-for (var i = 0 ; i < links.length ; i ++)  
-links.item(i).style.backgroundColor = '#3276B1' ; 
-element.style.borderRadius="5px";
-element.style.marginRight = "70px";
-element.style.boxSizing = "content-box";
-element.style.borderColor = "#3276B1";
-element.style.background="#3276B1"; 
-var list = document.getElementsByTagName("OL")[0];
-var x=list.getElementsByTagName("LI");
-for (var i = 0 ; i < x.length ; i ++)  
-x.item(i).style.backgroundColor = '#3276B1' ; 
- 
-}
-</script>
-<script>
-function switchColors()  
-{  
-links=document.getElementsByTagName("li") ;  
-var element=document.getElementById("xxz");
-for (var i = 0 ; i < links.length ; i ++)  
-links.item(i).style.backgroundColor = '#3276B1' ; 
-element.style.borderRadius="5px";
-element.style.marginRight = "85px";
-element.style.boxSizing = "content-box";
-element.style.borderColor = "#3276B1";
-element.style.background="#3276B1";
-var list = document.getElementsByTagName("UL")[0];
-var x=list.getElementsByTagName("LI");
-for (var i = 0 ; i < x.length ; i ++)  
-x.item(i).style.backgroundColor = '#3276B1' ; 
-
-
-} 
-</script>
-<script>
-function switchColors1()  
-{  
-links=document.getElementsByTagName("li") ;  
-var element=document.getElementById("xxy");
-for (var i = 0 ; i < links.length ; i ++)  
-links.item(i).style.backgroundColor = '#3276B1' ; 
-element.style.borderRadius="5px";
-element.style.marginRight = "150px";
-element.style.boxSizing = "content-box";
-element.style.borderColor = "#3276B1";
-element.style.background="#3276B1";
-var list = document.getElementsByTagName("UL")[0];
-var x=list.getElementsByTagName("LI");
-for (var i = 0 ; i < x.length ; i ++)  
-x.item(i).style.backgroundColor = '#3276B1' ; 
-
-
-} 
-</script>
-
-
  
 <form class="form-signin" name="loginForm" method="post">
-<div class="container">
-<nav class=" navbar-fixed-top" style="background:#3276B1">
-            <div class="container-fluid">
+
+        <div class="main-wrapper">
             
-            <%if (rs3.next()) {%>
-                    <a class="navbar-brand" href="project.jsp" style="color:white" id="sitetitle" >Onboarding Tool-<%= rs3.getString(1) %></a>
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+            	<div class="container-fluid">
+            
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+                			
+           <%if (rs3.next()) {%>
+                    <a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
              <%        String q2="select * from archive_exec where level=1 and projects='"+projectname+"'order by seq_num";
 Statement s2 = conn.createStatement();
 ResultSet rss = s2.executeQuery(q2);
@@ -323,96 +280,122 @@ while(rss.next())
 {
 session.setAttribute(rss.getString(3),rss.getString(15));
 }%>
-              
-                <div id="navbar" class="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                       <img src="assets/images/logo1.png" id="image" class="img-rounded" height="50" width="80" alt="Platform3Solutions" />&nbsp;
-                       
-</li>
- <li><%
+
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
+
+                		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+                			
+                            <!-- /.nav navbar-nav -->
+ <ul class="nav navbar-nav navbar-right">
+      <li><%
                          String uid=(String)details.getAttribute("username");
                          String role=(String)details.getAttribute("role");%>
- <p style="color:white; padding-top:15px;"><%=uid%>&nbsp;logged in as &nbsp;<span><%=role%></span></p>
-</li>               <li>
-                           <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
+ <p><%=uid%>&nbsp;logged in as &nbsp;<span><%=role%></span></p>
+</li>           
+<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
-                    
-                </div>
-               
-            </div>
-        </nav>
-        </div>
+					
+                		</div>
+                		<!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.row -->
+            	</div>
+            	<!-- /.container-fluid -->
+            </nav>
+
        
-            <div class="row">
-            <br>
-                <div class="col-md-3 sidebar">
-                  <div id='jqxWidget'>
-        <div id='jqxTree' style='visibility: hidden;  padding-top:30px;   float:right; '>
-                    <ul class="nav nav-sidebar" id ="sidemenu" >
+            <div class="content-wrapper">
+                <div class="content-container">
+            
 
-            <ul>
-                <li id='home' item-selected='true'> <a href="project.jsp">Home </a></li>
-                <li item-expanded='true'><a href="editproject.jsp">App Emphasize Module
-                    <ul>
-                       <li item-expanded='true'><a href="editproject.jsp">Project Details
-                    <ul>
-                        <li><a href="editproject.jsp">Project Information</a></li>
-                        <li><a href="AppEmphasize_application.jsp">Application Details</a></li>
-                        </ul>
-                        </li>
-                        <li item-expanded='true'> <a href="tree1.jsp">Application Prioritization</a>
-                         <ul>
-                                <li id="xxx">Parameters</li>
-                                <li id="xxz">Archival Complexity Calculation</li>
-                                <li id="xxy">Archival Cost Estimate</li>
-                                
-                            </ul>
-                        </li>
-                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</a></li>
-          
+                    <!-- ========== LEFT SIDEBAR ========== -->
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+							
+							
+                            <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
 
-                    </ul>
-                </li>
-                
-           <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
-                <ul>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Business</a>
-                <ul>
-                <li><a href='firstinsert.jsp'>Application Information</a></li>
-                <li><a href='firstinsert.jsp'>Legacy Retention Information</a></li>
-                <li><a href='firstinsert.jsp'>Archive Data Management</a></li>
-                <li><a href='firstinsert.jsp'>System Requirements</a></li>
-                
-                </ul></li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Technical</a>
-                <ul>
-                <li><a href='firstinsert.jsp'>Application Data Information</a></li>
-                <li><a href='firstinsert.jsp'>Infrastructure & Environment Inforamation</a></li>
-                <li><a href='firstinsert.jsp'>Technical Information</a></li>
-                </ul>
-                </li>
-                
-                 <li item-expanded='true'><a href='firstinsert.jsp'>Archival Requirements</a>
-                 <ul>
-                 <li><a href='firstinsert.jsp'>Screen/Report Requirements</a></li>
-                 <li><a href='firstinsert.jsp'>Archive Requirements</a></li>
-                 </ul>
-                 </li>
-                </ul>
-                </li>
-                </ul>
-                </li>
-                <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
-               </li>         
-               
-                          </ul>
-    
-     </ul>
-         </div>
-   </div>
-             </div>   <script>
+                                    <li class="nav-header">
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                           	<li><a id="xxx"> <span>Parameters</span></a></li>
+                                            <li><a id="xxz"> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a id="xxy"> <span>Archival Cost Estimate</span></a></li>
+                                       </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                        </ul>
+                                    </li>
+                                     <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+										
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                    <!-- /.left-sidebar -->
+            
+       
+ <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
@@ -437,12 +420,14 @@ $(document).ready(function(){
 
   </script>
   
+<!-- Projects List Start -->
 
-                    <br/><br/><br/>
-                    
-                    
-                <div class="col-md-8">
-          
+                        <section>
+
+                                <div class="row">
+                                	<div class="container">
+                                    <div class="col-md-12">
+
  <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
 String plan=(String)session.getAttribute("Plan");
@@ -458,6 +443,7 @@ if(hypercare == null)
 hypercare="0";
 %>                            
 
+<br>
 <div class="row">
 
   <div class="col-md-3">
@@ -524,34 +510,12 @@ hypercare="0";
                 </div>
             </div>
         
-        
-        
 </div>
-        
-<script> 
-links=document.getElementsByTagName("li") ;  
-var element=document.getElementById("xxx");
-for (var i = 0 ; i < links.length ; i ++)  
-links.item(i).style.backgroundColor = '#3276B1' ; 
-element.style.borderRadius="5px";
-element.style.marginRight = "70px";
-element.style.boxSizing = "content-box";
-element.style.borderColor = "#3276B1";
-element.style.background="#3276B1"; 
-var list = document.getElementsByTagName("UL")[0];
-var x=list.getElementsByTagName("LI");
-for (var i = 0 ; i < x.length ; i ++)  
-x.item(i).style.backgroundColor = '#3276B1' ; 
-</script>
-
-
-
-              
-                    <br/><br/><br/>
+                    <br/>
                     <div class="panel-group" id="panels1"> 
-                                                <div class="panel panel-default">
-        <div class="panel-heading" style="color:white; background:#3276B1"> 
-                                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();" style="color:white; background:#3276B1"> Parameters   </a> </h4> 
+                <div class="panel panel-default">
+        <div class="panel-heading"> 
+                                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();"> Parameters   </a> </h4> 
                             </div>  
                                                        
                             <div id="collapse1" class="panel-collapse collapse in"> 
@@ -561,36 +525,35 @@ x.item(i).style.backgroundColor = '#3276B1' ;
                                 
                                 	%>
                                     
-                                    
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput526"><div class="required">Project Name</div></label>
+                                            <label class="control-label" for="formInput526"><div class="required">Project Name&nbsp;<span class="text-danger">*</span></div></label>
                                             <input type="text" class="form-control" id="prj_name"  name="prj_name" value="<%=projectname %>" required>
                                         </div>
                                        
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput526"><div class="required">IA License cost per TB($)</div></label>
+                                            <label class="control-label" for="formInput526"><div class="required">IA License cost per TB($)&nbsp;<span class="text-danger">*</span></div></label>
                                             <input type="text" class="form-control" id="IA_lic_cst"  name="IA_lic_cst" value="<%=rs.getString("IA_lic_cst")%>" required>
                                         </div>
                                          <div class="form-group"> 
-                                            <label class="control-label" for="formInput526"><div class="required">IA Maintenance Cost Per Year(%)</div></label>
+                                            <label class="control-label" for="formInput526"><div class="required">IA Maintenance Cost Per Year(%)&nbsp;<span class="text-danger">*</span></div></label>
                                             <input type="text" class="form-control" id="IA_maint_cst"  name="IA_maint_cst" value="<%=rs.getString("IA_maint_cst")%>" required>
                                         </div>
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput316"><div class="required">Infra Structure Cost per TB($)</div></label>
+                                            <label class="control-label" for="formInput316"><div class="required">Infra Structure Cost per TB($)&nbsp;<span class="text-danger">*</span></div></label>
                                               <input type="text" class="form-control" id="Infrastrct_cst"  name="Infrastrct_cst" value="<%=rs.getString("Infrastrct_cst")%>" required> 
                                          </div>
                                         <div class="form-group">
                                        
-                                            <label class="control-label" for="formInput526"><div class="required">Storage Estimate(%)</div></label>
+                                            <label class="control-label" for="formInput526"><div class="required">Storage Estimate(%)&nbsp;<span class="text-danger">*</span></div></label>
                                             <input type="text" class="form-control" id="strg_est"  name="strg_est" value="<%=rs.getString("strg_est")%>" required>
                                       
                                         </div>
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput526"><div class="required">Labor Cost Per Hour for IA Dev Team($)</div></label>
+                                            <label class="control-label" for="formInput526"><div class="required">Labor Cost Per Hour for IA Dev Team($)&nbsp;<span class="text-danger">*</span></div></label>
                                             <input type="text" class="form-control" id="lab_cst"  name="lab_cst" value="<%=rs.getString("lab_cst")%>" required>
                                         </div>
                                          <div class="form-group"> 
-                                            <label class="control-label" for="formInput526"><div class="required">Number of Applications based on Complexity</div></label>
+                                            <label class="control-label" for="formInput526"><div class="required">Number of Applications based on Complexity&nbsp;<span class="text-danger">*</span></div></label>
                                             <input type="text" class="form-control" id="no_of_app_complexity"  name="no_of_app_complexity" value="<%=rs.getString("no_of_app_complexity")%>" required>
                                         </div>
                                         <div>
@@ -601,7 +564,7 @@ x.item(i).style.backgroundColor = '#3276B1' ;
                         </div> 
     
                                <div class="panel panel-default"> 
-                            <div class="panel-heading" style="color:white; background:#3276B1"> 
+                            <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">    Archival Complexity Calculation    </a> </h4> 
                             </div>                             
                             <div id="collapse2" class="panel-collapse collapse"> 
@@ -720,14 +683,13 @@ for(var i=0; i<edit_row.length; i++) {
   </div>
   <br />
                                  
-                                  
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput664">Application Name</label>
                                             <input type="text" class="form-control" id="proj_name"  name="proj_name">
                                         </div>                                         
                   
                                               <div class="form-group"> 
-                                            <label class="control-label" for="formInput26">Data Size</label>                                             
+                                            <label class="control-label" for="formInput26">Data Size&nbsp;<span class="text-danger">*</span></label>                                             
                                             <select id="data_size" class="form-control" name="data_size" onChange="updatesum()" required > 
                                             <option></option>
                                                 <option><100 GB</option>                                                 
@@ -752,7 +714,7 @@ for(var i=0; i<edit_row.length; i++) {
                                         
                                       
                                           <div class="form-group"> 
-                                            <label class="control-label" for="formInput26">Current users</label>                                             
+                                            <label class="control-label" for="formInput26">Current users&nbsp;<span class="text-danger">*</span></label>                                             
                                             <select id="curnt_users" class="form-control" name="curnt_users" onChange="updatesum()" required> 
                                             <option></option>
                                                 <option><10</option>                                                 
@@ -764,7 +726,7 @@ for(var i=0; i<edit_row.length; i++) {
                                         </div>                    
                                        
                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput26">Complexity</label>                                             
+                                            <label class="control-label" for="formInput26">Complexity&nbsp;<span class="text-danger">*</span></label>                                             
                                             <select id="complexity" class="form-control" name="complexity" onChange="updatesum()" required>
                                                 <option></option>
                                                 <option>Low</option>                                                 
@@ -830,7 +792,7 @@ for(var i=0; i<edit_row.length; i++) {
                    
                         
                                <div class="panel panel-default"> 
-                            <div class="panel-heading" style="color:white; background:#3276B1"> 
+                            <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors1();" >    Archival Cost Estimate    </a> </h4> 
                             </div>                             
                             <div id="collapse3" class="panel-collapse collapse"> 
@@ -869,7 +831,7 @@ for(var i=0; i<edit_row.length; i++) {
                                         </div>
                                           <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"> <span class="glyphicon glyphicon-chevron-left"></span> Previous</a></button>
                         
-                         <input type="text" id="pwqej" value="<%= info %>" hidden>  
+                         <input type="text" id="pwqej" value="<%= info %>" style="display:none">  
                         </div>
                         </div>
                         </div>
@@ -894,8 +856,32 @@ for(var i=0; i<edit_row.length; i++) {
                     <a href="root1.jsp" class="btn btn-default" class="btn pull-right">Cancel</a>
                                       <% } %> 
                                       
-                                </div>                                 
-                            </div>
+</div>
+
+				    </div>
+                                    <!-- /.col-md-6 -->
+
+                                </div>
+                                <!-- /.row -->
+
+                        </section>
+                        <!-- /.section -->
+
+                    </div>
+                    <!-- /.main-page -->
+                 
+<!-- Project List End -->
+
+                </div>
+                <!-- /.content-container -->
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /.main-wrapper -->
+            
+
+
                             <script>
  if(document.getElementById('pwqej').value=="R")
 checkk();
@@ -905,5 +891,122 @@ checkk();
 }}
 catch(Exception e){}
 %>
-</body>
+
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".lis").click(function() {
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
+                });
+                $(".gr").click(function() {
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
+                });
+            });
+        </script>
+      
+
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+       
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+        <!-- ========== THEME JS ========== -->
+        
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
+
+
+        <!-- ========== THEME JS ========== -->
+        <script>
+            $(function($) {
+
+                // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'm/d/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
+       
+
+	</body>
 </html>
+
+
+
+

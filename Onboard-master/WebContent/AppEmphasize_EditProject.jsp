@@ -1,26 +1,33 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Project Information</title>
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
      <!-- ========== COMMON STYLES ========== -->
-        <link rel="stylesheet" href="od/css/bootstrap.min.css" media="screen" >
-        <link rel="stylesheet" href="od/css/font-awesome.min.css" media="screen" >
-        <link rel="stylesheet" href="od/css/animate-css/animate.min.css" media="screen" >
-        <link rel="stylesheet" href="od/css/lobipanel/lobipanel.min.css" media="screen" >
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
 
         <!-- ========== PAGE STYLES ========== -->
-        <link rel="stylesheet" href="od/css/prism/prism.css" media="screen" >
-        <link rel="stylesheet" href="od/css/toastr/toastr.min.css" media="screen" >
-        <link rel="stylesheet" href="od/css/icheck/skins/line/blue.css" >
-        <link rel="stylesheet" href="od/css/bootstrap-tour/bootstrap-tour.css" >
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
 
         <!-- ========== THEME CSS ========== -->
-        <link rel="stylesheet" href="od/css/main.css" media="screen" >
+        <link rel="stylesheet" href="css/main.css" media="screen" >
 
         <!-- ========== MODERNIZR ========== -->
-        <script src="od/js/modernizr/modernizr.min.js"></script>
-   
+        <script src="js/modernizr/modernizr.min.js"></script>
+        
+  	<script type="text/javascript" src="js_in_pages/edit_project.js"></script>
+	<script type="text/javascript" src="js_in_pages/tree.js"></script>
+  	<link rel="stylesheet" href="js_in_pages/edit_project.css" type="text/css" />
+  
   </head>
   
   <body class="top-navbar-fixed">
@@ -118,12 +125,28 @@ if(rs.next()){
             	<div class="container-fluid">
                     <div class="row">
                         <div class="navbar-header no-padding">
-
+							<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
+                			 <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			 
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
+                			 
                     <% if(rs3.next()){
                     details.setAttribute("appno",rs3.getString("appno"));
                     details.setAttribute("projectname",rs3.getString("projectname"));
                     %>
-                    <a class="navbar-brand" href="project.jsp" style="color:white" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
+                    <a class="navbar-brand" href="project.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
+																					  
+					   
                     <%
                     String q2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
@@ -135,28 +158,14 @@ if(rs.next()){
                     
                     } %>
                     
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
-                			    <img src="od/images/logo1.png" alt="Onboarding Tool" class="logo">
-                			</a>
-                           
-                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-                				<span class="sr-only">Toggle navigation</span>
-                				<i class="fa fa-ellipsis-v"></i>
-                			</button>
-                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
-                				<i class="fa fa-bars"></i>
-                			</button>
-                		</div>
-                        <!-- /.navbar-header -->
-
+                			
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
                             <!-- /.nav navbar-nav -->
- <ul class="nav navbar-nav navbar-right">
- 
-<li><a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a>
-                        </li>
-                    </ul>
+					 <ul class="nav navbar-nav navbar-right">
+					 	
+							<li> <a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                     </ul>
 					
                 		</div>
                 		<!-- /.navbar-collapse -->
@@ -171,11 +180,9 @@ if(rs.next()){
             <div class="content-wrapper">
                 <div class="content-container">
             
-
                     <!-- ========== LEFT SIDEBAR ========== -->
                     <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                         <div class="sidebar-content" id='jqxWidget'>
-							
 							
                             <div class="sidebar-nav">
                                 <ul class="side-nav color-gray">
@@ -187,22 +194,22 @@ if(rs.next()){
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp" class="active-menu"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="AppEmphasize_application.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
                                         <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject1.php"> <span>Parameters</span></a></li>
-                                            <li><a href="editproject.php"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a href="editproject1.php"> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
                                         </ul>
                                     </li>
 
@@ -239,6 +246,8 @@ if(rs.next()){
                                             <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
+					                <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
+					               </li>   
                                 </ul>
 										
                             </div>
@@ -249,15 +258,13 @@ if(rs.next()){
                     <!-- /.left-sidebar -->
             
             
-                        <section>
+                    <div class="main-page">
+<section>
 
     <div class="row">
       <div class="container">
-
-                      <div class="main">
+      
               
-
-                <div class="col-md-8">
                 
 <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
@@ -273,7 +280,7 @@ execute="0";
 if(hypercare == null)
 hypercare="0";
 %>                            
-
+<br> <br>
 
 <div class="row">
 
@@ -310,6 +317,8 @@ hypercare="0";
 <jsp:param name="Execute" value="<%=execute %>"/>
 <jsp:param name="Hypercare" value="<%=hypercare %>"/>
 </jsp:include>
+
+
 <div class="row">
   <div class="panel-group" id="panels1" style="display:block;"> 
         
@@ -344,147 +353,123 @@ hypercare="0";
             </div>
         
  
-     
-                   
-                                              
-            <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
-                                <h2 class="panel-title"> <a  data-parent="#panels"   > Project Information  </a> </h2> 
+            <div class="panel-heading"> 
+                                <h2 class="panel-title"> <a  data-parent="#panels"> Project Information  </a> </h2> 
                             </div>  
-                                                       
-                           
+                                                    
                                 <div class="panel-body text-left">
-                                <br/><br/>
+                                <br/>
                                 
-                                    
-                                    
                                         <form role="form" class="form-horizontal">
                                         
                                          <div class="form-group form-group-sm" > 
-                                         <div class="col-sm-2">
+                                         <div class="col-sm-12">
                                          </div>
-                                            <label class="col-sm-2 control-label" for="pid">
+                                            <label control-label" for="pid">
                                                Project ID&nbsp;
 </label>
-<div class="col-sm-5">
+<div class="col-sm-12">
                                             <input type="text"  class="form-control" id="pid"  placeholder="Project ID" name="pid" value="<%=rs3.getString("id")%>" >
                                         </div>
                                         </div>
-                                        <br/><br/><br>
+                                        <br/> <br>
+                                        
                                         <div class="form-group form-group-sm"> 
                                         
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-12">
                                         
                                          </div>
-                                            <label class="col-sm-2 control-label" for="projectname">
+                                            <label class="control-label" for="projectname">
                                               <div class="required"> Project Name </div>
 </label>
-                            <div class="col-sm-5">
+                            <div class="col-sm-12">
                                             <input type="text" class="form-control" size="35" id="projectname" placeholder="Project Name" name="projectname" value="<%=rs3.getString("projectname")%>" required>
                                         </div>
                                         </div>
-                                      <br/><br/><br>
+                                      <br/> <br>
                                       
                                       
                                         <div class="form-group form-group-sm"> 
                                        
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-12">
                                          </div>
-                                            <label class="col-sm-2 control-label" for="descr"> <div class="required">Description</div></label>
-<div class="col-sm-5">
+                                            <label class="control-label" for="descr"> <div class="required">Description</div></label>
+<div class="col-sm-12">
                                             <input type="text" class="form-control" id="descr" placeholder="Description" name="descr"  value="<%=rs3.getString("descr")%>" required>
                                         </div>
                                        
                                         </div>
-                                         <br/><br/><br>
+                                         <br/> <br>
                                          
                                          
                                        <div class="form-group row log-date">
           <div class="col-md-12">
-          <div class="col-sm-2">
-                                         </div>
-            <label class="col-sm-2 control-label ">No of Applications</label>
-            <div class="col-sm-5">
+            <label class="control-label ">No of Applications</label>
+            <div class="col-sm-12">
             <input placeholder="No of Applications" id="appno" name="appno" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs3.getString("appno")%>">
           </div>
           </div>
           
         </div>  
-        <br/>
         
                                          <div class="form-group row log-date">
           <div class="col-md-12">
-          <div class="col-sm-2">
-                                         </div>
-            <label class="col-sm-2 control-label "><div class="required">Project Start Date</div></label>
-             <div class="col-sm-5">
-            <input placeholder="dd/mm/yyyy" id="Startdate" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs3.getString("Startdate")%>" required>
+            <label class="control-label "><div class="required">Project Start Date</div></label>
+             <div class="col-sm-12" id="basicExample">
+            <input placeholder="dd/mm/yyyy" id="Startdate" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Startdate")%>" required>
           </div>
           </div>
         </div>  
-        <br>
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-          <div class="col-sm-2">
-                                         </div>
-            <label class="col-sm-2 control-label "> Initiate Start Date</label>
-             <div class="col-sm-5">
-            <input placeholder="dd/mm/yyyy" id="Intdate" name="Intdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs3.getString("Intdate")%>">
-          </div>
-          </div>
-        </div>  
-        <br>
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-          <div class="col-sm-2">
-                                         </div>
-            <label class="col-sm-2 control-label ">Plan Start Date</label>
-            <div class="col-sm-5">
-            <input placeholder="dd/mm/yyyy" id="Plandate" name="Plandate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs3.getString("Plandate")%>">
-          </div>
-          </div>
-        </div>    
-        <br/>
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-          <div class="col-sm-2">
-                                         </div>
-            <label class="col-sm-2 control-label ">Execution Start Date</label>
-             <div class="col-sm-5">
-            <input placeholder="dd/mm/yyyy" id="Execdate" name="Execdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs3.getString("Execdate")%>">
-          </div>
-          </div>
-        </div>            
-        <br>
         
         <div class="form-group row log-date">
           <div class="col-md-12">
-          <div class="col-sm-2">
-                                         </div>
-            <label class="col-sm-2 control-label ">Hypercare Start Date</label>
-             <div class="col-sm-5">
-            <input placeholder="dd/mm/yyyy" id="Hyperdate" name="Hyperdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs3.getString("Hyperdate")%>">
+            <label class="control-label "> Initiate Start Date</label>
+             <div class="col-sm-12" id="basicExample">
+            <input placeholder="dd/mm/yyyy" id="Intdate" name="Intdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Intdate")%>">
           </div>
           </div>
-         
         </div>  
-        <br>
+        
         <div class="form-group row log-date">
           <div class="col-md-12">
-          <div class="col-sm-2">
-                                         </div>
-            <label class="col-sm-2 control-label "><div class="required">Project End Date</div></label>
-            <div class="col-sm-5">
-            <input placeholder="dd/mm/yyyy" id="Enddate" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs3.getString("Enddate")%>" required>
+            <label class="control-label ">Plan Start Date</label>
+            <div class="col-sm-12" id="basicExample">
+            <input placeholder="dd/mm/yyyy" id="Plandate" name="Plandate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Plandate")%>">
+          </div>
+          </div>
+        </div>    
+        
+        <div class="form-group row log-date">
+          <div class="col-md-12">
+            <label class="control-label ">Execution Start Date</label>
+             <div class="col-sm-12" id="basicExample">
+            <input placeholder="dd/mm/yyyy" id="Execdate" name="Execdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Execdate")%>">
+          </div>
+          </div>
+        </div>       
+        
+        <div class="form-group row log-date">
+          <div class="col-md-12">
+            <label class="control-label ">Hypercare Start Date</label>
+             <div class="col-sm-12" id="basicExample">
+            <input placeholder="dd/mm/yyyy" id="Hyperdate" name="Hyperdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Hyperdate")%>">
+          </div>
+          </div>
+        </div>  
+
+        <div class="form-group row log-date">
+          <div class="col-md-12">
+            <label class="control-label "><div class="required">Project End Date</div></label>
+            <div class="col-sm-12" id="basicExample">
+            <input placeholder="dd/mm/yyyy" id="Enddate" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Enddate")%>" required>
           </div>
           </div>
         </div> 
-        <input type="text" id="pwqej" value="<%= info %>" hidden>                
+        <input type="hidden" id="pwqej" value="<%= info %>" hidden>                
                             
                                 </div>                                 
                                                       
                        
-                       <hr>
-        <br/>
                       &nbsp;&nbsp;  &nbsp;&nbsp;<button type="submit" class="btn btn-success pull-right" >Save & Continue...</button>&nbsp;
                        <button type="button" class="btn btn-default">Back</button>
                        
@@ -530,6 +515,87 @@ catch(Exception e){}
          </div>
        </div>
        </div>
+   
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script>
+            $(function($) {
+
+                // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'd/m/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
    
 </body>
 </html>

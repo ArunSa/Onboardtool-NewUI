@@ -66,7 +66,7 @@ preparedStmt.execute();
 	          System.err.println("Got an exception!");
 	          System.err.println(e.getMessage());
 	        }
-	        response.sendRedirect("tree1.jsp");	
+	        response.sendRedirect("AppEmphasize_CostCalculation.jsp");	
 
 	}
 

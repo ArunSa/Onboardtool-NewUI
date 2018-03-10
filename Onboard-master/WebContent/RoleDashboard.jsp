@@ -172,12 +172,12 @@ if(rs.next()){
 
             <ul>
                   <li id='home' item-selected='true'> <a href="project.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
-                <li item-expanded='true'><a href="editproject.jsp">App Emphasize Module
+                <li item-expanded='true'><a href="AppEmphasize_EditProject.jsp">App Emphasize Module
                     <ul>
-                       <li item-expanded='true'><a href="editproject.jsp">Project Details
+                       <li item-expanded='true'><a href="AppEmphasize_EditProject.jsp">Project Details
                     <ul>
-                        <li item-selected='true'><a href="editproject.jsp">Project Information</a></li>
-                        <li><a href="AppEmphasize_application.jsp">Application Details</a></li>
+                        <li item-selected='true'><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
+                        <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
                         </ul>
                         </li>
                         <li item-expanded='true'> <a href="tree.jsp">Application Prioritization</a>

@@ -104,11 +104,14 @@ if(rs.next())
             <nav class="navbar top-navbar bg-white box-shadow">
             	<div class="container-fluid">
                     <div class="row">
+                     <%
+              details.setAttribute("nameofproject",rs.getString("projectname"));
+              %> 
                         <div class="navbar-header no-padding">
-                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
-                   
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
                 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
                 				<span class="sr-only">Toggle navigation</span>
                 				<i class="fa fa-ellipsis-v"></i>
@@ -144,7 +147,79 @@ if(rs.next())
                 <div class="content-container">
             
                     <!-- ========== LEFT SIDEBAR ========== -->
-                   
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+							
+                            <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                        </ul>
+                                    </li>
+                                     <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+										
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                    <!-- /.left-sidebar -->
             <div class="main-page">
                         <div class="container-fluid">
                             <div class="row page-title-div">
@@ -156,7 +231,7 @@ if(rs.next())
                             <div class="row breadcrumb-div">
                                 <div class="col-sm-6">
                                     <ul class="breadcrumb">
-                                        <li><a href="Project_List.jsp"><i class="fa fa-home"></i> Home</a></li>
+                                        <li><a href="project.jsp"><i class="fa fa-home"></i> Home</a></li>
                                         
                                     </ul>
                                 </div>
@@ -187,7 +262,7 @@ if(rs.next())
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -196,7 +271,7 @@ if(rs.next())
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp">
+                  <a href="firstinsert.jsp">
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -286,7 +361,7 @@ if(rs.next())
                 </div>
 
                 <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -295,7 +370,7 @@ if(rs.next())
                 </div>
 
                 <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -384,7 +459,7 @@ else if(roles.equals("ArchivalAdmin"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -393,7 +468,7 @@ else if(roles.equals("ArchivalAdmin"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -480,7 +555,7 @@ else if(roles.equals("ArchivalProgramManager"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -489,7 +564,7 @@ else if(roles.equals("ArchivalProgramManager"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -577,7 +652,7 @@ else if(roles.equals("LegacyBusinessSME"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -586,7 +661,7 @@ else if(roles.equals("LegacyBusinessSME"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -675,7 +750,7 @@ else if(roles.equals("LegacyTechnicalSME"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -684,7 +759,7 @@ else if(roles.equals("LegacyTechnicalSME"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -770,7 +845,7 @@ else if(roles.equals("LegacyProgramManager"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -779,7 +854,7 @@ else if(roles.equals("LegacyProgramManager"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -868,7 +943,7 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -877,7 +952,7 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -963,7 +1038,7 @@ else if(roles.equals("ArchivalTechnicalLead"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -972,7 +1047,7 @@ else if(roles.equals("ArchivalTechnicalLead"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -1059,7 +1134,7 @@ else if(roles.equals("ArchivalProjectManager"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -1068,7 +1143,7 @@ else if(roles.equals("ArchivalProjectManager"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
@@ -1155,7 +1230,7 @@ else if(roles.equals("ArchivalDeveloper"))
                 </div>
 
                 <div class="col-md-3 col-sm-3" >
-                  <a href="editproject.jsp">
+                  <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
@@ -1164,7 +1239,7 @@ else if(roles.equals("ArchivalDeveloper"))
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+                  <a href="firstinsert.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
