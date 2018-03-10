@@ -4,76 +4,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <title>Onboarding Tool</title>
 </head>
 
-<script type='text/javascript'
-  src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-   <script src="js/jquery.js"></script>
-   <script src ="js/table.js"></script>
-  <script src="js/jstree.min.js"></script>
-   <script src="js/multiplepages.js"></script>
-  
+ <link rel="stylesheet" href="styles/styles.css" type="text/css" />
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    
+     <!-- ========== COMMON STYLES ========== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
 
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
+
+        <!-- ========== THEME CSS ========== -->
+        <link rel="stylesheet" href="css/main.css" media="screen" >
+
+        <!-- ========== MODERNIZR ========== -->
+        <script src="js/modernizr/modernizr.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
     <meta name="keywords" content="jQuery Tree, Tree Widget, TreeView" />
     <meta name="description" content="The jqxTree displays a hierarchical collection of items. You
         can populate it from 'UL' or by using its 'source' property." />
    
-    
-
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    
-   
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
-  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
-
 
  <style>
-.newspaper {
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
-    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
-    -moz-column-gap: 40px; /* Firefox */
-    column-gap: 40px;
-    -webkit-column-rule: 1px solid lightblue; /* Chrome, Safari, Opera */
-    -moz-column-rule: 1px solid lightblue; /* Firefox */
-    column-rule: 1px solid lightblue;
-}
 
-
- 
 
 #cmd {
-
 float:right;
-
 } 
-
 
 #table
   {
- 
     width: 90%;
     margin:50px;
     
@@ -87,16 +59,21 @@ float:right;
     transition: all .2s ease;
 }
 
-#wizard{
-
+#wizard {
 padding-left:20px;
 }
-
+ #nav_userid{
+             color:green;
+             }
+               
+              #nav_role{
+              color:blue;
+              }  
 </style>
 <style>
 
-
-
+.btn { background: gray;
+    color: #fff; }
 
 .bs-wizard {margin-top: 40px;}
 
@@ -106,10 +83,10 @@ padding-left:20px;
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #428bca; font-size: 16px; margin-bottom: 5px;}
 .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background:#428bca; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 100%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background:#1a92f6; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 100%;} 
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: lightblue; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
 .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
-.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #428bca;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #1a92f5;}
 .bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
 .bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
 .bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
@@ -122,12 +99,14 @@ padding-left:20px;
 /*END Form Wizard*/
 
 </style>
-  <body style="background-color:#F7F7F7;margin-left:0px">
+  <body class="top-navbar-fixed">
+  
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
      
 <%
 try {
+HttpSession details=request.getSession();
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
 String idd=(String)session.getAttribute("appidd");
@@ -144,6 +123,144 @@ ResultSet rs2 = st2.executeQuery(query2);
 
  
 %>
+
+
+        <div class="main-wrapper">
+            
+            
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+            	<div class="container-fluid">
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
+
+                		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+                			
+                            <!-- /.nav navbar-nav -->
+ <ul class="nav navbar-nav navbar-right">
+      <%
+                         String uname=(String)details.getAttribute("username");
+                         String role=(String)details.getAttribute("role");%>                   
+	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
+<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
+                        </li>
+                    </ul>
+					
+                		</div>
+                		<!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.row -->
+            	</div>
+            	<!-- /.container-fluid -->
+            </nav>
+
+
+            <div class="content-wrapper">
+                <div class="content-container">
+            
+
+                    <!-- ========== LEFT SIDEBAR ========== -->
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+							
+							
+                            <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="tree1.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="AppEmphasize_Applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                        </ul>
+                                    </li>
+                                     <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="requirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="requirements.jsp"> <span>Archive Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+										
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                    <!-- /.left-sidebar -->
+            
+
+					
+<!-- Projects List Start -->
+
+                    <div class="main-page">
+                       
+                        <section>
+
+                                <div class="row">
+                                <div class="container-fluid">
+                                    <div class="col-md-12">
+
+
  <div class="row"  id="wizard">
         
             <div class="row bs-wizard" style="border-bottom:0;">
@@ -180,9 +297,10 @@ ResultSet rs2 = st2.executeQuery(query2);
                 </div>
             </div>
   <div class="col-md-11" >
-   <a href="business.jsp" style="background:lightgreen;" class="btn btn-default btn pull-left">Edit</a>
+  
 <button id="cmd" class="btn btn-primary pull-right" ><span class="glyphicon glyphicon-download-alt"></span> Export PDF</button>
-<button id="cmd" class="btn btn-primary pull-right" onclick="location.href='firstinsert.jsp'" >HOME</button>
+<button  class="btn btn-primary pull-left" onclick="location.href='firstinsert.jsp'" >HOME</button>
+ <a href="business.jsp" class="btn btn-default btn pull-left">Edit</a>&nbsp;
 </div>
 <div class="container">
 <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table-scroll">
@@ -196,11 +314,7 @@ ResultSet rs2 = st2.executeQuery(query2);
                                                <tr>
                                                      <td valign='top' style='color:#404041;line-height:16px;padding:25px 20px 0px 20px'>
                                                             <p>
-                                                                   <section style='position: relative;clear: both;margin: 5px 0;height: 1px;border-top: 1px solid #cbcbcb;margin-bottom: 25px;margin-top: 10px;text-align: center;'>
-                                                                         <h3 align='center' style='margin-top: -12px;background-color: #FFF;clear: both;width: 180px;margin-right: auto;margin-left: auto;padding-left: 15px;padding-right: 15px; font-family: arial,sans-serif;'>
-                                                                                <span>Summary & Review</span>
-                                                                         </h3>
-                                                                   </section>
+                                                                   
                                                             </p>               
                                                      </td>
                                                </tr>
@@ -219,7 +333,7 @@ ResultSet rs2 = st2.executeQuery(query2);
 while(rs1.next()){
 
 %>
-
+ <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Business Details</h2></span>
 <h3>Application Information :</h3>
         <tr>
         
@@ -433,11 +547,147 @@ while(rs2.next()){
 catch(Exception e){}
 %>
  
-</body>
+
+
+				  					  </div>
+                                    <!-- /.col-md-6 -->
+									</div>
+                                </div>
+                                <!-- /.row -->
+
+                        </section>
+                        <!-- /.section -->
+
+                    </div>
+                    <!-- /.main-page -->
+                 
+<!-- Project List End -->
+
+                </div>
+                <!-- /.content-container -->
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /.main-wrapper -->
+            
+
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".lis").click(function() {
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
+                });
+                $(".gr").click(function() {
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
+                });
+            });
+        </script>
+      
+
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+       
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+        <!-- ========== THEME JS ========== -->
+        
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
 
 
  
- <script>
+ 
+
+		
+        <!-- ========== THEME JS ========== -->
+        <script>
+            $(function($) {
+
+                // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'm/d/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
+       
+<script>
  var doc = new jsPDF();
  
  var options = {
@@ -485,6 +735,9 @@ catch(Exception e){}
  });
 </script>  
 
-
-
+		
+      
+       
+	</body>
 </html>
+
