@@ -338,7 +338,7 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                         <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
@@ -352,40 +352,41 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                     </li>
 
                                     <li>
-                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-                                </ul>
-										
+                                    <li class="has-children"><a href="archive_exec_samp.jsp">Archive Execution Module</a>
+               </li> 
+                                </ul>		
                             </div>
                             <!-- /.sidebar-nav -->
                         </div>
@@ -760,80 +761,14 @@ for(var i=0; i<edit_row.length; i++) {
                                             <label class="control-label" for="formInput664">Estimated Hours</label>                                             
                                             <input type="text" class="form-control" id="est_hrs"  name="est_hrs" onChange="updatesum()"   >  
                                         </div>
-                                                                                <div class="form-group">
-                                            <label class="control-label" for="formInput664">Estimated Total Service Cost</label>                                             
-                                            <input type="text" class="form-control" id="est_cst"  name="est_cst" onChange="updatesum()" > 
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">Total IA License Cost</label>                                             
-                                            <input type="text" class="form-control" id="ttl_IA_cst"  name="ttl_IA_cst" onChange="updatesum()"  > 
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">Total Infrastructure Storage Cost</label>                                             
-                                            <input type="text" class="form-control" id="ttl_infra_cst"  name="ttl_infra_cst" onChange="updatesum()"  > 
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">Total Info Archive Product Maintenance Cost for 5 years</label>                                             
-                                            <input type="text" class="form-control" id="ttl_IA_prdct_cst"  name="ttl_IA_prdct_cst" onChange="updatesum()"  > 
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">Total</label>                                             
-                                            <input type="text" class="form-control" id="ttl"  name="ttl"  > 
-                                            <input type="text" class="form-control" id="tootal"  name="tootal"  style="display:none;" > 
-                                        </div>   
-                                        <div>
-                                        <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors1();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" style="color:white">Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                        <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
-                                        </div>                                                  
+                                                                                
                                 </div>                                 
                             </div>                             
                         </div>
                    
                         
-                               <div class="panel panel-default"> 
-                            <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors1();" >    Archival Cost Estimate    </a> </h4> 
-                            </div>                             
-                            <div id="collapse3" class="panel-collapse collapse"> 
-                                <div class="panel-body text-left">
-                                 
-                                  
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput664">Total Cost for all applications in the project</label>
-                                            <input type="text" class="form-control" id="ttl_cst_fr_app"  name="ttl_cst_fr_app" onChange="add()" value="<%=sum%>" >
-                                        </div>                                         
-                                          <div class="form-group">
-                                            <label class="control-label" for="formInput664">Additional Cost for Contingency</label>
-                                             <div class="input-group">
-                                               <input type="text" class="form-control" id="add_cst_fr_contigency" name="add_cst_fr_contigency" onChange="add()" value="<%=rs.getString("add_cst_fr_contigency")%>"> 
-                                                <div class="input-group-addon">
-                                           <a href="#" data-toggle="tooltip" title="Infra Setup/unplanned labor/travel Etc."> <span class="glyphicon glyphicon-info-sign" ></span></a> 
-                                               </div>
-                                               </div>                                     
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">Additional Cost</label>     
-                                             <div class="input-group">                                        
-                                            <input type="text" class="form-control" id="add_cst" name="add_cst" onChange="add()" value="<%=rs.getString("add_cst")%>">
-                                            <div class="input-group-addon">
-                                           <a href="#" data-toggle="tooltip" title="if there is a program team"> <span class="glyphicon glyphicon-info-sign" ></span></a> 
-                                               </div>
-                                               </div>    
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">IA Application Support Cost Labor</label>                                             
-                                            <input type="text" class="form-control" id="IA_app_sprt_cst" name="IA_app_sprt_cst" onChange="add()" value="<%=rs.getString("IA_app_sprt_cst")%>"> 
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">Estimated Archival Cost for CAR Projection</label>                                             
-                                            <input type="text" class="form-control" id="est_archive_cst" name="est_archive_cst" value="<%=rs.getString("est_archive_cst")%>"> 
-                                        </div>
-                                          <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"> <span class="glyphicon glyphicon-chevron-left"></span> Previous</a></button>
-                        
+                                                 
                          <input type="text" id="pwqej" value="<%= info %>" style="display:none">  
-                        </div>
-                        </div>
-                        </div>
                         <br/>
                       <script>
                       function OnButton1()

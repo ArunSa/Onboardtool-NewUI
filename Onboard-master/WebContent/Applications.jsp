@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- 
- <link rel="stylesheet" href="styles/styles.css" type="text/css" />
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Projects</title>
+		<meta name="description" content="Blueprint: View Mode Switch" />
+		<meta name="keywords" content="view mode, switch, css, style, grid, list, template" />
+		<meta name="author" content="Codrops" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script> -->
+	
+ 		<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
     
      <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
@@ -26,27 +34,33 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-    <style type="text/css">
-            .breadcrumb-div {
-                background-color: #e7e7e7;
-                color: #010101; }
-                #nav_userid{
+        
+<script type="text/javascript" src="js_in_pages/firstinsert.js"></script>
+<script type="text/javascript" src="js_in_pages/tree.js"></script>
+  <link rel="stylesheet" href="js_in_pages/firstinsert.css" type="text/css" />
+  
+  <style>
+     #nav_userid{
              color:green;
              }
                
               #nav_role{
               color:blue;
               }  
-        </style>
-
-
-</head>
-<body class="top-navbar-fixed">
-
-
+  </style>
+  
+	</head>
+	
+	<!--from  w  w w  . ja  va 2 s.co  m-->
+  <body class="top-navbar-fixed">
+  
+  <%@page language="java"%>
 <%@page import="java.sql.*"%>
-<%@ page import="java.text.NumberFormat" %>
 <%@ page import="onboard.DBconnection" %>
+<%@page import="java.text.DateFormat" %>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date" %>
+<%@page import="java.util.Calendar" %>
 <%
 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -55,118 +69,66 @@ response.setHeader("Expires", "0"); // Proxies.
 
 if (session.getAttribute("username")==null)
 {
-response.sendRedirect("Login.html");
+	response.sendRedirect("Login.html");
 }
 %>
-
- 
-<form class="form-signin" name="loginForm" method="post" >
-
-<script>
-
-function valid1()
-{
- 
-var project_name = document.getElementsByName("projectname")[0].value;
- 
-var description = document.getElementsByName("descr")[0].value;
-var application_no = document.getElementsByName("appno")[0].value;
-var ProjectStartdate = document.getElementsByName("Startdate")[0].value;
-var InitiateStartdate = document.getElementsByName("Intdate")[0].value;
-var PlanStartdate = document.getElementsByName("Plandate")[0].value;
-var ExecuteStartdate = document.getElementsByName("Execdate")[0].value;
-var HyperStartdate = document.getElementsByName("Hyperdate")[0].value;
-var ProjectEnddate = document.getElementsByName("Enddate")[0].value;
-var flag=0;
-<%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.*"%>
-<%@ page import="java.util.ArrayList" %>
-
 <%
-String[] values_name = new String[5];
-ArrayList<String> zoom = new ArrayList<String>();
-int i=0;
-int count=0;
-    String project_name=request.getParameter("projectname"); 
-    HttpSession details=request.getSession();
-    String roles=(String)details.getAttribute("role");
-    DBconnection d=new DBconnection();
-    Connection con = (Connection)d.getConnection();
-Statement st= con.createStatement(); 
 
+String ID=(String)session.getAttribute("theName");
 
-ResultSet rs=st.executeQuery("select projectname from projinfo ");
-while (rs.next())
-{
-zoom.add(rs.getString(1));
-    
-}   
+try{
+	String query3="";
+	HttpSession details=request.getSession();
+	DBconnection d=new DBconnection();
+	Connection con = (Connection)d.getConnection();
+String Project_name=(String)details.getAttribute("projects");
+String Applications=(String)details.getAttribute("applications");
+String username=(String)details.getAttribute("u_Name");
+String visit_query="select * from visits";
+Statement visit_st = con.createStatement();
+ResultSet visit_rs = visit_st.executeQuery(visit_query);
+int flag=1;
 
+Date date = new Date();
+SimpleDateFormat ft,ft1;
+ft=new SimpleDateFormat ("yyyy-MM-dd");
+ft1=new SimpleDateFormat ("hh:mm:ss");
+String strDate=ft.format(date);
+String strTime=ft1.format(date);
 
-for (String z : zoom) {
+if(Project_name.equals("all"))
+	 query3 = "select * from projinfo where id="+ID;
+	else
+	 query3 = "select * from projinfo where projectname='"+Project_name+"'";
+
+Statement st3 = con.createStatement();
+ResultSet rs3 = st3.executeQuery(query3);
 
 %>
 
-if (project_name == "<%= z %>" ) 
- 
-{
-flag=1;
- 
-}
-
-<% } %> 
-
- 
-
-if (project_name == "" || description == "" || ProjectStartdate == "" || ProjectEnddate == "" )
-{
-alert("Please fill the mandatory fields");
-return false;
-}
- 
-else if (flag == 1)
-{
-alert("Project Already Exists");
-return false;
-}
-else
-{
-var f=document.loginForm;
-    f.method="post";
-    f.action='Project';
-    f.submit();   
-}
-}
-
-
-function validation(pro_name)
-{
-
-if (project_name == Pro_name)
-{
-alert("Project Already Exists");
-}
-else
-{
-var f=document.loginForm;
-    f.method="post";
-    f.action='Project';
-    f.submit(); 
-}
- 
- 
-}
-</script>
- 
+<form method="post" name="form" action="Appin">
  
         <div class="main-wrapper">
-            
-            
+        
             <!-- ========== TOP NAVBAR ========== -->
             <nav class="navbar top-navbar bg-white box-shadow">
             	<div class="container-fluid">
                     <div class="row">
-                        <div class="navbar-header no-padding">
+                
+                     <%if (rs3.next()) {
+                    	 String Project_Name=rs3.getString("projectname");
+                    	 System.out.println("the projectname is "+Project_Name);
+                    	 String query="";
+                    	 if(Project_name.equals("all"))
+                    	  query = "select * from appinfo where prjname = '"+Project_Name+"'";
+                    	 else
+                    		 query = "select * from appinfo where prjname = '"+Project_Name+"' and appname='"+Applications+"'";
+                    	 Statement st = con.createStatement();
+                    	 ResultSet rs = st.executeQuery(query);
+                     
+                     %>
+                     
+                     <div class="navbar-header no-padding">
                 			<a class="navbar-brand" href="project.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
@@ -185,10 +147,12 @@ var f=document.loginForm;
                 			
                             <!-- /.nav navbar-nav -->
  <ul class="nav navbar-nav navbar-right">
-       <%
+      
+                        <li><%
                          String uname=(String)details.getAttribute("username");
-                         String role=(String)details.getAttribute("role");%>                   
-	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
+                         String roles=(String)details.getAttribute("role");%>
+    <li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=roles%></span></a></li>
+                         
 <li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
@@ -200,6 +164,7 @@ var f=document.loginForm;
             	</div>
             	<!-- /.container-fluid -->
             </nav>
+                
 
             
             <div class="content-wrapper">
@@ -221,27 +186,27 @@ var f=document.loginForm;
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
-                                  <li class="has-children">
-                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                    <li class="has-children">
+                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -273,8 +238,6 @@ var f=document.loginForm;
                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-children"><a href="archive_exec_samp.jsp">Archive Execution Module</a>
-               </li> 
                                 </ul>
 										
                             </div>
@@ -284,8 +247,7 @@ var f=document.loginForm;
                     </div>
                     <!-- /.left-sidebar -->
             
-            
-            
+
 					
 <!-- Projects List Start -->
 
@@ -293,7 +255,7 @@ var f=document.loginForm;
                         <div class="container-fluid">
                             <div class="row page-title-div">
                                 <div class="col-sm-6">
-                                    <h2 class="title">New Project</h2>
+                                    <h2 class="title">Applications</h2>
                                     <p class="sub-title">One stop solution for perfect admin!</p>
                                 </div>
                                 
@@ -302,8 +264,8 @@ var f=document.loginForm;
                             <div class="row breadcrumb-div">
                                 <div class="col-sm-6">
                                     <ul class="breadcrumb">
-                                        <li><a href="project.jsp"><i class="fa fa-home"></i> Home</a></li>
-                                        <li class="active">New Projects</li>
+                                        <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+                                        <li class="active">Applications</li>
                                     </ul>
                                 </div>
                                 <!-- /.col-sm-6 -->
@@ -321,103 +283,118 @@ var f=document.loginForm;
                                 <div class="row">
                                     <div class="col-md-12">
 
-                                        <div class="panel">
-                                            <div class="panel-heading">
-                                                <div class="panel-title">
-                                                    <h5>Project Information </h5>
-                                                </div>
-                                            </div>
-                                        <div class="panel-body p-20">
-                                        
-                   
-                                        <form role="form">
-                                        
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput198">
-                                           <div class="required_fie">   Project Name&nbsp;<span class="text-danger">*</span> </div> 
-</label>
-               <input type="text" class="form-control" id="formInput198" placeholder="Project Name" name="projectname" required/>
-              
-                                        </div>
-                                        <%@ page import="java.sql.*"%>
 
-                                
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput229">
-                                            <div class="required_fie">Description&nbsp;<span class="text-danger">*</span></div>
-</label>
-                                            <input type="text" class="form-control" id="formInput229" placeholder="Description" name="descr" required>
-                                        </div>
-                                       <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label >No of Applications</label>
-            <input placeholder="No of Applications" id="date" name="appno" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
-          </div>
-          
-        </div>  
-         
-		<div class="form-group row log-date">
-          <div class="col-md-12" id="basicExample">
-            <label class="control-label"><div class="required_fie">Project Start Date&nbsp;<span class="text-danger">*</span></div></label>
-            <input placeholder="dd/mm/yyyy" id="Project_Start_Date" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" required/>
-          </div>
-        </div>  
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12" id="basicExample">
-            <label class="control-label "> Initiate Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="Initiate_start_date" name="Intdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
-          </div>
-        </div>  
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12" id="basicExample">
-            <label class="control-label required">Plan Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="P_S_date" name="Plandate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
-          </div>
-        </div>    
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12" id="basicExample">
-            <label class="control-label required">Execution Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="Exec_start_date" name="Execdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
-          </div>
-        </div>            
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12" id="basicExample">
-            <label class="control-label required">Hypercare Start Date</label>
-            <input placeholder="dd/mm/yyyy" id="Hyper_care_date" name="Hyperdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text">
-          </div>
-        </div>  
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12" id="basicExample">
-            <label class="control-label required"><div class="required_fie">Project End Date&nbsp;<span class="text-danger">*</span></div></label>
-            <input placeholder="dd/mm/yyyy" id="Project_end_date" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" required>
-          </div>
-        </div>                 
-                            
-                        <br/>                
-                       <button type="button" class="btn btn-primary btn pull-left" onclick="valid1()">Save</button>&nbsp;
-                    <button type="button" class="btn btn-default" onclick="location.href='project.jsp';">Back</button>
-                                     
-                                </div>                                 
-                            </div>                             
-                        </div>            
-                                                                           </form>                               
+				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+				
+					<div class="cbp-vm-options">
+					
+					
+		<button type="button" class="btn btn-primary pull-right"  name="newpr"   onClick="editRecord();" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  New Application
+</button>
+					
+						<a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid">Grid View</a>
+						<a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list">List View</a>
+					</div>
+					
+	<ul>
+<%
+String sequnce="";
+while(rs.next()){
+%>			
+						<li>
+							<h3 class="cbp-vm-title left-col primary" name="name"><%= rs.getString("appname")%></h3>
+<% 
+String detail="";
+String q3="select seq_num from archive_exec where projects='"+Project_Name +"' and name='"+rs.getString("appname")+"'";
+Statement stt = con.createStatement();
+ResultSet rst = stt.executeQuery(q3);
+if(rst.next())
+	detail=rst.getString(1);
+
+String q1="select * from archive_exec where projects='"+Project_Name+"' and seq_num>"+detail+" and seq_num<"+(detail+70)+" and level=3";
+Statement st2 = con.createStatement();
+ResultSet rs2 = st2.executeQuery(q1);
+int l=-1;
+while(rs2.next()){
+	l++;
+	System.out.println(rs2.getString(15));
+	if(rs2.getString(15).equals("100"))
+		continue;
+	else
+	{
+		System.out.println(rs2.getString(15));
+%>
+							<center><div class="progress center-col cbp-vm-detail">
+ <div class="progress-bar progress-bar-success" id="prog_bar<%=l %>" role="progressbar" aria-valuenow="<%=rs2.getString(15) %>"
+  aria-valuemin="0" aria-valuemax="100" style="width:<%=rs2.getString(15) %>%">
+    <%=rs2.getString(15) %>%
+  </div>
+  
+							
+</div> 		
+</center>
+	<%if(Integer.parseInt(rs2.getString(15))<35){
+%>
+<script>document.getElementById('prog_bar<%=l %>').className='progress-bar progress-bar-danger progress-bar-striped';</script>
+
+<%} 
+else if(Integer.parseInt(rs2.getString(15))<65){
+%>
+<script>document.getElementById('prog_bar<%=l %>').className='progress-bar progress-bar-warning progress-bar-striped';</script>
+<%} %>
+<% if(l==1){%>
+<%if(Integer.parseInt(rs2.getString(15))<35){
+%>
+<script>document.getElementById('prog_bar<%=l %>').className='progress-bar progress-bar-danger progress-bar-striped';</script>
+<%} 
+else if(Integer.parseInt(rs2.getString(15))<65){
+%>
+<script>document.getElementById('prog_bar<%=l %>').className='progress-bar progress-bar-warning progress-bar-striped';</script>
+<%} %>
+<h5 class="cbp-vm-title right-col primary" >Development</h5>
+<%} else if(l==2){ %>
+<%if(Integer.parseInt(rs2.getString(15))<35){
+%>
+<script>document.getElementById('prog_bar<%=l %>').className='progress-bar progress-bar-danger progress-bar-striped';</script>
+<%} 
+else if(Integer.parseInt(rs2.getString(15))<65){
+%>
+<script>document.getElementById('prog_bar<%=l %>').className='progress-bar progress-bar-warning progress-bar-striped';</script>
+<%} %>
+<h5 class="cbp-vm-title right-col primary" >Testing</h5>
+<%} %>
+<h5 class="cbp-vm-title right-col primary" ><%=rs2.getString(3) %></h5>
+<%
+break;
+}
+} %>
+
+			
+							<button type="button" class="btn btn-primary" onClick="edit('<%= rs.getString("appname")%>');">
+ View/Update
+</button>
+						</li>
+												
+						<%
+}
+%>			
+
+</ul>
+<%
+}}
+catch(Exception e){
+e.printStackTrace();
+}
+%>
+				</div>
+			</div> 
+   
+       </div>
                 
-                                    <!-- /.col-md-6 -->
-
-                                </div>
-                                <!-- /.row -->
-
-                        </section>
-                        <!-- /.section -->
-
-                    </div>
-                    <!-- /.main-page -->
-                 
+            </div>
+            
+      
 <!-- Project List End -->
 
                 </div>
@@ -428,6 +405,7 @@ var f=document.loginForm;
         </div>
         <!-- /.main-wrapper -->
             
+</form>
 		
         <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -459,7 +437,6 @@ var f=document.loginForm;
         <script src="js/amcharts/amcharts.js"></script>
         <script src="js/amcharts/serial.js"></script>
         <script src="js/amcharts/plugins/export/export.min.js"></script>
-        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
         <script src="js/amcharts/themes/light.js"></script>
         <script src="js/toastr/toastr.min.js"></script>
         <script src="js/icheck/icheck.min.js"></script>
@@ -541,5 +518,9 @@ var f=document.loginForm;
         </script>
        
 
-</body>
+	</body>
 </html>
+
+
+
+      

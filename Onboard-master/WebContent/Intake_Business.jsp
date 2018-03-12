@@ -2,49 +2,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type='text/javascript'
-  src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
-  <link rel="stylesheet" type="text/css" href="css/intake/business/business.css">
-  <script type="text/javascript" src="js/business.js"></script>
-<script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-   <meta name="keywords" content="jQuery Tree, Tree Widget, TreeView" />
-    <meta name="description" content="The jqxTree displays a hierarchical collection of items. You
-        can populate it from 'UL' or by using its 'source' property." />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Onboard</title>
+ 
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+     <!-- ========== COMMON STYLES ========== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
+
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
+
+        <!-- ========== THEME CSS ========== -->
+        <link rel="stylesheet" href="css/main.css" media="screen" >
+
+        <!-- ========== MODERNIZR ========== -->
+        <script src="js/modernizr/modernizr.min.js"></script>
    
-     
  <script type="text/javascript" src="js_in_pages/business.js"></script>
 <script type="text/javascript" src="js_in_pages/tree.js"></script>
   <link rel="stylesheet" href="js_in_pages/business.css" type="text/css" />
-    <script type="text/javascript" src="scripts/demos.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxpanel.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxtree.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
-      <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
-    
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-
-
-
-
+  
+   <style>
+     #nav_userid{
+             color:green;
+             }
+               
+              #nav_role{
+              color:blue;
+              }  
+  </style>
   </head><!--from  w  w w  . ja  va 2 s.co  m-->
-  <body>
+  
+  <body class="top-navbar-fixed">
+
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
@@ -66,18 +65,18 @@ response.sendRedirect("Login.html");
 <%
 try {
 HttpSession details=request.getSession();
-	String info=(String)details.getAttribute("intake");
+	String role_info=(String)details.getAttribute("intake");
 	String roles=(String)details.getAttribute("role");
-String det=(String)session.getAttribute("theName");
-String idd = request.getParameter("id");
-if (idd != null && !idd.isEmpty()) {
-session.setAttribute("appidd", idd);
+String ID=(String)session.getAttribute("theName");
+String app_Name = request.getParameter("appname");
+if (app_Name != null && !app_Name.isEmpty()) {
+session.setAttribute("appidd", app_Name);
 }
-idd=(String)session.getAttribute("appidd");
+app_Name=(String)session.getAttribute("appidd");
 DBconnection d=new DBconnection();
 Connection conn = (Connection)d.getConnection();
-String prj=(String)details.getAttribute("projects");
-String appl=(String)details.getAttribute("applications");
+String Projects=(String)details.getAttribute("projects");
+String Applications=(String)details.getAttribute("applications");
 String username=(String)details.getAttribute("u_Name");
 String Project_Name=(String)details.getAttribute("nameofproject");
 String visit_query="select * from visits";
@@ -93,12 +92,11 @@ String strDate=ft.format(date);
 String strTime=ft1.format(date);
 
 
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from projinfo where id = "+ID;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 System.out.println(query3);
-String app_Name=idd;
-String query4 = "select * from appinfo where appname ='"+idd+"'";
+String query4 = "select * from appinfo where appname ='"+app_Name+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
 System.out.println(query4);
@@ -109,196 +107,129 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
 %>
 
 <form class="form-signin" name="loginForm" method="post" action="business" >
-<div class="container">
-<nav class="navbar-fixed-top" style="background:#3276B1">
-            <div class="container-fluid">
-                
-                   <% if(rs3.next()){ %>
-                    <% if(rs4.next()){ %>
-                    <a class="navbar-brand" href="project.jsp" style="color:white" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
-                      <input type="text" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>                              
-                    <%
-                    
-                    while(visit_rs.next())
-                    {
-                    	if(visit_rs.getString(1).equals(username) && visit_rs.getString(2).equals(strDate) && visit_rs.getString(3).equals("Intake Module") && visit_rs.getString(6).equals(Project_Name) && visit_rs.getString(7).equals(rs4.getString("appname")) )
-                    	{
-                    		Statement stmtt = conn.createStatement();
-                             String queryy = "update visits set count=count+1,time='"+strTime+"' where uname='"+username+"' and module='Intake Module' and Projects='"+Project_Name+"' and Applications='"+rs4.getString("appname")+"'";
-                             int count = stmtt.executeUpdate(queryy);
-                             flag=0;
-                    	}
-                    }
-                    System.out.println("below visits");
-                    if(flag==1)
-                    {
-                    	
-                    	String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"
-                    	        + " values (?, ?, ?, ?, ?, ?, ?)";
-                    	System.out.println(ins_query);
-                    	      PreparedStatement preparedStmt = conn.prepareStatement(ins_query);
-                    	      preparedStmt.setString (1, username);
-                    	      preparedStmt.setString (2, strDate);
-                    	      preparedStmt.setString(3, "Intake Module");
-                    	      preparedStmt.setString(4, "1");
-                    	      preparedStmt.setString(5, strTime);
-                    	      preparedStmt.setString(6, Project_Name);
-                    	      preparedStmt.setString(7, app_Name );
 
-                    	      // execute the preparedstatement
-                    	      preparedStmt.execute();
-                    }
-                    
-                    
-                    String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
-                    Statement s2 = conn.createStatement();
-                   ResultSet rss = s2.executeQuery(quer2);
-                   while(rss.next())
-                   	session.setAttribute(rss.getString(3),rss.getString(15));
-                   
-                   String quer3="select id from archive_exec where name='"+rs4.getString("appname")+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
-                   Statement s3 = conn.createStatement();
-                  ResultSet rss1 = s3.executeQuery(quer3);
-                  while(rss1.next())
-                	  imp_id=rss1.getString(1);
-                  System.out.println(imp_id);
-                  String quer4="select * from archive_exec where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
-                  Statement s4 = conn.createStatement();
-                 ResultSet rss2 = s4.executeQuery(quer4);
-                
-                  while(rss2.next()){
-                  	session.setAttribute(rss2.getString(3),rss2.getString(15));
-                  	System.out.println(rss2.getString(3));
-                  }
-                  
-                  String quer5="select seq_num from archive_exec where name='Build and Test'";
-                  Statement s5 = conn.createStatement();
-                  ResultSet rss3 = s5.executeQuery(quer5);
-                  if(rss3.next())
-                	  sequenceNumber=rss3.getString(1);
-                  System.out.println(sequenceNumber);
-                  String quer6="select * from archive_exec where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
-                  Statement s6 = conn.createStatement();
-                  ResultSet rss4 = s6.executeQuery(quer6);
-                  int knt=0;
-                  System.out.println("bala");
-                  while(rss4.next())
-                  {
-                	  if(knt>2)
-                	  {
-                		  if(rss4.getString(9).equals(""))
-                			  actualHours1+=0;
-                		  else
-                		  actualHours1+=Integer.parseInt(rss4.getString(9));
-                		  if(rss4.getString(13).equals(""))
-                			  plannedHours1+=0;
-                		  else
-                		  plannedHours1+=Integer.parseInt(rss4.getString(13)); 
-                	  }
-                	  else
-                	  { System.out.println("murugan");
-                		  if(rss4.getString(9).equals(""))
-                			  actualHours+=0;
-                		  else
-                		  actualHours+=Integer.parseInt(rss4.getString(9));
-                		  if(rss4.getString(13).equals(""))
-                			  plannedHours+=0;
-                		  else
-                		  plannedHours+=Integer.parseInt(rss4.getString(13)); 
-                		  System.out.println(actualHours);
-                	  }
-                	 knt++;
-                  }
-                    } }%>
-              
-                <div id="navbar" class="navbar-collapse collapse">
-                
-                    <ol class="nav navbar-nav navbar-right">
-                        <li>
-                       <img src="assets/images/Logo sized.jpg" class="img-rounded"  height="50" width="80" float="right" alt="Avatar">&nbsp;
-</li>
-                   
-         <li><%
-                         String uid=(String)details.getAttribute("username");
-                         String role=(String)details.getAttribute("role");%>
- <p style="color:white; padding-top:15px;"><%=uid%>&nbsp;logged in as &nbsp;<span><%=role%></span></p>
-</li>     <li>
-                            <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
-                        </li>
-                    </ol>
-                    
-                </div>
-            </div>
-        </nav>
-        </div>
-       
-            <div class="row">
-            <br>
-                <div class="col-md-3 sidebar">
-                  <div id='jqxWidget' >
-        <div id='jqxTree' style='visibility: hidden;  padding-top:40px; float:left;  margin-left: -45px; padding-left:0 '>
-                  <ul class="nav nav-sidebar" id ="sidemenu" >
-                        
+ <div class="main-wrapper">
+            
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+            	<div class="container-fluid">
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
 
-            <ul>
-                <li id='home' item-selected='true'> <a href="project.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
-                <li item-expanded='true'><a href="AppEmphasize_EditProject.jsp">App Emphasize Module
-                    <ul>
-                       <li item-expanded='true'><a href="AppEmphasize_EditProject.jsp">Project Details
-                    <ul>
-                        <li><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
-                        <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
-                        </ul>
+                		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+                			
+                            <!-- /.nav navbar-nav -->
+ <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span id="nav_userid"><%=username%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=roles%></span></a></li>
+      
+<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
-                        <li item-expanded='true'> <a href="AppEmphasize_Calculation.jsp">Application Prioritization</a>
-                         <ul>
-                                <li > Parameters</li>
-                                <li>Archival Complexity Calculation</li>
-                                <li>Archival Cost Estimate</li>
-                               
-                            </ul>
-                        </li>
-                         <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</a></li>                 
-
                     </ul>
-                </li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
-                <ul>
-                <li item-expanded='true'><a href="business.jsp">Business</a>
-                <ul>
-                <li id='a'><a href="business.jsp">Application Information</a></li>
-                <li id='b'><a href="business.jsp">Legacy Retention Information</a></li>
-                <li id='c'><a href="business.jsp">Archive Data Management</a></li>
-                <li id='d'><a href="business.jsp">System Requirements</a></li>
-                
-                </ul></li>
-                <li item-expanded='true'><a href="component.jsp">Technical</a>
-                <ul>
-                <li><a href="component.jsp">Application Data Information</a></li>
-                <li><a href="component.jsp">Infrastructure & Environment Inforamation</a></li>
-                <li><a href="component.jsp">Technical Information</a></li>
-                </ul>
-                </li>
-                
-                 <li item-expanded='true'><a href="requirements.jsp">Archival Requirements</a>
-                 <ul>
-                 <li><a href="requirements.jsp">Screen/Report Requirements</a></li>
-                 <li><a href="requirements.jsp">Archive Requirements</a></li>
-                 </ul>
-                 </li>
-                </ul>
-                </li>
-                <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
-               </li> 
-                
-               
-                          </ul>
-    
-     </ul>
-         </div>
-   </div>
-                </div>
-                
+					
+                		</div>
+                		<!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.row -->
+            	</div>
+            	<!-- /.container-fluid -->
+            </nav>
+
+            
+            <div class="content-wrapper">
+                <div class="content-container">
+            
+                    <!-- ========== LEFT SIDEBAR ========== -->
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+              
+              
+                            <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                  <li class="has-children">
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="AppEmphasize_Business.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="AppEmphasize_Business.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="AppEmphasize_Business.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="AppEmphasize_Business.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="AppEmphasize_Business.jsp"> <span>System Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="component.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="component.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="component.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="component.jsp"> <span>Technical Information</span></a></li>
+                                        </ul>
+                                    </li>
+                                     <li class="has-children">
+                                        <a href="requirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="requirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="requirements.jsp"> <span>Archive Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                        <li><a href="archive_exec_samp.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
+                                </ul>
+                    
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                    <!-- /.left-sidebar -->
+            
+
                 <script>
   $(function () {
     // 6 create an instance when the DOM is ready
@@ -316,8 +247,19 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
   });
   </script>
                 
-                
-                <div class="col-md-8">
+                			
+<!-- Projects List Start -->
+
+                 
+                     
+            
+<section>
+
+    <div class="row">
+      <div class="container">
+
+                      <div class="main">
+                         <br>
                  <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
 String plan=(String)session.getAttribute("Plan");
@@ -331,8 +273,9 @@ if(execute == null)
 execute="0";
 if(hypercare == null)
 hypercare="0";
-%>                            
-<br/><br/><br/>
+%>               
+
+
 <div class="row">
 
   <div class="col-md-3">
@@ -419,15 +362,15 @@ if(implement == null)
 
 <br/>
 
-<div class="row">
+<div class="row m0a">
         
             <div class="row bs-wizard" style="border-bottom:0;">
+                
                 
                 <div class="col-xs-2 bs-wizard-step active">
                   <div class="text-center bs-wizard-stepnum">Intake Information</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot" style="color:white">1</a>
-                
                 </div>
                 
                 <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
@@ -455,17 +398,13 @@ if(implement == null)
                 </div>
             </div>
         
-        
-        
 </div>
 
 
-
-
 <div class="panel-group" id="panels1" > 
-                       <br><br><br>
+                    
                  <div class="panel panel-default"> 
-                    <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
+                    <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();">Application Information</a> </h4> 
                             </div>                             
                         <div id="collapse1" class="panel-collapse collapse in" name="collapse"> 
@@ -476,8 +415,9 @@ if(implement == null)
                                             <div class="required">Legacy Application Name&nbsp;
                                             </div>
                                             </label>
-                                            <input type="text" class="form-control" id="legappname" placeholder="Legacy Application Name" name="legappname" value="<%=rs4.getString("appname") %>"required />
+                                            <input type="text" class="form-control" id="legappname" placeholder="Legacy Application Name" name="legappname" value="" required />
                                         </div>
+                                        
                                        <div class="form-group"> 
                                             <label class="control-label" for="formInput229">References to Application</label>
                                             <input type="text" class="form-control" id="reftoapp" placeholder="References" name="reftoapp" >
@@ -619,7 +559,7 @@ if(implement == null)
                         </div>
                         
                  <div class="panel panel-default"> 
-                     <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
+                     <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">Legacy Retention Information</a> </h4> 
                       </div>                             
                          <div id="collapse2" class="panel-collapse collapse"> 
@@ -695,8 +635,8 @@ if(implement == null)
           </div>
           
         </div>             
-           <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform1()"> <a class="collapsed"  href="#collapse3" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+           <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform1()"> <a class="collapsed"  href="#collapse3">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                         
                                     </form>
                                 </div>                                 
@@ -704,7 +644,7 @@ if(implement == null)
                         </div>
                        
                  <div class="panel panel-default"> 
-                     <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
+                     <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors1();">Archive Data Management</a> </h4> 
                             </div>                             
                          <div id="collapse3" class="panel-collapse collapse"> 
@@ -737,7 +677,7 @@ if(implement == null)
                         </div>
                         
                  <div class="panel panel-default"> 
-                      <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
+                      <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" onclick="switchColors2();">System Requirements</a> </h4> 
                             </div>                             
                           <div id="collapse4" class="panel-collapse collapse"> 
@@ -958,7 +898,7 @@ if(implement == null)
                             </div>                             
                         </div>
         </div>
-                     <input type="text" id="pwqej" value="<%= info %>" hidden>   
+                     <input type="text" id="role_info" value="<%= role_info %>" style="display:none">   
        
                     <button type="submit" class="btn btn-primary btn pull-right" onclick="validateform2();">Save & Continue...</button>&nbsp;
 
@@ -966,12 +906,8 @@ if(implement == null)
                      
  </div>  
                    
-                    
        </div>
                 
-            
-          
-            
       
         <%
 }
@@ -980,6 +916,127 @@ catch(Exception e){}
 %>
 </form>
 
+                   <!-- /.row -->
+				</section>
+                        <!-- /.section -->
 
-  </body>
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /.main-wrapper -->
+         
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".lis").click(function() {
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
+                });
+                $(".gr").click(function() {
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
+                });
+            });
+        </script>
+      
+
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+       
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+        <!-- ========== THEME JS ========== -->
+        
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
+
+
+        <!-- ========== THEME JS ========== -->
+        <script>
+            $(function($) {
+
+                // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'm/d/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
+       
+
+</body>
 </html>

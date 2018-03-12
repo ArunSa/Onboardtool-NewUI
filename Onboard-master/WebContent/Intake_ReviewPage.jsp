@@ -200,17 +200,18 @@ ResultSet rs3 = st2.executeQuery(query3);
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="tree1.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Parameters</span></a></li>
-                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="AppEmphasize_Applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
+
 
                                     <li class="nav-header">
                                         <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
