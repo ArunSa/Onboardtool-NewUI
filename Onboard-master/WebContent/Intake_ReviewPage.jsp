@@ -120,7 +120,9 @@ ResultSet rs1 = st1.executeQuery(query1);
 String query2 = "select * from technical";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
-
+String query3 = "select * from archivalRequirement where appname ='"+idd+"'";
+Statement st3 = conn.createStatement();
+ResultSet rs3 = st2.executeQuery(query3);
  
 %>
 
@@ -322,7 +324,7 @@ ResultSet rs2 = st2.executeQuery(query2);
                                                <tr align='left' >
                                                      <td style='color:#404041;font-size:12px;line-height:16px;padding:10px 16px 20px 18px'>
                                                      
-                                                     <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Bussiness Details</h2></span>
+                                                    
                 <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table1">                                           
     <table width='0' border='0' align='left' cellpadding='0' cellspacing='0'>
                                                            
@@ -494,18 +496,43 @@ while(rs2.next()){
      
      </table>
      </div>
+    
+    
      <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table4">  
      <table>
       <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Archival Requirements</h2></span>
        
        <h3>Screen/Report Requirements :</h3>
        
-       
-       
+        <%
+          
+while(rs3.next()){
+
+%>        
+
+<tr class="edit_row">  
+<pre style="font-family:verdana;font-size:100%;">Current Legal holds on the application data must be applied to the application's archived data to override the Retention schedule  : <strong align="right"><%=rs3.getString("legalholds") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">Data from application must be retained based on the Client Retention schedule :<strong align="right"><%=rs3.getString("dataapp") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">Data Localization Laws must be followed where relevant: <strong align="right"><%=rs3.getString("dataloc") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">The System has tools to reconstruct the data in its original format : <strong align="right"><%=rs3.getString("reconsttools") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">The System allows for user viewing of blob data in its original format in relationship to its structured data : <strong align="right"><%=rs3.getString("viewblob") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">Archived data maintains its field properties and formats from the source system (i.e. decimals, %, commas, .00x, YYY-MM-DD) to display values defined in Views and schemas : <strong align="right"><%=rs3.getString("fieldprop") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">Archived data maintains its field types from the source system (i.e. STRING, Integer, CHAR, VCHAR, Date) to display values defined in Views and schemas : <strong align="right"><%=rs3.getString("fieldtype") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">The System supports archiving special characters as found in source data to include Foreign characters : <strong align="right"><%=rs3.getString("splchars") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">The System supports archiving Foreign Language data and maintains the Language in the archive  : <strong align="right"><%=rs3.getString("foreignlang") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">The System Maintains CLOBs from source systems  : <strong align="right"><%=rs3.getString("clob") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">The System supports archiving unstructured formats such as word, excel, PowerPoint, pdf : <strong align="right"><%=rs3.getString("unstructarch") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">Access to the Archive is role based and controlled through Active Directory : <strong align="right"><%=rs3.getString("accrole") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;"> The System allows for configuration of data views: <strong align="right"><%=rs3.getString("dataview") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;"> Completeness Control - record level check (The number of records sent from the Application are compared to the number of records posted to the target : <strong align="right"><%=rs3.getString("complctrl") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;"> Error Handling Control - record level check (During the load, records deemed as errors based on program logic will be written to an exception log in their entirety  : <strong align="right"><%=rs3.getString("errctrl") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;"> The System supports metadata management and indexing :  <strong align="right"><%=rs3.getString("metadata") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;"> The System provides advanced search tools to include data parameters and the standard search tools : <strong align="right"><%=rs3.getString("advsearch") %></strong></pre> </tr>
+<tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;"> Based on search parameters, data can be exported out of the system for analysis :<strong align="right"><%=rs3.getString("searchparam") %></strong></pre> </tr>
+   <%} %>
      </table>
      </div>
-       
-       
+    
        
        
         </tr>
@@ -532,7 +559,7 @@ while(rs2.next()){
                     </tr>
              </tbody>
        </table>
-      <!-- -----------------------------         Technical Details -->
+    
       
       </br>  <br>
         

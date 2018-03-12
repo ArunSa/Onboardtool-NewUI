@@ -11,25 +11,9 @@
     color:#73879C;
     font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
     }
-    .navbar-brand {
+   
     
-    padding: 10px;
-  border: 0px;
-  border-radius: 1px;
-   font-size: 1.15em;
-  font-weight: 400;
-    }
-    .
-    
-   .navbar-brand {
-  color: black;
-}
-
-.navbar-brand:hover {
-  color: #ffffff;
-  text-shadow: 1px -1px 8px #b3e9ff;
-}
-    
+  
     
     #sitetitle{
     
@@ -41,22 +25,7 @@
     
     
 
-   #sidemenu
-   {
-   
-   background:#3276B1 ;
-   position: fixed;
-top: 45px;
-left: -1%;
-padding-left:0px;
-width:300px !important;
-bottom: 0px;
-overflow: auto;
-color:white;
-text-size:30%;
-} 
-
-
+  
 .bs-wizard {margin-top: 40px;}
 
 .bs-wizard {border-bottom: solid 2px #e0e0e0; padding: 0 0 10px 0;}
@@ -76,6 +45,6 @@ text-size:30%;
 .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
 .bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
 .bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
-.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none;  opacity: 0;}
 
  

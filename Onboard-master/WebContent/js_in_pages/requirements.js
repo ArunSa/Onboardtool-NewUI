@@ -4,16 +4,16 @@ function switchColors()
 links=document.getElementsByTagName("li") ;  
 var element=document.getElementById("b");
 for (var i = 0 ; i < links.length ; i ++)  
-links.item(i).style.backgroundColor = '#3276B1' ; 
+links.item(i).style.backgroundColor = '#269af8' ; 
 element.style.borderRadius="5px";
 element.style.marginRight = "70px";
 element.style.boxSizing = "content-box";
-element.style.borderColor = "#3276B1";
-element.style.background="#3276B1";
-var list = document.getElementsByTagName("OL")[0];
+element.style.borderColor = "#269af8";
+element.style.background="#269af8";
+var list = document.getElementsByTagName("UL")[0];
 var x=list.getElementsByTagName("LI");
 for (var i = 0 ; i < x.length ; i ++)  
-x.item(i).style.backgroundColor = '#3276B1' ; 
+x.item(i).style.backgroundColor = '#269af8'; 
 
 
 } 
@@ -22,16 +22,16 @@ function switchColors0()
 links=document.getElementsByTagName("li") ;  
 var element=document.getElementById("a");
 for (var i = 0 ; i < links.length ; i ++)  
-links.item(i).style.backgroundColor = '#3276B1' ; 
+links.item(i).style.backgroundColor = '#269af8' ; 
 element.style.borderRadius="5px";
 element.style.marginRight = "70px";
 element.style.boxSizing = "content-box";
-element.style.borderColor = "#3276B1";
-element.style.background="#3276B1";
-var list = document.getElementsByTagName("OL")[0];
+element.style.borderColor = "#269af8";
+element.style.background="#269af8";
+var list = document.getElementsByTagName("UL")[0];
 var x=list.getElementsByTagName("LI");
 for (var i = 0 ; i < x.length ; i ++)  
-x.item(i).style.backgroundColor = '#3276B1' ; 
+x.item(i).style.backgroundColor = '#269af8' ; 
 
 
 } 
@@ -39,7 +39,7 @@ function call()
 {
 var f=document.loginForm;
     f.method="post";
-    f.action='Intake_ReviewPage.jsp';
+    f.action='ArchivalRequirements';
     f.submit();
 }
 
