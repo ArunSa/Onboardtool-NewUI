@@ -296,11 +296,10 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                 			
                             <!-- /.nav navbar-nav -->
  <ul class="nav navbar-nav navbar-right">
-      <li><%
-                         String uid=(String)details.getAttribute("username");
-                         String role=(String)details.getAttribute("role");%>
- <p><%=uid%>&nbsp;logged in as &nbsp;<span><%=role%></span></p>
-</li>           
+       <%
+                         String uname=(String)details.getAttribute("username");
+                         String role=(String)details.getAttribute("role");%>                   
+	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>       
 <li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>

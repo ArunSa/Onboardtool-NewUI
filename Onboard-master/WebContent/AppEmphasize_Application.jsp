@@ -9,6 +9,7 @@
  <title>Projects</title>
  <meta name="description" content="Blueprint: View Mode Switch" />
  <meta name="keywords" content="view mode, switch, css, style, grid, list, template" />
+ <script type="text/javascript" src="js_in_pages/application.js"></script>
  
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
      <!-- ========== COMMON STYLES ========== -->
@@ -28,7 +29,7 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-         <script type="text/javascript" src="js_in_pages/application.js"></script>
+         
 </head>
   
 <body class="top-navbar-fixed">
@@ -92,7 +93,7 @@ ResultSet rs1 = st1.executeQuery(query1);
                 			<a class="navbar-brand" href="project.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
-                           
+                           <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
                 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
                 				<span class="sr-only">Toggle navigation</span>
                 				<i class="fa fa-ellipsis-v"></i>
@@ -107,7 +108,10 @@ ResultSet rs1 = st1.executeQuery(query1);
                 			
                             <!-- /.nav navbar-nav -->
  <ul class="nav navbar-nav navbar-right">
- 
+ <%
+                         String uname=(String)details.getAttribute("username");
+                         String role=(String)details.getAttribute("role");%>                   
+	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
 <li><a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
