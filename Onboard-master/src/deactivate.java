@@ -68,7 +68,7 @@ public class deactivate extends HttpServlet {
 	        }
 
 		         
-	        response.sendRedirect("userslist.jsp");
+	        response.sendRedirect("Admin_Userslist.jsp");
 	        conn.close();
 	      }
 	      catch (Exception e)

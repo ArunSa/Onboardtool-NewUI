@@ -66,7 +66,7 @@ public class delete_users extends HttpServlet {
 	        System.err.println("Got an exception!");
 	        System.err.println(e.getMessage());
 	      }
-		response.sendRedirect("Registration.jsp");
+		response.sendRedirect("Admin_Userslist.jsp");
 	}
 
 }
