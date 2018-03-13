@@ -200,7 +200,7 @@
                       <div class="main">
 <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
 <div class="cbp-vm-options">
-<button type="button" class="btn btn-primary pull-right" name="newpr" onclick="location.href='AppEmphasize_Newproject.jsp';" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+<button type="button" class="btn btn-primary pull-right" name="newpr" onclick="location.href='AppEmphasize_NewProject.jsp';" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
   New Project
 </button>
 <a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected gr" data-view="cbp-vm-view-grid">Grid View</a>
