@@ -1,102 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type='text/javascript'
-  src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="css/style.min.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>  
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-   <script src="js/jquery.js"></script>
-   <script src ="js/table.js"></script>
-  <script src="js/jstree.min.js"></script>
-   <script src="js/multiplepages.js"></script>
-  
-
+<title>AppEmphasize Preview</title>
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
     <meta name="keywords" content="jQuery Tree, Tree Widget, TreeView" />
     <meta name="description" content="The jqxTree displays a hierarchical collection of items. You
         can populate it from 'UL' or by using its 'source' property." />
    
-    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
-    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="scripts/demos.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxpanel.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxtree.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
-
-<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-
-
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
     
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+     <!-- ========== COMMON STYLES ========== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
+
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
+
+          <!-- ========== jspdf pdf ========== -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <!-- ========== THEME CSS ========== -->
+        <link rel="stylesheet" href="css/main.css" media="screen" >
+
+        <!-- ========== MODERNIZR ========== -->
+        <script src="js/modernizr/modernizr.min.js"></script>
+        
+  <script src="js/archivesummary/jstree.min.js"></script>
+   <script src="js/multiplepages.js"></script>
+  
+    <style type="text/css">
+            .breadcrumb-div {
+                background-color: #e7e7e7;
+                color: #010101; }
+        </style>
+   
 <style>
-
-
- #panels1
-  {
  
-    width: 120%;
-    height:600px;;
-    display: inline-block;
-    background: #fff;
-    
-    border: 2px solid #E6E9ED;
-    -webkit-column-break-inside: avoid;
-    -moz-column-break-inside: avoid;
-    column-break-inside: avoid;
-    opacity: 1;
-    transition: all .2s ease;
-}
 
  td {
   border:1px solid black
 }
 
 #exportview {
-
 float:right;
-
 } 
 </style>
     <script type="text/javascript">
@@ -188,7 +143,7 @@ select { width: 100%; }
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
 .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 17px;}
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; text-align:center; text-decoration:none; z-index: 1; display: block;  background: #3276B1; top: 47px; left: 50%; padding: 5px 11px; font-weight: 700; margin-top: -14px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; text-align:center; text-decoration:none; z-index: 1; display: block;  background: #1b93f7; top: 47px; left: 50%; padding: 5px 11px; font-weight: 700; margin-top: -14px; margin-left: -15px; border-radius: 50%;} 
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 16px; height: 16px;  border-radius: 50px; position: absolute; top: 10px; left: 8px; } 
 .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 3px; box-shadow: none; margin: 25px 0;}
 .bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background:#3276B1;}
@@ -250,7 +205,6 @@ function myFunction4() {
         if (!txtROD.disabled) {
             txtROD.focus();
         }
-        
     }
 </script>
 <script>
@@ -304,7 +258,7 @@ function call()
 {
 	var f=document.loginForm;
     f.method="post";
-    f.action="AppEmphasize_applnprior1.jsp";
+    f.action="applnprior1.jsp";
     f.submit();
 	}
 </script>
@@ -312,7 +266,8 @@ function call()
  
     
 </head>
-<body style="background-color:#F7F7F7;margin-left:0px">
+<body class="top-navbar-fixed">
+
     <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="java.text.NumberFormat" %>
@@ -345,112 +300,141 @@ ResultSet rs2 = st2.executeQuery(query2);
 total=rs2.getInt("total");
 
 %>
-
  
 <form class="form-signin" name="loginForm" method="post">
-<div class="container">
-<nav class="navbar-fixed-top" style="background:#3276B1">
-            <div class="container-fluid">
+
+        <div class="main-wrapper">
             
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+            	<div class="container-fluid">
+            	
             <%if (rs3.next()) {%>
                 
-                    
-                    <a class="navbar-brand" href="project.jsp" style="color:white">Onboarding Tool-<%=rs3.getString("projectname") %></a>
-              
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                        <img src="assets/images/logo1.png" id="image" class="img-rounded" height="50" width="80" alt="Platform3Solutions" />
-</li>&nbsp;
-<li>
- <p style="color:white; padding-top:15px;">logged in as &nbsp;<span><%=roles%></span></p>
-</li>
-                        <li>
-                             <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
+
+                		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+                			
+                            <!-- /.nav navbar-nav -->
+ <ul class="nav navbar-nav navbar-right">
+         <%
+                         String uname=(String)details.getAttribute("username");
+                         String role=(String)details.getAttribute("role");%>                   
+	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
+		<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
-                    
-                </div>
-               
-            </div>
-        </nav>
-        </div>
+					
+                		</div>
+                		<!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.row -->
+            	</div>
+            	<!-- /.container-fluid -->
+            </nav>
+            
+            <div class="content-wrapper">
+                <div class="content-container">
        
-            <div class="row">
-            <br>
-                <div class="col-md-2 sidebar">
-                  <div id='jqxWidget'>
-        <div id='jqxTree' style='visibility: hidden;  padding-top:40px; float:left;  margin-left: -45px; padding-left:0 '>
-                    <ul class="nav nav-sidebar">
-                        
+       
+                    <!-- ========== LEFT SIDEBAR for new-application* ========== -->
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+						
+							
+                             <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
 
-            <ul>
-                <li id='home' item-selected='true'> <a href="project.jsp">Home </a></li>
-                <li item-expanded='true'>App Emphasize Module
-                    <ul>
-                       <li item-expanded='true'>Project Details
-                    <ul>
-                        <li><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
-                        <li item-selected='true'><a href="AppEmphasize_Application.jsp">Application Details</a></li>
-                        </ul>
-                        </li>
-                        <li item-expanded='true'> <a href="tree.jsp">Application Prioritization</a>
-                         <ul>
-                                <li >Parameters</li>
-                                <li>Archival Complexity Calculation</li>
-                                <li>Archival Cost Estimate</li>
-                                
-                            </ul>
-                        </li>
-                        <li item-selected='true'><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</a></li>
-                       <li> <a href="demo.jsp">ROI Calculation</a></li>
-                        <li>Estimates</li>
+                                    <li class="nav-header">
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                        </ul>
+                                    </li>
 
-                    </ul>
-                </li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
-                <ul>
-                <li item-expanded='true'>Business
-                <ul>
-                <li>Application Information</li>
-                <li>Legacy Retention Information</li>
-                <li>Archive Data Management</li>
-                <li>System Requirements</li>
-                
-                </ul></li>
-                <li item-expanded='true'>Technical
-                <ul>
-                <li>Application Data Information</li>
-                <li>Infrastructure & Environment Inforamation</li>
-                <li>Technical Information</li>
-                </ul>
-                </li>
-                
-                 <li item-expanded='true'>Archival Requirements
-                 <ul>
-                 <li>Screen/Report Requirements</li>
-                 <li>Archive Requirements</li>
-                 </ul>
-                 </li>
-                </ul>
-                </li>
-                
-               
-                          </ul>
-    
-     </ul>
-         </div>
-   </div>
-                </div>
+                                    <li class="has-children">
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                        </ul>
+                                    </li>
+                                     <li class="has-children">
+                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+										
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                    <!-- /.left-sidebar -->
+            
 <script>
 $(document).ready(function () {
     var table = $('#table-scroll').DataTable();
 });
 
-
 </script>
                
-   <script>
+ <script>
   $(function () {
     // 6 create an instance when the DOM is ready
     $('#jstree').jstree();
@@ -468,12 +452,20 @@ $(document).ready(function () {
   </script>
 
   </script>
-  
+  		
+<!-- Projects List Start -->
 
-                    <br/>
+                    <div class="main-page">
+                       
+                        <section>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
                     
                     
-<div class="col-md-7">
+<div class="container">
 <div class="row">
   <div class="col-md-3">
   <div class="form-group">
@@ -521,7 +513,7 @@ $(document).ready(function () {
                     
              
                                 
-     <tr><a href="AppEmphasize_applnprior1.jsp"  class="btn btn-success" class="btn pull-right"><span class="glyphicon glyphicon-download-edit"></span>Back</a>                      
+     <tr><a href="AppEmphasize_PrioritizedApplications.jsp"  class="btn btn-success" class="btn pull-right"><span class="glyphicon glyphicon-download-edit"></span>Back</a>                      
                 <button id="exportview" class="btn btn-primary" ><span class="glyphicon glyphicon-download-alt"></span> Export PDF</button> </tr></br>  <br>                 
  <div class="panel panel-default" >              
                 
@@ -618,17 +610,10 @@ for(var i=0; i<edit_row.length; i++) {
 
 </script>
      
-  
   <br />
-                                
                         
                             <br/>
                       
-         
-                                                                                            
-                                   
-                                   
-         
                                       <% } 
                                       }
 %> 
@@ -640,12 +625,10 @@ for(var i=0; i<edit_row.length; i++) {
 }}
 catch(Exception e){}
 %>
-</body>
 
 
- 
  <script>
- var pdf = new jsPDF('l', 'pt', 'a4', true); 
+ var pdf = new jsPDF('p', 'pt', 'a3', true); 
  pdf.setFontSize(20);
  pdf.setFontType("italic");
  
@@ -669,9 +652,6 @@ var specialElementHandlers = {
     }
 };
 
-
-
-
 var margins = {
         top: 200,
         bottom: 20,
@@ -681,7 +661,6 @@ var margins = {
     };
     
 
-    
 $('#exportview').click(function () {  
 
 	
@@ -703,4 +682,142 @@ $('#exportview').click(function () {
 </script>  
 
 
+				   					 </div>
+                                    <!-- /.col-md-6 -->
+
+                                </div>
+                                <!-- /.row -->
+
+                        </section>
+                        <!-- /.section -->
+
+                    </div>
+                    <!-- /.main-page -->
+                 
+<!-- Project List End -->
+
+                </div>
+                <!-- /.content-container -->
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /.main-wrapper -->
+            
+
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".lis").click(function() {
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
+                });
+                $(".gr").click(function() {
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
+                });
+            });
+        </script>
+      
+
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+       
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+        <!-- ========== THEME JS ========== -->
+        
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
+
+
+        <!-- ========== THEME JS ========== -->
+        <script>
+            $(function($) {
+
+                // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'm/d/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
+       
+
+	</body>
 </html>
+
+
