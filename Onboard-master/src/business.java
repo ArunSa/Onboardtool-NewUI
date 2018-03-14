@@ -75,10 +75,12 @@ String legappname = request.getParameter("legappname");
        String noticeperiod = request.getParameter("noticeperiod");
        String contractvalue = request.getParameter("contractvalue");
        String businessunits = request.getParameter("businessunits");
+       if(businessunits==null)
+    	   businessunits="No";
      
        String rodch = request.getParameter("rodch");
-       
-       System.out.println("business units is "+businessunits+" rodch is "+rodch);
+       if(rodch==null)
+    	   rodch="No";
        
        String rod = request.getParameter("rod");
        String cmnt = request.getParameter("cmnt");
@@ -101,27 +103,71 @@ String legappname = request.getParameter("legappname");
        String archexp = request.getParameter("archexp");
        String useforBI = request.getParameter("useforBI");
 String creditacc = request.getParameter("creditacc");
+if(creditacc==null)
+	creditacc="No";
        String financialacc = request.getParameter("financialacc");
+       if(financialacc==null)
+    	   financialacc="No";
        String dob = request.getParameter("dob");
+       if(dob==null)
+    	   dob="No";
        String driverlic = request.getParameter("driverlic");
+       if(driverlic==null)
+    	   driverlic="No";
        String email = request.getParameter("email");
+       if(email==null)
+    	   email="No";
        String family = request.getParameter("family");
+       if(family==null)
+    	   family="No";
        String gender = request.getParameter("gender");
+       if(gender==null)
+    	   gender="No";
        String geoloc = request.getParameter("geoloc");
+       if(geoloc==null)
+    	   geoloc="No";
        String img = request.getParameter("img");
+       if(img==null)
+    	   img="No";
        String income = request.getParameter("income");
+       if(income==null)
+    	   income="No";
        String ipadrs = request.getParameter("ipadrs");
+       if(ipadrs==null)
+    	   ipadrs="No";
        String martialstatus = request.getParameter("martialstatus");
+       if(martialstatus==null)
+    	   martialstatus="No";
        String mobid = request.getParameter("mobid");
+       if(mobid==null)
+    	   mobid="No";
        String name = request.getParameter("name");
+       if(name==null)
+    	   name="No";
        String phno = request.getParameter("phno");
+       if(phno==null)
+    	   phno="No";
        String mailadrs = request.getParameter("mailadrs");
+       if(mailadrs==null)
+    	   mailadrs="No";
        String physic = request.getParameter("physic");
+       if(physic==null)
+    	   physic="No";
        String race = request.getParameter("race");
+       if(race==null)
+    	   race="No";
        String religion = request.getParameter("religion");
+       if(religion==null)
+    	   religion="No";
        String sexualpref = request.getParameter("sexualpref");
+       if(sexualpref==null)
+    	   sexualpref="No";
        String ssn = request.getParameter("ssn");
+       if(ssn==null)
+    	   ssn="No";
        String others = request.getParameter("others");
+       if(others==null)
+    	   others="No";
        String expl = request.getParameter("expl");
        String localreq = request.getParameter("localreq");
        String localcountry = request.getParameter("localcountry");

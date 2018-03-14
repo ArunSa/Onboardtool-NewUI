@@ -422,7 +422,7 @@ if(implement == null)
                                      </div>
                                        <div class="form-group row log-date">
            <div class="col-md-12">
-            <label class="control-label ">Tracking ID</label>
+            <label class="control-label">Tracking ID</label>
             <input placeholder="ID" id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
             </div>
           
@@ -450,14 +450,14 @@ if(implement == null)
         </div>  
                     <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label ">Notice Period for Expiration of Contract</label>
+            <label class="control-label">Notice Period for Expiration of Contract</label>
             <input placeholder="Description" id="noticeperiod" name="noticeperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label ">Contract Value of Application</label>
+            <label class="control-label">Contract Value of Application</label>
             <input placeholder="Contract Value" id="contractvalue" name="contractvalue" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
@@ -474,49 +474,49 @@ if(implement == null)
                                         </div>
                                         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="">Read Only Date</div></label>
+            <label class="control-label"><div class="">Read Only Date</div></label>
             <input placeholder="dd/mm/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>
          <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label ">Comment</label>
+            <label class="control-label">Comment</label>
             <input placeholder="Comments" id="cmnt" name="cmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label ">If the applications transitions has dependencies?</label>
+            <label class="control-label">If the applications transitions has dependencies?</label>
             <input placeholder="" id="hasdep" name="hasdep" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>    
          <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "> <div class="required">What is the date Range of this Data?</div></label>
+            <label class="control-label"> <div class="required">What is the date Range of this Data?</div></label>
             <input placeholder="dd/mm/yyyy" id="daterange" name="daterange" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Size of Database</div></label>
+            <label class="control-label"><div class="required">Size of Database</div></label>
             <input placeholder="Size" id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label ">Location of Data</label>
+            <label class="control-label">Location of Data</label>
             <input placeholder="location" id="dataloc" name="dataloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label ">Site Location of Data</label>
+            <label class="control-label">Site Location of Data</label>
             <input placeholder="sitelocation" id="siteloc" name="siteloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
