@@ -29,13 +29,12 @@
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
         
+          	<link rel="stylesheet" href="js_in_pages/tree1.css" type="text/css" />
     <style type="text/css">
             .breadcrumb-div {
                 background-color: #e7e7e7;
                 color: #010101; }
         </style>
-
-  <script src="js_in_pages/tree1.js"></script>
   
 </head>
 <body class="top-navbar-fixed">
@@ -270,7 +269,7 @@ document.loginForm.est_archive_cst.value="$"+sum.toFixed(2);
                         <div class="navbar-header no-padding">
                 			
            <%if (rs3.next()) {%>
-                    <a class="navbar-brand" href="project.jsp" id="sitetitle">
+                    <a class="navbar-brand" href="Project_list.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
              <%        String q2="select * from archive_exec where level=1 and projects='"+projectname+"'order by seq_num";
@@ -328,7 +327,7 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -479,39 +478,43 @@ hypercare="0";
 <jsp:param name="Execute" value="<%=execute %>"/>
 <jsp:param name="Hypercare" value="<%=hypercare %>"/>
 </jsp:include>
- <div class="row">
- 
+
+
+<div class="row">
+  <div class="panel-group" id="panels1" style="display:block;"> 
         
             <div class="row bs-wizard" style="border-bottom:0;">
                 
-                <div class="col-xs-3 bs-wizard-step complete">
+                <div class="col-xs-3 bs-wizard-step active">
                   <div class="text-center bs-wizard-stepnum">Project Information</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot" style="color:white">1</a>
-                
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Cost Complexity Calculation</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot" style="color:white">2</a>
+                  <a href="#" class="bs-wizard-dot">2</a>
+                  <div class="bs-wizard-info text-center"></div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Prioritized Applications</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">3</a>
+                  <div class="bs-wizard-info text-center"></div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
                   <div class="text-center bs-wizard-stepnum">Final</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">4</a>
+                  <div class="bs-wizard-info text-center"></div>
                 </div>
             </div>
         
-</div>
-                    <br/>
+
+               <br/>
                     <div class="panel-group" id="panels1"> 
                 <div class="panel panel-default">
         <div class="panel-heading"> 

@@ -26,13 +26,13 @@ String workingDir = System.getProperty("user.dir");
  
 //String path= file.getAbsolutePath();
 //System.out.println("Path : "+path);
-System.out.println("the new working directory");
-System.out.println(workingDir);
+//System.out.println("the new working directory");
+//System.out.println(workingDir);
                    //FileReader reader = new FileReader("Configuration.properties");
 InputStream resourceStream = (InputStream) loader.getResourceAsStream("Configuration.properties");
  
                    prop.load(resourceStream);
-                   System.out.println("HIIIIIIIIIIIIII"+prop.getProperty("URL"));
+                 //  System.out.println("HIIIIIIIIIIIIII"+prop.getProperty("URL"));
                    Class.forName(prop.getProperty("DRIVER"));
                    this.connection= DriverManager.getConnection(prop.getProperty("URL")+prop.getProperty("DATABASENAME"),prop.getProperty("USERNAME"),prop.getProperty("PASSWORD"));
 } catch (Exception e) {

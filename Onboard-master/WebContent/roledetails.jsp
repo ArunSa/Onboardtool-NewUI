@@ -9,66 +9,41 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
     
-		<link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <!-- ========== COMMON STYLES ========== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
 
-    <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
 
-    <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+        <!-- ========== THEME CSS ========== -->
+        <link rel="stylesheet" href="css/main.css" media="screen" >
 
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
-
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-    <style>
-    
-	<style>
-	
-	input.noact
-{
-border:none;
-border-color:transparent;
-width:40px;
-background-color:transparent;
-}
-
-input.act
-{
-border:none;
-border-color:transparent;
-width:45px;
-background-color: transparent;
-}
-	.glyphicon {
-    font-size: 35px;
-}
-.glyphicon.glyphicon-asterisk
-{
-color:red;
-font-size:10px;
-}
- </style>
+        <!-- ========== MODERNIZR ========== -->
+        <script src="js/modernizr/modernizr.min.js"></script>
+   
+    <style type="text/css">
+            .breadcrumb-div {
+                background-color: #e7e7e7;
+                color: #010101; }
+       
+			.glyphicon.glyphicon-asterisk
+			{
+			color:red;
+			font-size:6px;
+			}
+ 	</style>
+ 	
       <script>
 	function calls()
 	{
@@ -98,68 +73,15 @@ function checkk()
 	document.getElementById('sub_btn').disabled = true;
 	}
 </script>  
+
 <style>
-    body
-    {
-     margin:0; padding:0; 
-    color:#73879C;
-    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
-    }
-    .navbar-brand {
-    
-    padding: 10px;
-  border: 0px;
-  border-radius: 1px;
-   font-size: 1.15em;
-  font-weight: 400;
-    }
-    .
-    
-   .navbar-brand {
-  color: black;
-}
+input[type="text"] { width:90px; }
+</style>
 
-.navbar-brand:hover {
-  color: #ffffff;
-  text-shadow: 1px -1px 8px #b3e9ff;
-}
-    
-    
-    #sitetitle{
-    
-    font-size: 22px;
-    margin:auto;
-}
-
-
-    
-    
-
-   #sidemenu
-   {
-   
-   background:#3276B1 ;
-   position: fixed;
-	top: 45px;
-	left: -1%;
-	padding-left:0px;
-	width:300px !important;
-	bottom: 0px;
-	overflow: auto;
-	color:white;
-	text-size:30%;
-	} 
- 
-
-
-#sidemenu a:hover {
-    background-color: #ddd;
-    color: black;
-    }
-
-   </style>
 </head>
-<body>
+
+<body class="top-navbar-fixed">
+
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
 		<%
@@ -186,61 +108,99 @@ ResultSet rs=s.executeQuery(query);
 ResultSet rs1=s1.executeQuery(query1);
 int count=0;
 %>
-<form class="form-signin" name="loginForm" method="post" action="Role_details">
-<div class="wrapper">
-    <div class="sidebar" data-color="blue">
-    	<div class="sidebar-wrapper">
-                       <ul class="nav">
-                <li><br/><br/><br/>
-                    <a href="project.jsp">
-                         <i class="glyphicon glyphicon-home"></i>
-                        <p>Home</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="Registration.jsp">
-                        <i class="pe-7s-user"></i>
-                        <p>User Configuration</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="userslist.jsp">
-                        <i class="pe-7s-note2"></i>
-                        <p>Users List</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="roledetails.jsp">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Authorization</p>
-                    </a>
-                </li>
-                         </ul>
-    	</div>
-    </div>
 
-    <div class="main-panel">
-		<nav class=" navbar-fixed-top" style="background-color:#3276B1">
-            <div class="container-fluid">
-                
-    
-                 
-                    <a class="navbar-brand" style="color:white"id="sitetitle">Onboarding Tool</a>
-              
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                        <img src="assets/images/Logo sized.jpg" class="img-rounded" height="50" width="80" alt="Avatar">
-</li>
-                        <li>
-                           <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
+        <div class="main-wrapper">
+        
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+            	<div class="container-fluid">
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
+
+                		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+                			
+                            <!-- /.nav navbar-nav -->
+ <ul class="nav navbar-nav navbar-right">
+      
+<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
-                    
-                </div>
-            </div>
-        </nav>
-<br/><br/><br/>
+					
+                		</div>
+                		<!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.row -->
+            	</div>
+            	<!-- /.container-fluid -->
+            </nav>
+
+
+<form class="form-signin" name="loginForm" method="post" action="Role_details">
+
+            <div class="content-wrapper">
+                <div class="content-container">
+            
+           
+                    <!-- ========== LEFT SIDEBAR for UserConfiguration ========== -->
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+							
+							
+                            <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a><span class="">User Module</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="Registration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="userslist.jsp"><i class="fa fa-paint-brush"></i> <span>Users List</span> </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="roledetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
+                                    </li>
+                                </ul>
+										
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                 <!-- /.left-sidebar -->
+            
+			
+<!-- Projects List Start -->
+
+                    <div class="main-page">
+                        
+                        <section>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+          
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -249,7 +209,7 @@ int count=0;
                             <div class="header">
                                 <h4 class="title">Authorization List</h4>
                             </div>
-                            <div class="content table-responsive table-full-width">
+                            <div class="content table-full-width table-responsive">
                                 <table class="table table-hover table-striped">
                                     <thead>
   <th>Role</th>
@@ -269,7 +229,7 @@ int count=0;
                                       while(rs.next()){ 
                                       %>
                                       <tr>
-                                      <td><input class="act" style="width:170px;" type="text" name="role<%=i %>" value="<%= rs.getString(1) %>"></td>
+                                      <td><input class="act" style="width:200px;" type="text" name="role<%=i %>" value="<%= rs.getString(1) %>"></td>
                                       <td><input class="act" type="text" name="admin<%=i %>" value="<%= rs.getString(2) %>"></td>
                                       <td><input class="act" type="text" name="app_emp<%=i %>" value="<%= rs.getString(3) %>"></td>
                                       <td><input class="act" type="text" name="intake<%=i %>" value="<%= rs.getString(4) %>"></td>
@@ -285,8 +245,9 @@ int count=0;
 %>  
                                                                            </tbody>
                                 </table>
- <input type="text" id="pwqej" value="<%= info %>" hidden>
- &nbsp;&nbsp;&nbsp;<button type="button" id="sub_btn" class="btn btn-primary" onclick="edit_serv()">Submit</button>                           </div>
+ <input type="hidden" id="pwqej" value="<%= info %>" hidden>
+ &nbsp;&nbsp;&nbsp;
+ <button type="button" id="sub_btn" class="btn btn-primary" onclick="edit_serv()">Submit</button>                           </div>
                         </div>
                     </div>
 
@@ -295,9 +256,6 @@ int count=0;
             </div>
         </div>
 
-     
-
-
     </div>
 </div>
   <script>
@@ -305,27 +263,143 @@ int count=0;
 	 checkk();
  </script>   
 </form>
-</body>
+
+				    </div>
+                                    <!-- /.col-md-6 -->
+
+                                </div>
+                                <!-- /.row -->
+
+                        </section>
+                        <!-- /.section -->
+
+                    </div>
+                    <!-- /.main-page -->
+                 
+<!-- Project List End -->
+
+                </div>
+                <!-- /.content-container -->
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /.main-wrapper -->
+            
+		
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
 
 
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".lis").click(function() {
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
+                });
+                $(".gr").click(function() {
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
+                });
+            });
+        </script>
+      
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
+        <!-- ========== THEME JS ========== -->
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+       
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+        <!-- ========== THEME JS ========== -->
+        
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
 
 
+        <!-- ========== THEME JS ========== -->
+        <script>
+            $(function($) {
+
+                // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'm/d/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
+       
+
+	</body>
 </html>
+
+

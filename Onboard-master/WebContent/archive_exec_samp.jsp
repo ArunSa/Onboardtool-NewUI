@@ -1,47 +1,41 @@
 <!DOCTYPE html>  
 <html>  
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+<head>
+  <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Onboard - Archive Executive Sample</title>
 
-<script type='text/javascript'
-  src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
-		<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
-		<script src="http://code.jquery.com/jquery-2.0.3.js"></script>
-		<script type="text/javascript" src="js/jqueryprogressbar.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
-         <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
-		<link type="text/css" href="css/jquery-ui-1.8.13.custom.css" rel="stylesheet" />	
-		<link type="text/css" rel="stylesheet" href="css/progressbar.css" />
-		<script src="js/treeTable.js"></script>
-		 <script src="js/jstree.min.js"></script>
- 
-<script type="text/javascript" src="js_in_pages/archive_exec.js"></script>
-<script type="text/javascript" src="js_in_pages/tree.js"></script>
-  <link rel="stylesheet" href="js_in_pages/archive_exec.css" type="text/css" />
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <!-- ========== COMMON STYLES ========== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
 
-    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
-     <script type="text/javascript" src="scripts/demos.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxpanel.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxtree.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
-      	
-	
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-		  
+        <link rel="stylesheet" type="text/css" href="css/date-picker/jquery.timepicker.css" />
+        <link rel="stylesheet" type="text/css" href="css/date-picker/bootstrap-datepicker.css" />
 
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
 
-<body class='default'>
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" type="text/css" href="css/date-picker/jquery.timepicker.css" />
+        <link rel="stylesheet" type="text/css" href="css/date-picker/bootstrap-datepicker.css" />
+
+        <!-- ========== THEME CSS ========== -->
+        <link rel="stylesheet" href="css/main.css" media="screen" >
+
+        <!-- ========== MODERNIZR ========== -->
+        <script src="js/modernizr/modernizr.min.js"></script>
+
+</head>
+<body class="top-navbar-fixed">
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
 		<%@ page import="onboard.DBconnection" %>
@@ -49,9 +43,12 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Date" %>
 <%@page import="java.util.Calendar" %>
-<form class="form-signin" name="loginForm" method="post" action="archive_exec">
-	<%
 
+<form class="form-signin" name="loginForm" method="post" action="archive_exec">
+	
+
+	 <div class="main-wrapper">
+	<%
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setHeader("Expires", "0"); // Proxies.
@@ -131,124 +128,135 @@ ResultSet rs7 = st7.executeQuery(query7);
 
 if(rs4.next()){
 	%>
-<div class="container">
-<nav class=" navbar-fixed-top" style="background:#3276B1">
-            <div class="container-fluid">
-                
-                    <% if(rs.next()){ %>
-                    <a class="navbar-brand" href="project.jsp" style="color:white"id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
-                       <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" hidden>                              
-                    <%
-                    String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
-                    Statement s2 = conn.createStatement();
-                    ResultSet rss = s2.executeQuery(q2);
-                    while(rss.next())
-                    {
-                    	session.setAttribute(rss.getString(3),rss.getString(15));
-                    	session.setAttribute((rss.getString(3)+"1"),rss.getString(1));
-                    }
-                    
-                    %>
+	
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+            	<div class="container-fluid">
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+
+                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
+                           
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
+
+                		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+                			
+                            <!-- /.nav navbar-nav -->
+ 					<ul class="nav navbar-nav navbar-right">
+ 
+						<li><a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a>
+                        </li>
+                    </ul>
+					
+                		</div>
+                		<!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.row -->
+            	</div>
+            	<!-- /.container-fluid -->
+            </nav>
+ 
+ 
+            <div class="content-wrapper">
+                <div class="content-container">
+            
+                    <!-- ========== LEFT SIDEBAR ========== -->
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+							
+							
+                            <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                        </ul>
+                                    </li>
+                                     <li class="has-children">
+                                        <a href="firstinsert.jsp" class="active-menu"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+										
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                    <!-- /.left-sidebar -->
               
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                        <img src="assets/images/Logo sized.jpg" class="img-rounded" height="50" width="80" alt="Avatar">&nbsp;
-</li>
-                     <li>
- <p style="color:white; padding-top:15px;">logged in as &nbsp;<span><%=roles%></span></p>
-</li> 
-                        <li>
-                             <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </nav>
-        </div>
-            <div class="row">
-            <br>
-               
-               
-               
-               <div class="col-md-3 sidebar">
-               
-                  <div id='jqxWidget'>
-                  
-        <div id='jqxTree' style='visibility: hidden;  padding-top:30px;   float:right; '>
-                    <ul class="nav nav-sidebar" id ="sidemenu" >
-                        
-                        
+              
+<!-- Projects List Start -->
 
-            <ul>
-                  <li id='home' item-selected='true'> <a href="project.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
-                <li item-expanded='true'>App Emphasize Module
-                    <ul>
-                       <li item-expanded='true'>Project Details
-                    <ul>
-                        <li item-selected='true'><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
-                        <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
-                        </ul>
-                        </li>
-                        <li item-expanded='true'> <a href="AppEmphasize_Calculation.jsp">Application Prioritization</a>
-                         <ul>
-                                <li >Parameters</li>
-                                <li>Archival Complexity Calculation</li>
-                                <li>Archival Cost Estimate</li>
-                             
-                            </ul>
-                        </li>
-                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</li>
-
-                    </ul>
-                </li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
-                <ul>
-                <li item-expanded='true'>Business
-                <ul>
-                <li>Application Information</li>
-                <li>Legacy Retention Information</li>
-                <li>Archive Data Management</li>
-                <li>System Requirements</li>
-                
-                </ul></li>
-                <li item-expanded='true'>Technical
-                <ul>
-                <li>Application Data Information</li>
-                <li>Infrastructure & Environment Inforamation</li>
-                <li>Technical Information</li>
-                </ul>
-                </li>
-                
-                 <li item-expanded='true'>Archival Requirements
-                 <ul>
-                 <li>Screen/Report Requirements</li>
-                 <li>Archive Requirements</li>
-                 </ul>
-                 </li>
-                </ul>
-                </li>
-                <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
-               </li>                
-               
-                          </ul>
-    
-     </ul>
-         </div>
-   </div>
-                </div>
-               
-
-               
-               
-               
-               
-               
-               
-  <br/><br/><br/>
-                                
-                 <div class="col-md-7">
+                    <div class="main-page">
+                       
+                        <section>
+                                <div class="row">
+                                    <div class="col-md-12">
+							<div class="container-fluid">
+                    <h1 class="page-header">Projects</h1>
+                      
                  
  <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
@@ -317,8 +325,8 @@ System.out.println(plan);
                      </script>
                
                  
-
-<table class="table table-bordered" style="align:center" id="table">
+<div class="table-responsive">
+<table class="table table-bordered table-striped" style="align:center" id="table">
 <thead>
 <tr>
 <th style="width:70%;">Tasks </th> 
@@ -404,9 +412,10 @@ i++;
 
 
 </tbody>
-
 </table>
-<input type="text" id="pwqej" value="<%= info %>" hidden> 
+</div>
+
+<input type="hidden" id="pwqej" value="<%= info %>" hidden> 
 <script>
  if(document.getElementById('pwqej').value=="R")
 	 checkk();
@@ -419,7 +428,7 @@ i++;
 <div>
 <%if(rs7.next()){ %>
     <input type="hidden" class="form-control" id="formInput198" placeholder="Application Name" name="prjname" value="<%=rs7.getString("projectname") %>" >
-<%} %>
+<% } %>
 <input type="button" name="addbtn" class="btn btn-primary" onclick="sub(<%=i+1%>,1,'<%=rs4.getString(1) %>','<%=rs4.getString(1) %>');" value="Add" >
 <input type="button" name="subbtn" class="btn btn-primary" value="Submit" onclick="update()" >
 </div>
@@ -430,9 +439,63 @@ i++;
                                   
        <%
 
-                    }
+                
 }
 %>
 </form>
-</body>
+				</div>
+                   <!-- /.row -->
+</section>
+                        <!-- /.section -->
+
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /.main-wrapper -->
+         
+         
+
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+
+
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+       
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+  </body>
+
 </html>

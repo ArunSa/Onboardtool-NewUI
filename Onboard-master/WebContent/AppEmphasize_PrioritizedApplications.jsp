@@ -391,9 +391,9 @@ for(var i=0; i<edit_row.length; i++) {
                                    
 <button type="button" class="btn btn-primary" onclick="call()" >Submit</button>     
      
-                    <a href="AppEmphasize_Calculation.jsp" class="btn btn-default" class="btn pull-right">Cancel</a>
+                    <a href="AppEmphasize_CostCalculation.jsp" class="btn btn-default" class="btn pull-right">Cancel</a>
                     
-                    <a href="AppEmphasize_Calculation.jsp" style="float:right">Click here to enter data for application</a>
+                    <a href="AppEmphasize_CostCalculation.jsp" style="float:right">Click here to enter data for application</a>
                                       <% } 
                                       
 %> 

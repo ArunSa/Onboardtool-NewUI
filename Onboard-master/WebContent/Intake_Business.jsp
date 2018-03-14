@@ -72,6 +72,7 @@ String app_Name = request.getParameter("appname");
 if (app_Name != null && !app_Name.isEmpty()) {
 session.setAttribute("appidd", app_Name);
 }
+System.out.println("In Busness "+app_Name);
 app_Name=(String)session.getAttribute("appidd");
 DBconnection d=new DBconnection();
 Connection conn = (Connection)d.getConnection();

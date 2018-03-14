@@ -75,7 +75,11 @@ String legappname = request.getParameter("legappname");
        String noticeperiod = request.getParameter("noticeperiod");
        String contractvalue = request.getParameter("contractvalue");
        String businessunits = request.getParameter("businessunits");
+     
        String rodch = request.getParameter("rodch");
+       
+       System.out.println("business units is "+businessunits+" rodch is "+rodch);
+       
        String rod = request.getParameter("rod");
        String cmnt = request.getParameter("cmnt");
        String hasdep = request.getParameter("hasdep");
