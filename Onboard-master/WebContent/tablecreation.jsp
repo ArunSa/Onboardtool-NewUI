@@ -53,6 +53,12 @@
                        String query13="CREATE TABLE `visits` (   `uname` varchar(255) DEFAULT NULL,   `date` varchar(255) DEFAULT NULL,   `module` varchar(255) DEFAULT NULL,   `count` varchar(255) DEFAULT NULL, `time` varchar(255) DEFAULT NULL, `Projects` varchar(255) DEFAULT NULL, `Applications` varchar(255) DEFAULT NULL)";
                        statement.executeUpdate(query13);
                        
+                       String query14=" CREATE TABLE `archivalRequirement` ( `legalholds` varchar(255) DEFAULT NULL, `dataapp` varchar(255) DEFAULT NULL, `dataloc` varchar(255) DEFAULT NULL, `reconsttools` varchar(255) DEFAULT NULL, `viewblob` varchar(255) DEFAULT NULL, `fieldprop` varchar(255) DEFAULT NULL, `fieldtype` varchar(255) DEFAULT NULL, `splchars` varchar(255) DEFAULT NULL, `foreignlang` varchar(255) DEFAULT NULL, `clob` varchar(255) DEFAULT NULL, `unstructarch` varchar(255) DEFAULT NULL, `accrole` varchar(255) DEFAULT NULL, `dataview` varchar(255) DEFAULT NULL, `complctrl` varchar(255) DEFAULT NULL, `errctrl` varchar(255) DEFAULT NULL, `metadata` varchar(255) DEFAULT NULL, `advsearch` varchar(255) DEFAULT NULL, `searchparam` varchar(255) DEFAULT NULL, `appname` varchar(255) DEFAULT NULL  )";
+                       statement.executeUpdate(query14);
+                       
+                       String query15="CREATE TABLE `newRequirements` ( `requirements` varchar(255) DEFAULT NULL, `appname` varchar(255) DEFAULT NULL    )";
+                       statement.executeUpdate(query15);
+                       
                 
                         %> 
         <%	} catch (Exception ex) {
