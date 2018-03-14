@@ -126,8 +126,8 @@ String datatype = request.getParameter("datatype");
    
          
          // the mysql insert statement
-         String query = " insert into technical (datatype, pname, archneed, formatsp, mlang, loclang, dataretain, systemdoc, userdoc, techdoc, traindoc, supportdoc, datadic, testcasedoc, testrec, designspec, validityplan, dataloc, servername, prodinstance, prodinstanceloc, infraengage, sourcearch, apphost, retenduration, clientapp, extcustfacing, url, dbsize, nooftable, noofrec, xmlcount, anyvpn, vpnacces, appintegrate)"
-           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         String query = " insert into technical (datatype, pname, archneed, formatsp, mlang, loclang, dataretain, systemdoc, userdoc, techdoc, traindoc, supportdoc, datadic, testcasedoc, testrec, designspec, validityplan, dataloc, servername, prodinstance, prodinstanceloc, infraengage, sourcearch, apphost, retenduration, clientapp, extcustfacing, url, dbsize, nooftable, noofrec, xmlcount, anyvpn, vpnacces, appintegrate,integname,decomdate)"
+           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
          // create the mysql insert preparedstatement
          //Scanner sin=new Scanner(System.in);
@@ -139,42 +139,43 @@ String datatype = request.getParameter("datatype");
          //System.out.println("would you like to have extra food today say y or n");
          //extra=sin.next();
          PreparedStatement preparedStmt = conn.prepareStatement(query);
-         preparedStmt.setString (1, datatype);
-         preparedStmt.setString   (2, pname);
-         preparedStmt.setString (3, archneed);
+         preparedStmt.setString(1, datatype);
+         preparedStmt.setString(2, pname);
+         preparedStmt.setString(3, archneed);
          preparedStmt.setString(4, formatsp);
          preparedStmt.setString(5, mlang);
-         preparedStmt.setString (6, loclang);
-         preparedStmt.setString   (7, dataretain);
-         preparedStmt.setString (8, systemdoc);
+         preparedStmt.setString(6, loclang);
+         preparedStmt.setString(7, dataretain);
+         preparedStmt.setString(8, systemdoc);
          preparedStmt.setString(9, userdoc);
          preparedStmt.setString(10, techdoc);
-         preparedStmt.setString (11, traindoc);
-         preparedStmt.setString   (12, supportdoc);
-         preparedStmt.setString (13, datadic);
+         preparedStmt.setString(11, traindoc);
+         preparedStmt.setString(12, supportdoc);
+         preparedStmt.setString(13, datadic);
          preparedStmt.setString(14, testcasedoc);
          preparedStmt.setString(15, testrec);
-         preparedStmt.setString (16, designspec);
-         preparedStmt.setString   (17, validityplan);
-         preparedStmt.setString (18, dataloc);
-         preparedStmt.setString (19, servername);
-         preparedStmt.setString   (20, prodinstance);
-         preparedStmt.setString (21, prodinstanceloc);
+         preparedStmt.setString(16, designspec);
+         preparedStmt.setString(17, validityplan);
+         preparedStmt.setString(18, dataloc);
+         preparedStmt.setString(19, servername);
+         preparedStmt.setString(20, prodinstance);
+         preparedStmt.setString(21, prodinstanceloc);
          preparedStmt.setString(22, infraengage);
          preparedStmt.setString(23, sourcearch);
-         preparedStmt.setString (24, apphost);
-         preparedStmt.setString   (25, retenduration);
-         preparedStmt.setString (26, clientapp);
+         preparedStmt.setString(24, apphost);
+         preparedStmt.setString(25, retenduration);
+         preparedStmt.setString(26, clientapp);
          preparedStmt.setString(27, extcustfacing);
          preparedStmt.setString(28, url);
-         preparedStmt.setString (29, dbsize);
-         preparedStmt.setString   (29, nooftable);
-         preparedStmt.setString (30, noofrec);
-         preparedStmt.setString(31, xmlcount);
-         preparedStmt.setString(32, anyvpn);
-         preparedStmt.setString (33, vpnacces);
-         preparedStmt.setString   (34, appintegrate);
- 
+         preparedStmt.setString(29, dbsize);
+         preparedStmt.setString(30, nooftable);
+         preparedStmt.setString(31, noofrec);
+         preparedStmt.setString(32, xmlcount);
+         preparedStmt.setString(33, anyvpn);
+         preparedStmt.setString(34, vpnacces);
+         preparedStmt.setString(35, appintegrate);
+         preparedStmt.setString(36, integname);
+         preparedStmt.setString(37, decomdate);
         
          
          
@@ -188,9 +189,11 @@ String datatype = request.getParameter("datatype");
        catch (Exception e)
        {
        
-System.out.println("Sorry Your order for today has been already taken");
+System.out.println("HIII");
          System.err.println("Got an exception!");
          System.err.println(e.getMessage());
+         System.out.println("Hello");
+         e.getStackTrace();
        }
        // return response
        response.sendRedirect("Intake_ArchiveRequirements.jsp");
