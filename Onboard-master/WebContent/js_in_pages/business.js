@@ -142,7 +142,7 @@
         	}
         
         
-        function validateform() {
+    function validateform() {
         	 
         	var legappname = document.loginForm.legappname.value
         	var description = document.loginForm.descr.value
@@ -294,7 +294,7 @@
 
         } 
         
-        
+       
         
         function checkk()
         {

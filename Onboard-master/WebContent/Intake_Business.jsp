@@ -72,7 +72,6 @@ String app_Name = request.getParameter("appname");
 if (app_Name != null && !app_Name.isEmpty()) {
 session.setAttribute("appidd", app_Name);
 }
-System.out.println("In Busness "+app_Name);
 app_Name=(String)session.getAttribute("appidd");
 DBconnection d=new DBconnection();
 Connection conn = (Connection)d.getConnection();
@@ -96,11 +95,9 @@ String strTime=ft1.format(date);
 String query3 = "select * from projinfo where id = "+ID;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-System.out.println(query3);
 String query4 = "select * from appinfo where appname ='"+app_Name+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
-System.out.println(query4);
 String imp_id="";
 String sequenceNumber="";
 int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
@@ -413,10 +410,10 @@ if(implement == null)
                                   <form role="form"> 
                                        <div class="form-group"> 
                                             <label class="control-label" for="formInput198" >
-                                            <div class="required">Legacy Application Name&nbsp;
+                                            <div class="">Legacy Application Name&nbsp;
                                             </div>
                                             </label>
-                                            <input type="text" class="form-control" id="legappname" placeholder="Legacy Application Name" name="legappname" value="" required />
+                                            <input type="text" class="form-control" id="legappname" placeholder="Legacy Application Name" name="legappname" value=""  />
                                         </div>
                                         
                                        <div class="form-group"> 
@@ -432,22 +429,22 @@ if(implement == null)
                                        </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Description</div></label>
-            <input placeholder="Description" id="descr" name="descr" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Description</div></label>
+            <input placeholder="Description" id="descr" name="descr" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Legacy Application Vendor/Manufacturer</div></label>
-            <input placeholder="Vendor/Manufacturer" id="vendor" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Legacy Application Vendor/Manufacturer</div></label>
+            <input placeholder="Vendor/Manufacturer" id="vendor" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
         
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Contract Expiration Date</div></label>
-            <input placeholder="dd/mm/yyyy" id="expirydate" name="expdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Contract Expiration Date</div></label>
+            <input placeholder="dd/mm/yyyy" id="expirydate" name="expdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
@@ -467,7 +464,7 @@ if(implement == null)
         </div>  
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox"  id="businessunits" name="businessunits">Business Units Involved
+                                                <input type="checkbox"  id="businessunits" name="businessunits" value="Yes">Business Units Involved
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
@@ -477,8 +474,8 @@ if(implement == null)
                                         </div>
                                         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Read Only Date</div></label>
-            <input placeholder="dd/mm/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Read Only Date</div></label>
+            <input placeholder="dd/mm/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>
@@ -498,15 +495,15 @@ if(implement == null)
         </div>    
          <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "> <div class="required">What is the date Range of this Data?</div></label>
-            <input placeholder="dd/mm/yyyy" id="daterange" name="daterange" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "> <div class="">What is the date Range of this Data?</div></label>
+            <input placeholder="dd/mm/yyyy" id="daterange" name="daterange" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Size of Database</div></label>
-            <input placeholder="Size" id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Size of Database</div></label>
+            <input placeholder="Size" id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
@@ -525,8 +522,8 @@ if(implement == null)
           
         </div>
          <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Does the application needs archival?</div></label>                                             
-                                            <select id="needarch" class="form-control" name="needarch" required> 
+                                            <label class="control-label" for="formInput26"><div class="">Does the application needs archival?</div></label>                                             
+                                            <select id="needarch" class="form-control" name="needarch" > 
                                             <option></option>
                                                 <option value="yes">Yes</option>                                                 
                                                 <option value="no">No</option>  
@@ -535,15 +532,15 @@ if(implement == null)
                                         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Reason</div></label>
-            <input placeholder="Reason" id="archreason" name="archreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Reason</div></label>
+            <input placeholder="Reason" id="archreason" name="archreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Comments</div></label>
-            <input placeholder="Comments" id="archcmnt" name="archcmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Comments</div></label>
+            <input placeholder="Comments" id="archcmnt" name="archcmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
@@ -568,45 +565,45 @@ if(implement == null)
                                 <form role="form">
                                     <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Record code of Application</div></label>
-            <input placeholder="Recordcode" id="reccode" name="reccode" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required />
+            <label class="control-label "><div class="">Record code of Application</div></label>
+            <input placeholder="Recordcode" id="reccode" name="reccode" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"  />
           </div>
           
         </div> 
                                     <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "> <div class="required">Trigger Date</div></label>
-            <input placeholder="dd/mm/yyyy"  id="triggerdate" name="triggerdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "> <div class="">Trigger Date</div></label>
+            <input placeholder="dd/mm/yyyy"  id="triggerdate" name="triggerdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Period of Retention</div></label>
-            <input placeholder="RententionPeriod" id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Period of Retention</div></label>
+            <input placeholder="RententionPeriod" id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Table Name/s where Retention need to apply</div></label>
-            <input placeholder="Table Name" id="retentiontable" name="retentiontable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Table Name/s where Retention need to apply</div></label>
+            <input placeholder="Table Name" id="retentiontable" name="retentiontable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
-                                        <label text-align:"left"><div class="required">Retention Requirement</div></label>
-                                        <input type="file" name="file" id="file" size="60" required />
+                                        <label text-align:"left"><div class="">Retention Requirement</div></label>
+                                        <input type="file" name="file" id="file" size="60"  />
                                                             
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Name of the Legal Retention & e-Discovery SME</div></label>
-            <input placeholder="Name of Retention" id="retentionname" name="retentionname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label "><div class="">Name of the Legal Retention & e-Discovery SME</div></label>
+            <input placeholder="Name of Retention" id="retentionname" name="retentionname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
         <div class="form-group"> 
                                             <label class="control-label" for="formInput26">Does any Records have legal holds/Tax Holds or any indication?</label>                                             
-                                            <select id="reason_for_access" class="form-control" name="recordhold" > 
+                                            <select id="legalholds" class="form-control" name="legalholds" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
                                                 <option>No</option>  
@@ -621,8 +618,8 @@ if(implement == null)
           
         </div> 
          <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Should this application's data to be archived?</div></label>                                             
-                                            <select id="reason_for_access1" class="form-control" name="reason" required> 
+                                            <label class="control-label" for="formInput26"><div class="">Should this application's data to be archived?</div></label>                                             
+                                            <select id="reason_for_access1" class="form-control" name="reason" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
                                                 <option>No</option>  
@@ -631,8 +628,8 @@ if(implement == null)
                                         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label"><div class="required">Brief Explanation</div></label>
-            <input placeholder="Explaination" id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label"><div class="">Brief Explanation</div></label>
+            <input placeholder="Explaination" id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>             
@@ -650,26 +647,23 @@ if(implement == null)
                             </div>                             
                          <div id="collapse3" class="panel-collapse collapse"> 
                               <div class="panel-body">
-                                   <form role="form"> 
                                          <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Is this application's been used for BI report?</div></label>                                             
-                                            <select id="reason_for_access2" class="form-control" name="reason_for_access" required/> 
+                                            <label class="control-label" for="formInput26"><div class="">Is this application's been used for BI report?</div></label>                                             
+                                            <select id="useforBI" class="form-control" name="useforBI" /> 
                                             <option></option>
                                                 <option>Yes</option>                                                 
                                                 <option>No</option>  
                                                                                            
                                             </select>
-                                        </div>  
-                                         <div class="checkbox"> 
+                                        </div> 
+                                             <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox" type="checkbox" name ="report" required /> <div class="required">Is BI aware of using new/alternate target application data to support operational report </div></label>                                             
+                                                <input id="report" type="checkbox" name ="report" required /> <div class="required">Is BI aware of using new/alternate target application data to support operational report </div></label>                                             
                                         </div>
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox1" type="checkbox" name = "archive" required /><div class="required">BI Engagement should be initiated by Application owner and completed prior archiving </div></label>
-                                        </div>
-                                                                              
-                                    </form>
+                                                <input id="archive" type="checkbox" name = "archive" required /><div class="required">BI Engagement should be initiated by Application owner and completed prior archiving </div></label>
+                                        </div>                                        
                                      <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform2()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                        
@@ -683,120 +677,120 @@ if(implement == null)
                             </div>                             
                           <div id="collapse4" class="panel-collapse collapse"> 
                               <div class="panel-body">
-                                   <form role="form"> 
+                              
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox23" type="checkbox" name="creditacc" value="Yes">Account Credit Card
+                                                <input type="checkbox" id="creditacc" name="creditacc" value="Yes">Account Credit Card
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox2" type="checkbox" name="financialacc" value="Yes" >Account Number - Financial
+                                                <input id="financialacc" type="checkbox" name="financialacc" value="Yes" >Account Number - Financial
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox3" name="dob" type="checkbox" name="dob"  value="Yes">Date of Birth
+                                                <input id="dob" name="dob" type="checkbox" name="dob"  value="Yes">Date of Birth
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input  id="checkbox4" name="driverlic" type="checkbox" name="driverlic" value="Yes" >Driver's License Number
+                                                <input  id="driverlic" name="driverlic" type="checkbox" name="driverlic" value="Yes" >Driver's License Number
                                                 <br>
                                             </label>                                             
                                         </div> 
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox5" name="email" type="checkbox" name="email" value="Yes">Email Address
+                                                <input id="email" name="email" type="checkbox" value="Yes">Email Address
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox6"  name="family" type="checkbox" name="family" value="Yes">family Status
+                                                <input id="family"  name="family" type="checkbox" value="Yes">family Status
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox7"  name="gender" type="checkbox" name="gender" value="Yes">Gender
+                                                <input id="gender"  name="gender" type="checkbox" value="Yes">Gender
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox8" name="geoloc" type="checkbox" value="Yes" name="geoloc">Geo Location
+                                                <input id="geoloc" name="geoloc" type="checkbox" value="Yes">Geo Location
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox9" name="img" type="checkbox" name="img" value="Yes">Image/Video
+                                                <input id="img" name="img" type="checkbox" value="Yes">Image/Video
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox10" type="checkbox" name="income" value="Yes">Income
+                                                <input id="income" type="checkbox" name="income" value="Yes">Income
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox11" type="checkbox" name="ipadrs" value="Yes">IP Address
+                                                <input id="ipadrs" type="checkbox" name="ipadrs" value="Yes">IP Address
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox12" type="checkbox" name="martialstatus" value="Yes">Martial Status
+                                                <input id="martialstatus" type="checkbox" name="martialstatus" value="Yes">Martial Status
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox13" type="checkbox" name="mobid" value="Yes">Mobile Device Id
+                                                <input id="mobid" type="checkbox" name="mobid" value="Yes">Mobile Device Id
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox14" name="name" type="checkbox" name="name" value="Yes">Name
+                                                <input id="name" name="name" type="checkbox" value="Yes">Name
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox15" name="phno" type="checkbox" name="phno" value="Yes" >Phone Number
+                                                <input id="phno" name="phno" type="checkbox" value="Yes" >Phone Number
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox16" type="checkbox" name="mailadrs" value="Yes">Physical/Mailing Address
+                                                <input id="mailadrs" type="checkbox" name="mailadrs" value="Yes">Physical/Mailing Address
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox17" type="checkbox" name="physic" value="Yes" >Physical Description
+                                                <input id="physic" type="checkbox" name="physic" value="Yes" >Physical Description
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox18" type="checkbox" name="race" value="Yes">Race/Ethnicity
+                                                <input id="race" type="checkbox" name="race" value="Yes">Race/Ethnicity
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox19" type="checkbox" name="religion" value="Yes"> Religion
+                                                <input id="religion" type="checkbox" name="religion" value="Yes"> Religion
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox20" type="checkbox" name="sexualpref" value="Yes">Sexual Preference
+                                                <input id="sexualpref" type="checkbox" name="sexualpref" value="Yes">Sexual Preference
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox21" name="ssn" type="checkbox" name="ssn" value="Yes">SSN/SIN
+                                                <input id="ssn" name="ssn" type="checkbox" value="Yes">SSN/SIN
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input  id="checkbox22" name="others" type="checkbox" name="others" value="Yes">Others
+                                                <input  id="others" type="checkbox" name="others" value="Yes">Others
                                             </label>                                             
                                         </div>
                                          <div class="form-group row log-date">
@@ -808,8 +802,8 @@ if(implement == null)
         </div> 
                            <h5>Security Information:
                                          <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Does the application have localization requirement/ regulations</div></label>                                             
-                                            <select id="reason_for_access4" class="form-control" name="localreq" required> 
+                                            <label class="control-label" for="formInput26"><div class="">Does the application have localization requirement/ regulations</div></label>                                             
+                                            <select id="localreq" class="form-control" name="localreq" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
                                                 <option>No</option>  
@@ -817,8 +811,8 @@ if(implement == null)
                                             </select>
                                         </div> 
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">List of Countries where localization requirement/ regulations apply</div></label>                                             
-                                            <select id="reason_for_access5" class="form-control" name="localcountry" required> 
+                                            <label class="control-label" for="formInput26"><div class="">List of Countries where localization requirement/ regulations apply</div></label>                                             
+                                            <select id="localcountry" class="form-control" name="localcountry" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
                                                 <option>No</option>  
@@ -826,8 +820,8 @@ if(implement == null)
                                             </select>
                                         </div> 
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Are the Localization requirements/regulations enforced with infrastructure or geofencing</div></label>                                             
-                                            <select id="reason_for_access6" class="form-control" name="localinf" required> 
+                                            <label class="control-label" for="formInput26"><div class="">Are the Localization requirements/regulations enforced with infrastructure or geofencing</div></label>                                             
+                                            <select id="localinf" class="form-control" name="localinf" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
                                                 <option>No</option>  
@@ -836,14 +830,14 @@ if(implement == null)
                                         </div> 
                                          <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
+            <label class="control-label "><div class="">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
             <input placeholder="location" id="vendor1" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26">External access required for archived data</label>                                             
-                                            <select id="reason_for_access7" class="form-control" name="extaccess"> 
+                                            <label class="control-label" for="formInput26">External access  for archived data</label>                                             
+                                            <select id="extaccess" class="form-control" name="extaccess"> 
                                             <option></option>
                                                 <option>Yes</option>                                                 
                                                 <option>No</option>  
@@ -852,36 +846,36 @@ if(implement == null)
                                         </div>  
                                          <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label required">Describe who or what external entity needs access </label>
-            <input placeholder="" id="vendor2" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <label class="control-label ">Describe who or what external entity needs access </label>
+            <input placeholder="" id="who" name="who" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">User Name</label>
-            <input placeholder="Username" id="vendor3" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Username" id="uname" name="uname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Role Description</label>
-            <input placeholder="RoleDescription" id="vendor4" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="RoleDescription" id="roledesc" name="roledesc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Reason for Access</label>
-            <input placeholder="Reason" id="vendor5" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Reason" id="accreason" name="accreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Frequency of Access</label>
-            <input placeholder="Frequency" id="vendor6" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Frequency" id="accfreq" name="accfreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
@@ -893,8 +887,7 @@ if(implement == null)
           
         </div> 
                                          <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="validateform3()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
-                                                                              
-                                    </form>
+                             
                                 </div>                                 
                             </div>                             
                         </div>

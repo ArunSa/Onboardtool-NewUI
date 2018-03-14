@@ -29,7 +29,7 @@
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
         
-          	<link rel="stylesheet" href="js_in_pages/tree1.css" type="text/css" />
+          
     <style type="text/css">
             .breadcrumb-div {
                 background-color: #e7e7e7;
@@ -269,11 +269,7 @@ document.loginForm.est_archive_cst.value="$"+sum.toFixed(2);
                         <div class="navbar-header no-padding">
                 			
            <%if (rs3.next()) {%>
-<<<<<<< HEAD
                     <a class="navbar-brand" href="Project_list.jsp" id="sitetitle">
-=======
-                    <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
->>>>>>> 2cfcd400562d33f0cf12532fddce75b7544228bd
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
              <%        String q2="select * from archive_exec where level=1 and projects='"+projectname+"'order by seq_num";

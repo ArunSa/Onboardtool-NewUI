@@ -54,7 +54,7 @@ HttpSession details=request.getSession();
 String info=(String)details.getAttribute("intake");
 
 String roles=(String)details.getAttribute("role");
-System.out.println("IntakeModule    "+ info);
+
 String det=(String)session.getAttribute("theName");
 String idd=(String)session.getAttribute("appidd");
 DBconnection d=new DBconnection();
@@ -90,14 +90,13 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                   ResultSet rss1 = s3.executeQuery(quer3);
                   while(rss1.next())
                 	  imp_id=rss1.getString(1);
-                  System.out.println(imp_id);
+            
                   String quer4="select * from archive_exec where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
                   Statement s4 = conn.createStatement();
                  ResultSet rss2 = s4.executeQuery(quer4);
                 
                   while(rss2.next()){
                   	session.setAttribute(rss2.getString(3),rss2.getString(15));
-                  	System.out.println(rss2.getString(3));
                   }
                   
                   String quer5="select seq_num from archive_exec where name='Build and Test'";
@@ -105,12 +104,11 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                   ResultSet rss3 = s5.executeQuery(quer5);
                   if(rss3.next())
                 	  sequenceNumber=rss3.getString(1);
-                  System.out.println(sequenceNumber);
+  
                   String quer6="select * from archive_exec where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
                   Statement s6 = conn.createStatement();
                   ResultSet rss4 = s6.executeQuery(quer6);
                   int knt=0;
-                  System.out.println("bala");
                   while(rss4.next())
                   {
                 	  if(knt>2)
@@ -125,7 +123,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 		  plannedHours1+=Integer.parseInt(rss4.getString(13)); 
                 	  }
                 	  else
-                	  { System.out.println("murugan");
+                	  { 
                 		  if(rss4.getString(9).equals(""))
                 			  actualHours+=0;
                 		  else
@@ -134,7 +132,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 			  plannedHours+=0;
                 		  else
                 		  plannedHours+=Integer.parseInt(rss4.getString(13)); 
-                		  System.out.println(actualHours);
+                		
                 	  }
                 	 knt++;
                   }
