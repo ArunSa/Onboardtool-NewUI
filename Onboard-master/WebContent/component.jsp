@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type='text/javascript'
-  src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
- <script type="text/javascript" src="js_in_pages/technical.js"></script>
-<script type="text/javascript" src="js_in_pages/tree.js"></script>
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+     <!-- ========== COMMON STYLES ========== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
+        <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
+        <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
+        <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
+
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
+        <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
+        <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
+        <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
+
+        <!-- ========== THEME CSS ========== -->
+        <link rel="stylesheet" href="css/main.css" media="screen" >
+
+        <!-- ========== MODERNIZR ========== -->
+        <script src="js/modernizr/modernizr.min.js"></script>
+        
+   <script type="text/javascript" src="js_in_pages/technical.js"></script>
+	<script type="text/javascript" src="js_in_pages/tree.js"></script>
   <link rel="stylesheet" href="js_in_pages/technical.css" type="text/css" />
-    <script type="text/javascript" src="scripts/demos.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxpanel.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxtree.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-   
+
 </head>
-<body>
+<body class="top-navbar-fixed">
+
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
@@ -68,15 +71,13 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
 {
 %>
 <form class="form-signin" name="loginForm" method="post" action="Technical">
-<div class="container">
-<nav class=" navbar-fixed-top" style="background:#3276B1">
-            <div class="container-fluid">
-                
-                    
+
+        <div class="main-wrapper">
+            
                    <% if(rs3.next()){ %>
                     <% if(rs4.next()){ %>
-                   <a class="navbar-brand" href="project.jsp" style="color:white" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
-                    <input type="text" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>             
+                   <a class="navbar-brand" href="Project_List.jsp" style="" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
+                    <input type="hidden" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>             
                     <%
                     String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
@@ -138,91 +139,130 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 	 knt++;
                   }
                     } }%>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ol class="nav navbar-nav navbar-right">
-                        <li>
-                        <img src="assets/images/Logo sized.jpg" class="img-rounded" height="50" width="80" alt="Avatar">&nbsp;
-</li><li><%
+
+
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+              <div class="container-fluid">
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+                      <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
+                          <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                      </a>
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                        <i class="fa fa-bars"></i>
+                      </button>
+                    </div>
+                        <!-- /.navbar-header -->
+
+                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                      
+                            <!-- /.nav navbar-nav -->
+ <ul class="nav navbar-nav navbar-right">
+      <li><%
                          String uid=(String)details.getAttribute("username");
                          String role=(String)details.getAttribute("role");%>
- <p style="color:white; padding-top:15px;"><%=uid%>&nbsp;logged in as &nbsp;<span><%=role%></span></p>
-</li>     <li>
-                            <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
+ <p><%=uid%>&nbsp;logged in as &nbsp;<span><%=role%></span></p>
+</li>  
+<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
-                    </ol>
-                    
-                </div>
-            </div>
-        </nav>
-        </div>
-       
-            <div class="row">
-            <br>
-               <div class="col-md-3 sidebar">
-                  <div id='jqxWidget'>
-        <div id='jqxTree' style='visibility: hidden;  padding-top:40px; float:left;  margin-left: -45px; padding-left:0 '>
-                    <ul class="nav nav-sidebar" id="sidemenu">
-                        
-
-            <ul>
-                <li id='home' item-selected='true'> <a href="project.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
-                <li item-expanded='true'><a href="AppEmphasize_EditProject.jsp">App Emphasize Module
-                    <ul>
-                       <li item-expanded='true'>Project Details
-                    <ul>
-                        <li><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
-                        <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
-                        </ul>
-                        </li>
-                        <li item-expanded='true'> <a href="AppEmphasize_Calculation.jsp">Application Prioritization</a>
-                         <ul>
-                                <li > Parameters</li>
-                                <li>Archival Complexity Calculation</li>
-                                <li>Archival Cost Estimate</li>
-                  
-                            </ul>
-                        </li>
-                         <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</a></li>
-                     
-
                     </ul>
-                </li>
-                    <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
-                <ul>
-                <li item-expanded='true'><a href="business.jsp">Business</a>
-                <ul>
-                <li><a href="business.jsp">Application Information</a></li>
-                <li><a href="business.jsp">Legacy Retention Information</a></li>
-                <li><a href="business.jsp">Archive Data Management</a></li>
-                <li><a href="business.jsp">System Requirements</a></li>
-                
-                </ul></li>
-                <li item-expanded='true'><a href="component.jsp">Technical</a>
-                <ul>
-                <li id='a'><a href="component.jsp">Application Data Information</a></li>
-                <li id='b'><a href="component.jsp">Infrastructure & Environment Inforamation</a></li>
-                <li id='c'><a href="component.jsp">Technical Information</a></li>
-                </ul>
-                </li>
-                
-                 <li item-expanded='true'><a href="requirements.jsp">Archival Requirements</a>
-                 <ul>
-                 <li><a href="requirements.jsp">Screen/Report Requirements</a></li>
-                 <li><a href="requirements.jsp">Archive Requirements</a></li>
-                 </ul>
-                 </li>
-                </ul>
-                </li>
-                 <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
-               </li> 
-                
-               
-                          </ul>
-    
-     </ul>
-         </div>
-   </div>
-                </div>
+          
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.row -->
+              </div>
+              <!-- /.container-fluid -->
+            </nav>
+
+            
+            <div class="content-wrapper">
+                <div class="content-container">
+            
+                    <!-- ========== LEFT SIDEBAR ========== -->
+                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                        <div class="sidebar-content" id='jqxWidget'>
+              
+                            <div class="sidebar-nav">
+                                <ul class="side-nav color-gray">
+                                    <li class="nav-header">
+                                        <span class="">Main Category</span>
+                                    </li>
+                                    <li id='home' item-selected='true'>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                    </li>
+
+                                    <li class="nav-header">
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="Intake_Business.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="Intake_Business.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>System Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="has-children">
+                                        <a href="component.jsp" class="active-menu"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="component.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="component.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="component.jsp"> <span>Technical Information</span></a></li>
+                                        </ul>
+                                    </li>
+                                     <li class="has-children">
+                                        <a href="Intake_ArchiveRequirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
+                                        </ul>
+                                    </li>
+
+                        <li><a href="archive_exec_samp.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
+                                </ul>
+                    
+                            </div>
+                            <!-- /.sidebar-nav -->
+                        </div>
+                        <!-- /.sidebar-content -->
+                    </div>
+                    <!-- /.left-sidebar -->
+            
+
                        <script>
   $(function () {
     // 6 create an instance when the DOM is ready
@@ -241,7 +281,17 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
   </script>
                     
                 
-                <div class="col-md-8">
+          
+<!-- Projects List Start -->
+
+                    
+<div class="main-page">          
+
+<section>
+
+    <div class="row">
+      <div class="container">
+
                  <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
 String plan=(String)session.getAttribute("Plan");
@@ -378,32 +428,15 @@ if(implement == null)
                 </div>
             </div>
         
-        
-        
 </div>
 
 
-<script>
-links=document.getElementsByTagName("li") ;  
-var element=document.getElementById("a");
-for (var i = 0 ; i < links.length ; i ++)  
-links.item(i).style.backgroundColor = '#3276B1' ; 
-element.style.borderRadius="5px";
-element.style.marginRight = "70px";
-element.style.boxSizing = "content-box";
-element.style.borderColor = "#3276B1";
-element.style.background="#3276B1";
-var list = document.getElementsByTagName("UL")[0];
-var x=list.getElementsByTagName("LI");
-for (var i = 0 ; i < x.length ; i ++)  
-x.item(i).style.backgroundColor = '#3276B1' ; 
 
-</script>
 
 <div class="panel-group" id="panels1"> 
 <br><br>
                         <div class="panel panel-default"> 
-                            <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
+                            <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();">                            Application Data Information                            </a> </h4> 
                             </div>                             
                             <div id="collapse1" class="panel-collapse collapse in"> 
@@ -415,9 +448,9 @@ x.item(i).style.backgroundColor = '#3276B1' ;
                                                 <div class="required">Datatype Characteristics</div>
                                             </label>      
                                             <br />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<input id="checkbox" type="checkbox" name="datatype" value="Structured">Structured &nbsp;      
-                                            <input id="checkbox1" type="checkbox" name="datatype" value="Unstructured" >Unstructured &nbsp;
-                                            <input id="checkbox2" type="checkbox" name="datatype" value="Hybrid" >Hybrid      &nbsp;                         
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input id="checkbox" type="checkbox" name="datatype" value="Structured"> &nbsp; Structured &nbsp;      
+                                            <input id="checkbox1" type="checkbox" name="datatype" value="Unstructured" > &nbsp; Unstructured &nbsp;
+                                            <input id="checkbox2" type="checkbox" name="datatype" value="Hybrid" > &nbsp; Hybrid      &nbsp;                         
                                         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
@@ -539,7 +572,7 @@ x.item(i).style.backgroundColor = '#3276B1' ;
                             </div>                             
                         </div>
                         <div class="panel panel-default"> 
-                            <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
+                            <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">Infrastructure & Environment Information</a> </h4> 
                             </div>                             
                             <div id="collapse2" class="panel-collapse collapse"> 
@@ -588,7 +621,7 @@ x.item(i).style.backgroundColor = '#3276B1' ;
         
         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                &nbsp;Do you need to archive source code?   <input id="checkbox4" type="checkbox">                    
+                                                <input id="checkbox4" type="checkbox">  &nbsp;Do you need to archive source code?                     
                                             </label>                                             
                                         </div>
                                         <div class="form-group"> 
@@ -703,7 +736,7 @@ x.item(i).style.backgroundColor = '#3276B1' ;
                             </div>                             
                         </div>
                         <div class="panel panel-default"> 
-                            <div class="panel-heading" style="background:#3276B1 ; color:white;"> 
+                            <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors1();">Technical Information</a> </h4> 
                             </div>                             
                             <div id="collapse3" class="panel-collapse collapse"> 
@@ -728,7 +761,7 @@ x.item(i).style.backgroundColor = '#3276B1' ;
                         </div>
           
                     </div>
-       <input type="text" id="pwqej" value="<%= info %>" hidden>
+       <input type="hidden" id="pwqej" value="<%= info %>" hidden>
       
     
                     <button type="button" class="btn btn-default" onclick="location.href = 'grid.jsp';">Cancel</button> 
@@ -753,6 +786,143 @@ checkk();
 catch(Exception e){}
 %>
 </form>
-  </body>
-  
+
+
+
+            </div>
+                                    <!-- /.col-md-6 -->
+
+                                </div>
+                                <!-- /.row -->
+
+                        </section>
+                        <!-- /.section -->
+
+                    </div>
+                    <!-- /.main-page -->
+                 
+<!-- Project List End -->
+
+                </div>
+                <!-- /.content-container -->
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /.main-wrapper -->
+            
+    
+        <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".lis").click(function() {
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
+                });
+                $(".gr").click(function() {
+                    $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
+                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
+                });
+            });
+        </script>
+      
+
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script src="js/waypoint/waypoints.min.js"></script>
+        <script src="js/counterUp/jquery.counterup.min.js"></script>
+        <script src="js/amcharts/amcharts.js"></script>
+        <script src="js/amcharts/serial.js"></script>
+        <script src="js/amcharts/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+        <script src="js/amcharts/themes/light.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/icheck/icheck.min.js"></script>
+        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/production-chart.js"></script>
+        <script src="js/traffic-chart.js"></script>
+        <script src="js/task-list.js"></script>
+
+        <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
+       
+       
+        <!-- ========== PAGE JS FILES ========== -->
+        <script src="js/prism/prism.js"></script>
+        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+        <script type="text/javascript" src="js/date-picker/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+        <!-- ========== THEME JS ========== -->
+        
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
+
+
+        <!-- ========== THEME JS ========== -->
+        <script>
+            $(function($) {
+
+                // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'm/d/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
+       
+
+</body>
 </html>

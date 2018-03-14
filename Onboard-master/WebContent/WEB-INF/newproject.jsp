@@ -204,10 +204,10 @@ $(function() {
                 <div class="col-sm-2 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
                         <li class="active">
-                            <a href="project.jsp">Home </a>
+                            <a href="Project_List.jsp">Home </a>
                         </li>
                         <li class="active">
-                            <a href="newproject.jsp">Project Details</a>
+                            <a href="AppEmphasize_NewProject.jsp">Project Details</a>
                         </li>
                         <li>
                             <a href="appemp.jsp">Application Prioritization</a>

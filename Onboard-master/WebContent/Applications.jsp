@@ -129,7 +129,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                      %>
                      
                      <div class="navbar-header no-padding">
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                             <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
@@ -206,7 +206,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                                     </li>
 
                                     <li>
-                                        <a href="AppEmphasize_applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">

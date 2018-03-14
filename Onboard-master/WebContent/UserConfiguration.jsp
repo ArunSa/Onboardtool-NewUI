@@ -277,7 +277,7 @@ int count=0;
     	<div class="sidebar-wrapper">
                        <ul class="nav">
                 <li><br/><br/><br/>
-                    <a href="project.jsp">
+                    <a href="Project_List.jsp">
                         <i class="glyphicon glyphicon-home"></i>
                         <p>Home</p>
                     </a>

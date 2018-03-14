@@ -136,7 +136,7 @@ if(rs4.next()){
             <div class="container-fluid">
                 
                     <% if(rs.next()){ %>
-                    <a class="navbar-brand" href="project.jsp" style="color:white"id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
+                    <a class="navbar-brand" href="Project_List.jsp" style="color:white"id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
                        <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" hidden>                              
                     <%
                     String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
@@ -182,7 +182,7 @@ if(rs4.next()){
                         
 
             <ul>
-                  <li id='home' item-selected='true'> <a href="project.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
+                  <li id='home' item-selected='true'> <a href="Project_List.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
                 <li item-expanded='true'>App Emphasize Module
                     <ul>
                        <li item-expanded='true'>Project Details
@@ -199,11 +199,11 @@ if(rs4.next()){
                              
                             </ul>
                         </li>
-                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</li>
+                        <li><a href="AppEmphasize_PrioritizedApplications.jsp">Application-Prioritized</li>
 
                     </ul>
                 </li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
+                <li item-expanded='true'><a href='Applications.jsp'>Intake Module</a>
                 <ul>
                 <li item-expanded='true'>Business
                 <ul>

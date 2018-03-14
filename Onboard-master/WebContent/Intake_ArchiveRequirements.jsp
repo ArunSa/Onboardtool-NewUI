@@ -262,7 +262,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                     } }%>
               
                <div class="navbar-header no-padding" >
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                             <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
@@ -313,7 +313,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -323,7 +323,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         <a><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
@@ -337,7 +337,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li>
-                                        <a href="applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 					
                        			<li> <a href="demo.jsp"><i class="fa fa-calculator"></i> <span> ROI Calculation </span></a></li>
@@ -348,7 +348,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="business.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_Business.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a> <span>Application Information</span></a></li>
                                             <li><a> <span>Legacy Retention Information</span></a></li>
@@ -366,7 +366,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="requirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_ArchiveRequirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a> <span>Screen/Report Requirements</span></a></li>
                                             <li><a> <span>Archive Requirements</span></a></li>

@@ -125,7 +125,7 @@ if(rs.next()){
             	<div class="container-fluid">
                     <div class="row">
                         <div class="navbar-header no-padding">
-							<a class="navbar-brand" href="project.jsp" id="sitetitle">
+							<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                 			 <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
@@ -144,7 +144,7 @@ if(rs.next()){
                     details.setAttribute("appno",rs3.getString("appno"));
                     details.setAttribute("projectname",rs3.getString("projectname"));
                     %>
-                    <a class="navbar-brand" href="project.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
+                    <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
 																					  
 					   
                     <%
@@ -193,7 +193,7 @@ if(rs.next()){
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">

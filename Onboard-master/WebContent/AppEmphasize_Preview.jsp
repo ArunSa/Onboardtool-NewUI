@@ -258,7 +258,7 @@ function call()
 {
 	var f=document.loginForm;
     f.method="post";
-    f.action="applnprior1.jsp";
+    f.action="AppEmphasize_PrioritizedApplications.jsp";
     f.submit();
 	}
 </script>
@@ -313,7 +313,7 @@ total=rs2.getInt("total");
                 
                     <div class="row">
                         <div class="navbar-header no-padding">
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                             <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>

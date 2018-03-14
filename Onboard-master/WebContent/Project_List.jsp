@@ -72,7 +72,7 @@
             	<div class="container-fluid">
                     <div class="row">
                         <div class="navbar-header no-padding">
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                            
@@ -141,43 +141,43 @@
                                     <li class="has-children">
                                         <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject1.php"> <span>Parameters</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
                                             <li><a href="editproject.php"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a href="editproject1.php"> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="AppEmphasize_Applnprior1.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>

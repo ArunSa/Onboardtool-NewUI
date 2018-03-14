@@ -61,5 +61,8 @@ form[role=login] {
 	.form-links a {
 		color: #fff;
 	}
-	
-	
+.required_fie:after
+  {
+   content:" *";
+    color: red; 
+   }	

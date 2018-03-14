@@ -167,7 +167,7 @@ var f=document.loginForm;
             	<div class="container-fluid">
                     <div class="row">
                         <div class="navbar-header no-padding">
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                             <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
@@ -302,7 +302,7 @@ var f=document.loginForm;
                             <div class="row breadcrumb-div">
                                 <div class="col-sm-6">
                                     <ul class="breadcrumb">
-                                        <li><a href="project.jsp"><i class="fa fa-home"></i> Home</a></li>
+                                        <li><a href="Project_List.jsp"><i class="fa fa-home"></i> Home</a></li>
                                         <li class="active">New Projects</li>
                                     </ul>
                                 </div>
@@ -400,7 +400,7 @@ var f=document.loginForm;
                             
                         <br/>                
                        <button type="button" class="btn btn-primary btn pull-left" onclick="valid1()">Save</button>&nbsp;
-                    <button type="button" class="btn btn-default" onclick="location.href='project.jsp';">Back</button>
+                    <button type="button" class="btn btn-default" onclick="location.href='Project_List.jsp';">Back</button>
                                      
                                 </div>                                 
                             </div>                             

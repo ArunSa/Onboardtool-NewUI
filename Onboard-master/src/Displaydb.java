@@ -214,7 +214,7 @@ preparedStmt2.execute();
 	          System.err.println("Got an exception!");
 	          System.err.println(e.getMessage());
 	        }
-	        response.sendRedirect("applnprior1.jsp");
+	        response.sendRedirect("AppEmphasize_PrioritizedApplications.jsp");
 
 		}
 }
