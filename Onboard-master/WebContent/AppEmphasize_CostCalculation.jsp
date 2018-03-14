@@ -99,6 +99,7 @@ String sum=result.getString(1);
  function updatesum() {
 var datasize=document.loginForm.data_size.value;
   var currentuser=document.loginForm.curnt_users.value;
+  window.alert(datasize);
 
 var temp,temp1,temp2,temp3,total,result;
 

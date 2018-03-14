@@ -236,7 +236,7 @@ ResultSet rs=s.executeQuery(query);
                                         <a><span class="">User Module</span></a>
                                     </li>
                                     <li>
-                                        <a href="Registration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
+                                        <a href="Admin_UserConfiguration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
                                     </li>
 
                                     <li>

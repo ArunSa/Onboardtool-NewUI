@@ -180,7 +180,7 @@ if(rs.next()){
                         <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
                         </ul>
                         </li>
-                        <li item-expanded='true'> <a href="tree.jsp">Application Prioritization</a>
+                        <li item-expanded='true'> <a href="AppEmphasize_CostCalculation.jsp">Application Prioritization</a>
                          <ul>
                                 <li >Parameters</li>
                                 <li>Archival Complexity Calculation</li>

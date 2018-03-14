@@ -334,7 +334,7 @@ var f=document.loginForm;
                                         
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput198">
-                                           <div class="required_fie">   Project Name&nbsp;<span class="text-danger">*</span> </div> 
+                                           <div class="required_fie">   Project Name&nbsp;<span class="text-danger"></span> </div> 
 </label>
                <input type="text" class="form-control" id="formInput198" placeholder="Project Name" name="projectname" required/>
               
@@ -344,7 +344,7 @@ var f=document.loginForm;
                                 
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput229">
-                                            <div class="required_fie">Description&nbsp;<span class="text-danger">*</span></div>
+                                            <div class="required_fie">Description&nbsp;<span class="text-danger"></span></div>
 </label>
                                             <input type="text" class="form-control" id="formInput229" placeholder="Description" name="descr" required>
                                         </div>
@@ -358,7 +358,7 @@ var f=document.loginForm;
          
 		<div class="form-group row log-date">
           <div class="col-md-12" id="basicExample">
-            <label class="control-label"><div class="required_fie">Project Start Date&nbsp;<span class="text-danger">*</span></div></label>
+            <label class="control-label"><div class="required_fie">Project Start Date&nbsp;<span class="text-danger"></span></div></label>
             <input placeholder="dd/mm/yyyy" id="Project_Start_Date" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" required/>
           </div>
         </div>  
@@ -393,7 +393,7 @@ var f=document.loginForm;
         
         <div class="form-group row log-date">
           <div class="col-md-12" id="basicExample">
-            <label class="control-label required"><div class="required_fie">Project End Date&nbsp;<span class="text-danger">*</span></div></label>
+            <label class="control-label required"><div class="required_fie">Project End Date&nbsp;<span class="text-danger"></span></div></label>
             <input placeholder="dd/mm/yyyy" id="Project_end_date" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" required>
           </div>
         </div>                 

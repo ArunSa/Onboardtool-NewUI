@@ -57,9 +57,11 @@ response.getWriter().append("Served at: ").append(request.getContextPath());
 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 */
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	HttpSession details=request.getSession(); 
+	HttpSession details=request.getSession();
+	HttpSession session=request.getSession();
 	String u_name=(String)details.getAttribute("username");
 	String u_role=(String)details.getAttribute("role");
+	String application_name=(String)session.getAttribute("appidd");
 
 		String userid=u_name;
 				MDC.put("USERID", userid);
@@ -194,8 +196,8 @@ if(creditacc==null)
          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
          
          // the mysql insert statement
-         String query = " insert into business (legappname, reftoapp, tid, descr, vendor, expdate,noticeperiod, contractvalue, businessunits, rodch, rod, cmnt, hasdep, daterange, dbsize, dataloc, siteloc, needarch, archreason, archcmnt, sourceoft, reccode, triggerdate, retentionperiod, retentiontable, retentionname, legalholds, wholegal, archexp, useforBI, creditacc, financialacc, dob, driverlic, email, family, gender, geoloc, img, income, ipadrs, martialstatus, mobid, name, phno, mailadrs, physic, race, religion, sexualpref, ssn, others, expl, localreq, localcountry, localinf, datacenters, extaccess, who, uname, roledesc, accreason, accfreq, sysreq)"
-           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         String query = " insert into business (legappname, reftoapp, tid, descr, vendor, expdate,noticeperiod, contractvalue, businessunits, rodch, rod, cmnt, hasdep, daterange, dbsize, dataloc, siteloc, needarch, archreason, archcmnt, sourceoft, reccode, triggerdate, retentionperiod, retentiontable, retentionname, legalholds, wholegal, archexp, useforBI, creditacc, financialacc, dob, driverlic, email, family, gender, geoloc, img, income, ipadrs, martialstatus, mobid, name, phno, mailadrs, physic, race, religion, sexualpref, ssn, others, expl, localreq, localcountry, localinf, datacenters, extaccess, who, uname, roledesc, accreason, accfreq, sysreq, appname)"
+           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
          
          PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -263,6 +265,7 @@ if(creditacc==null)
          preparedStmt.setString   (62, accreason);
          preparedStmt.setString (63, accfreq);
          preparedStmt.setString   (64, sysreq);
+         preparedStmt.setString   (65, application_name);
 
          
          
@@ -279,7 +282,7 @@ if(creditacc==null)
          System.err.println(e.getMessage());
        }
        // return response
-       response.sendRedirect("component.jsp");
+       response.sendRedirect("Intake_TechnicalDetails.jsp");
 }
 
 }

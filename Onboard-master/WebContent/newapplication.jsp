@@ -102,7 +102,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                         <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
                         </ul>
                         </li>
-                        <li item-expanded='true'> <a href="tree.jsp">Application Prioritization</a>
+                        <li item-expanded='true'> <a href="AppEmphasize_CostCalculation.jsp">Application Prioritization</a>
                          <ul>
                                 <li id="xxx">Parameters</li>
                                 <li id="xxz">Archival Complexity Calculation</li>

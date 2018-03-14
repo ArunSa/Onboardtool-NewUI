@@ -186,12 +186,12 @@ if(rs4.next()){
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="application1.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
@@ -307,7 +307,7 @@ if(rs4.next()){
 >>>>>>> 2cfcd400562d33f0cf12532fddce75b7544228bd
 
                                     <li class="has-children">
-                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a> <span>Parameters</span></a></li>
                                             <li><a> <span>Archival Complexity Calculation</span></a></li>

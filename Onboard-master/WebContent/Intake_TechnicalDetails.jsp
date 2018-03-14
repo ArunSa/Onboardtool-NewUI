@@ -199,18 +199,18 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a> <span>Parameters</span></a></li>
                                             <li><a> <span>Archival Complexity Calculation</span></a></li>
@@ -237,11 +237,11 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="component.jsp" class="active-menu"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_TechnicalDetails.jsp" class="active-menu"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="component.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="component.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="component.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">

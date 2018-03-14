@@ -168,14 +168,14 @@ int count=0;
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
                                         <a><span class="">User Module</span></a>
                                     </li>
                                     <li>
-                                        <a href="Registration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
+                                        <a href="Admin_UserConfiguration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
                                     </li>
 
                                     <li>

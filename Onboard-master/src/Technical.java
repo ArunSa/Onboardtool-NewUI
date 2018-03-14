@@ -57,7 +57,10 @@ response.getWriter().append("Served at: ").append(request.getContextPath());
 */
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	HttpSession details=request.getSession(); 
+	HttpSession session=request.getSession();
 	String u_name=(String)details.getAttribute("username");
+	
+	String appname=(String)session.getAttribute("appidd");
 
 		String userid=u_name;
 				MDC.put("USERID", userid);
@@ -126,8 +129,8 @@ String datatype = request.getParameter("datatype");
    
          
          // the mysql insert statement
-         String query = " insert into technical (datatype, pname, archneed, formatsp, mlang, loclang, dataretain, systemdoc, userdoc, techdoc, traindoc, supportdoc, datadic, testcasedoc, testrec, designspec, validityplan, dataloc, servername, prodinstance, prodinstanceloc, infraengage, sourcearch, apphost, retenduration, clientapp, extcustfacing, url, dbsize, nooftable, noofrec, xmlcount, anyvpn, vpnacces, appintegrate,integname,decomdate)"
-           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+         String query = " insert into technical (datatype, pname, archneed, formatsp, mlang, loclang, dataretain, systemdoc, userdoc, techdoc, traindoc, supportdoc, datadic, testcasedoc, testrec, designspec, validityplan, dataloc, servername, prodinstance, prodinstanceloc, infraengage, sourcearch, apphost, retenduration, clientapp, extcustfacing, url, dbsize, nooftable, noofrec, xmlcount, anyvpn, vpnacces, appintegrate,integname,decomdate,appname)"
+           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
 
          // create the mysql insert preparedstatement
          //Scanner sin=new Scanner(System.in);
@@ -176,6 +179,7 @@ String datatype = request.getParameter("datatype");
          preparedStmt.setString(35, appintegrate);
          preparedStmt.setString(36, integname);
          preparedStmt.setString(37, decomdate);
+         preparedStmt.setString(38, appname);
         
          
          

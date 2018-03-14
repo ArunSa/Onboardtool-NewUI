@@ -147,80 +147,7 @@ if(rs.next())
                 <div class="content-container">
             
                     <!-- ========== LEFT SIDEBAR ========== -->
-                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
-                        <div class="sidebar-content" id='jqxWidget'>
-							
-                            <div class="sidebar-nav">
-                                <ul class="side-nav color-gray">
-                                    <li class="nav-header">
-                                        <span class="">Main Category</span>
-                                    </li>
-                                    <li id='home' item-selected='true'>
-                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
-                                    </li>
-
-                                    <li class="nav-header">
-                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
-                                    </li>
-                                    <li class="has-children">
-                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="has-children">
-                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a> <span>Parameters</span></a></li>
-                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a> <span>Archival Cost Estimate</span></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
-                                    </li>
-
-                                    <li class="nav-header">
-                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
-                                    </li>
-
-                                    <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
-                                        </ul>
-                                    </li>
-                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-										
-                            </div>
-                            <!-- /.sidebar-nav -->
-                        </div>
-                        <!-- /.sidebar-content -->
-                    </div>
-                    <!-- /.left-sidebar -->
-            <div class="main-page">
+                              <div class="main-page">
                         <div class="container-fluid">
                             <div class="row page-title-div">
                                 <div class="col-sm-6">
@@ -296,7 +223,7 @@ if(rs.next())
             <div class="col-md-12">
 
  <div class="col-md-3 col-sm-3">
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -381,7 +308,7 @@ if(rs.next())
                 </div>
 
 <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -496,7 +423,7 @@ else if(roles.equals("ArchivalAdmin"))
 
                 
 <div class="col-md-3 col-sm-3" >
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -590,7 +517,7 @@ else if(roles.equals("ArchivalProgramManager"))
     <div class="container">
             <div class="col-md-12">
  <div class="col-md-3 col-sm-3" >
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -688,7 +615,7 @@ else if(roles.equals("LegacyBusinessSME"))
     <div class="container">
             <div class="col-md-12">
 <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -786,7 +713,7 @@ else if(roles.equals("LegacyTechnicalSME"))
     <div class="container">
             <div class="col-md-12">
  <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -881,7 +808,7 @@ else if(roles.equals("LegacyProgramManager"))
     <div class="container">
             <div class="col-md-12">
 <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -981,7 +908,7 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
 
                
 <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -1073,7 +1000,7 @@ else if(roles.equals("ArchivalTechnicalLead"))
     <div class="container">
             <div class="col-md-12">
 <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -1170,7 +1097,7 @@ else if(roles.equals("ArchivalProjectManager"))
     <div class="container">
             <div class="col-md-12">
 <div class="col-md-3 col-sm-3" >
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>
@@ -1267,7 +1194,7 @@ else if(roles.equals("ArchivalDeveloper"))
 
                 
 <div class="col-md-3 col-sm-3"  id="testDecom" >
-                  <a href="UserConfiguration.jsp">
+                  <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Admin</h6>

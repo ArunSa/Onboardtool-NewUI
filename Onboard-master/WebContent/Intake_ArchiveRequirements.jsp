@@ -322,13 +322,13 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     <li class="has-children">
                                         <a><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a id="xxx"> <span>Parameters</span></a></li>
                                             <li><a id="xxz"> <span>Archival Complexity Calculation</span></a></li>
@@ -340,8 +340,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 					
-                       			<li> <a href="demo.jsp"><i class="fa fa-calculator"></i> <span> ROI Calculation </span></a></li>
-                        		<li> <a><i class="fa fa-archive"></i> <span> Estimates </span></a></li>
+                       		
 
                                     <li class="nav-header">
                                         <span class="">Intake Module</span>
@@ -358,7 +357,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="component.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_TechnicalDetails.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a> <span>Application Data Information</span></a></li>
                                             <li><a> <span>Infrastructure & Environment Inforamation</span></a></li>

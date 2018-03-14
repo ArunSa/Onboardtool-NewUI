@@ -185,45 +185,6 @@ Statement s2=conn.createStatement();
 ResultSet rs2=s2.executeQuery(query2);
 int count=0;
 %>
-<<<<<<< HEAD
-=======
-<form class="form-signin" name="loginForm" method="post">
-<div class="wrapper">
-    <div class="sidebar" data-color="blue">
-
-    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-    	<div class="sidebar-wrapper">
-                       <ul class="nav">
-                <li><br/><br/><br/>
-                    <a href="Project_List.jsp">
-                        <i class="glyphicon glyphicon-home"></i>
-                        <p>Home</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="UserConfiguration.jsp">
-                        <i class="pe-7s-user"></i>
-                        <p>User Configuration</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="userslist.jsp">
-                        <i class="pe-7s-note2"></i>
-                        <p>Users List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="roledetails.jsp">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Authorization</p>
-                    </a>
-                </li>
-                         </ul>
-    	</div>
-    </div>
->>>>>>> 2cfcd400562d33f0cf12532fddce75b7544228bd
 
         <div class="main-wrapper">
             
@@ -232,7 +193,7 @@ int count=0;
             	<div class="container-fluid">
                     <div class="row">
                         <div class="navbar-header no-padding">
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                             <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
@@ -280,22 +241,22 @@ int count=0;
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
                                         <a><span class="">User Module</span></a>
                                     </li>
                                     <li>
-                                        <a href="UserConfiguration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
+                                        <a href="Admin_UserConfiguration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
                                     </li>
 
                                     <li>
-                                        <a href="userslist.jsp"><i class="fa fa-paint-brush"></i> <span>Users List</span> </a>
+                                        <a href="Admin_Userslist.jsp"><i class="fa fa-paint-brush"></i> <span>Users List</span> </a>
                                     </li>
 
                                     <li>
-                                        <a href="roledetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
+                                        <a href="Admin_Roledetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
                                     </li>
                                 </ul>
 										

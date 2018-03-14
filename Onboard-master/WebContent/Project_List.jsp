@@ -139,7 +139,7 @@
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
                                             <li><a href="editproject.php"> <span>Archival Complexity Calculation</span></a></li>
