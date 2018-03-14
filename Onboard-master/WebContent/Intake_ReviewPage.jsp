@@ -109,8 +109,15 @@ try {
 HttpSession details=request.getSession();
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
-String idd=(String)session.getAttribute("appidd");
-String query4 = "select * from appinfo where appname ='"+idd+"'";
+String role_info=(String)details.getAttribute("intake");
+String roles=(String)details.getAttribute("role");
+String ID=(String)session.getAttribute("theName");
+String app_Name = request.getParameter("appname");
+if (app_Name != null && !app_Name.isEmpty()) {
+session.setAttribute("appidd", app_Name);
+}
+app_Name=(String)session.getAttribute("appidd");
+String query4 = "select * from appinfo where appname ='"+app_Name+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
 String query1 = "select * from business";
@@ -120,9 +127,12 @@ ResultSet rs1 = st1.executeQuery(query1);
 String query2 = "select * from technical";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
-String query3 = "select * from archivalRequirement where appname ='"+idd+"'";
+String query3 = "select * from archivalRequirement where appname ='"+app_Name+"'";
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st2.executeQuery(query3);
+String query5= "select * from newRequirements where appname ='"+app_Name+"'";
+Statement st5 = conn.createStatement();
+ResultSet rs5 = st5.executeQuery(query5);
  
 %>
 
@@ -214,32 +224,32 @@ ResultSet rs3 = st2.executeQuery(query3);
 
 
                                     <li class="nav-header">
-                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="requirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="requirements.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -302,8 +312,8 @@ ResultSet rs3 = st2.executeQuery(query3);
   <div class="col-md-11" >
   
 <button id="cmd" class="btn btn-primary pull-right" ><span class="glyphicon glyphicon-download-alt"></span> Export PDF</button>
-<button  class="btn btn-primary pull-left" onclick="location.href='Applications.jsp'" >HOME</button>
- <a href="Intake_Business.jsp" class="btn btn-default btn pull-left">Edit</a>&nbsp;
+<button  class="btn btn-primary pull-left" onclick="location.href='firstinsert.jsp'" >HOME</button>
+ <a href="business.jsp" class="btn btn-default btn pull-left">Edit</a>&nbsp;
 </div>
 <div class="container">
 <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table-scroll">
@@ -331,12 +341,13 @@ ResultSet rs3 = st2.executeQuery(query3);
                                                            
                                                                    <tbody>
                                                                    <tr>
+                                                                   <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Business Details</h2></span>
                                                                      <%
           
 while(rs1.next()){
 
 %>
- <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Business Details</h2></span>
+ 
 <h3>Application Information :</h3>
         <tr>
         
@@ -439,72 +450,27 @@ while(rs1.next()){
        
        <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table3">  
      <table>
-       <%
-          
-while(rs2.next()){
-
-%>        
-     
       <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Technical Details</h2></span>
-                                                                   
-              
-
-<h3>Application Data Information :</h3>
-        <tr>
-        
- <tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">Datatype Characteristics  : <strong align="right"><%=rs2.getString("datatype") %></strong></pre> </tr> 
- <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">If the Data Type is Unstructured or Hybrid, process for extracting unstructured data? : <strong><%=rs2.getString("pname") %></strong></pre></tr>
- <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Does Unstructured or Hybrid business objects needs to be archived? : <strong><%=rs2.getString("archneed") %></strong></pre></tr>
- <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Please specify the formats : <strong><%=rs2.getString("formatsp") %></strong></pre></tr>   
- <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Any Special/ Multi Language characters or Foreign Language contained in the application?: <strong><%=rs2.getString("mlang") %></strong></pre></tr>
-  <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">User Documentation :<strong><%=rs2.getString("userdoc") %></strong></pre></tr>  
-  
-   <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Technical Documentation :<strong><%=rs2.getString("techdoc") %></strong></pre></tr>  
-   <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Training Documentation : <strong><%=rs2.getString("traindoc") %></strong></pre></tr> 
-   <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Support Documentation :<strong><%=rs2.getString("supportdoc") %></strong></pre></tr> 
-    <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Data Dictionary :<strong><%=rs2.getString("datadic") %></strong></pre></tr> 
-    <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Test Case Documentation :<strong><%=rs2.getString("testcasedoc") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Testing Records :<strong><%=rs2.getString("testrec") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Design Specification :<strong><%=rs2.getString("designspec") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Validityplan :<strong><%=rs2.getString("validityplan") %></strong></pre></tr>
-   
-   <h3>Infrastructure & Environment Information :</h3>
-   
-   
-      <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Location of Data :<strong><%=rs2.getString("dataloc") %></strong></pre></tr>
-       <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Server Name :<strong><%=rs2.getString("servername") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Production Instances :<strong><%=rs2.getString("prodinstance") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Location of Production Instances :<strong><%=rs2.getString("prodinstanceloc") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Contact Name or Entity for Infrastructure Engagement :<strong><%=rs2.getString("infraengage") %></strong></pre></tr>
-      <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">If external facing, web apps/website URLs :<strong><%=rs2.getString("url") %></strong></pre></tr>
-      <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Database size of the application :<strong><%=rs2.getString("dbsize") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Estimated No of Table in the application :<strong><%=rs2.getString("nooftable") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Estimated No of Records(volume) in the application :<strong><%=rs2.getString("noofrec") %></strong></pre></tr>
-     <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">XML counts for the database :<strong><%=rs2.getString("xmlcount") %></strong></pre></tr>
-      <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Does this application utilize any VPN environments (E.g. Citrix) for access :<strong><%=rs2.getString("anyvpn") %></strong></pre></tr>
-       <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Specify the application to integrate :<strong><%=rs2.getString("appintegrate") %></strong></pre></tr>
-       <tr class="row_s"> <pre style="font-family:verdana;font-size:100%;">Ready Date for Complete Server decommission and Application Retirement :<strong><%=rs2.getString("decomdate") %></strong></pre></tr>
-                     <br />
-       
-         
-        </tr>
-
-       <% }%>
-    
-     
-     
-     
-     
-     </table>
-     </div>
-    
+      
     
      <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table4">  
      <table>
       <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Archival Requirements</h2></span>
        
        <h3>Screen/Report Requirements :</h3>
+        <%
+          
+while(rs5.next()){
+
+%>        
+    <tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;"><%=rs5.getString("requirements") %> :<Strong> Yes</Strong></pre> </tr>
+    
+    <% 
+}
+    
+    %>   
        
+        <h3>Archive Requirements :</h3>
         <%
           
 while(rs3.next()){
