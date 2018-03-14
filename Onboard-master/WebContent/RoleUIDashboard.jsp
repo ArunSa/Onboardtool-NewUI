@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                  <a href="Project.jsp">
+                  <a href="Project_List.jsp">
                  <center>
                    <img src="images/Project.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Project</h6>

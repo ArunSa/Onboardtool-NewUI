@@ -117,7 +117,7 @@ if(priority[i]!=null)
           System.err.println(e.getMessage());
         }
         // return response
-        response.sendRedirect("Preview.jsp");
+        response.sendRedirect("AppEmphasize_Preview.jsp");
 
 }
 

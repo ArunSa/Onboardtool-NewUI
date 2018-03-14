@@ -128,6 +128,7 @@ ResultSet rs7 = st7.executeQuery(query7);
 
 if(rs4.next()){
 	%>
+<<<<<<< HEAD
 	
             <!-- ========== TOP NAVBAR ========== -->
             <nav class="navbar top-navbar bg-white box-shadow">
@@ -194,6 +195,116 @@ if(rs4.next()){
                                             <li><a href="application1.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
+=======
+<div class="container">
+<nav class=" navbar-fixed-top" style="background:#3276B1">
+            <div class="container-fluid">
+                
+                    <% if(rs.next()){ %>
+                    <a class="navbar-brand" href="Project_List.jsp" style="color:white"id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
+                       <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" hidden>                              
+                    <%
+                    String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
+                    Statement s2 = conn.createStatement();
+                    ResultSet rss = s2.executeQuery(q2);
+                    while(rss.next())
+                    {
+                    	session.setAttribute(rss.getString(3),rss.getString(15));
+                    	session.setAttribute((rss.getString(3)+"1"),rss.getString(1));
+                    }
+                    
+                    %>
+              
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                        <img src="assets/images/Logo sized.jpg" class="img-rounded" height="50" width="80" alt="Avatar">&nbsp;
+</li>
+                     <li>
+ <p style="color:white; padding-top:15px;">logged in as &nbsp;<span><%=roles%></span></p>
+</li> 
+                        <li>
+                             <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+        </div>
+            <div class="row">
+            <br>
+               
+               
+               
+               <div class="col-md-3 sidebar">
+               
+                  <div id='jqxWidget'>
+                  
+        <div id='jqxTree' style='visibility: hidden;  padding-top:30px;   float:right; '>
+                    <ul class="nav nav-sidebar" id ="sidemenu" >
+                        
+                        
+
+            <ul>
+                  <li id='home' item-selected='true'> <a href="Project_List.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
+                <li item-expanded='true'>App Emphasize Module
+                    <ul>
+                       <li item-expanded='true'>Project Details
+                    <ul>
+                        <li item-selected='true'><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
+                        <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
+                        </ul>
+                        </li>
+                        <li item-expanded='true'> <a href="AppEmphasize_Calculation.jsp">Application Prioritization</a>
+                         <ul>
+                                <li >Parameters</li>
+                                <li>Archival Complexity Calculation</li>
+                                <li>Archival Cost Estimate</li>
+                             
+                            </ul>
+                        </li>
+                        <li><a href="AppEmphasize_PrioritizedApplications.jsp">Application-Prioritized</li>
+
+                    </ul>
+                </li>
+                <li item-expanded='true'><a href='Applications.jsp'>Intake Module</a>
+                <ul>
+                <li item-expanded='true'>Business
+                <ul>
+                <li>Application Information</li>
+                <li>Legacy Retention Information</li>
+                <li>Archive Data Management</li>
+                <li>System Requirements</li>
+                
+                </ul></li>
+                <li item-expanded='true'>Technical
+                <ul>
+                <li>Application Data Information</li>
+                <li>Infrastructure & Environment Inforamation</li>
+                <li>Technical Information</li>
+                </ul>
+                </li>
+                
+                 <li item-expanded='true'>Archival Requirements
+                 <ul>
+                 <li>Screen/Report Requirements</li>
+                 <li>Archive Requirements</li>
+                 </ul>
+                 </li>
+                </ul>
+                </li>
+                <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
+               </li>                
+               
+                          </ul>
+    
+     </ul>
+         </div>
+   </div>
+                </div>
+               
+>>>>>>> 2cfcd400562d33f0cf12532fddce75b7544228bd
 
                                     <li class="has-children">
                                         <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>

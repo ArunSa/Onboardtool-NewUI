@@ -185,6 +185,45 @@ Statement s2=conn.createStatement();
 ResultSet rs2=s2.executeQuery(query2);
 int count=0;
 %>
+<<<<<<< HEAD
+=======
+<form class="form-signin" name="loginForm" method="post">
+<div class="wrapper">
+    <div class="sidebar" data-color="blue">
+
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+
+    	<div class="sidebar-wrapper">
+                       <ul class="nav">
+                <li><br/><br/><br/>
+                    <a href="Project_List.jsp">
+                        <i class="glyphicon glyphicon-home"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="UserConfiguration.jsp">
+                        <i class="pe-7s-user"></i>
+                        <p>User Configuration</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="userslist.jsp">
+                        <i class="pe-7s-note2"></i>
+                        <p>Users List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="roledetails.jsp">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Authorization</p>
+                    </a>
+                </li>
+                         </ul>
+    	</div>
+    </div>
+>>>>>>> 2cfcd400562d33f0cf12532fddce75b7544228bd
 
         <div class="main-wrapper">
             

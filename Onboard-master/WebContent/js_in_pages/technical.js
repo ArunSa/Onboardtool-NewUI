@@ -35,7 +35,7 @@ f.action="Technical"
 f.submit();
 }
 
-
+/*
 function switchColors()  
 {  
 links=document.getElementsByTagName("li") ;  
@@ -71,7 +71,7 @@ for (var i = 0 ; i < x.length ; i ++)
 x.item(i).style.backgroundColor = '#3276B1' ; 
 
 
-} 
+} */
 function validate() {
  
 var data = document.loginForm.dataloc.value
@@ -109,7 +109,7 @@ ele.style.display = "block";
 text.innerHTML = "hide";
 }
 } 
-function switchColors0()  
+/*function switchColors0()  
 {  
 links=document.getElementsByTagName("li") ;  
 var element=document.getElementById("a");
@@ -126,7 +126,7 @@ for (var i = 0 ; i < x.length ; i ++)
 x.item(i).style.backgroundColor = '#3276B1' ; 
 
 
-} 
+} */
 function validateform() {
  
 var dataType = document.loginForm.datatype.value

@@ -157,23 +157,23 @@ String datatype = request.getParameter("datatype");
          preparedStmt.setString (16, designspec);
          preparedStmt.setString   (17, validityplan);
          preparedStmt.setString (18, dataloc);
-         preparedStmt.setString (1, servername);
-         preparedStmt.setString   (2, prodinstance);
-         preparedStmt.setString (3, prodinstanceloc);
-         preparedStmt.setString(4, infraengage);
-         preparedStmt.setString(5, sourcearch);
-         preparedStmt.setString (6, apphost);
-         preparedStmt.setString   (7, retenduration);
-         preparedStmt.setString (8, clientapp);
-         preparedStmt.setString(9, extcustfacing);
-         preparedStmt.setString(10, url);
-         preparedStmt.setString (11, dbsize);
-         preparedStmt.setString   (12, nooftable);
-         preparedStmt.setString (13, noofrec);
-         preparedStmt.setString(14, xmlcount);
-         preparedStmt.setString(15, anyvpn);
-         preparedStmt.setString (16, vpnacces);
-         preparedStmt.setString   (17, appintegrate);
+         preparedStmt.setString (19, servername);
+         preparedStmt.setString   (20, prodinstance);
+         preparedStmt.setString (21, prodinstanceloc);
+         preparedStmt.setString(22, infraengage);
+         preparedStmt.setString(23, sourcearch);
+         preparedStmt.setString (24, apphost);
+         preparedStmt.setString   (25, retenduration);
+         preparedStmt.setString (26, clientapp);
+         preparedStmt.setString(27, extcustfacing);
+         preparedStmt.setString(28, url);
+         preparedStmt.setString (29, dbsize);
+         preparedStmt.setString   (29, nooftable);
+         preparedStmt.setString (30, noofrec);
+         preparedStmt.setString(31, xmlcount);
+         preparedStmt.setString(32, anyvpn);
+         preparedStmt.setString (33, vpnacces);
+         preparedStmt.setString   (34, appintegrate);
  
         
          
@@ -193,7 +193,7 @@ System.out.println("Sorry Your order for today has been already taken");
          System.err.println(e.getMessage());
        }
        // return response
-       response.sendRedirect("requirements.jsp");
+       response.sendRedirect("Intake_ArchiveRequirements.jsp");
 
 
 }

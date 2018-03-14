@@ -1,5 +1,5 @@
 
-.bs-wizard {margin-top: 40px;}
+.bs-wizard {margin-top: 40px; }
 
 /*Form Wizard*/
 .bs-wizard {border-bottom: solid 2px #e0e0e0; padding: 0 0 10px 0;}
@@ -7,7 +7,7 @@
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
 .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 17px;}
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; text-align:center; text-decoration:none; z-index: 1; display: block;  background: #3276B1; top: 47px; left: 50%; padding: 5px 11px; font-weight: 700; margin-top: -14px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; text-align:center; text-decoration:none; z-index: 1; display: block;  background: #1a92f5; top: 47px; left: 50%; padding: 5px 11px; font-weight: 700; margin-top: -14px; margin-left: -15px; border-radius: 50%;} 
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 16px; height: 16px;  border-radius: 50px; position: absolute; top: 10px; left: 8px; } 
 .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 3px; box-shadow: none; margin: 25px 0;}
 .bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background:#3276B1;}
@@ -22,12 +22,8 @@
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 /*END Form Wizard*/
 
-    body
-    {
-     margin:0; padding:0; 
-    color:#73879C;
-    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
-    }
+.m0a { margin: 0 auto !important; }
+
     .navbar-brand {
     
     padding: 10px;
@@ -56,26 +52,6 @@
 
 
     
-    
-
-   #sidemenu
-   {
-   
-   background:#3276B1 ;
-   position: fixed;
-top: 45px;
-left: -1%;
-padding-left:0px;
-width:300px !important;
-bottom: 0px;
-overflow: auto;
-color:white;
-text-size:30%;
-} 
- 
-
-
-
 @-webkit-keyframes myanimation {
   from {
     left: 0%;

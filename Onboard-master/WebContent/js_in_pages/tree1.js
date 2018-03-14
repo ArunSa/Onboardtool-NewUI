@@ -60,23 +60,23 @@
   document.getElementById('est_archive_cst').readOnly = true;
    
   }
-  
+  /*
   function switchColors0()
   {
    
   links=document.getElementsByTagName("li") ;  
   var element=document.getElementById("xxx");
   for (var i = 0 ; i < links.length ; i ++)  
-  links.item(i).style.backgroundColor = '#3276B1' ; 
+  links.item(i).style.backgroundColor = '#178ef1' ; 
   element.style.borderRadius="5px";
   element.style.marginRight = "70px";
   element.style.boxSizing = "content-box";
-  element.style.borderColor = "#3276B1";
-  element.style.background="#3276B1"; 
+  element.style.borderColor = "#178ef1";
+  element.style.background="#178ef1"; 
   var list = document.getElementsByTagName("OL")[0];
   var x=list.getElementsByTagName("LI");
   for (var i = 0 ; i < x.length ; i ++)  
-  x.item(i).style.backgroundColor = '#3276B1' ; 
+  x.item(i).style.backgroundColor = '#178ef1' ; 
    
   }
 
@@ -85,16 +85,16 @@
   links=document.getElementsByTagName("li") ;  
   var element=document.getElementById("xxz");
   for (var i = 0 ; i < links.length ; i ++)  
-  links.item(i).style.backgroundColor = '#3276B1' ; 
+  links.item(i).style.backgroundColor = '#178ef1' ; 
   element.style.borderRadius="5px";
   element.style.marginRight = "85px";
   element.style.boxSizing = "content-box";
-  element.style.borderColor = "#3276B1";
-  element.style.background="#3276B1";
+  element.style.borderColor = "#178ef1";
+  element.style.background="#178ef1";
   var list = document.getElementsByTagName("UL")[0];
   var x=list.getElementsByTagName("LI");
   for (var i = 0 ; i < x.length ; i ++)  
-  x.item(i).style.backgroundColor = '#3276B1' ; 
+  x.item(i).style.backgroundColor = '#178ef1' ; 
 
 
   } 
@@ -104,20 +104,20 @@
   links=document.getElementsByTagName("li") ;  
   var element=document.getElementById("xxy");
   for (var i = 0 ; i < links.length ; i ++)  
-  links.item(i).style.backgroundColor = '#3276B1' ; 
+  links.item(i).style.backgroundColor = '#178ef1' ; 
   element.style.borderRadius="5px";
   element.style.marginRight = "150px";
   element.style.boxSizing = "content-box";
-  element.style.borderColor = "#3276B1";
-  element.style.background="#3276B1";
+  element.style.borderColor = "#178ef1";
+  element.style.background="#178ef1";
   var list = document.getElementsByTagName("UL")[0];
   var x=list.getElementsByTagName("LI");
   for (var i = 0 ; i < x.length ; i ++)  
-  x.item(i).style.backgroundColor = '#3276B1' ; 
+  x.item(i).style.backgroundColor = '#178ef1' ; 
 
 
   } 
-
+*/
  
     $(function () {
       // 6 create an instance when the DOM is ready

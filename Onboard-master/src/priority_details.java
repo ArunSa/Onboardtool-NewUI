@@ -94,7 +94,7 @@ public class priority_details extends HttpServlet {
           System.err.println(e.getMessage());
         }
         // return response
-        response.sendRedirect("applnprior1.jsp");
+        response.sendRedirect("AppEmphasize_PrioritizedApplications.jsp");
 
 	}
 

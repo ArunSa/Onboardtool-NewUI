@@ -213,7 +213,7 @@ public class Appin extends HttpServlet {
 		        }
 		        // return response
 		       // request.setAttribute("value", pid);
-		        response.sendRedirect("firstinsert.jsp");
+		        response.sendRedirect("Applications.jsp");
 				
 
 	}

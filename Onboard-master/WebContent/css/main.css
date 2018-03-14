@@ -59,6 +59,47 @@ html, body {
   }
 }
 
+.required_fie:after {
+    content: " *";
+    color: red;
+}
+
+#sitetitle {
+    font-size: 20px !important;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.navbar-brand, .navbar-nav {  display: flex; align-items: center; }
+
+.bs-wizard {margin-top: 40px;}
+
+.active-menu {     background: rgba(0, 0, 0, 0.15);
+    color: inherit; }
+
+
+/*Form Wizard*/
+.bs-wizard {border-bottom: solid 2px #e0e0e0; padding: 0 0 10px 0;}
+.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 17px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; text-align:center; text-decoration:none; z-index: 1; display: block;  background: #1b94f7; top: 47px; left: 50%; padding: 5px 11px; font-weight: 700; margin-top: -14px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 16px; height: 16px;  border-radius: 50px; position: absolute; top: 10px; left: 8px; } 
+.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 3px; box-shadow: none; margin: 25px 0;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background:#3276B1;}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+/*END Form Wizard*/
+
+
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -101,6 +142,11 @@ h1, .h1 {
     border-color: #3498db !important;
     color: #fff !important;
 }
+
+.nav p { margin : 10px !important; text-align: center; }
+
+.progress {
+    background-color: #e3e3e3; }
 
 @media (min-width: 600px) {
   h1, .h1 {
@@ -436,6 +482,7 @@ pre code {
   .cbp-vm-view-list .center-col {
     float: left;
     width: 45% !important;
+    margin-right: 10px;
 }
   .process-model li i {
       height: 30px;
@@ -591,6 +638,7 @@ pre code {
 .cbp-vm-view-list .center-col {
     float: left;
     width: 50%;
+    margin-right: 10px;
 }
 .cbp-vm-view-list .right-col {
     float: left;
@@ -604,10 +652,10 @@ pre code {
 
 .cbp-vm-view-grid ul li {
     width: 30%;
-    padding: 5%;
+    padding: 3%;
     margin: 10px;
     display: inline-block;
-    min-height: 42px;
+    min-height: 220px;
     background-color: #f7f7f7;
     box-shadow: 5px 5px 10px #dbdbdb;
     transition: all 0.4s;
@@ -620,7 +668,7 @@ pre code {
 
 .cbp-vm-view-grid .cbp-vm-title {
         font-size: 1.5em;
-    padding-bottom: 7px;
+    padding-bottom: 1px;
 }
 
 .cbp-vm-view-grid .cbp-vm-details {
@@ -4783,6 +4831,7 @@ code:not(.language-html) {
 --------------------------------------------------------------*/
 .panel {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom:0px;
 }
 
 .panel .panel-title h1, .panel .panel-title h2, .panel .panel-title h3, .panel .panel-title h4, .panel .panel-title h5, .panel .panel-title h6 {

@@ -127,7 +127,7 @@ if(rs.next()){
                     details.setAttribute("appno",rs3.getString("appno"));
                     details.setAttribute("projectname",rs3.getString("projectname"));
                     %>
-                    <a class="navbar-brand" href="project.jsp" style="color:white" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
+                    <a class="navbar-brand" href="Project_List.jsp" style="color:white" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
                     <%
                     String q2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
@@ -171,7 +171,7 @@ if(rs.next()){
                         
 
             <ul>
-                  <li id='home' item-selected='true'> <a href="project.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
+                  <li id='home' item-selected='true'> <a href="Project_List.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
                 <li item-expanded='true'><a href="AppEmphasize_EditProject.jsp">App Emphasize Module
                     <ul>
                        <li item-expanded='true'><a href="AppEmphasize_EditProject.jsp">Project Details
@@ -188,33 +188,33 @@ if(rs.next()){
                              
                             </ul>
                         </li>
-                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</li>
+                        <li><a href="AppEmphasize_PrioritizedApplications.jsp">Application-Prioritized</li>
                    
 
                     </ul>
                 </li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
+                <li item-expanded='true'><a href='Applications.jsp'>Intake Module</a>
                 <ul>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Business</a>
+                <li item-expanded='true'><a href='Applications.jsp'>Business</a>
                 <ul>
-                <li><a href='firstinsert.jsp'>Application Information</a></li>
-                <li><a href='firstinsert.jsp'>Legacy Retention Information</a></li>
-                <li><a href='firstinsert.jsp'>Archive Data Management</a></li>
-                <li><a href='firstinsert.jsp'>System Requirements</a></li>
+                <li><a href='Applications.jsp'>Application Information</a></li>
+                <li><a href='Applications.jsp'>Legacy Retention Information</a></li>
+                <li><a href='Applications.jsp'>Archive Data Management</a></li>
+                <li><a href='Applications.jsp'>System Requirements</a></li>
                 
                 </ul></li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Technical</a>
+                <li item-expanded='true'><a href='Applications.jsp'>Technical</a>
                 <ul>
-                <li><a href='firstinsert.jsp'>Application Data Information</a></li>
-                <li><a href='firstinsert.jsp'>Infrastructure & Environment Inforamation</a></li>
-                <li><a href='firstinsert.jsp'>Technical Information</a></li>
+                <li><a href='Applications.jsp'>Application Data Information</a></li>
+                <li><a href='Applications.jsp'>Infrastructure & Environment Inforamation</a></li>
+                <li><a href='Applications.jsp'>Technical Information</a></li>
                 </ul>
                 </li>
                 
-                 <li item-expanded='true'><a href='firstinsert.jsp'>Archival Requirements</a>
+                 <li item-expanded='true'><a href='Applications.jsp'>Archival Requirements</a>
                  <ul>
-                 <li><a href='firstinsert.jsp'>Screen/Report Requirements</a></li>
-                 <li><a href='firstinsert.jsp'>Archive Requirements</a></li>
+                 <li><a href='Applications.jsp'>Screen/Report Requirements</a></li>
+                 <li><a href='Applications.jsp'>Archive Requirements</a></li>
                  </ul>
                  </li>
                 </ul>

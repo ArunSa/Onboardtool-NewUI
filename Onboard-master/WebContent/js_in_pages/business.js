@@ -113,12 +113,12 @@
         links=document.getElementsByTagName("li") ;  
         var element=document.getElementById("a");
         for (var i = 0 ; i < links.length ; i ++)  
-        links.item(i).style.backgroundColor = '#3276B1' ; 
+       // links.item(i).style.backgroundColor = 'rgb(38, 154, 248)' ; 
         element.style.borderRadius="5px";
         element.style.marginRight = "70px";
         element.style.boxSizing = "content-box";
-        element.style.borderColor = "#3276B1";
-        element.style.background="#3276B1";
+        element.style.borderColor = "rgb(38, 154, 248)";
+        element.style.background="rgb(38, 154, 248)";
         var list = document.getElementsByTagName("OL")[0];
         var x=list.getElementsByTagName("LI");
         for (var i = 0 ; i < x.length ; i ++)  
@@ -129,7 +129,7 @@
         	links=document.getElementsByTagName("li") ;  
         	var element=document.getElementById("b");
         	for (var i = 0 ; i < links.length ; i ++)  
-        	links.item(i).style.backgroundColor = '#3276B1' ; 
+        	//links.item(i).style.backgroundColor = '#3276B1' ; 
         	element.style.borderRadius="5px";
         	element.style.marginRight = "70px";
         	element.style.boxSizing = "content-box";
@@ -260,7 +260,7 @@
         links=document.getElementsByTagName("li") ;  
         var element=document.getElementById("c");
         for (var i = 0 ; i < links.length ; i ++)  
-        links.item(i).style.backgroundColor = '#3276B1' ; 
+        //links.item(i).style.backgroundColor = '#3276B1' ; 
         element.style.borderRadius="5px";
         element.style.marginRight = "100px";
         element.style.boxSizing = "content-box";
@@ -280,7 +280,7 @@
         links=document.getElementsByTagName("li") ;  
         var element=document.getElementById("d");
         for (var i = 0 ; i < links.length ; i ++)  
-        links.item(i).style.backgroundColor = '#3276B1' ; 
+        //links.item(i).style.backgroundColor = '#3276B1' ; 
         element.style.borderRadius="5px";
         element.style.marginRight = "120px";
         element.style.boxSizing = "content-box";

@@ -116,7 +116,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
             	<div class="container-fluid">
                     <div class="row">
                         <div class="navbar-header no-padding">
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
                             <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
@@ -213,10 +213,10 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="requirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_ArchiveRequirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="requirements.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="requirements.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
 

@@ -5,10 +5,12 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>List Page</title>
+	<title>Role Configuration</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+   
+   
    
  <link rel="stylesheet" href="styles/styles.css" type="text/css" />
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -32,120 +34,51 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-   		
-   		<style type="text/css">
+   
+    <style type="text/css">
             .breadcrumb-div {
                 background-color: #e7e7e7;
                 color: #010101; }
-                
-                
-                #nav_userid{
-             color:green;
-             }
-               
-              #nav_role{
-              color:blue;
-              }  
-        </style>
-
-    	<script>
-	var har=[];
-	var his=[];
-	function selectCheck(name)
-	{
-		
-		if(har.indexOf(name)>=0)
+       
+			.glyphicon.glyphicon-asterisk
 			{
-			var i = har.indexOf(name);
-			if(i != -1) {
-				har.splice(i, 1);
+			color:red;
+			font-size:6px;
 			}
-			}
-		else
-			har.push(name);
-	}
-	function selectCheckDeac(name)
+ 	</style>
+ 	
+      <script>
+	function calls()
 	{
+		    var x = document.getElementById('myDiv1');
+		    if (x.style.display === 'none') {
+		        x.style.display = 'block';
+		    } 
+		    else {
+		        x.style.display = 'none';
+		    }
 		
-		if(his.indexOf(name)>=0)
-			{
-			var i = his.indexOf(name);
-			if(i != -1) {
-				his.splice(i, 1);
-			}
-			}
-		else
-			his.push(name);
-	}
-	
-	
-	function servlet_call()
-	{
-		var f=document.loginForm;
-	    f.method="post";
-	    f.action='deactivate?values='+har+'&values2='+his;
-	    f.submit(); 
 	}
 	</script>
 	<script>
-	var arr="";
-	function ooo()
+	function edit_serv()
 	{
-		var e=document.getElementById("dates-field2");
-	for(i=0;i<9;i++)
-		{
-		if(e[i].selected==true){
-			arr=arr+(e[i].value);
-		}
-		}
-	
-		}
-	function qq()
-	{				 var f=document.loginForm;
-				    f.method="post";
-				    f.action="sendMail?roless="+arr+"&mailid="+email;
-				    f.submit();
-			
-	}
-	</script>
-	<script>
-	var populate="";
-	function del(cnt)
-	{
-	for(var i=0;i<cnt;i++){
-		if(document.getElementsByName('delete_check')[i].checked){
-			var name=document.getElementsByName('name_user'+i)[0].value;
-			populate=populate+name+",";	
-				
-		}
-	}
-	}
-	function deluser()
-	{
-		
-		var f=document.loginForm;
-	    f.method="post";
-	    f.action='delete_users?array='+populate;
-	    f.submit(); 
-		
+		 var f=document.loginForm;
+		    f.method="post";
+		    f.action='Role_details';
+		    f.submit(); 
 	}
 	
 	</script>
 	<script>
 function checkk()
 {
-	
-	document.getElementById('add_btn').disabled = true;
-	document.getElementById('del_btn').disabled = true;
 	document.getElementById('sub_btn').disabled = true;
-	for(i=0;i<50;i++){
-	document.getElementsByName('delete_check')[i].disabled = true;
-	document.getElementsByName('chek')[i].disabled = true;
 	}
-	}
-</script>
-  
+</script>  
+
 </head>
+
 <body class="top-navbar-fixed">
 
 <%@ page import="java.sql.*"%>
@@ -166,14 +99,17 @@ HttpSession details=request.getSession();
 String info=(String)details.getAttribute("admin");
 Class.forName("com.mysql.jdbc.Driver"); 
 java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123"); 
-String query="select * from user_details";
+String query="select * from role_details";
+String query1="select * from user_details";
 Statement s=conn.createStatement();
+Statement s1=conn.createStatement();
 ResultSet rs=s.executeQuery(query);
-
+ResultSet rs1=s1.executeQuery(query1);
+int count=0;
 %>
+
         <div class="main-wrapper">
-            
-            
+        
             <!-- ========== TOP NAVBAR ========== -->
             <nav class="navbar top-navbar bg-white box-shadow">
             	<div class="container-fluid">
@@ -200,7 +136,8 @@ ResultSet rs=s.executeQuery(query);
        <%
                          String uname=(String)details.getAttribute("username");
                          String role=(String)details.getAttribute("role");%>                   
-	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
+	<li ><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
+		
 <li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
@@ -213,11 +150,13 @@ ResultSet rs=s.executeQuery(query);
             	<!-- /.container-fluid -->
             </nav>
 
-<form class="form-signin" name="loginForm" method="post">
+
+<form class="form-signin" name="loginForm" method="post" action="Role_details">
 
             <div class="content-wrapper">
                 <div class="content-container">
             
+           
                     <!-- ========== LEFT SIDEBAR for UserConfiguration ========== -->
                     <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                         <div class="sidebar-content" id='jqxWidget'>
@@ -229,7 +168,7 @@ ResultSet rs=s.executeQuery(query);
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -253,89 +192,66 @@ ResultSet rs=s.executeQuery(query);
                         </div>
                         <!-- /.sidebar-content -->
                     </div>
-                    <!-- /.left-sidebar -->
+                 <!-- /.left-sidebar -->
             
-		
+			
 <!-- Projects List Start -->
 
                     <div class="main-page">
-                       
+                        
                         <section>
 
                                 <div class="row">
                                     <div class="col-md-12">
-
+                        
+<br/>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">List Of Users</h4>
+                                <h4 class="title">Authorization List</h4>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        <th></th>
-  <th >UserName</th>
-  <th>FirstName</th>
-  <th>LastName</th>
-  <th>Email</th>
   <th>Role</th>
-  <th>Status</th>
-  <th>Deactivate</th>
+  <th>Admin</th>
+  <th>AppEmphasize</th>
+  <th>Intake</th>
+  <th>Archival Execution</th>
+  <th>Decommision</th>
+  <th>Program governance</th>
+  <th>Reporting</th>
+  <th>Finance</th>
                                     </thead>
                                     <tbody>
                                       <%
-                                      int count=0;
-  while(rs.next()){ 
-	  if(rs.getString(8).equals("active")){
-		  %>
-<tr style="background-color:white;">
-  <td><input type="checkbox" name="delete_check" id="delete_check" ></td>
-  <td><%= rs.getString(1) %></td>
-  <td><%= rs.getString(2) %></td>
-  <td><%= rs.getString(3) %></td>
-  <td><%= rs.getString(4) %></td>
-  <td><%= rs.getString(7) %></td>
-  <td style="background-color:lightgreen"><%=rs.getString(8) %></td>
-  <td style="text-align:center;"><input type="checkbox" name="chek" onChange="selectCheck('<%=rs.getString(1) %>');"></td>
-  <td style="display:none;"><input type="text" name="name_user<%=count%>" value="<%= rs.getString(1) %>"></td>
-  </tr> 
-  <%
-  count++;
-  } else{
-		  %>
-		  <tr style="background-color:#ccc;cursor:not-allowed;">
-		  <td><input type="checkbox" name="delete_check" id="delete_check" ></td>
-		  <td><%= rs.getString(1) %></td>
-		  <td><%= rs.getString(2) %></td>
-		  <td><%= rs.getString(3) %></td>
-		  <td><%= rs.getString(4) %></td>
-		  <td><%= rs.getString(7) %></td>
-		<td> <%=rs.getString(8) %></td>
-    <td style="text-align:center;background-color:white;"><input type="checkbox" name="chek" id="chek" onChange="selectCheckDeac('<%=rs.getString(1) %>')" checked></td>
-		  <td style="display:none;"><input type="text" name="name_user<%=count%>" value="<%= rs.getString(1) %>"></td>
-		  </tr> 
- <%  
- count++;
- }
-  }
+                                  
+                                      int i=0;
+                                      while(rs.next()){ 
+                                      %>
+                                      <tr>
+                                      <td><input class="act" style="width:170px;" type="text" name="role<%=i %>" value="<%= rs.getString(1) %>"></td>
+                                      <td><input class="act" type="text" name="admin<%=i %>" value="<%= rs.getString(2) %>"></td>
+                                      <td><input class="act" type="text" name="app_emp<%=i %>" value="<%= rs.getString(3) %>"></td>
+                                      <td><input class="act" type="text" name="intake<%=i %>" value="<%= rs.getString(4) %>"></td>
+                                      <td><input class="act" type="text" name="arch_exe<%=i %>" value="<%= rs.getString(5) %>"></td>
+                                      <td><input class="act" type="text" name="decomm<%=i %>" value="<%= rs.getString(6) %>"></td>
+                                      <td><input class="act" type="text" name="prgm_gov<%=i %>" value="<%= rs.getString(7) %>"></td>
+                                      <td><input class="act" type="text" name="report<%=i %>" value="<%= rs.getString(8) %>"></td>
+                                      <td><input class="act" type="text" name="finance<%=i %>" value="<%= rs.getString(9) %>"></td>
+                                      </tr> 
+                                      <%
+                                      }
+                                 
 %>  
                                                                            </tbody>
                                 </table>
-                                <div class="col-md-12">
- <input type="hidden" id="role_conf" value="<%= info %>" hidden>
- &nbsp;&nbsp;
- <button type="button" id="add_btn" class="btn btn-primary" onclick="window.location.href='Registration.jsp'">Add User</button>
- &nbsp;&nbsp;
- <input type="button" id="del_btn" class="btn btn-primary" onclick="del(<%=count %>);deluser();" value="DeleteUser">
- &nbsp;&nbsp;
- <button type="button" id="sub_btn" class="btn btn-primary" onclick="servlet_call();">Submit</button>
-                           
-                           </div>
-                           
-                            </div>
+ <input type="hidden" id="rolecheck" value="<%= info %>" hidden>
+ &nbsp;&nbsp;&nbsp;
+ <button type="button" id="sub_btn" class="btn btn-primary" onclick="edit_serv()">Submit</button>                           </div>
                         </div>
                     </div>
 
@@ -344,17 +260,13 @@ ResultSet rs=s.executeQuery(query);
             </div>
         </div>
 
-     
-
-
     </div>
 </div>
- <script>
- if(document.getElementById('role_conf').value=="R")
+  <script>
+ if(document.getElementById('rolecheck').value=="R")
 	 checkk();
  </script>   
- </form>
-
+</form>
 
 				    </div>
                                     <!-- /.col-md-6 -->

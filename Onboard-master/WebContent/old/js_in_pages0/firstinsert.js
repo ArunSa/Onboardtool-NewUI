@@ -8,6 +8,6 @@ function editRecord(){
 function edit(id){
     var f=document.form;
     f.method="post";
-    f.action='business.jsp?id='+id;
+    f.action='Intake_Business.jsp?id='+id;
     f.submit();
 }

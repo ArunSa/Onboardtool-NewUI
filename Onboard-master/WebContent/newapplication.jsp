@@ -93,7 +93,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                         
 
             <ul>
-                <li id='home' item-selected='true'> <a href="project.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
+                <li id='home' item-selected='true'> <a href="Project_List.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
                 <li item-expanded='true'>App Emphasize Module
                     <ul>
                        <li item-expanded='true'>Project Details
@@ -110,16 +110,16 @@ ResultSet rs3 = st3.executeQuery(query3);
                                 
                             </ul>
                         </li>
-                        <li><a href="AppEmphasize_applnprior1.jsp">Application-Prioritized</li>
+                        <li><a href="AppEmphasize_PrioritizedApplications.jsp">Application-Prioritized</li>
                         
                        <li> <a href="demo.jsp">ROI Calculation</a></li>
                         <li>Estimates</li>
 
                     </ul>
                 </li>
-                <li item-expanded='true'><a href='firstinsert.jsp'>Intake Module</a>
+                <li item-expanded='true'><a href='Applications.jsp'>Intake Module</a>
                 <ul>
-                <li item-expanded='true'><a href="business.jsp">Business</a>
+                <li item-expanded='true'><a href="Intake_Business.jsp">Business</a>
                 <ul>
                 <li>Application Information</li>
                 <li>Legacy Retention Information</li>
@@ -135,7 +135,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                 </ul>
                 </li>
                 
-                 <li item-expanded='true'><a href="requirements.jsp">Archival Requirements</a>
+                 <li item-expanded='true'><a href="Intake_ArchiveRequirements.jsp">Archival Requirements</a>
                  <ul>
                  <li>Screen/Report Requirements</li>
                  <li>Archive Requirements</li>
@@ -252,7 +252,7 @@ ResultSet rs3 = st3.executeQuery(query3);
       <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
-      <a class="page-link" href="project.jsp" tabindex="-1">Previous</a>
+      <a class="page-link" href="Project_List.jsp" tabindex="-1">Previous</a>
     </li>
     
     <li class="page-item">
