@@ -99,7 +99,7 @@ public class Role_details extends HttpServlet {
           System.err.println("Got an exception!");
           System.err.println(e.getMessage());
         }
-        response.sendRedirect("roledetails.jsp");
+        response.sendRedirect("Admin_RoleDetails.jsp");
 
 	}
 

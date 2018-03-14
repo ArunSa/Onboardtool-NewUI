@@ -166,7 +166,7 @@ if(rs.next())
                                         <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
@@ -184,32 +184,32 @@ if(rs.next())
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="firstinsert.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -252,14 +252,7 @@ if(rs.next())
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3">
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
+               
 
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
@@ -286,7 +279,14 @@ if(rs.next())
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
+<div class="col-md-3 col-sm-3">
+                  <a href="#">
+                   <center>
+                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Decommission Execution</h6>
+                   </center>
+                   </a>
+                </div>
             </div>
         </div>
     </div>
@@ -295,14 +295,15 @@ if(rs.next())
     <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3">
-                  <a href="#">
+ <div class="col-md-3 col-sm-3">
+                  <a href="UserConfiguration.jsp">
                    <center>
-                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Decommission Execution</h6>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
                    </center>
-                   </a>
+                  </a>
                 </div>
+                
 
                 <div class="col-md-3 col-sm-3">
                   <a href="#">
@@ -351,14 +352,7 @@ if(rs.next())
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
+                
 
                 <div class="col-md-3 col-sm-3" id="testDecom">
                   <a href="AppEmphasize_EditProject.jsp">
@@ -386,6 +380,14 @@ if(rs.next())
                    </center> </a>
                 </div>
 
+<div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
             </div>
         </div>
     </div>
@@ -393,6 +395,7 @@ if(rs.next())
 <div class="row mt-50 grid2">
     <div class="container">
             <div class="col-md-12">
+
 
                 <div class="col-md-3 col-sm-3" id="testDecom">
                   <a href="#">
@@ -449,15 +452,7 @@ else if(roles.equals("ArchivalAdmin"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" >
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
-
+                
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
@@ -483,7 +478,14 @@ else if(roles.equals("ArchivalAdmin"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
+<div class="col-md-3 col-sm-3">
+                  <a href="#">
+                   <center>
+                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Decommission Execution</h6>
+                   </center>
+                   </a>
+                </div>
             </div>
         </div>
     </div>
@@ -492,13 +494,14 @@ else if(roles.equals("ArchivalAdmin"))
     <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3">
-                  <a href="#">
+                
+<div class="col-md-3 col-sm-3" >
+                  <a href="UserConfiguration.jsp">
                    <center>
-                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Decommission Execution</h6>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
                    </center>
-                   </a>
+                  </a>
                 </div>
 
                 <div class="col-md-3 col-sm-3" >
@@ -545,15 +548,7 @@ else if(roles.equals("ArchivalProgramManager"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" >
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
-
+               
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
@@ -579,16 +574,7 @@ else if(roles.equals("ArchivalProgramManager"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-<div class="row mt-50 grid2">
-    <div class="container">
-            <div class="col-md-12">
-
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-3 col-sm-3">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -596,6 +582,23 @@ else if(roles.equals("ArchivalProgramManager"))
                    </center>
                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row mt-50 grid2">
+    <div class="container">
+            <div class="col-md-12">
+ <div class="col-md-3 col-sm-3" >
+                  <a href="UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
+
+               
 
                 <div class="col-md-3 col-sm-3" >
                   <a href="#">
@@ -642,14 +645,7 @@ else if(roles.equals("LegacyBusinessSME"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
+                
 
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
@@ -676,16 +672,7 @@ else if(roles.equals("LegacyBusinessSME"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-<div class="row mt-50 grid2">
-    <div class="container">
-            <div class="col-md-12">
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+<div class="col-md-3 col-sm-3" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -693,6 +680,22 @@ else if(roles.equals("LegacyBusinessSME"))
                    </center>
                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row mt-50 grid2">
+    <div class="container">
+            <div class="col-md-12">
+<div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
+                
 
                 <div class="col-md-3 col-sm-3" >
                   <a href="#">
@@ -740,14 +743,7 @@ else if(roles.equals("LegacyTechnicalSME"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
+               
 
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
@@ -774,16 +770,7 @@ else if(roles.equals("LegacyTechnicalSME"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-<div class="row mt-50 grid2">
-    <div class="container">
-            <div class="col-md-12">
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+<div class="col-md-3 col-sm-3" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -791,6 +778,22 @@ else if(roles.equals("LegacyTechnicalSME"))
                    </center>
                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row mt-50 grid2">
+    <div class="container">
+            <div class="col-md-12">
+ <div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
+                
 
                 <div class="col-md-3 col-sm-3" >
                   <a href="#">
@@ -835,15 +838,7 @@ else if(roles.equals("LegacyProgramManager"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
-
+                
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
@@ -869,16 +864,7 @@ else if(roles.equals("LegacyProgramManager"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-<div class="row mt-50 grid2">
-    <div class="container">
-            <div class="col-md-12">
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-3 col-sm-3" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -887,6 +873,23 @@ else if(roles.equals("LegacyProgramManager"))
                    </a>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+<div class="row mt-50 grid2">
+    <div class="container">
+            <div class="col-md-12">
+<div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
+
+               
                 <div class="col-md-3 col-sm-3" >
                   <a href="#">
                  <center>
@@ -933,14 +936,7 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
+                
 
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
@@ -967,7 +963,14 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
+ <div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="#">
+                   <center>
+                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Decommission Execution</h6>
+                   </center>
+                   </a>
+                </div>
             </div>
         </div>
     </div>
@@ -976,15 +979,15 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
     <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="#">
+               
+<div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="UserConfiguration.jsp">
                    <center>
-                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Decommission Execution</h6>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
                    </center>
-                   </a>
+                  </a>
                 </div>
-
                 <div class="col-md-3 col-sm-3" >
                   <a href="#">
                  <center>
@@ -1028,15 +1031,7 @@ else if(roles.equals("ArchivalTechnicalLead"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
-
+                
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
@@ -1062,16 +1057,7 @@ else if(roles.equals("ArchivalTechnicalLead"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-<div class="row mt-50 grid2">
-    <div class="container">
-            <div class="col-md-12">
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+<div class="col-md-3 col-sm-3" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1079,6 +1065,23 @@ else if(roles.equals("ArchivalTechnicalLead"))
                    </center>
                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row mt-50 grid2">
+    <div class="container">
+            <div class="col-md-12">
+<div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
+
+                
 
                 <div class="col-md-3 col-sm-3" >
                   <a href="#">
@@ -1124,14 +1127,7 @@ else if(roles.equals("ArchivalProjectManager"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" >
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
+                
 
                 <div class="col-md-3 col-sm-3">
                   <a href="AppEmphasize_EditProject.jsp">
@@ -1158,16 +1154,7 @@ else if(roles.equals("ArchivalProjectManager"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-<div class="row mt-50 grid2">
-    <div class="container">
-            <div class="col-md-12">
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-3 col-sm-3">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1175,6 +1162,22 @@ else if(roles.equals("ArchivalProjectManager"))
                    </center>
                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row mt-50 grid2">
+    <div class="container">
+            <div class="col-md-12">
+<div class="col-md-3 col-sm-3" >
+                  <a href="UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
+                
 
                 <div class="col-md-3 col-sm-3" >
                   <a href="#">
@@ -1220,15 +1223,7 @@ else if(roles.equals("ArchivalDeveloper"))
         <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3"  id="testDecom" >
-                  <a href="UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
-
+                
                 <div class="col-md-3 col-sm-3" >
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
@@ -1254,7 +1249,14 @@ else if(roles.equals("ArchivalDeveloper"))
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
+<div class="col-md-3 col-sm-3" id="testDecom">
+                  <a href="#">
+                   <center>
+                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Decommission Execution</h6>
+                   </center>
+                   </a>
+                </div>
             </div>
         </div>
     </div>
@@ -1263,13 +1265,14 @@ else if(roles.equals("ArchivalDeveloper"))
     <div class="container">
             <div class="col-md-12">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="#">
+                
+<div class="col-md-3 col-sm-3"  id="testDecom" >
+                  <a href="UserConfiguration.jsp">
                    <center>
-                   <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Decommission Execution</h6>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
                    </center>
-                   </a>
+                  </a>
                 </div>
 
                 <div class="col-md-3 col-sm-3" >
