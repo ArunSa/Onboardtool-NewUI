@@ -413,52 +413,54 @@ if(implement == null)
                                             <div class="required">Legacy Application Name&nbsp;
                                             </div>
                                             </label>
-                                            <input type="text" class="form-control" id="legappname" placeholder="Legacy Application Name" name="legappname" value=""  />
+                                            <input type="text" class="form-control" id="legappname"  name="legappname" value=""  />
                                         </div>
                                         
                                        <div class="form-group"> 
                                             <label class="control-label" for="formInput229">References to Application</label>
-                                            <input type="text" class="form-control" id="reftoapp" placeholder="References" name="reftoapp" >
+                                            <input type="text" class="form-control" id="reftoapp"  name="reftoapp" >
                                      </div>
                                        <div class="form-group row log-date">
            <div class="col-md-12">
             <label class="control-label">Tracking ID</label>
-            <input placeholder="ID" id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
             </div>
           
                                        </div>  
-        <div class="form-group row log-date">
+     <!--   <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Description</div></label>
             <input placeholder="Description" id="descr" name="descr" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
-          </div>
+          </div> 
           
-        </div>  
+        </div>  -->
+        
+        
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Legacy Application Vendor/Manufacturer</div></label>
-            <input placeholder="Vendor/Manufacturer" id="vendor" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="vendor" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
         
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Contract Expiration Date</div></label>
-            <input placeholder="dd/mm/yyyy" id="expirydate" name="expdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input placeholder="mm/dd/yyyy" id="expirydate" name="expdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
                     <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Notice Period for Expiration of Contract</label>
-            <input placeholder="Description" id="noticeperiod" name="noticeperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="noticeperiod" name="noticeperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Contract Value of Application</label>
-            <input placeholder="Contract Value" id="contractvalue" name="contractvalue" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="contractvalue" name="contractvalue" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>  
@@ -467,22 +469,23 @@ if(implement == null)
                                                 <input type="checkbox"  id="businessunits" name="businessunits" value="Yes">Business Units Involved
                                             </label>                                             
                                         </div>
-                                        <div class="checkbox"> 
+                                       <!--  <div class="checkbox"> 
                                             <label class="control-label required"> 
                                                 <input type="checkbox"  id="rodch" name="rodch" value="Yes" >&nbsp;Read Only Date                       
                                             </label>                                             
-                                        </div>
+                                        </div> -->
+                                        
                                         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label"><div class="">Read Only Date</div></label>
-            <input placeholder="dd/mm/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input placeholder="mm/dd/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Comment</label>
-            <input placeholder="Comments" id="cmnt" name="cmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="cmnt" name="cmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>  
@@ -496,28 +499,28 @@ if(implement == null)
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label"> <div class="required">What is the date Range of this Data?</div></label>
-            <input placeholder="dd/mm/yyyy" id="daterange" name="daterange" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input placeholder="mm/dd/yyyy" id="daterange" name="daterange" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label"><div class="required">Size of Database</div></label>
-            <input placeholder="Size" id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Location of Data</label>
-            <input placeholder="location" id="dataloc" name="dataloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="dataloc" name="dataloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Site Location of Data</label>
-            <input placeholder="sitelocation" id="siteloc" name="siteloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="siteloc" name="siteloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div>
@@ -533,14 +536,14 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Reason</div></label>
-            <input placeholder="Reason" id="archreason" name="archreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="archreason" name="archreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Comments</div></label>
-            <input placeholder="Comments" id="archcmnt" name="archcmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="archcmnt" name="archcmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
@@ -565,39 +568,52 @@ if(implement == null)
                                 <form role="form">
                                     <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Record code of Application</div></label>
-            <input placeholder="Recordcode" id="reccode" name="reccode" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"  />
+            <label class="control-label "><div class="required">Retention Code</div></label>
+            <input  id="reccode" name="reccode" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"  />
           </div>
           
         </div> 
                                     <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "> <div class="required">Trigger Date</div></label>
-            <input placeholder="dd/mm/yyyy"  id="triggerdate" name="triggerdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <label class="control-label "> <div class="required">Trigger Date Field</div></label>
+            <input placeholder="mm/dd/yyyy"  id="triggerdate" name="triggerdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
+        
+        
+         <div class="form-group row log-date">
+          <div class="col-md-12">
+            <label class="control-label "><div class="required">Trigger Table/Column</div></label>
+            <input  id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+          </div>
+          
+        </div> 
+        
+        
+        
+        
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Period of Retention</div></label>
-            <input placeholder="RententionPeriod" id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Table Name/s where Retention need to apply</div></label>
-            <input placeholder="Table Name" id="retentiontable" name="retentiontable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="retentiontable" name="retentiontable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
-                                        <label text-align:"left"><div class="required">Retention Requirement</div></label>
+                                        <label text-align:"left"><div class="required">Retention Document to refer to</div></label>
                                         <input type="file" name="file" id="file" size="60"  />
                                                             
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Name of the Legal Retention & e-Discovery SME</div></label>
-            <input placeholder="Name of Retention" id="retentionname" name="retentionname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="retentionname" name="retentionname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
@@ -613,7 +629,7 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Who or what entity provided legal or tax hold identification</label>
-            <input placeholder="Identification" id="wholegal" name="wholegal" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="wholegal" name="wholegal" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
@@ -629,7 +645,7 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label"><div class="required">Brief Explanation</div></label>
-            <input placeholder="Explaination" id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div>             
@@ -673,7 +689,7 @@ if(implement == null)
                         
                  <div class="panel panel-default"> 
                       <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" onclick="switchColors2();">System Requirements</a> </h4> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" onclick="switchColors2();">Privacy Classification</a> </h4> 
                             </div>                             
                           <div id="collapse4" class="panel-collapse collapse"> 
                               <div class="panel-body">
@@ -796,7 +812,7 @@ if(implement == null)
                                          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Brief Explanation</label>
-            <input placeholder="Explaination" id="expl" name="expl" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="expl" name="expl" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
@@ -831,7 +847,7 @@ if(implement == null)
                                          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
-            <input placeholder="location" id="vendor1" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="vendor1" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
@@ -854,35 +870,35 @@ if(implement == null)
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">User Name</label>
-            <input placeholder="Username" id="uname" name="uname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="uname" name="uname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Role Description</label>
-            <input placeholder="RoleDescription" id="roledesc" name="roledesc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="roledesc" name="roledesc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Reason for Access</label>
-            <input placeholder="Reason" id="accreason" name="accreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="accreason" name="accreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Frequency of Access</label>
-            <input placeholder="Frequency" id="accfreq" name="accfreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="accfreq" name="accfreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Additional System Requirements</label>
-            <input placeholder="Countries/Modules" id="sysreq" name="sysreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="sysreq" name="sysreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 

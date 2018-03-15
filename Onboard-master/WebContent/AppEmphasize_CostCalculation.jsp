@@ -99,143 +99,144 @@ String sum=result.getString(1);
  function updatesum() {
 var datasize=document.loginForm.data_size.value;
   var currentuser=document.loginForm.curnt_users.value;
-  window.alert(datasize);
+  
 
 var temp,temp1,temp2,temp3,total,result;
 
 if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexitcurrentuser.value ="Low";
+document.loginForm.complexity.value ="Low";
 }
 if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexitcurrentuser.value ="Low";
+document.loginForm.complexity.value ="Low";
 }
 if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexitcurrentuser.value ="Low to Medium";
+document.loginForm.complexity.value ="Low to Medium";
 }
 if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexitcurrentuser.value ="Low to Medium";
+document.loginForm.complexity.value ="Low to Medium";
 }
 if(datasize.charAt(0)=='<' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexitcurrentuser.value ="Low";
+document.loginForm.complexity.value ="Low";
 }
 if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexitcurrentuser.value ="Low to Medium";
+document.loginForm.complexity.value ="Low to Medium";
 }
 if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexitcurrentuser.value ="Low to Medium";
+document.loginForm.complexity.value ="Low to Medium";
 }
 if(datasize.charAt(0)=='1' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='1' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexitcurrentuser.value ="Low to Medium";
+document.loginForm.complexity.value ="Low to Medium";
 }
 if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexitcurrentuser.value ="Low to Medium";
+document.loginForm.complexity.value ="Low to Medium";
 }
 if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='2' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='2' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexitcurrentuser.value ="Medium to High";
+document.loginForm.complexity.value ="Medium to High";
 }
 if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexitcurrentuser.value ="Low to Medium";
+document.loginForm.complexity.value ="Low to Medium";
 }
 if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='5' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexitcurrentuser.value ="Medium to High";
+document.loginForm.complexity.value ="Medium to High";
 }
 if(datasize.charAt(0)=='5' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexitcurrentuser.value ="Medium to High";
+document.loginForm.complexity.value ="Medium to High";
 }
 if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='2')
 {
-document.loginForm.complexitcurrentuser.value ="Medium";
+document.loginForm.complexity.value ="Medium";
 }
 if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='5')
 {
-document.loginForm.complexitcurrentuser.value ="Medium to High";
+document.loginForm.complexity.value ="Medium to High";
 }
 if(datasize.charAt(0)=='>' && currentuser.charAt(1)=='1'&&currentuser.length==4)
 {
-document.loginForm.complexitcurrentuser.value ="Medium to High";
+document.loginForm.complexity.value ="Medium to High";
 }
 if(datasize.charAt(0)=='>' && currentuser.charAt(0)=='1')
 {
-document.loginForm.complexitcurrentuser.value ="High";
+document.loginForm.complexity.value ="High";
 }
-if(document.loginForm.complexitcurrentuser.value=="Low")
+
+if(document.loginForm.complexity.value=="Low")
 {
 document.loginForm.est_archive.value =700;
 document.loginForm.est_scrn.value ="<=5";
 result=1;
 }
-if(document.loginForm.complexitcurrentuser.value=="Low to Medium")
+if(document.loginForm.complexity.value=="Low to Medium")
 {
 document.loginForm.est_archive.value =1000;
 document.loginForm.est_scrn.value ="<=10";
 result=2;
 }
-if(document.loginForm.complexitcurrentuser.value=="Medium")
+if(document.loginForm.complexity.value=="Medium")
 {
 document.loginForm.est_archive.value =1400;
 document.loginForm.est_scrn.value ="<=20";
 result=3;
 }
-if(document.loginForm.complexitcurrentuser.value=="Medium to High")
+if(document.loginForm.complexity.value=="Medium to High")
 {
 document.loginForm.est_archive.value =1800;
 document.loginForm.est_scrn.value ="<=25";
 result=4;
 }
-if(document.loginForm.complexitcurrentuser.value=="High")
+if(document.loginForm.complexity.value=="High")
 {
 document.loginForm.est_archive.value =2500;
 document.loginForm.est_scrn.value ="<=30";
 result=5;
 }
 var appnumber=<%=appno%>;
-document.loginForm.est_db_size.value=(document.loginForm.no_of_app_complexitcurrentuser.value*0.001*document.loginForm.strg_est.value).toFixed(2);
-document.loginForm.est_hrs.value =(document.loginForm.no_of_app_complexitcurrentuser.value*document.loginForm.est_archive.value).toFixed(2);
+document.loginForm.est_db_size.value=(document.loginForm.no_of_app_complexity.value*0.001*document.loginForm.strg_est.value).toFixed(2);
+document.loginForm.est_hrs.value =(document.loginForm.no_of_app_complexity.value*document.loginForm.est_archive.value).toFixed(2);
 temp=(100*document.loginForm.est_hrs.value);
 document.loginForm.est_cst.value="$"+temptoFixed(2);
 temp1=document.loginForm.est_db_size.value*document.loginForm.IA_lic_cst.value;
@@ -493,7 +494,7 @@ hypercare="0";
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum">Cost Complexity Calculation</div>
+                  <div class="text-center bs-wizard-stepnum">Application Complexity </div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">2</a>
                   <div class="bs-wizard-info text-center"></div>
@@ -518,11 +519,11 @@ hypercare="0";
                <br/>
                     <div class="panel-group" id="panels1"> 
                 <div class="panel panel-default">
-        <div class="panel-heading"> 
+       <!-- <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();"> Parameters   </a> </h4> 
                             </div>  
                                                        
-                            <div id="collapse1" class="panel-collapse collapse in"> 
+                             <div id="collapse1" class="panel-collapse collapse in"> 
                                 <div class="panel-body text-left">
                                 
                                 <%if(rs.next()){
@@ -565,11 +566,11 @@ hypercare="0";
                                         </div>
                                                                         </div>                                 
                             </div>                             
-                        </div> 
+                        </div> -->
     
                                <div class="panel panel-default"> 
                             <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">    Archival Complexity Calculation    </a> </h4> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">    Application Complexity   </a> </h4> 
                             </div>                             
                             <div id="collapse2" class="panel-collapse collapse"> 
                                 <div class="panel-body text-left">
@@ -686,6 +687,15 @@ for(var i=0; i<edit_row.length; i++) {
      
   </div>
   <br />
+  
+  										 <div class="form-group"> 
+                                            <label class="control-label" for="formInput526"><div class="required">Project Name&nbsp;<span class="text-danger">*</span></div></label>
+                                            <input type="text" class="form-control" id="prj_name"  name="prj_name" value="<%=projectname %>" required>
+                                        </div>
+  										<div class="form-group"> 
+                                            <label class="control-label" for="formInput526"><div class="required">Number of Applications based on Complexity&nbsp;<span class="text-danger">*</span></div></label>
+                                            <input type="text" class="form-control" id="no_of_app_complexity"  name="no_of_app_complexity" value="<%=rs.getString("no_of_app_complexity")%>" required>
+                                        </div>
                                  
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput664">Application Name</label>
@@ -742,30 +752,19 @@ for(var i=0; i<edit_row.length; i++) {
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="formInput664">Read Only Date</label>                                             
-                                            <input type="text" class="form-control" id="RO_DATE"  name="read_date" onChange="updatesum()"> 
+                                            <input placeholder="mm/dd/yyyy" type="text" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" id="RO_DATE"  name="read_date" onChange="updatesum()"> 
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="formInput664">SME Date</label>                                             
+                                            <label class="control-label" for="formInput664">SME Availability Date</label>                                             
                                             <input type="text" class="form-control" id="SME_DATE"  name="sme_date" onChange="updatesum()"> 
                                         </div>          
                                         
-                                    <div class="form-group">
-                                            <label class="control-label" for="formInput664">Estimated Archival Service Effort</label>                                             
-                                            <input type="text" class="form-control" id="est_archive"  name="est_archive" onChange="updatesum()"> 
-                                        </div>
+                                    
                                          <div class="form-group">
                                             <label class="control-label" for="formInput664">Estimated Number of Screen</label>                                             
                                             <input type="text" class="form-control" id="est_scrn"  name="est_scrn" onChange="updatesum()" > 
                                         </div>
-                                     <div class="form-group">
-                                            <label class="control-label" for="formInput664">Estimated Size of xDB</label>                                             
-                                            <input type="text" class="form-control" id="est_db_size"  name="est_db_size" onChange="updatesum()" > 
-                                        </div>
-                                      <div class="form-group">
-                                            <label class="control-label" for="formInput664">Estimated Hours</label>                                             
-                                            <input type="text" class="form-control" id="est_hrs"  name="est_hrs" onChange="updatesum()"   >  
-                                        </div>
-                                                                                
+                                                                                                                     
                                 </div>                                 
                             </div>                             
                         </div>

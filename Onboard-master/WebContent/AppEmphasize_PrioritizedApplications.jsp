@@ -285,7 +285,7 @@ if(hypercare == null)
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum">Cost Complexity Calculation</div>
+                  <div class="text-center bs-wizard-stepnum">Application Complexity</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot" style="color:white">2</a>
                 </div>
@@ -299,7 +299,7 @@ if(hypercare == null)
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
                   <div class="text-center bs-wizard-stepnum">Final</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="#" class="bs-wizard-dot" style="color:white">4</a>
                 </div>
             </div>
             <br/>
@@ -319,7 +319,6 @@ if(hypercare == null)
         <tr>
           <th>Application Name</th>
           <th>Complexity</th>
-          <th>Estimated Size of xDB </th>
           <th>Priorities</th>
          
     </tr>
@@ -340,7 +339,7 @@ while(rs1.next()){
         
           <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><input type="text" id="project_name<%=i%>" name="project_name<%=i%>" value="<%=rs1.getString("appname") %>"></span></td>
           <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("complexity") %>"></span></td>
-          <td class="row_t" style="cursor:pointer" id="33"><span class="test"><input type="text" id="est_db_size<%=i%>" name="est_db_size<%=i%>" value="<%=rs1.getString("est_db_size") %>"></span></td>
+         
           <td class="row_d" id="55">
           <span class="test"><input type="text" name="priority<%=i %>" id="priority<%=i %>" value="<%=rs2.getInt("total")-i %>"></span>
         </td>
@@ -387,7 +386,7 @@ for(var i=0; i<edit_row.length; i++) {
                                                                                             
                                    
                                    
-<button type="button" class="btn btn-primary" onclick="call()" >Submit</button>     
+<button type="button" class="btn btn-primary" onclick="call()" >submit</button>     
      
                     <a href="AppEmphasize_CostCalculation.jsp" class="btn btn-default" class="btn pull-right">Cancel</a>
                     

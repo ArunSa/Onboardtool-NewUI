@@ -415,20 +415,13 @@ hypercare="0";
           
         </div>  
         
-                                         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Project Start Date</div></label>
-             <div class="col-sm-12" id="basicExample">
-            <input placeholder="dd/mm/yyyy" id="Startdate" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Startdate")%>" required>
-          </div>
-          </div>
-        </div>  
+                                   
         
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "> Initiate Start Date</label>
+            <label class="control-label "> Initiate Start Date<span class="text-danger">*</span></label>
              <div class="col-sm-12" id="basicExample">
-            <input placeholder="dd/mm/yyyy" id="Intdate" name="Intdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Intdate")%>">
+            <input placeholder="mm/dd/yyyy" id="Intdate" name="Intdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Intdate")%>"required>
           </div>
           </div>
         </div>  
@@ -437,7 +430,7 @@ hypercare="0";
           <div class="col-md-12">
             <label class="control-label ">Plan Start Date</label>
             <div class="col-sm-12" id="basicExample">
-            <input placeholder="dd/mm/yyyy" id="Plandate" name="Plandate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Plandate")%>">
+            <input placeholder="mm/dd/yyyy" id="Plandate" name="Plandate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Plandate")%>">
           </div>
           </div>
         </div>    
@@ -446,7 +439,7 @@ hypercare="0";
           <div class="col-md-12">
             <label class="control-label ">Execution Start Date</label>
              <div class="col-sm-12" id="basicExample">
-            <input placeholder="dd/mm/yyyy" id="Execdate" name="Execdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Execdate")%>">
+            <input placeholder="mm/dd/yyyy" id="Execdate" name="Execdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Execdate")%>">
           </div>
           </div>
         </div>       
@@ -455,7 +448,7 @@ hypercare="0";
           <div class="col-md-12">
             <label class="control-label ">Hypercare Start Date</label>
              <div class="col-sm-12" id="basicExample">
-            <input placeholder="dd/mm/yyyy" id="Hyperdate" name="Hyperdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Hyperdate")%>">
+            <input placeholder="mm/dd/yyyy" id="Hyperdate" name="Hyperdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Hyperdate")%>">
           </div>
           </div>
         </div>  
@@ -464,7 +457,7 @@ hypercare="0";
           <div class="col-md-12">
             <label class="control-label "><div class="required">Project End Date</div></label>
             <div class="col-sm-12" id="basicExample">
-            <input placeholder="dd/mm/yyyy" id="Enddate" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Enddate")%>" required>
+            <input placeholder="mm/dd/yyyy" id="Enddate" name="Enddate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Enddate")%>" required>
           </div>
           </div>
         </div> 
