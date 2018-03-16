@@ -120,11 +120,11 @@ app_Name=(String)session.getAttribute("appidd");
 String query4 = "select * from appinfo where appname ='"+app_Name+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
-String query1 = "select * from business";
+String query1 = "select * from business where appname ='"+app_Name+"'";
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
 
-String query2 = "select * from technical";
+String query2 = "select * from technical where appname ='"+app_Name+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
 String query3 = "select * from archivalRequirement where appname ='"+app_Name+"'";

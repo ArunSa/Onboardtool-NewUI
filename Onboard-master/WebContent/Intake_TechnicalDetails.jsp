@@ -167,7 +167,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
       <li><%
                          String uid=(String)details.getAttribute("username");
                          String role=(String)details.getAttribute("role");%>
- <p><%=uid%>&nbsp;logged in as &nbsp;<span><%=role%></span></p>
+ <p><span id="nav_userid"><%=uid%>&nbsp;logged in as &nbsp;</span><span id='nav_role'><%=role%></span></p>
 </li>  
 <li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
@@ -460,11 +460,11 @@ if(implement == null)
           
         </div>
          <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Does Unstructured or Hybrid business objects needs to be archived?</div></label>                                             
-                                            <select id="reason1" class="form-control" name="archneed" required> 
-                                           
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
+                                            <label class="control-label"><div class="required">Does Unstructured or Hybrid business objects needs to be archived?</div></label>                                             
+                                            <select id="archneed" class="form-control" name="archneed"> 
+                                           <option></option>
+                                                 <option value="yes">Yes</option>                                                 
+                                                <option value="no">No</option>  
                                                                                                 
                                             </select>
                                         </div>  
@@ -566,7 +566,7 @@ if(implement == null)
           </div>
           
         </div> 
-                                     <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform()"> <a class="collapsed"  href="#collapse2" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                     <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform()"> <a class="collapsed"  href="#collapse2" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
                                         
                                 </div>                                 
                             </div>                             
@@ -727,8 +727,8 @@ if(implement == null)
           </div>
           
         </div>                    
-         <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform1();"> <a class="collapsed" href="#collapse3" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-        <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+         <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt1" onclick="validateform1();"> <a class="collapsed" href="#collapse3" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
+        <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new1" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                                                     
                                     </form>
                                     
@@ -753,7 +753,7 @@ if(implement == null)
    
     <label text-align:"left">Downloadable Attachment4</label>
     <input type="file"  id="file3" name="file" size="60" />   
-    <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+    <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new3" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                                             
                                     </form>
                                 </div>                                 

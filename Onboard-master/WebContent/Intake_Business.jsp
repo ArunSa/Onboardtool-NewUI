@@ -413,7 +413,7 @@ if(implement == null)
                                             <div class="required">Legacy Application Name&nbsp;
                                             </div>
                                             </label>
-                                            <input type="text" class="form-control" id="legappname"  name="legappname" value=""  />
+                                            <input type="text" class="form-control" id="legappname"  name="legappname" value="<%=app_Name%>"  />
                                         </div>
                                         
                                        <div class="form-group"> 
@@ -585,7 +585,7 @@ if(implement == null)
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Trigger Table/Column</div></label>
-            <input  id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="triggertable" name="triggertable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
         </div> 
@@ -649,7 +649,7 @@ if(implement == null)
           </div>
           
         </div>             
-           <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform1()"> <a class="collapsed"  href="#collapse3">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
+           <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt1" onclick="validateform1()"> <a class="collapsed"  href="#collapse3">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
                                        <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                         
                                     </form>
@@ -680,8 +680,8 @@ if(implement == null)
                                             <label class="control-label"> 
                                                 <input id="archive" type="checkbox" name = "archive" required /><div class="required">BI Engagement should be initiated by Application owner and completed prior archiving </div></label>
                                         </div>                                        
-                                     <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform2()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                      <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+                                     <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform2()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                      <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new2" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                        
                                 </div>                                 
                             </div>                             
@@ -816,7 +816,7 @@ if(implement == null)
           </div>
           
         </div> 
-                           <h5>Security Information:
+                           <h4>Security Information:</h4>
                                          <div class="form-group"> 
                                             <label class="control-label" for="formInput26"><div class="">Does the application have localization requirement/ regulations</div></label>                                             
                                             <select id="localreq" class="form-control" name="localreq" > 
@@ -847,7 +847,7 @@ if(implement == null)
                                          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
-            <input  id="vendor1" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="datacenters" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
@@ -902,7 +902,7 @@ if(implement == null)
           </div>
           
         </div> 
-                                         <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="validateform3()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+                                         <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new3" onclick="validateform3()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                              
                                 </div>                                 
                             </div>                             
@@ -936,6 +936,12 @@ catch(Exception e){}
         </div>
         <!-- /.main-wrapper -->
          
+         <script>
+         
+         if(document.getElementById('role_info').value=="XR" ||document.getElementById('role_info').value=="R" )
+        	 
+         	checkk();
+         </script>
         <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script src="js/jquery-ui/jquery-ui.min.js"></script>
