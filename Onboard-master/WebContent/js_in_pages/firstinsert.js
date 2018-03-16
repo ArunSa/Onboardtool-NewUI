@@ -2,7 +2,7 @@
 function editRecord(){
     var f=document.form;
     f.method="post";
-    f.action='newapplication.jsp';
+    f.action='Intake_NewApplication.jsp';
     f.submit();
 }
 function edit(id){
