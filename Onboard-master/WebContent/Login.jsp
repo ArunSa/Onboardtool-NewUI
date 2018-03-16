@@ -185,6 +185,7 @@ class Role
 <body  background="assets/images/bg.jpg">
 	<%@ page import="java.sql.*"%>
 	<%@ page import="javax.sql.*"%>
+	<%@ page import="onboard.encryption"%> 
 	
 
 <jsp:include page="db_creation.jsp"/>
@@ -420,7 +421,10 @@ if(userid.equals("admin")&&pwd.equals("admin"))
 if(rs.next()) 
 {
 	
-	if((rs.getString(5).equals(pwd))) 
+	encryption et=new encryption();
+	  String passw=(String)et.decrypt(rs.getString(5));
+	 System.out.println("decrypted pass is "+passw+" and entered passw is "+pwd);
+		if((passw.equals(pwd)))
 { 
 	details.setAttribute("role",rs.getString(7));
 	details.setAttribute("projects",rs.getString(6));
