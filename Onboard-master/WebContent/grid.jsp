@@ -111,7 +111,7 @@ if(rs.next())
                 			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
-                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                            
                 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
                 				<span class="sr-only">Toggle navigation</span>
                 				<i class="fa fa-ellipsis-v"></i>
@@ -177,20 +177,42 @@ if(rs.next())
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+       
+            <div class="col-md-12" id="box">
+<div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
-               
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
 
-                <div class="col-md-3 col-sm-3">
+ 
+ </div>
+ 
+</div>
+               <div class="col-md-2 col-sm-2">
+                
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">App Emphasize</h6>
                </center>
+               
                   </a>
-                </div>
+                 </div>
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
 
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
+                 
                   <a href="Applications.jsp">
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -198,15 +220,20 @@ if(rs.next())
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+             <div class="col-md-1 col-sm-1" id="arrow">
+                     <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+             </div>
+              <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-<div class="col-md-3 col-sm-3">
+                <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -217,12 +244,19 @@ if(rs.next())
             </div>
         </div>
     </div>
-
+     <div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+                 
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box1">
 
- <div class="col-md-3 col-sm-3">
+ <div class="col-md-2 col-sm-2">
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -230,9 +264,11 @@ if(rs.next())
                    </center>
                   </a>
                 </div>
-                
+                <div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3">
+                 </div>
+
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -240,8 +276,10 @@ if(rs.next())
                  </center>
                   </a>
                 </div>
+<div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3">
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -249,8 +287,10 @@ if(rs.next())
                  </center>
                   </a>
                 </div>
+<div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3">
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -277,11 +317,28 @@ if(rs.next())
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
 
-                
+                <div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
+
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -289,8 +346,10 @@ if(rs.next())
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -298,33 +357,20 @@ if(rs.next())
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-
-<div class="col-md-3 col-sm-3" id="testDecom">
-                  <a href="Admin_UserConfiguration.jsp">
-                   <center>
-                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Admin</h6>
-                   </center>
-                  </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<div class="row mt-50 grid2">
-    <div class="container">
-            <div class="col-md-12">
-
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -332,8 +378,33 @@ if(rs.next())
                    </center>
                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+ <div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+<div class="row mt-50 grid2">
+    <div class="container">
+            <div class="col-md-12" id="box1">
+<div class="col-md-2 col-sm-2" id="testDecom">
+                  <a href="Admin_UserConfiguration.jsp">
+                   <center>
+                   <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Admin</h6>
+                   </center>
+                  </a>
+                </div>
+  <div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3" >
+                 </div>
+                
+
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -341,8 +412,10 @@ if(rs.next())
                  </center>
                   </a>
                 </div>
+  <div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -350,8 +423,10 @@ if(rs.next())
                  </center>
                   </a>
                 </div>
+  <div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3" id="testDecom">
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -377,10 +452,27 @@ else if(roles.equals("ArchivalAdmin"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
+<div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
                 
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -388,8 +480,10 @@ else if(roles.equals("ArchivalAdmin"))
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -397,15 +491,20 @@ else if(roles.equals("ArchivalAdmin"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-<div class="col-md-3 col-sm-3">
+                <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+<div class="col-md-2 col-sm-2">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -416,13 +515,20 @@ else if(roles.equals("ArchivalAdmin"))
             </div>
         </div>
     </div>
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
 
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box1">
 
                 
-<div class="col-md-3 col-sm-3" >
+<div class="col-md-2 col-sm-2" >
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -430,8 +536,10 @@ else if(roles.equals("ArchivalAdmin"))
                    </center>
                   </a>
                 </div>
+<div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3" >
+                 </div>
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -439,8 +547,10 @@ else if(roles.equals("ArchivalAdmin"))
                  </center>
                   </a>
                 </div>
+<div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3">
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -448,8 +558,10 @@ else if(roles.equals("ArchivalAdmin"))
                  </center>
                   </a>
                 </div>
+<div class="col-md-1 col-sm-1" id="arrow">
 
-                <div class="col-md-3 col-sm-3" >
+                 </div>
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -473,10 +585,27 @@ else if(roles.equals("ArchivalProgramManager"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
 
-               
-                <div class="col-md-3 col-sm-3">
+               <div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
+
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -484,8 +613,10 @@ else if(roles.equals("ArchivalProgramManager"))
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -493,15 +624,20 @@ else if(roles.equals("ArchivalProgramManager"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
- <div class="col-md-3 col-sm-3">
+                <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+ <div class="col-md-2 col-sm-2">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -513,10 +649,18 @@ else if(roles.equals("ArchivalProgramManager"))
         </div>
     </div>
 
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
- <div class="col-md-3 col-sm-3" >
+            <div class="col-md-12" id="box1">
+ <div class="col-md-2 col-sm-2" >
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -524,10 +668,12 @@ else if(roles.equals("ArchivalProgramManager"))
                    </center>
                   </a>
                 </div>
-
-               
-
-                <div class="col-md-3 col-sm-3" >
+ 
+				  <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+				 
+                               <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -535,8 +681,12 @@ else if(roles.equals("ArchivalProgramManager"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+ 
+				  <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -544,8 +694,12 @@ else if(roles.equals("ArchivalProgramManager"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" >
+ 
+				  <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -570,11 +724,28 @@ else if(roles.equals("LegacyBusinessSME"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
+<div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
                 
 
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -582,8 +753,10 @@ else if(roles.equals("LegacyBusinessSME"))
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -591,15 +764,20 @@ else if(roles.equals("LegacyBusinessSME"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-<div class="col-md-3 col-sm-3" id="testDecom">
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -611,10 +789,19 @@ else if(roles.equals("LegacyBusinessSME"))
         </div>
     </div>
 
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+
+
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
-<div class="col-md-3 col-sm-3" id="testDecom">
+            <div class="col-md-12" id="box1">
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -623,8 +810,10 @@ else if(roles.equals("LegacyBusinessSME"))
                   </a>
                 </div>
                 
-
-                <div class="col-md-3 col-sm-3" >
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -632,8 +821,10 @@ else if(roles.equals("LegacyBusinessSME"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -641,8 +832,10 @@ else if(roles.equals("LegacyBusinessSME"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -668,11 +861,28 @@ else if(roles.equals("LegacyTechnicalSME"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
 
-               
+               <div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
-                <div class="col-md-3 col-sm-3">
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
+
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -680,8 +890,11 @@ else if(roles.equals("LegacyTechnicalSME"))
                </center>
                   </a>
                 </div>
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
 
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -689,15 +902,26 @@ else if(roles.equals("LegacyTechnicalSME"))
                    </center>
                   </a>
                 </div>
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                
 
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-<div class="col-md-3 col-sm-3" id="testDecom">
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                
+                
+                
+                
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -708,11 +932,17 @@ else if(roles.equals("LegacyTechnicalSME"))
             </div>
         </div>
     </div>
-
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
- <div class="col-md-3 col-sm-3" id="testDecom">
+            <div class="col-md-12" id="box1">
+ <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -720,9 +950,11 @@ else if(roles.equals("LegacyTechnicalSME"))
                    </center>
                   </a>
                 </div>
+                 <div class="col-md-1 col-sm-1" id="arrow">
                 
+                 </div>
 
-                <div class="col-md-3 col-sm-3" >
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -730,8 +962,10 @@ else if(roles.equals("LegacyTechnicalSME"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -739,7 +973,9 @@ else if(roles.equals("LegacyTechnicalSME"))
                  </center>
                   </a>
                 </div>
-
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
                 <div class="col-md-3 col-sm-3" id="testDecom">
                   <a href="#">
                  <center>
@@ -763,10 +999,27 @@ else if(roles.equals("LegacyProgramManager"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
+<div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
                 
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -774,8 +1027,11 @@ else if(roles.equals("LegacyProgramManager"))
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -783,15 +1039,22 @@ else if(roles.equals("LegacyProgramManager"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
- <div class="col-md-3 col-sm-3" id="testDecom">
+                <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+				 
+ <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -804,10 +1067,19 @@ else if(roles.equals("LegacyProgramManager"))
         </div>
     </div>
 
+
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+				 
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
-<div class="col-md-3 col-sm-3" id="testDecom">
+            <div class="col-md-12" id="box1">
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -815,9 +1087,11 @@ else if(roles.equals("LegacyProgramManager"))
                    </center>
                   </a>
                 </div>
-
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
                
-                <div class="col-md-3 col-sm-3" >
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -825,8 +1099,10 @@ else if(roles.equals("LegacyProgramManager"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -834,8 +1110,10 @@ else if(roles.equals("LegacyProgramManager"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -861,11 +1139,28 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
 
-                
+                <div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
-                <div class="col-md-3 col-sm-3">
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
+
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -873,8 +1168,10 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -882,15 +1179,20 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
- <div class="col-md-3 col-sm-3" id="testDecom">
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+ <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -902,12 +1204,20 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
         </div>
     </div>
 
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+				 
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box1">
 
                
-<div class="col-md-3 col-sm-3" id="testDecom">
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -915,7 +1225,10 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                    </center>
                   </a>
                 </div>
-                <div class="col-md-3 col-sm-3" >
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -923,8 +1236,10 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -932,8 +1247,10 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -956,10 +1273,27 @@ else if(roles.equals("ArchivalTechnicalLead"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
 
-                
-                <div class="col-md-3 col-sm-3">
+                 <div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
+
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -967,24 +1301,31 @@ else if(roles.equals("ArchivalTechnicalLead"))
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
-                  <a href="Applications.jsp" >
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
+                  <a href="Applications.jsp">
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Intake</h6>
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-<div class="col-md-3 col-sm-3" id="testDecom">
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -996,10 +1337,22 @@ else if(roles.equals("ArchivalTechnicalLead"))
         </div>
     </div>
 
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+				 
+				
+
+
+
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
-<div class="col-md-3 col-sm-3" id="testDecom">
+            <div class="col-md-12" id="box1">
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1007,10 +1360,13 @@ else if(roles.equals("ArchivalTechnicalLead"))
                    </center>
                   </a>
                 </div>
-
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+				 
                 
 
-                <div class="col-md-3 col-sm-3" >
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1018,8 +1374,11 @@ else if(roles.equals("ArchivalTechnicalLead"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1027,8 +1386,11 @@ else if(roles.equals("ArchivalTechnicalLead"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1052,11 +1414,28 @@ else if(roles.equals("ArchivalProjectManager"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
 
-                
+                <div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
 
-                <div class="col-md-3 col-sm-3">
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
+
+                <div class="col-md-2 col-sm-2">
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1065,7 +1444,10 @@ else if(roles.equals("ArchivalProjectManager"))
                   </a>
                 </div>
 
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1073,15 +1455,20 @@ else if(roles.equals("ArchivalProjectManager"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-<div class="col-md-3 col-sm-3">
+                 <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+<div class="col-md-2 col-sm-2">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1093,10 +1480,20 @@ else if(roles.equals("ArchivalProjectManager"))
         </div>
     </div>
 
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+				 
+
+
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
-<div class="col-md-3 col-sm-3" >
+            <div class="col-md-12" id="box1">
+<div class="col-md-2 col-sm-2" >
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1104,9 +1501,11 @@ else if(roles.equals("ArchivalProjectManager"))
                    </center>
                   </a>
                 </div>
+                <div class="col-md-1 col-sm-1" id="arrow">
                 
+                 </div>
 
-                <div class="col-md-3 col-sm-3" >
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1114,8 +1513,10 @@ else if(roles.equals("ArchivalProjectManager"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1124,7 +1525,10 @@ else if(roles.equals("ArchivalProjectManager"))
                   </a>
                 </div>
 
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1148,10 +1552,27 @@ else if(roles.equals("ArchivalDeveloper"))
 
     <div class="row mt-50 grid1">
         <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box">
 
-                
-                <div class="col-md-3 col-sm-3" >
+                <div class="container-fluid" >
+ <div class="row">
+ <div class="col-md-4 col-sm-4">
+ </div>
+ 
+<div class="col-md-6 col-sm-6">
+<span>
+
+<div></i><span><hr class="hr-primary" /></i></span></div>
+<div><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-25px 6px"><i class="fa fa-arrow-down" style="font-size:24px;color:rgba(66,133,244,.8); margin:-10px 378px"></i></i></div>
+<span>
+    
+ </div>
+
+ 
+ </div>
+ 
+</div>
+                <div class="col-md-2 col-sm-2" >
                   <a href="AppEmphasize_EditProject.jsp">
                  <center>
                    <img src="images/grid/app.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1159,8 +1580,11 @@ else if(roles.equals("ArchivalDeveloper"))
                </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2">
                   <a href="Applications.jsp" >
                    <center>
                    <img src="images/grid/intake.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1168,15 +1592,22 @@ else if(roles.equals("ArchivalDeveloper"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3">
+<div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+				 
+                <div class="col-md-2 col-sm-2">
                   <a href="archive_exec_samp.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
                    </center> </a>
                 </div>
-<div class="col-md-3 col-sm-3" id="testDecom">
+                <div class="col-md-1 col-sm-1" id="arrow">
+                <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+				 
+<div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                    <center>
                    <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1187,13 +1618,20 @@ else if(roles.equals("ArchivalDeveloper"))
             </div>
         </div>
     </div>
-
+<div class="col-md-5 col-sm-5"></div>
+ <div class="col-md-2 col-sm-2" id="varrow">
+                <i class="fa fa-arrows-v" style="font-size:48px;color:#3D7DDE"></i>
+                 </div>
+                 <div class="col-md-5 col-sm-5">
+               
+                 </div>
+				 
 <div class="row mt-50 grid2">
     <div class="container">
-            <div class="col-md-12">
+            <div class="col-md-12" id="box1">
 
                 
-<div class="col-md-3 col-sm-3"  id="testDecom" >
+<div class="col-md-2 col-sm-2"  id="testDecom" >
                   <a href="Admin_UserConfiguration.jsp">
                    <center>
                    <img src="images/grid/admin.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1201,8 +1639,10 @@ else if(roles.equals("ArchivalDeveloper"))
                    </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" >
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" >
                   <a href="#">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1210,8 +1650,10 @@ else if(roles.equals("ArchivalDeveloper"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/program-governance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1219,8 +1661,10 @@ else if(roles.equals("ArchivalDeveloper"))
                  </center>
                   </a>
                 </div>
-
-                <div class="col-md-3 col-sm-3" id="testDecom">
+ <div class="col-md-1 col-sm-1" id="arrow">
+                
+                 </div>
+                <div class="col-md-2 col-sm-2" id="testDecom">
                   <a href="#">
                  <center>
                    <img src="images/grid/finance.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -1246,7 +1690,7 @@ else if(roles.equals("ArchivalDeveloper"))
 
                       
                        
-
+</br>
                     </div>
                     <!-- /.main-page -->
                  
