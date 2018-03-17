@@ -940,6 +940,7 @@ catch(Exception e){}
          if(document.getElementById('role_info').value=="XR" ||document.getElementById('role_info').value=="R" )
         	 
          	checkk();
+         </script>
          
          <!-- ========== COMMON JS FILES ========== -->
          <script src="js/jquery/jquery-2.2.4.min.js"></script>
