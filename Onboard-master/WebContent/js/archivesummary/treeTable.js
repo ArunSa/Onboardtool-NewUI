@@ -190,11 +190,11 @@ var com_github_culmat_jsTreeTable =  (function(){
 			var level = $(tr).attr('data-tt-level')
 			var td = $("td",tr).first()
 			if(tr.trChildren.length>0){
-				td.prepend($('<img id="state" style="cursor:pointer" src="'+imgCollapse+'"/>'))			
+				td.prepend($('<img id="state" style="cursor:pointer; position: absolute; left: 30px; margin-top: 9px;" src="'+imgCollapse+'"/>'))			
 			}  else {
-				td.prepend($('<span style="padding-left:16px;" /></span>'))
+				td.prepend($('<span style="padding-left:0px;" /></span>'))
 			}
-			td.prepend($('<span style="padding-left:'+(15*parseInt(level-1))+'px;" /></span>'))
+			td.prepend($('<span style="padding-left:'+(0*parseInt(level-1))+'px;" /></span>'))
 			td.css('white-space','nowrap')
 			tr.trExpand = function(changeState){
 				if(this.trChildren.length < 1) return

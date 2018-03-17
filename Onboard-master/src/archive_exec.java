@@ -209,7 +209,7 @@ hr[i]=request.getParameter("hrs"+i);
 	        }
 	        
 	        // return response
-	        response.sendRedirect("archive_exec_samp.jsp");
+	        response.sendRedirect("Archive_Execution.jsp");
 
 }
 }

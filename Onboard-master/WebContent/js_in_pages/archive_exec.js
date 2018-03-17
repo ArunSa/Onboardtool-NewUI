@@ -1,6 +1,7 @@
 
 	  function getID(lev,pln_srt,pln_end,act_srt,status,pln_hrs,act_hrs,progressbar,actual_enddate)
 	  {
+		  window.alert(lev+" "+pln_srt);
 		 // window.alert(pln_srt+" "+pln_end+" "+act_srt+" "+status.id+" "+pln_hrs.id+" "+act_hrs.id+" "+progressbar.id);
 		 var startDate =pln_srt;
 		  var endDate =pln_end;
@@ -23,6 +24,8 @@
 
 		  var percent = (actual_Hours/total_hours) * 100;
 
+		  alert(actual_Hours+" "+total_hours);
+		  alert(percent);
 		  //alert("minDate "+minDate);
 		  //alert("maxDate "+maxDate);
 		  percentage=100;
@@ -104,7 +107,6 @@
 		  $('#'+status.id).css({background:'green'});
 		  }
 		  }
-	
 		  }
 	
 	  function getDetID(total_hours,actual_Hours,progressbar,status,actual_enddate,datecount)
@@ -171,6 +173,7 @@
 	  
 	  function call_fun(name,a,b,c,d,e,g,h,i,j,k,l)
 	  {
+		  window.alert("inside call function");
 		  var comments=document.getElementById("cmnts"+(a-1)).value;
 		 var f=document.loginForm;
 		    f.method="post";
@@ -276,7 +279,7 @@
     	 cnt=0;
      }
      if(cnt==1){
-    	$( "#pln_srt_date"+(seq_no-1)).datepicker({
+                	$( "#pln_srt_date"+(seq_no-1)).datepicker({
             format: "mm/dd/yyyy",
             autoclose: true
         });

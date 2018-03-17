@@ -218,7 +218,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         </ul>
                                     </li>
 
-                        <li><a href="archive_exec_samp.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
+                        <li><a href="Archive_Execution.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
                                 </ul>
                     
                             </div>

@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
  <meta charset="UTF-8" />
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -150,7 +149,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 <div class="content-container">
             
                     <!-- ========== LEFT SIDEBAR ========== -->
-                    <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+  <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                         <div class="sidebar-content" id='jqxWidget'>
               
               
@@ -160,64 +159,64 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
-                                  <li class="has-children">
-                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                    <li class="has-children">
+                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a> <span>Parameters</span></a></li>
+                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a> <span>Archival Cost Estimate</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="AppEmphasize_Business.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="business.jsp" class="active-menu"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="business.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="business.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="business.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="business.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Intake_TechnicalDetails.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="component.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="component.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="component.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="component.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="Intake_ArchiveRequirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="requirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="requirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="requirements.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
 
-                        <li><a href="archive_exec_samp.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
+                        		<li><a href="Archive_Execution.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
                                 </ul>
                     
                             </div>
@@ -477,7 +476,7 @@ if(implement == null)
                                         
                                         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label"><div class="">Read Only Date</div></label>
+            <label class="control-label"><div class="required">Read Only Date</div></label>
             <input placeholder="mm/dd/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
@@ -680,7 +679,7 @@ if(implement == null)
                                             <label class="control-label"> 
                                                 <input id="archive" type="checkbox" name = "archive" required /><div class="required">BI Engagement should be initiated by Application owner and completed prior archiving </div></label>
                                         </div>                                        
-                                     <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform2()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                     <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform3()">   Next<span class="glyphicon glyphicon-chevron-right"></span></button>
                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new2" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                        
                                 </div>                                 
@@ -941,118 +940,117 @@ catch(Exception e){}
          if(document.getElementById('role_info').value=="XR" ||document.getElementById('role_info').value=="R" )
         	 
          	checkk();
+         
+         <!-- ========== COMMON JS FILES ========== -->
+         <script src="js/jquery/jquery-2.2.4.min.js"></script>
+         <script src="js/jquery-ui/jquery-ui.min.js"></script>
+         <script src="js/bootstrap/bootstrap.min.js"></script>
+         <script src="js/pace/pace.min.js"></script>
+         <script src="js/lobipanel/lobipanel.min.js"></script>
+         <script src="js/iscroll/iscroll.js"></script>
+
+
+         <script type="text/javascript">
+             $(document).ready(function() {
+                 $(".lis").click(function() {
+                     $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
+                     $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
+                 });
+                 $(".gr").click(function() {
+                     $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
+                     $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
+                 });
+             });
          </script>
-        <!-- ========== COMMON JS FILES ========== -->
-        <script src="js/jquery/jquery-2.2.4.min.js"></script>
-        <script src="js/jquery-ui/jquery-ui.min.js"></script>
-        <script src="js/bootstrap/bootstrap.min.js"></script>
-        <script src="js/pace/pace.min.js"></script>
-        <script src="js/lobipanel/lobipanel.min.js"></script>
-        <script src="js/iscroll/iscroll.js"></script>
-
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".lis").click(function() {
-                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-grid");
-                    $(".cbp-vm-switcher").addClass("cbp-vm-view-list");
-                });
-                $(".gr").click(function() {
-                    $(".cbp-vm-switcher").addClass("cbp-vm-view-grid");
-                    $(".cbp-vm-switcher").removeClass("cbp-vm-view-list");
-                });
-            });
-        </script>
-      
-
-        <!-- ========== PAGE JS FILES ========== -->
-        <script src="js/prism/prism.js"></script>
-        <script src="js/waypoint/waypoints.min.js"></script>
-        <script src="js/counterUp/jquery.counterup.min.js"></script>
-        <script src="js/amcharts/amcharts.js"></script>
-        <script src="js/amcharts/serial.js"></script>
-        <script src="js/amcharts/plugins/export/export.min.js"></script>
-        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
-        <script src="js/amcharts/themes/light.js"></script>
-        <script src="js/toastr/toastr.min.js"></script>
-        <script src="js/icheck/icheck.min.js"></script>
-        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
-
-        <!-- ========== THEME JS ========== -->
-        <script src="js/production-chart.js"></script>
-        <script src="js/traffic-chart.js"></script>
-        <script src="js/task-list.js"></script>
-
-        <!-- ========== THEME JS ========== -->
-        <script src="js/main.js"></script>
        
-       
-        <!-- ========== PAGE JS FILES ========== -->
-        <script src="js/prism/prism.js"></script>
-        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
-        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
-        <script type="text/javascript" src="js/date-picker/moment.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
+         <!-- ========== PAGE JS FILES ========== -->
+         <script src="js/prism/prism.js"></script>
+         <script src="js/waypoint/waypoints.min.js"></script>
+         <script src="js/counterUp/jquery.counterup.min.js"></script>
+         <script src="js/amcharts/amcharts.js"></script>
+         <script src="js/amcharts/serial.js"></script>
+         <script src="js/amcharts/plugins/export/export.min.js"></script>
+         <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+         <script src="js/amcharts/themes/light.js"></script>
+         <script src="js/toastr/toastr.min.js"></script>
+         <script src="js/icheck/icheck.min.js"></script>
+         <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
 
-        <!-- ========== THEME JS ========== -->
+         <!-- ========== THEME JS ========== -->
+         <script src="js/production-chart.js"></script>
+         <script src="js/traffic-chart.js"></script>
+         <script src="js/task-list.js"></script>
+
+         <!-- ========== THEME JS ========== -->
+         <script src="js/main.js"></script>
         
-<script type="text/javascript">
-    $('.datepicker').datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d'
-});
-</script>
+        
+         <!-- ========== PAGE JS FILES ========== -->
+         <script src="js/prism/prism.js"></script>
+         <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+         <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+         <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+         <script type="text/javascript" src="js/date-picker/moment.js"></script>
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 
-        <!-- ========== THEME JS ========== -->
-        <script>
-            $(function($) {
+         <!-- ========== THEME JS ========== -->
+         
+ <script type="text/javascript">
+     $('.datepicker').datepicker({
+     format: 'mm/dd/yyyy',
+     startDate: '-3d'
+ });
+ </script>
 
-                // 1st  datepicker
-                $('#basicExample .time').timepicker({
-                'showDuration': true,
-                'timeFormat': 'g:ia'
-                });
 
-                $('#basicExample .date').datepicker({
-                'format': 'm/d/yyyy',
-                'autoclose': true
-                });
+         <!-- ========== THEME JS ========== -->
+         <script>
+             $(function($) {
 
-                var basicExampleEl = document.getElementById('basicExample');
-                var datepair = new Datepair(basicExampleEl);
+                 // 1st  datepicker
+                 $('#basicExample .time').timepicker({
+                 'showDuration': true,
+                 'timeFormat': 'g:ia'
+                 });
 
-                // 2nd  datepicker
-                $('#datetimepicker1').datetimepicker({
-                    debug: true
-                });
+                 $('#basicExample .date').datepicker({
+                 'format': 'm/d/yyyy',
+                 'autoclose': true
+                 });
 
-                // 3rd  datepicker
-                $('#datetimepicker9').datetimepicker({
-                viewMode: 'years'
-                });
+                 var basicExampleEl = document.getElementById('basicExample');
+                 var datepair = new Datepair(basicExampleEl);
 
-                // 4th  datepicker
-                $('#datetimepicker10').datetimepicker({
-                viewMode: 'years',
-                format: 'MM/YYYY'
-                });
+                 // 2nd  datepicker
+                 $('#datetimepicker1').datetimepicker({
+                     debug: true
+                 });
 
-                // 5th  datepicker
-                $('#datetimepicker11').datetimepicker({
-                daysOfWeekDisabled: [0, 6]
-                });
+                 // 3rd  datepicker
+                 $('#datetimepicker9').datetimepicker({
+                 viewMode: 'years'
+                 });
 
-                // 6th  datepicker
-                $('#datetimepicker12').datetimepicker({
-                    inline: true,
-                    sideBySide: true
-                });
-            });
-        </script>
-       
+                 // 4th  datepicker
+                 $('#datetimepicker10').datetimepicker({
+                 viewMode: 'years',
+                 format: 'MM/YYYY'
+                 });
+
+                 // 5th  datepicker
+                 $('#datetimepicker11').datetimepicker({
+                 daysOfWeekDisabled: [0, 6]
+                 });
+
+                 // 6th  datepicker
+                 $('#datetimepicker12').datetimepicker({
+                     inline: true,
+                     sideBySide: true
+                 });
+             });
+         </script>
 
 </body>
 </html>

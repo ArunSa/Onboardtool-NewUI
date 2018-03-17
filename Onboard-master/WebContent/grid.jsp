@@ -224,7 +224,7 @@ if(rs.next())
                      <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
              </div>
               <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -361,7 +361,7 @@ if(rs.next())
                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
                  </div>
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -495,7 +495,7 @@ else if(roles.equals("ArchivalAdmin"))
                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
                  </div>
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -628,7 +628,7 @@ else if(roles.equals("ArchivalProgramManager"))
                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
                  </div>
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -768,7 +768,7 @@ else if(roles.equals("LegacyBusinessSME"))
                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
                  </div>
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -908,7 +908,7 @@ else if(roles.equals("LegacyTechnicalSME"))
                 
 
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -1044,7 +1044,7 @@ else if(roles.equals("LegacyProgramManager"))
                  </div>
 				 
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -1183,7 +1183,7 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
                  </div>
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -1316,7 +1316,7 @@ else if(roles.equals("ArchivalTechnicalLead"))
                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
                  </div>
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -1459,7 +1459,7 @@ else if(roles.equals("ArchivalProjectManager"))
                 <i class="fa fa-arrows-h" style="font-size:48px;color:#3D7DDE"></i>
                  </div>
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>
@@ -1597,7 +1597,7 @@ else if(roles.equals("ArchivalDeveloper"))
                  </div>
 				 
                 <div class="col-md-2 col-sm-2">
-                  <a href="archive_exec_samp.jsp">
+                  <a href="Archive_Execution.jsp">
                    <center>
                    <img src="images/grid/archival-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Archival Execution</h6>

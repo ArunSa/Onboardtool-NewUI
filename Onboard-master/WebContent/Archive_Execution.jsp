@@ -1,11 +1,16 @@
 <!DOCTYPE html>  
 <html>  
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Onboard - Archive Executive Sample</title>
-
+        
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+  
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
@@ -15,6 +20,12 @@
 
         <link rel="stylesheet" type="text/css" href="css/date-picker/jquery.timepicker.css" />
         <link rel="stylesheet" type="text/css" href="css/date-picker/bootstrap-datepicker.css" />
+
+		<script type="text/javascript" src="js/archivesummary/jqueryprogressbar.js"></script>
+		<script type="text/javascript" src="js/archivesummary/main.js"></script>
+        <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
+		<link type="text/css" rel="stylesheet" href="old/css/progressbar.css" />
+		<script src="js/archivesummary/treeTable.js"></script>
 
         <!-- ========== PAGE STYLES ========== -->
         <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
@@ -33,8 +44,18 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
+	
+<script type="text/javascript" src="js_in_pages/archive_exec.js"></script>
+<script type="text/javascript" src="js_in_pages/tree.js"></script>
+<link rel="stylesheet" href="js_in_pages/archive_exec.css" type="text/css" />
+<link rel="stylesheet" href="old/css0/progressbar.css" type="text/css" />
 
+
+		<script src="js/archivesummary/jstree.min.js"></script>
+
+		
 </head>
+
 <body class="top-navbar-fixed">
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
@@ -45,10 +66,9 @@
 <%@page import="java.util.Calendar" %>
 
 <form class="form-signin" name="loginForm" method="post" action="archive_exec">
-	
-
-	 <div class="main-wrapper">
 	<%
+
+	
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setHeader("Expires", "0"); // Proxies.
@@ -81,12 +101,16 @@ String info=(String)details.getAttribute("archive_exec");
 
 	while(visit_rs.next())
 	{
+		if(visit_rs.getString(6)!=null || visit_rs.getString(1)!=null)
+		{
 		if(visit_rs.getString(1).equals(username) && visit_rs.getString(2).equals(strDate) && visit_rs.getString(3).equals("Archive Execution Module") && visit_rs.getString(6).equals(Project_Name) )
 		{
 			Statement stmtt = conn.createStatement();
 	         String queryy = "update visits set count=count+1,time='"+strTime+"' where uname='"+username+"' and module='Archive Execution Module' and Projects='"+Project_Name+"'";
 	         int count = stmtt.executeUpdate(queryy);
 	         flag=0;
+	         break;
+		}
 		}
 	}
 	if(flag==1)
@@ -128,18 +152,20 @@ ResultSet rs7 = st7.executeQuery(query7);
 
 if(rs4.next()){
 	%>
-<<<<<<< HEAD
 	
+	 <div class="main-wrapper">
+	 
             <!-- ========== TOP NAVBAR ========== -->
             <nav class="navbar top-navbar bg-white box-shadow">
             	<div class="container-fluid">
                     <div class="row">
                         <div class="navbar-header no-padding">
 
-                			<a class="navbar-brand" href="project.jsp" id="sitetitle">
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
-                           
+                           <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			
                 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
                 				<span class="sr-only">Toggle navigation</span>
                 				<i class="fa fa-ellipsis-v"></i>
@@ -148,6 +174,19 @@ if(rs4.next()){
                 				<i class="fa fa-bars"></i>
                 			</button>
                 		</div>
+                		 <% if(rs.next()){ %>
+                       <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" style="display:none;">                              
+                    <%
+                    String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
+                    Statement s2 = conn.createStatement();
+                    ResultSet rss = s2.executeQuery(q2);
+                    while(rss.next())
+                    {
+                    	session.setAttribute(rss.getString(3),rss.getString(15));
+                    	session.setAttribute((rss.getString(3)+"1"),rss.getString(1));
+                    }
+                    
+                    %>
                         <!-- /.navbar-header -->
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -167,7 +206,6 @@ if(rs4.next()){
             	<!-- /.container-fluid -->
             </nav>
  
- 
             <div class="content-wrapper">
                 <div class="content-container">
             
@@ -175,14 +213,13 @@ if(rs4.next()){
                     <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                         <div class="sidebar-content" id='jqxWidget'>
 							
-							
                             <div class="sidebar-nav">
                                 <ul class="side-nav color-gray">
                                     <li class="nav-header">
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
@@ -192,162 +229,55 @@ if(rs4.next()){
                                         <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
-=======
-<div class="container">
-<nav class=" navbar-fixed-top" style="background:#3276B1">
-            <div class="container-fluid">
-                
-                    <% if(rs.next()){ %>
-                    <a class="navbar-brand" href="Project_List.jsp" style="color:white"id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
-                       <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" hidden>                              
-                    <%
-                    String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
-                    Statement s2 = conn.createStatement();
-                    ResultSet rss = s2.executeQuery(q2);
-                    while(rss.next())
-                    {
-                    	session.setAttribute(rss.getString(3),rss.getString(15));
-                    	session.setAttribute((rss.getString(3)+"1"),rss.getString(1));
-                    }
-                    
-                    %>
-              
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                        <img src="assets/images/Logo sized.jpg" class="img-rounded" height="50" width="80" alt="Avatar">&nbsp;
-</li>
-                     <li>
- <p style="color:white; padding-top:15px;">logged in as &nbsp;<span><%=roles%></span></p>
-</li> 
-                        <li>
-                             <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </nav>
-        </div>
-            <div class="row">
-            <br>
-               
-               
-               
-               <div class="col-md-3 sidebar">
-               
-                  <div id='jqxWidget'>
-                  
-        <div id='jqxTree' style='visibility: hidden;  padding-top:30px;   float:right; '>
-                    <ul class="nav nav-sidebar" id ="sidemenu" >
-                        
-                        
 
-            <ul>
-                  <li id='home' item-selected='true'> <a href="Project_List.jsp"><i class="fa fa-home"></i>&nbsp;Home </a></li>
-                <li item-expanded='true'>App Emphasize Module
-                    <ul>
-                       <li item-expanded='true'>Project Details
-                    <ul>
-                        <li item-selected='true'><a href="AppEmphasize_EditProject.jsp">Project Information</a></li>
-                        <li><a href="AppEmphasize_Application.jsp">Application Details</a></li>
-                        </ul>
-                        </li>
-                        <li item-expanded='true'> <a href="AppEmphasize_Calculation.jsp">Application Prioritization</a>
-                         <ul>
-                                <li >Parameters</li>
-                                <li>Archival Complexity Calculation</li>
-                                <li>Archival Cost Estimate</li>
-                             
-                            </ul>
-                        </li>
-                        <li><a href="AppEmphasize_PrioritizedApplications.jsp">Application-Prioritized</li>
-
-                    </ul>
-                </li>
-                <li item-expanded='true'><a href='Applications.jsp'>Intake Module</a>
-                <ul>
-                <li item-expanded='true'>Business
-                <ul>
-                <li>Application Information</li>
-                <li>Legacy Retention Information</li>
-                <li>Archive Data Management</li>
-                <li>System Requirements</li>
-                
-                </ul></li>
-                <li item-expanded='true'>Technical
-                <ul>
-                <li>Application Data Information</li>
-                <li>Infrastructure & Environment Inforamation</li>
-                <li>Technical Information</li>
-                </ul>
-                </li>
-                
-                 <li item-expanded='true'>Archival Requirements
-                 <ul>
-                 <li>Screen/Report Requirements</li>
-                 <li>Archive Requirements</li>
-                 </ul>
-                 </li>
-                </ul>
-                </li>
-                <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
-               </li>                
-               
-                          </ul>
-    
-     </ul>
-         </div>
-   </div>
-                </div>
-               
->>>>>>> 2cfcd400562d33f0cf12532fddce75b7544228bd
-
+                                   
                                     <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Parameters</span></a></li>
-                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="firstinsert.jsp" class="active-menu"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
+                        			<li><a href="Archive_Execution.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
+                                    
                                 </ul>
 										
                             </div>
@@ -356,7 +286,6 @@ if(rs4.next()){
                         <!-- /.sidebar-content -->
                     </div>
                     <!-- /.left-sidebar -->
-              
               
 <!-- Projects List Start -->
 
@@ -368,7 +297,6 @@ if(rs4.next()){
 							<div class="container-fluid">
                     <h1 class="page-header">Projects</h1>
                       
-                 
  <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
 String plan=(String)session.getAttribute("Plan");
@@ -435,9 +363,9 @@ System.out.println(plan);
                     	});
                      </script>
                
-                 
-<div class="table-responsive">
-<table class="table table-bordered table-striped" style="align:center" id="table">
+<div class="table-responsive">             
+
+<table class="table table-bordered" style="align:center" id="table">
 <thead>
 <tr>
 <th style="width:70%;">Tasks </th> 
@@ -451,7 +379,7 @@ System.out.println(plan);
 <th>Progress %</th>
 <th style="width:20%;">Status</th>
 <th>Comments</th>
-<th></th>
+<th>Action</th>
 </tr>
 </thead>
 
@@ -465,20 +393,28 @@ while(rs3.next()){
 		pp++;
 	%>
 <tr style="text-align:center;" data-tt-id="<%=rs3.getString(10) %>">
-<td style="width:200px;"><b>
-<span style="color:#3071a9;font-size:150%;"><input  type="text"   placeholder="enter" id="task" name="name<%=i %>" value="<%=rs3.getString(3) %>" readonly /></span> <span style="float:right;cursor:pointer;" class="glyphicon glyphicon-plus" onclick="sub('<%=rs3.getString(1) %>','<%= (Integer.parseInt(rs3.getString(2))+1) %>','<%=rs4.getString(1) %>','<%=rs3.getString(10) %>')"></span></b></td>
+<td style="width:200px;">
+	<b>
+		<span style="color:#3071a9;font-size:150%; position:relative; left:5px;">
+		<input  type="text" placeholder="enter" id="task" name="name<%=i %>" value="<%=rs3.getString(3) %>" readonly /></span> 
+		<span style="float:right;cursor:pointer;" onclick="sub('<%=rs3.getString(1) %>','<%= (Integer.parseInt(rs3.getString(2))+1) %>','<%=rs4.getString(1) %>','<%=rs3.getString(10) %>')"></span>
+	</b>
+</td>
+
 <td style="display:none"><input type="text" id="seqnum<%=i %>" name="seqnum<%=i %>" value="<%=rs3.getInt(1) %>" hidden /></td>
 <td style="display:none"><input type="text" id="level<%=i %>" name="level<%=i %>" value="<%=rs3.getInt(2) %>" hidden /></td>
 <td><input  type="text" class="in"   placeholder="enter" name="mem_ass<%=i %>" value="<%=rs3.getString(4) %>" /></td>
-<td><input  type="text" class="in" id="pln_srt_date<%=i %>" name="pln_srt_date<%=i %>" value="<%=rs3.getString(7) %>" readonly/></td>
-<td><input  type="text" class="in" id="pln_end_date<%=i %>" name="pln_end_date<%=i %>" value="<%=rs3.getString(8) %>" /></td>
-<td><input type="text" class="in" id="act_srt_date<%=i %>" name="act_srt_date<%=i %>" value="<%=rs3.getString(5) %>" /></td>
-<td><input  type="text" class="in" id="act_end_date<%=i %>" name="act_end_date<%=i %>" value="<%=rs3.getString(6) %>"  /></td>
+<td id="basicExample"><input  type="text" class="in date start" id="pln_srt_date<%=i %>" name="pln_srt_date<%=i %>" value="<%=rs3.getString(7) %>" readonly/></td>
+<td id="basicExample"><input  type="text" class="in date start" id="pln_end_date<%=i %>" name="pln_end_date<%=i %>" value="<%=rs3.getString(8) %>" /></td>
+<td id="basicExample"><input type="text" class="in date start" id="act_srt_date<%=i %>" name="act_srt_date<%=i %>" value="<%=rs3.getString(5) %>" /></td>
+<td id="basicExample"><input  type="text" class="in date start" id="act_end_date<%=i %>" name="act_end_date<%=i %>" value="<%=rs3.getString(6) %>"  /></td>
 <td><input  type="text" class="in"  id="phours<%=i %>" name="phrs<%=i %>" value="<%=rs3.getString(13) %>" onclick="getID('<%=rs3.getInt(2) %>',document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('status<%=i %>'),document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('act_end_date<%=i %>').value)" /></td>
 <td><input  type="text" class="in"  id="hours<%=i %>" name="hrs<%=i %>" value="<%=rs3.getString(9) %>" onclick="getID('<%=rs3.getInt(2) %>',document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('status<%=i %>'),document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('act_end_date<%=i %>').value)"/></td>
-<td ><div class="progressbar" id="progressbar<%=i%>"></div></td>
-	<td ><input type="text" style="background-color:transparent;width:20%;" id="status<%=i %>"  /></td>
+<td ><div class="progressbar" id="progressbar<%=i%>"></td>
+<td ><input type="text" style="background-color:transparent;width:20%;" id="status<%=i %>"  /></td>
 <td></td>
+<td><i class="fa fa-plus"></i>  <i class="fa fa-edit"></i>  <i class="fa fa-trash"></i></td>
+
 <script>
 getDetID(document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('status<%=i %>'),document.getElementById('act_end_date<%=i %>').value,'<%= rs3.getString(17)%>');
 </script>
@@ -491,22 +427,30 @@ int progress=0;
 	{
 	
 	%>
-		<tr style="text-align:center;" data-tt-id="<%=rs3.getString(10) %>" data-tt-parent-id="<%=rs3.getString(11) %>">
-		&nbsp;&nbsp;<td style="width:200px;">
-		<span style="color:#00BFFF;font-size:100%;"><input  type="text"   placeholder="enter" id="name<%=i %>" name="name<%=i %>" value="<%=rs3.getString(3) %>" readonly/></span> <span style="float:right;cursor:pointer;" class="glyphicon glyphicon-plus" onclick="sub('<%=rs3.getString(1) %>','<%= (Integer.parseInt(rs3.getString(2))+1) %>','<%=rs4.getString(1) %>','<%=rs3.getString(10) %>')"></span></td>
-		<td style="display:none"><input type="text" id="seqnum<%=i %>" name="seqnum<%=i %>" value="<%=rs3.getInt(1) %>" hidden /></td>
+<tr style="text-align:center;" data-tt-id="<%=rs3.getString(10) %>" data-tt-parent-id="<%=rs3.getString(11) %>">
+		&nbsp;&nbsp;
+	<td style="width:230px;">
+		<span style="color:#00BFFF;font-size:100%; position:relative; left:5px;">
+		<input  type="text" style="width:270px" placeholder="enter" id="name<%=i %>" name="name<%=i %>" value="<%=rs3.getString(3) %>" readonly/></span> 
+		<span style="float:right;cursor:pointer;" onclick="sub('<%=rs3.getString(1) %>','<%= (Integer.parseInt(rs3.getString(2))+1) %>','<%=rs4.getString(1) %>','<%=rs3.getString(10) %>')"></span>
+	</td>
+	
+<td style="display:none"><input type="text" id="seqnum<%=i %>" name="seqnum<%=i %>" value="<%=rs3.getInt(1) %>" hidden /></td>
 <td style="display:none"><input type="text" id="level<%=i %>" name="level<%=i %>" value="<%=rs3.getInt(2) %>" hidden /></td>
-		<td><input  type="text" class="in"   placeholder="enter" name="mem_ass<%=i %>" value="<%=rs3.getString(4) %>" /></td>
-<td><input  type="text" class="in" id="pln_srt_date<%=i %>" name="pln_srt_date<%=i %>" value="<%=rs3.getString(7) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',1);"  /></td>
-<td><input  type="text" class="in" id="pln_end_date<%=i %>" name="pln_end_date<%=i %>" value="<%=rs3.getString(8) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',2);"  /></td>
-<td><input type="text" class="in" id="act_srt_date<%=i %>" name="act_srt_date<%=i %>" value="<%=rs3.getString(5) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',3);"  /></td>
-<td><input  type="text" class="in" id="act_end_date<%=i %>" name="act_end_date<%=i %>" value="<%=rs3.getString(6) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',4);"  /></td>
-<td><input  type="text" class="in"  id="phours<%=i %>" name="phrs<%=i %>" value="<%=rs3.getString(13)%>" onclick="getID('<%=rs3.getInt(2) %>',document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('status<%=i %>'),document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('act_end_date<%=i %>').value);call_fun(document.getElementById('name<%=i %>').value,document.getElementById('seqnum<%=i %>').value,document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('phours<%=i %>').value,document.getElementById('hours<%=i %>').value,document.getElementById('act_end_date<%=i %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>');"/></td>
-<td><input  type="text" class="in" id="hours<%=i %>" name="hrs<%=i %>" value="<%=rs3.getString(9) %>" onclick="getID('<%=rs3.getInt(2) %>',document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('status<%=i %>'),document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('act_end_date<%=i %>').value);call_fun(document.getElementById('name<%=i %>').value,document.getElementById('seqnum<%=i %>').value,document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('phours<%=i %>').value,document.getElementById('hours<%=i %>').value,document.getElementById('act_end_date<%=i %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>');" /></td>
-<td ><div class="progressbar" id="progressbar<%=i%>"></div></td>
-	<td ><input type="text" style="background-color:transparent;display:none;width:20%;" id="status<%=i %>"  /></td>
+<td><input  type="text" class="in"   placeholder="enter" name="mem_ass<%=i %>" value="<%=rs3.getString(4) %>" /></td>
+<td id="basicExample"><input  type="text" class="in date start" id="pln_srt_date<%=i %>" name="pln_srt_date<%=i %>" value="<%=rs3.getString(7) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',1);"  /></td>
+<td id="basicExample"><input  type="text" class="in date start" id="pln_end_date<%=i %>" name="pln_end_date<%=i %>" value="<%=rs3.getString(8) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',2);"  /></td>
+<td id="basicExample"><input type="text" class="in date start" id="act_srt_date<%=i %>" name="act_srt_date<%=i %>" value="<%=rs3.getString(5) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',3);"  /></td>
+<td id="basicExample"><input  type="text" class="in date start" id="act_end_date<%=i %>" name="act_end_date<%=i %>" value="<%=rs3.getString(6) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',4);"  /></td>
+<td id="basicExample"><input  type="text" class="in date start"  id="phours<%=i %>" name="phrs<%=i %>" value="<%=rs3.getString(13)%>" onclick="getID('<%=rs3.getInt(2) %>',document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('status<%=i %>'),document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('act_end_date<%=i %>').value);call_fun(document.getElementById('name<%=i %>').value,document.getElementById('seqnum<%=i %>').value,document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('phours<%=i %>').value,document.getElementById('hours<%=i %>').value,document.getElementById('act_end_date<%=i %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>');"/></td>
+<td id="basicExample"><input  type="text" class="in date start" id="hours<%=i %>" name="hrs<%=i %>" value="<%=rs3.getString(9) %>" onclick="call_fun(document.getElementById('name<%=i %>').value,document.getElementById('seqnum<%=i %>').value,document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('phours<%=i %>').value,document.getElementById('hours<%=i %>').value,document.getElementById('act_end_date<%=i %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>');" /></td>
+<td><div class="progressbar" id="progressbar<%=i%>"></div></td>
+<td><input type="text" style="background-color:transparent;display:none;width:20%;" /></td>
 <td><input type="text" id="cmnts<%=i %>" name="cmnts<%=i %>" value="<%=rs3.getString(17) %>" /></td>
+<td><i class="fa fa-plus"></i>  <i class="fa fa-edit"></i>  <i class="fa fa-trash"></i></td>
+
 <% if((rs3.getString(3).equals("Requirements"))||(rs3.getString(3).equals("Build and Test"))){%>
+
 <script>
 getDetID(document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('status<%=i %>'),document.getElementById('act_end_date<%=i %>').value);
 </script>
@@ -523,9 +467,9 @@ i++;
 
 
 </tbody>
-</table>
-</div>
 
+</table>
+	</div>
 <input type="hidden" id="pwqej" value="<%= info %>" hidden> 
 <script>
  if(document.getElementById('pwqej').value=="R")
@@ -539,7 +483,7 @@ i++;
 <div>
 <%if(rs7.next()){ %>
     <input type="hidden" class="form-control" id="formInput198" placeholder="Application Name" name="prjname" value="<%=rs7.getString("projectname") %>" >
-<% } %>
+<%} %>
 <input type="button" name="addbtn" class="btn btn-primary" onclick="sub(<%=i+1%>,1,'<%=rs4.getString(1) %>','<%=rs4.getString(1) %>');" value="Add" >
 <input type="button" name="subbtn" class="btn btn-primary" value="Submit" onclick="update()" >
 </div>
@@ -550,11 +494,10 @@ i++;
                                   
        <%
 
-                
 }
 %>
 </form>
-				</div>
+	</div>
                    <!-- /.row -->
 </section>
                         <!-- /.section -->
@@ -565,8 +508,7 @@ i++;
         </div>
         <!-- /.main-wrapper -->
          
-         
-
+      
         <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script src="js/jquery-ui/jquery-ui.min.js"></script>
@@ -574,7 +516,6 @@ i++;
         <script src="js/pace/pace.min.js"></script>
         <script src="js/lobipanel/lobipanel.min.js"></script>
         <script src="js/iscroll/iscroll.js"></script>
-
 
         <!-- ========== PAGE JS FILES ========== -->
         <script src="js/prism/prism.js"></script>
@@ -590,23 +531,28 @@ i++;
         <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
 
         <!-- ========== THEME JS ========== -->
+        <script src="js/main.js"></script>
         <script src="js/production-chart.js"></script>
         <script src="js/traffic-chart.js"></script>
         <script src="js/task-list.js"></script>
-
-        <!-- ========== THEME JS ========== -->
-        <script src="js/main.js"></script>
-       
        
         <!-- ========== PAGE JS FILES ========== -->
-        <script src="js/prism/prism.js"></script>
         <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
         <script type="text/javascript" src="js/date-picker/datepair.js"></script>
         <script type="text/javascript" src="js/date-picker/moment.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-
+        <!-- ========== THEME JS ========== -->
+    
+        
+		<script src="js/jquery.doubleScroll.js"></script>
+   <script>
+   $(document).ready(function(){
+	   $('.table-responsive').doubleScroll();
+	 });
+   </script>
+   <%} %>
   </body>
 
 </html>

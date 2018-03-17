@@ -113,12 +113,12 @@
         links=document.getElementsByTagName("li") ;  
         var element=document.getElementById("a");
         for (var i = 0 ; i < links.length ; i ++)  
-       // links.item(i).style.backgroundColor = 'rgb(38, 154, 248)' ; 
+        links.item(i).style.backgroundColor = '#3276B1' ; 
         element.style.borderRadius="5px";
         element.style.marginRight = "70px";
         element.style.boxSizing = "content-box";
-        element.style.borderColor = "rgb(38, 154, 248)";
-        element.style.background="rgb(38, 154, 248)";
+        element.style.borderColor = "#3276B1";
+        element.style.background="#3276B1";
         var list = document.getElementsByTagName("OL")[0];
         var x=list.getElementsByTagName("LI");
         for (var i = 0 ; i < x.length ; i ++)  
@@ -129,7 +129,7 @@
         	links=document.getElementsByTagName("li") ;  
         	var element=document.getElementById("b");
         	for (var i = 0 ; i < links.length ; i ++)  
-        	//links.item(i).style.backgroundColor = '#3276B1' ; 
+        	links.item(i).style.backgroundColor = '#3276B1' ; 
         	element.style.borderRadius="5px";
         	element.style.marginRight = "70px";
         	element.style.boxSizing = "content-box";
@@ -142,10 +142,8 @@
         	}
         
         
-    function validateform() {
-        	 
+        function validateform() {
         	var legappname = document.loginForm.legappname.value
-        	var description = document.loginForm.descr.value
         	var vendor = document.loginForm.vendor.value
         	var conExpDate = document.loginForm.expdate.value
         	var read = document.loginForm.rod.value
@@ -156,7 +154,7 @@
         	var cmnt = document.loginForm.archcmnt.value
 
 
-        	if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=="" || daterange =="" || data=="" || archival=="" || reason=="" || cmnt =="")
+        	if(legappname=="" || vendor == "" || conExpDate =="" || read=="" || daterange =="" || data=="" || archival=="" || reason=="" || cmnt =="")
         	 
         	{
         	alert("Please Fill the Mandatory Field");
@@ -194,24 +192,44 @@
         	var reason1 = document.loginForm.reason.value
         	var explain = document.loginForm.archexp.value
         	 
-        	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="" || explain == "" )
-        	 
+        	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="" || explain == "" ) 
         	{
-        	alert("Please Fill the Mandatory Field");
-        	 
-        	  
+        	alert("Please Fill the Mandatory Field");  
         	}
         	else{
         	toggle1();
         	}
-        	 
-        	 
-        	 
         	}
         
         
         function toggle1() {
         	var ele = document.getElementById("collapse3");
+        	 
+        	if(ele.style.display == "block") {
+        	    ele.style.display = "none";
+        	text.innerHTML = "show";
+        	  }
+        	else {
+        	ele.style.display = "block";
+        	text.innerHTML = "hide";
+        	}
+        	} 
+        
+        function validateform3() {
+        	var useforBI = document.loginForm.useforBI.value
+        	var report = document.loginForm.report.value
+        	var archive = document.loginForm.archive.value
+        	if(useforBI ==""|| report==""||archive=="") 
+        	{
+        	alert("Please Fill the Mandatory Field"); 
+        	}
+        	else{
+            	toggle3();
+            	}
+
+        	}
+        function toggle3() {
+        	var ele = document.getElementById("collapse4");
         	 
         	if(ele.style.display == "block") {
         	    ele.style.display = "none";
@@ -232,10 +250,9 @@
         var infra = document.loginForm.localinf.value
         var data = document.loginForm.datacenters.value
          
-        if(local ==""|| country=="" || infra =="" || data == "")
-         
+        if(local ==""|| country=="" || infra =="" || data == "")     
         {
-        alert("Please Fill the Mandatory Field");
+        alert("Please Fillll the Mandatory Field");
           
         }
         else{
@@ -260,7 +277,7 @@
         links=document.getElementsByTagName("li") ;  
         var element=document.getElementById("c");
         for (var i = 0 ; i < links.length ; i ++)  
-        //links.item(i).style.backgroundColor = '#3276B1' ; 
+        links.item(i).style.backgroundColor = '#3276B1' ; 
         element.style.borderRadius="5px";
         element.style.marginRight = "100px";
         element.style.boxSizing = "content-box";
@@ -280,7 +297,7 @@
         links=document.getElementsByTagName("li") ;  
         var element=document.getElementById("d");
         for (var i = 0 ; i < links.length ; i ++)  
-        //links.item(i).style.backgroundColor = '#3276B1' ; 
+        links.item(i).style.backgroundColor = '#3276B1' ; 
         element.style.borderRadius="5px";
         element.style.marginRight = "120px";
         element.style.boxSizing = "content-box";
@@ -294,20 +311,20 @@
 
         } 
         
-       
+        
         
         function checkk()
         {
         document.getElementById('legappname').readOnly = true;
         document.getElementById('reftoapp').readOnly = true;
         document.getElementById('tid').readOnly = true;
-       
+        document.getElementById('descr').readOnly = true;
         document.getElementById('vendor').readOnly = true;
         document.getElementById('expirydate').readOnly = true;
         document.getElementById('noticeperiod').readOnly = true;
         document.getElementById('contractvalue').readOnly = true;
         document.getElementById('businessunits').disabled = true;
-       
+        document.getElementById('rodch').disabled = true;
         document.getElementById('rod').readOnly = true;
         document.getElementById('cmnt').readOnly = true; 
         document.getElementById('hasdep').readOnly = true; 
@@ -322,62 +339,59 @@
         document.getElementById('btt').disabled = true; 
         document.getElementById('reccode').readOnly = true; 
         document.getElementById('triggerdate').readOnly = true; 
-        document.getElementById('triggertable').readOnly = true;
         document.getElementById('retentionperiod').readOnly = true; 
         document.getElementById('retentiontable').readOnly = true; 
-        document.getElementById('file').disabled = true;
+        document.getElementById('file').readOnly = true;
         document.getElementById('retentionname').readOnly = true; 
-        document.getElementById('legalholds').disabled = true; 
+        document.getElementById('reason_for_access').disabled = true; 
         document.getElementById('wholegal').readOnly = true; 
         document.getElementById('reason_for_access1').disabled = true; 
         document.getElementById('archexp').readOnly = true; 
-        document.getElementById('btt1').disabled = true;
+        document.getElementById('btt').disabled = true;
         document.getElementById('btn_new').disabled = true; 
-        document.getElementById('useforBI').disabled = true; 
-        document.getElementById('report').disabled = true; 
-        document.getElementById('archive').disabled = true; 
-        document.getElementById('btt2').disabled = true;
-        document.getElementById('btn_new2').disabled = true;
+        document.getElementById('reason_for_access2').disabled = true; 
+        document.getElementById('checkbox').disabled = true; 
+        document.getElementById('checkbox1').disabled = true; 
         document.getElementById('reccode').readOnly = true; 
-        
-        document.getElementById('creditacc').disabled = true; 
-        document.getElementById('financialacc').disabled = true;
-        document.getElementById('dob').disabled = true;
-        document.getElementById('driverlic').disabled = true;
-        document.getElementById('email').disabled = true;
-        document.getElementById('family').disabled = true;
-        document.getElementById('gender').disabled = true;
-        document.getElementById('geoloc').disabled = true;
-        document.getElementById('img').disabled = true;
-        document.getElementById('income').disabled = true;
-        document.getElementById('ipadrs').disabled = true;
-        document.getElementById('martialstatus').disabled = true;
-        document.getElementById('mobid').disabled = true;
-        document.getElementById('name').disabled = true;
-        document.getElementById('phno').disabled = true;
-        document.getElementById('mailadrs').disabled = true;
-        document.getElementById('physic').disabled = true;
-        document.getElementById('race').disabled = true;
-        document.getElementById('religion').disabled = true;
-        document.getElementById('sexualpref').disabled = true;
-        document.getElementById('ssn').disabled = true;
-        document.getElementById('others').disabled = true;
+        document.getElementById('checkbox23').disabled = true; 
+        document.getElementById('checkbox2').disabled = true;
+        document.getElementById('checkbox3').disabled = true;
+        document.getElementById('checkbox4').disabled = true;
+        document.getElementById('checkbox5').disabled = true;
+        document.getElementById('checkbox6').disabled = true;
+        document.getElementById('checkbox7').disabled = true;
+        document.getElementById('checkbox8').disabled = true;
+        document.getElementById('checkbox9').disabled = true;
+        document.getElementById('checkbox10').disabled = true;
+        document.getElementById('checkbox11').disabled = true;
+        document.getElementById('checkbox12').disabled = true;
+        document.getElementById('checkbox13').disabled = true;
+        document.getElementById('checkbox14').disabled = true;
+        document.getElementById('checkbox15').disabled = true;
+        document.getElementById('checkbox16').disabled = true;
+        document.getElementById('checkbox17').disabled = true;
+        document.getElementById('checkbox18').disabled = true;
+        document.getElementById('checkbox19').disabled = true;
+        document.getElementById('checkbox20').disabled = true;
+        document.getElementById('checkbox21').disabled = true;
+        document.getElementById('checkbox22').disabled = true;
         document.getElementById('expl').readOnly = true; 
-        document.getElementById('localreq').disabled = true;
-        document.getElementById('localcountry').disabled = true;
-        document.getElementById('localinf').disabled = true;
-        document.getElementById('datacenters').readOnly = true;
-        document.getElementById('extaccess').disabled = true; 
-        document.getElementById('who').readOnly = true;
-        document.getElementById('uname').readOnly = true;
-        document.getElementById('roledesc').readOnly = true;
-        document.getElementById('accreason').readOnly = true;
-        document.getElementById('accfreq').readOnly = true; 
+        document.getElementById('reason_for_access4').disabled = true;
+        document.getElementById('reason_for_access5').disabled = true;
+        document.getElementById('reason_for_access6').disabled = true;
+        document.getElementById('vendor1').readOnly = true;
+        document.getElementById('reason_for_access7').disabled = true; 
+        document.getElementById('vendor2').readOnly = true;
+        document.getElementById('vendor3').readOnly = true;
+        document.getElementById('vendor4').readOnly = true;
+        document.getElementById('vendor5').readOnly = true;
+        document.getElementById('vendor6').readOnly = true; 
         document.getElementById('sysreq').readOnly = true; 
-        document.getElementById('btn_new3').disabled = true;
         }
         
-        
+        if(document.getElementById('pwqej').value=="XR" ||document.getElementById('pwqej').value=="R" )
+        	 
+        	checkk();
         
         
         links=document.getElementsByTagName("li") ;  

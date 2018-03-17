@@ -219,7 +219,7 @@ if(rs.next()){
                  </li>
                 </ul>
                 </li>
-                <li><a href="archive_exec_samp.jsp">Archive Execution Module</a>
+                <li><a href="Archive_Execution.jsp">Archive Execution Module</a>
                </li>                
                
                           </ul>

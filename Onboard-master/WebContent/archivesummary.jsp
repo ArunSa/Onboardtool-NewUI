@@ -631,7 +631,7 @@ if(rs4.next()){
               
               
                       
-<h3>Archive Execution</h3><a href="archive_exec_samp.jsp" class="btn btn-primary" class="btn pull-right">Edit</a><button id="pdf-button" type="button"  class="btn btn-primary" value="Download PDF" onclick="downloadPDF()" />Export PDF</button>
+<h3>Archive Execution</h3><a href="Archive_Execution.jsp" class="btn btn-primary" class="btn pull-right">Edit</a><button id="pdf-button" type="button"  class="btn btn-primary" value="Download PDF" onclick="downloadPDF()" />Export PDF</button>
 </br></br>     
 <div class="container" id="table">
 <table class="table table-bordered" style="float:left" >

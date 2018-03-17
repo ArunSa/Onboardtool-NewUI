@@ -5,6 +5,7 @@
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
      <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
@@ -249,7 +250,7 @@ if(rs.next()){
                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-   <li class="has-children"><a href="archive_exec_samp.jsp">Archive Execution Module</a>
+   <li class="has-children"><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i>Archive Execution Module</a>
                </li> 
                                 </ul>
 										
@@ -511,8 +512,7 @@ catch(Exception e){}
          </div>
        </div>
        </div>
-   
-        <!-- ========== COMMON JS FILES ========== -->
+       <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script src="js/jquery-ui/jquery-ui.min.js"></script>
         <script src="js/bootstrap/bootstrap.min.js"></script>
@@ -592,6 +592,5 @@ catch(Exception e){}
                 });
             });
         </script>
-   
 </body>
 </html>

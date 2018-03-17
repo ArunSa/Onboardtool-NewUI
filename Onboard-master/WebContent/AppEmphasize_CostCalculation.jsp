@@ -385,7 +385,7 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-children"><a href="archive_exec_samp.jsp">Archive Execution Module</a>
+                                    <li class="has-children"><a href="Archive_Execution.jsp">Archive Execution Module</a>
                </li> 
                                 </ul>		
                             </div>

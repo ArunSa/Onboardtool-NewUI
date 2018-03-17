@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-   <meta charset="utf-8">
+    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -252,7 +251,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         </ul>
                                     </li>
 
-                        <li><a href="archive_exec_samp.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
+                        <li><a href="Archive_Execution.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
                                 </ul>
                     
                             </div>
@@ -643,7 +642,7 @@ if(implement == null)
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label ">Does the legacy application’s data need to be archived in the client archive application </label>
+            <label class="control-label ">Does the legacy applicationâs data need to be archived in the client archive application </label>
             <input placeholder="" id="clientapp" name="clientapp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
@@ -867,13 +866,13 @@ catch(Exception e){}
 
 
         <!-- ========== THEME JS ========== -->
-        
-<script type="text/javascript">
-    $('.datepicker').datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d'
-});
-</script>
+		        
+		<script type="text/javascript">
+		    $('.datepicker').datepicker({
+		    format: 'mm/dd/yyyy',
+		    startDate: '-3d'
+		});
+		</script>
 
 
         <!-- ========== THEME JS ========== -->
@@ -922,7 +921,6 @@ catch(Exception e){}
                 });
             });
         </script>
-       
 
 </body>
 </html>
