@@ -158,7 +158,7 @@ public class comp extends HttpServlet {
 		          System.err.println(e.getMessage());
 		        }
 		        // return response
-		        response.sendRedirect("component.jsp");
+		        response.sendRedirect("Intake_TechnicalDetails.jsp");
 				
 
 

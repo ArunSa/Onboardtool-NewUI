@@ -97,6 +97,10 @@ ResultSet rs3 = st3.executeQuery(query3);
 String query4 = "select * from appinfo where appname ='"+app_Name+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
+
+String query5 = "select read_date from app_prior where prj_name ='"+Project_Name+"' and proj_name = '"+app_Name+"'";
+Statement st5 = conn.createStatement();
+ResultSet rs5 = st5.executeQuery(query5);
 String imp_id="";
 String sequenceNumber="";
 int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
@@ -159,22 +163,22 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a> <span>Parameters</span></a></li>
                                             <li><a> <span>Archival Complexity Calculation</span></a></li>
@@ -183,36 +187,36 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li>
-                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="business.jsp" class="active-menu"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_Business.jsp" class="active-menu"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="business.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="business.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="business.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="business.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="component.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_TechnicalDetails.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="component.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="component.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="component.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="requirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Intake_ArchiveRequirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="requirements.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="requirements.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
 
@@ -474,11 +478,18 @@ if(implement == null)
                                             </label>                                             
                                         </div> -->
                                         
+                                             
+                                       <%if(rs5.next()) {
+                                    	   System.out.println("aaa "+rs5.getString("read_date"));
+                                       %>
+                                        
+                                        
                                         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label"><div class="required">Read Only Date</div></label>
-            <input placeholder="mm/dd/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input placeholder="mm/dd/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs5.getString("read_date")%>">
           </div>
+          <%} %>
           
         </div>
          <div class="form-group row log-date">
@@ -817,7 +828,7 @@ if(implement == null)
         </div> 
                            <h4>Security Information:</h4>
                                          <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="">Does the application have localization requirement/ regulations</div></label>                                             
+                                            <label class="control-label" for="formInput26"><div class="required">Does the application have localization requirement/ regulations</div></label>                                             
                                             <select id="localreq" class="form-control" name="localreq" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
@@ -826,7 +837,7 @@ if(implement == null)
                                             </select>
                                         </div> 
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="">List of Countries where localization requirement/ regulations apply</div></label>                                             
+                                            <label class="control-label" for="formInput26"><div class="required">List of Countries where localization requirement/ regulations apply</div></label>                                             
                                             <select id="localcountry" class="form-control" name="localcountry" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
@@ -835,7 +846,7 @@ if(implement == null)
                                             </select>
                                         </div> 
                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="">Are the Localization requirements/regulations enforced with infrastructure or geofencing</div></label>                                             
+                                            <label class="control-label" for="formInput26"><div class="required">Are the Localization requirements/regulations enforced with infrastructure or geofencing</div></label>                                             
                                             <select id="localinf" class="form-control" name="localinf" > 
                                             <option></option>
                                                 <option>Yes</option>                                                 
@@ -845,7 +856,7 @@ if(implement == null)
                                         </div> 
                                          <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
+            <label class="control-label "><div class="required">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
             <input  id="datacenters" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           

@@ -319,6 +319,7 @@ if(hypercare == null)
         <tr>
           <th>Application Name</th>
           <th>Complexity</th>
+          <th>Estimated Number of Screens</th>
           <th>Priorities</th>
          
     </tr>
@@ -339,7 +340,7 @@ while(rs1.next()){
         
           <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><input type="text" id="project_name<%=i%>" name="project_name<%=i%>" value="<%=rs1.getString("appname") %>"></span></td>
           <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("complexity") %>"></span></td>
-         
+         <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("est_scrn") %>"></span></td>
           <td class="row_d" id="55">
           <span class="test"><input type="text" name="priority<%=i %>" id="priority<%=i %>" value="<%=rs2.getInt("total")-i %>"></span>
         </td>
@@ -369,8 +370,8 @@ for(var i=0; i<edit_row.length; i++) {
     var tr_parent = this.parentNode;
     document.getElementById('proj_name').value = tr_parent.querySelector('.edit_row').innerHTML;
     document.getElementById('complexity').value = tr_parent.querySelector('.row_s').innerHTML;
-    document.getElementById('est_db_size').value = tr_parent.querySelector('.row_t').innerHTML;
-    document.getElementById('est_cst').value = tr_parent.querySelector('.row_d').innerHTML;
+    document.getElementById('est_scrn').value = tr_parent.querySelector('.row_t').innerHTML;
+    //document.getElementById('est_cst').value = tr_parent.querySelector('.row_d').innerHTML;
     }, false);
 }
 

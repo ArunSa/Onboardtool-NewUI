@@ -55,6 +55,8 @@ String projectname=(String)details.getAttribute("nameofproject");
 String det=(String)session.getAttribute("theName");
 String appl=(String)details.getAttribute("applications");
 String prj=(String)details.getAttribute("projects");
+
+
 System.out.println("-- "+info+"-- "+appno+"---"+projectname+"---"+det);
  
 DBconnection d=new DBconnection();
@@ -62,30 +64,21 @@ Connection conn = (Connection)d.getConnection();
 String query = "SELECT * from app_prior where prj_name='"+projectname+"'";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
-
-
 String query3 = "select * from projinfo where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-
 System.out.println(projectname);
-
 String query1="";
 if(prj.equals("all"))
 	 query1 = "select * from appinfo where prjname = '"+projectname+"'";
 else
 	 query1 = "select * from appinfo where prjname = '"+prj+"' and appname='"+appl+"'";
-
 System.out.println(query1);
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
-
-
 String query2= "SELECT * from app_prior where prj_name='"+projectname+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
-
-
 PreparedStatement statement =  conn.prepareStatement("select sum(ttl_cst_fr_app) from app_prior where prj_name='"+projectname+"'");
 ResultSet result = statement.executeQuery();
 result.next();
@@ -100,9 +93,7 @@ String sum=result.getString(1);
 var datasize=document.loginForm.data_size.value;
   var currentuser=document.loginForm.curnt_users.value;
   
-
 var temp,temp1,temp2,temp3,total,result;
-
 if(datasize.charAt(0)=='<' && currentuser.charAt(1)=='1'&&currentuser.length<=3)
 {
 document.loginForm.complexity.value ="Low";
@@ -203,34 +194,33 @@ if(datasize.charAt(0)=='>' && currentuser.charAt(0)=='1')
 {
 document.loginForm.complexity.value ="High";
 }
-
 if(document.loginForm.complexity.value=="Low")
 {
-document.loginForm.est_archive.value =700;
+//document.loginForm.est_archive.value =700;
 document.loginForm.est_scrn.value ="<=5";
 result=1;
 }
 if(document.loginForm.complexity.value=="Low to Medium")
 {
-document.loginForm.est_archive.value =1000;
+//document.loginForm.est_archive.value =1000;
 document.loginForm.est_scrn.value ="<=10";
 result=2;
 }
 if(document.loginForm.complexity.value=="Medium")
 {
-document.loginForm.est_archive.value =1400;
+//document.loginForm.est_archive.value =1400;
 document.loginForm.est_scrn.value ="<=20";
 result=3;
 }
 if(document.loginForm.complexity.value=="Medium to High")
 {
-document.loginForm.est_archive.value =1800;
+//document.loginForm.est_archive.value =1800;
 document.loginForm.est_scrn.value ="<=25";
 result=4;
 }
 if(document.loginForm.complexity.value=="High")
 {
-document.loginForm.est_archive.value =2500;
+//document.loginForm.est_archive.value =2500;
 document.loginForm.est_scrn.value ="<=30";
 result=5;
 }
@@ -385,7 +375,7 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-children"><a href="Archive_Execution.jsp">Archive Execution Module</a>
+                                    <li class="has-children"><a href="archive_exec_samp.jsp">Archive Execution Module</a>
                </li> 
                                 </ul>		
                             </div>
@@ -593,9 +583,8 @@ hypercare="0";
         <tr>
           <th>Application Name<span class="js-sorter-desc     glyphicon glyphicon-chevron-down pull-right"></span> <span class="js-sorter-asc     glyphicon glyphicon-chevron-up pull-right"></span> <span class="glyphicon glyphicon-search pull-right" onClick="myFunction1()"></span></th>
           <th>Complexity <span class="js-sorter-desc     glyphicon glyphicon-chevron-down pull-right"></span> <span class="js-sorter-asc     glyphicon glyphicon-chevron-up pull-right"></span> <span class="glyphicon glyphicon-search pull-right" onClick="myFunction2()"></span></th>
-          <th>Estimated Size of xDB <span class="js-sorter-desc     glyphicon glyphicon-chevron-down pull-right"></span> <span class="js-sorter-asc     glyphicon glyphicon-chevron-up pull-right"></span> <span class="glyphicon glyphicon-search pull-right" onClick="myFunction3()"></span></th>
-          <th>Estimated Service Cost <span class="js-sorter-desc     glyphicon glyphicon-chevron-down pull-right"></span> <span class="js-sorter-asc     glyphicon glyphicon-chevron-up pull-right"></span><span class="glyphicon glyphicon-search pull-right" onClick="myFunction4()"> </span></th>
-        </tr>
+          <th>Estimated Number of Screens <span class="js-sorter-desc     glyphicon glyphicon-chevron-down pull-right"></span> <span class="js-sorter-asc     glyphicon glyphicon-chevron-up pull-right"></span> <span class="glyphicon glyphicon-search pull-right" onClick="myFunction3()"></span></th>
+          </tr>
         
       
       <!-- table body -->
@@ -603,8 +592,10 @@ hypercare="0";
         
       
           <%
-          
-while(rs1.next()){
+ 
+while(rs1.next()){ 
+	
+
 
 %>
 
@@ -612,8 +603,8 @@ while(rs1.next()){
         
           <td class="edit_row" style="cursor:pointer" id="1"><%=rs1.getString("appname") %></td>
           <td class="row_s" style="cursor:pointer" id="2"><%=rs1.getString("complexity") %></td>
-          <td class="row_t" style="cursor:pointer" id="3"><%=rs1.getString("est_db_size") %></td>
-          <td class="row_d" style="cursor:pointer" id="4"><%=rs1.getString("est_cst") %></td>
+          <td class="row_t" style="cursor:pointer" id="3"><%=rs1.getString("est_scrn") %></td>
+         
        
          
         </tr>
@@ -625,7 +616,6 @@ while(rs1.next()){
     </tbody>
     </table>
     <script>
-
 var edit_row = document.querySelectorAll('#myTable .edit_row');
 for(var i=0; i<edit_row.length; i++) {
   edit_row[i].addEventListener('click', function(e){
@@ -644,7 +634,7 @@ for(var i=0; i<edit_row.length; i++) {
 	 if(valuess==projectname_value)
 		 {
 		 
-		 window.alert("true");
+
 		 knt++;
 		 
 		 document.getElementById('complexity').value = "<%= rs8.getString("complexity") %>";
@@ -682,7 +672,6 @@ for(var i=0; i<edit_row.length; i++) {
  }
     }, false);
 }
-
 </script>
      
   </div>
@@ -896,42 +885,34 @@ catch(Exception e){}
         <!-- ========== THEME JS ========== -->
         <script>
             $(function($) {
-
                 // 1st  datepicker
                 $('#basicExample .time').timepicker({
                 'showDuration': true,
                 'timeFormat': 'g:ia'
                 });
-
                 $('#basicExample .date').datepicker({
                 'format': 'm/d/yyyy',
                 'autoclose': true
                 });
-
                 var basicExampleEl = document.getElementById('basicExample');
                 var datepair = new Datepair(basicExampleEl);
-
                 // 2nd  datepicker
                 $('#datetimepicker1').datetimepicker({
                     debug: true
                 });
-
                 // 3rd  datepicker
                 $('#datetimepicker9').datetimepicker({
                 viewMode: 'years'
                 });
-
                 // 4th  datepicker
                 $('#datetimepicker10').datetimepicker({
                 viewMode: 'years',
                 format: 'MM/YYYY'
                 });
-
                 // 5th  datepicker
                 $('#datetimepicker11').datetimepicker({
                 daysOfWeekDisabled: [0, 6]
                 });
-
                 // 6th  datepicker
                 $('#datetimepicker12').datetimepicker({
                     inline: true,
@@ -943,7 +924,3 @@ catch(Exception e){}
 
 	</body>
 </html>
-
-
-
-

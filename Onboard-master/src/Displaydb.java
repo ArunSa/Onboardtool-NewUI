@@ -88,6 +88,7 @@ public class Displaydb extends HttpServlet {
 	        String sme_date = request.getParameter("sme_date");
 	        
 	        System.out.println("complexitie is   s s  "+no_of_app_complexity);
+	        System.out.println("est_scrn value is "+complexity);
 	        
 	      /*  HttpSession app_details=request.getSession();
 	        app_details.setAttribute("proj_name",proj_name);
@@ -153,15 +154,16 @@ public class Displaydb extends HttpServlet {
      	        preparedStmt1.setString(28, proj_name);
 
               preparedStmt1.execute();
+              System.out.println("est_scrn value from if pstmt1 "+est_scrn);
               
-              PreparedStatement preparedStmt2 = conn.prepareStatement("update appinfo set complexity=?, est_db_size=?, est_cst=? where appname=?");
+              PreparedStatement preparedStmt2 = conn.prepareStatement("update appinfo set complexity=?, est_db_size=?, est_scrn=? where appname=?");
 	          preparedStmt2.setString(1, complexity);
 	          preparedStmt2.setString(2, est_db_size);
-	          preparedStmt2.setString(3, est_cst);
+	          preparedStmt2.setString(3, est_scrn);
 	          preparedStmt2.setString(4, proj_name);
-preparedStmt2.execute();
-	          
-     	          
+	          preparedStmt2.execute();
+	          System.out.println("est_scrn value from if pstmt2 "+est_scrn);
+     	      // System.out.println(est_scrn); 
            	            
                }
                else{
@@ -198,13 +200,15 @@ preparedStmt2.execute();
 	          preparedStmt.setString(27, read_date);	
 	          preparedStmt.setString(28, sme_date);	
          preparedStmt.execute();
-         PreparedStatement preparedStmt2 = conn.prepareStatement("update appinfo set complexity=?, est_db_size=?, est_cst=? where appname=?");
+         
+         System.out.println("est_scrn value from else pstmt1 "+est_scrn);
+         PreparedStatement preparedStmt2 = conn.prepareStatement("update appinfo set complexity=?, est_db_size=?, est_scrn=? where appname=?");
          preparedStmt2.setString(1, complexity);
          preparedStmt2.setString(2, est_db_size);
-         preparedStmt2.setString(3, est_cst);
+         preparedStmt2.setString(3, est_scrn);
          preparedStmt2.setString(4, proj_name);
 preparedStmt2.execute();
-	          
+System.out.println("est_scrn value from else pstmt2 "+est_scrn);
 	          conn.close();
 	        
 	        }}

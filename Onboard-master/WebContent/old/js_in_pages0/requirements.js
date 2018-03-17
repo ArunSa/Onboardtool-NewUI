@@ -39,7 +39,7 @@ function call()
 {
 var f=document.loginForm;
     f.method="post";
-    f.action='review.jsp';
+    f.action='Intake_ReviewPage.jsp';
     f.submit();
 }
 

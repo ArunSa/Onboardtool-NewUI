@@ -1,7 +1,7 @@
 
 	  function getID(lev,pln_srt,pln_end,act_srt,status,pln_hrs,act_hrs,progressbar,actual_enddate)
 	  {
-		  window.alert(lev+" "+pln_srt);
+		 
 		 // window.alert(pln_srt+" "+pln_end+" "+act_srt+" "+status.id+" "+pln_hrs.id+" "+act_hrs.id+" "+progressbar.id);
 		 var startDate =pln_srt;
 		  var endDate =pln_end;
@@ -173,7 +173,7 @@
 	  
 	  function call_fun(name,a,b,c,d,e,g,h,i,j,k,l)
 	  {
-		  window.alert("inside call function");
+		 
 		  var comments=document.getElementById("cmnts"+(a-1)).value;
 		 var f=document.loginForm;
 		    f.method="post";
