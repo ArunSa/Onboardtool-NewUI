@@ -81,7 +81,7 @@ public class ArchivalRequirements extends HttpServlet {
 	       String metadata = request.getParameter("metadata");
 	       String advsearch = request.getParameter("advsearch");
 	       String searchparam = request.getParameter("searchparam");
-	       String appname = request.getParameter("appname");
+	      
 	       
 	       // do some processing here...
 	        
@@ -120,8 +120,7 @@ public class ArchivalRequirements extends HttpServlet {
 	         preparedStmt.setString (16, metadata);
 	         preparedStmt.setString (17, advsearch);
 	         preparedStmt.setString (18, searchparam);
-	         preparedStmt.setString (19, appname);
-	       
+	        
 	         
 
 	         // execute the preparedstatement
