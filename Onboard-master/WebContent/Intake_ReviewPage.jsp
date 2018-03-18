@@ -214,15 +214,12 @@ ResultSet rs5 = st5.executeQuery(query5);
                                         </ul>
                                     </li>
 
-                                    <li class="has-children">
+                                 <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
-                                        </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
+                                             </ul>
                                     </li>
-
                                     <li>
                                         <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
@@ -257,7 +254,7 @@ ResultSet rs5 = st5.executeQuery(query5);
                                             <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
   </li>
-					                <li><a href="archive_exec_samp.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
+					                <li><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                                     </li>
                                 </ul>
 										

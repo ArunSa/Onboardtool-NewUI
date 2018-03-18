@@ -24,10 +24,6 @@
 
 		  var percent = (actual_Hours/total_hours) * 100;
 
-		  alert(actual_Hours+" "+total_hours);
-		  alert(percent);
-		  //alert("minDate "+minDate);
-		  //alert("maxDate "+maxDate);
 		  percentage=100;
 		  console.log("actual_Hours : "+actual_Hours);
 		  console.log("total_hours : "+total_hours);

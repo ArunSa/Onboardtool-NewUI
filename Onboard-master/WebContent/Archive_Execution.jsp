@@ -48,13 +48,9 @@
 <script type="text/javascript" src="js_in_pages/archive_exec.js"></script>
 <script type="text/javascript" src="js_in_pages/tree.js"></script>
 <link rel="stylesheet" href="js_in_pages/archive_exec.css" type="text/css" />
-	<script type="text/javascript" src="js/archivesummary/jqueryprogressbar.js"></script>
-	
-	<script type="text/javascript" src="js/archivesummary/main.js"></script>
-        
- <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
-		<link type="text/css" rel="stylesheet" href="old/css/progressbar.css" />
-		<script src="js/archivesummary/treeTable.js"></script>
+<link rel="stylesheet" href="old/css0/progressbar.css" type="text/css" />
+
+
 		<script src="js/archivesummary/jstree.min.js"></script>
 
 		
@@ -241,10 +237,8 @@ if(rs4.next()){
                                     <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
-                                        </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity </span></a></li>
+                                           </ul>
                                     </li>
 
                                     <li>
@@ -548,53 +542,7 @@ i++;
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
         <!-- ========== THEME JS ========== -->
-  <script>
-            $(function($) {
-
-               
     
- // 1st  datepicker
-                $('#basicExample .time').timepicker({
-                'showDuration': true,
-                'timeFormat': 'g:ia'
-                });
-
-                $('#basicExample .date').datepicker({
-                'format': 'd/m/yyyy',
-                'autoclose': true
-                });
-
-                var basicExampleEl = document.getElementById('basicExample');
-                var datepair = new Datepair(basicExampleEl);
-
-                // 2nd  datepicker
-                $('#datetimepicker1').datetimepicker({
-                    debug: true
-                });
-
-                // 3rd  datepicker
-                $('#datetimepicker9').datetimepicker({
-                viewMode: 'years'
-                });
-
-                // 4th  datepicker
-                $('#datetimepicker10').datetimepicker({
-                viewMode: 'years',
-                format: 'MM/YYYY'
-                });
-
-                // 5th  datepicker
-                $('#datetimepicker11').datetimepicker({
-                daysOfWeekDisabled: [0, 6]
-                });
-
-                // 6th  datepicker
-                $('#datetimepicker12').datetimepicker({
-                    inline: true,
-                    sideBySide: true
-                });
-            });
-        </script>
         
 		<script src="js/jquery.doubleScroll.js"></script>
    <script>

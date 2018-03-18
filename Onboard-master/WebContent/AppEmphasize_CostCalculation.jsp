@@ -56,8 +56,6 @@ String projectname=(String)details.getAttribute("nameofproject");
 String det=(String)session.getAttribute("theName");
 String appl=(String)details.getAttribute("applications");
 String prj=(String)details.getAttribute("projects");
-
-
 System.out.println("-- "+info+"-- "+appno+"---"+projectname+"---"+det);
  
 DBconnection d=new DBconnection();
@@ -337,10 +335,8 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                     <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                           	<li><a id="xxx"> <span>Parameters</span></a></li>
-                                            <li><a id="xxz"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a id="xxy"> <span>Archival Cost Estimate</span></a></li>
-                                       </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
+                                             </ul>
                                     </li>
 
                                     <li>
@@ -474,7 +470,6 @@ hypercare="0";
 
 
 <div class="row">
-  
         
             <div class="row bs-wizard" style="border-bottom:0;">
                 
@@ -488,29 +483,26 @@ hypercare="0";
                   <div class="text-center bs-wizard-stepnum">Application Complexity </div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">2</a>
-                 
+                  <div class="bs-wizard-info text-center"></div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Prioritized Applications</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">3</a>
-                 
+                  <div class="bs-wizard-info text-center"></div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
                   <div class="text-center bs-wizard-stepnum">Final</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">4</a>
-                
+                  <div class="bs-wizard-info text-center"></div>
                 </div>
             </div>
-        
-
                <br/>
                     <div class="panel-group" id="panels1"> 
-                <div class="panel panel-default">
-       <div class="panel-heading"> 
+                <!-- <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();"> Parameters   </a> </h4> 
                             </div>  
                                                        
@@ -557,8 +549,7 @@ hypercare="0";
                                         </div>
                                                                         </div>                                 
                             </div>                             
-                        </div> 
-    
+                        </div> -->
                                <div class="panel panel-default"> 
                             <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">    Application Complexity   </a> </h4> 
@@ -596,8 +587,6 @@ hypercare="0";
  
 while(rs1.next()){ 
 	
-
-
 %>
 
         <tr>
@@ -635,7 +624,6 @@ for(var i=0; i<edit_row.length; i++) {
 	 if(valuess==projectname_value)
 		 {
 		 
-
 		 knt++;
 		 
 		 document.getElementById('complexity').value = "<%= rs8.getString("complexity") %>";
@@ -746,7 +734,7 @@ for(var i=0; i<edit_row.length; i++) {
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="formInput664">SME Availability Date</label>                                             
-                                            <input type="text" class="form-control" id="SME_DATE"  name="sme_date" onChange="updatesum()"> 
+                                            <input placeholder="mm/dd/yyyy" type="text" class="form-control" id="SME_DATE"  name="sme_date" onChange="updatesum()"> 
                                         </div>          
                                         
                                     

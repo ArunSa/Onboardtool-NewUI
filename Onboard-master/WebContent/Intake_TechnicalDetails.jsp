@@ -21,6 +21,10 @@
 
         <!-- ========== THEME CSS ========== -->
         <link rel="stylesheet" href="css/main.css" media="screen" >
+        
+        
+        <link rel="stylesheet" type="text/css" href="css/date-picker/jquery.timepicker.css" />
+        <link rel="stylesheet" type="text/css" href="css/date-picker/bootstrap-datepicker.css" />
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
@@ -208,13 +212,11 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         </ul>
                                     </li>
 
-                                    <li class="has-children">
+                                   <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Parameters</span></a></li>
-                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a> <span>Archival Cost Estimate</span></a></li>
-                                        </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
+                                             </ul>
                                     </li>
 
                                     <li>
@@ -578,12 +580,7 @@ if(implement == null)
                                 <div class="panel-body">
                                     <form role="form">
                                     
-                                    <div class="checkbox"> 
-                                            <label class="control-label required"> 
-                                                <input id="checkbox3" type="checkbox" name="dataloc"  value="stage" required>&nbsp;Location of Data                       
-                                            </label>                                             
-                                        </div>
-                                        
+                                  
                         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label required">Server Name</label>
@@ -722,7 +719,7 @@ if(implement == null)
                        <div class="form-group row log-date">
           <div class="col-md-12" id="basicExample">
             <label class="control-label required">Ready Date for Complete Server decommission and Application Retirement</label>
-            <input placeholder="dd/mm/yyyy" id="integname" name="integname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <input placeholder="mm/dd/yyyy" id="integname" name="integname" class="form-control in date start" type="text" required>
           </div>
           
         </div>                    
@@ -835,92 +832,93 @@ catch(Exception e){}
       
 
         <!-- ========== PAGE JS FILES ========== -->
-        <script src="js/prism/prism.js"></script>
-        <script src="js/waypoint/waypoints.min.js"></script>
-        <script src="js/counterUp/jquery.counterup.min.js"></script>
-        <script src="js/amcharts/amcharts.js"></script>
-        <script src="js/amcharts/serial.js"></script>
-        <script src="js/amcharts/plugins/export/export.min.js"></script>
-        <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
-        <script src="js/amcharts/themes/light.js"></script>
-        <script src="js/toastr/toastr.min.js"></script>
-        <script src="js/icheck/icheck.min.js"></script>
-        <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+         <script src="js/prism/prism.js"></script>
+         <script src="js/waypoint/waypoints.min.js"></script>
+         <script src="js/counterUp/jquery.counterup.min.js"></script>
+         <script src="js/amcharts/amcharts.js"></script>
+         <script src="js/amcharts/serial.js"></script>
+         <script src="js/amcharts/plugins/export/export.min.js"></script>
+         <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+         <script src="js/amcharts/themes/light.js"></script>
+         <script src="js/toastr/toastr.min.js"></script>
+         <script src="js/icheck/icheck.min.js"></script>
+         <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
 
-        <!-- ========== THEME JS ========== -->
-        <script src="js/production-chart.js"></script>
-        <script src="js/traffic-chart.js"></script>
-        <script src="js/task-list.js"></script>
+         <!-- ========== THEME JS ========== -->
+         <script src="js/production-chart.js"></script>
+         <script src="js/traffic-chart.js"></script>
+         <script src="js/task-list.js"></script>
 
-        <!-- ========== THEME JS ========== -->
-        <script src="js/main.js"></script>
-       
-       
-        <!-- ========== PAGE JS FILES ========== -->
-        <script src="js/prism/prism.js"></script>
-        <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
-        <script type="text/javascript" src="js/date-picker/datepair.js"></script>
-        <script type="text/javascript" src="js/date-picker/moment.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
-
-        <!-- ========== THEME JS ========== -->
-		        
-		<script type="text/javascript">
-		    $('.datepicker').datepicker({
-		    format: 'mm/dd/yyyy',
-		    startDate: '-3d'
-		});
-		</script>
+         <!-- ========== THEME JS ========== -->
+         <script src="js/main.js"></script>
+        
+        
+         <!-- ========== PAGE JS FILES ========== -->
+         <script src="js/prism/prism.js"></script>
+         <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
+         <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
+         <script type="text/javascript" src="js/date-picker/datepair.js"></script>
+         <script type="text/javascript" src="js/date-picker/moment.js"></script>
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 
-        <!-- ========== THEME JS ========== -->
-        <script>
-            $(function($) {
+         <!-- ========== THEME JS ========== -->
+         
+ <script type="text/javascript">
+     $('.datepicker').datepicker({
+     format: 'mm/dd/yyyy',
+     startDate: '-3d'
+ });
+ </script>
 
-                // 1st  datepicker
-                $('#basicExample .time').timepicker({
-                'showDuration': true,
-                'timeFormat': 'g:ia'
-                });
 
-                $('#basicExample .date').datepicker({
-                'format': 'm/d/yyyy',
-                'autoclose': true
-                });
+         <!-- ========== THEME JS ========== -->
+         <script>
+             $(function($) {
 
-                var basicExampleEl = document.getElementById('basicExample');
-                var datepair = new Datepair(basicExampleEl);
+                 // 1st  datepicker
+                 $('#basicExample .time').timepicker({
+                 'showDuration': true,
+                 'timeFormat': 'g:ia'
+                 });
 
-                // 2nd  datepicker
-                $('#datetimepicker1').datetimepicker({
-                    debug: true
-                });
+                 $('#basicExample .date').datepicker({
+                 'format': 'm/d/yyyy',
+                 'autoclose': true
+                 });
 
-                // 3rd  datepicker
-                $('#datetimepicker9').datetimepicker({
-                viewMode: 'years'
-                });
+                 var basicExampleEl = document.getElementById('basicExample');
+                 var datepair = new Datepair(basicExampleEl);
 
-                // 4th  datepicker
-                $('#datetimepicker10').datetimepicker({
-                viewMode: 'years',
-                format: 'MM/YYYY'
-                });
+                 // 2nd  datepicker
+                 $('#datetimepicker1').datetimepicker({
+                     debug: true
+                 });
 
-                // 5th  datepicker
-                $('#datetimepicker11').datetimepicker({
-                daysOfWeekDisabled: [0, 6]
-                });
+                 // 3rd  datepicker
+                 $('#datetimepicker9').datetimepicker({
+                 viewMode: 'years'
+                 });
 
-                // 6th  datepicker
-                $('#datetimepicker12').datetimepicker({
-                    inline: true,
-                    sideBySide: true
-                });
-            });
-        </script>
+                 // 4th  datepicker
+                 $('#datetimepicker10').datetimepicker({
+                 viewMode: 'years',
+                 format: 'MM/YYYY'
+                 });
+
+                 // 5th  datepicker
+                 $('#datetimepicker11').datetimepicker({
+                 daysOfWeekDisabled: [0, 6]
+                 });
+
+                 // 6th  datepicker
+                 $('#datetimepicker12').datetimepicker({
+                     inline: true,
+                     sideBySide: true
+                 });
+             });
+         </script>
+
 
 </body>
 </html>

@@ -121,6 +121,103 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
+                           <% if(rs3.next()){ %>
+                    <% if(rs4.next()){ %>
+                       <input type="text" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" style="display:none;">                              
+                    <%
+                    
+                    while(visit_rs.next())
+                    {
+                    	if(visit_rs.getString(1).equals(username) && visit_rs.getString(2).equals(strDate) && visit_rs.getString(3).equals("Intake Module") && visit_rs.getString(6).equals(Project_Name) && visit_rs.getString(7).equals(rs4.getString("appname")) )
+                    	{
+                    		Statement stmtt = conn.createStatement();
+                             String queryy = "update visits set count=count+1,time='"+strTime+"' where uname='"+username+"' and module='Intake Module' and Projects='"+Project_Name+"' and Applications='"+rs4.getString("appname")+"'";
+                             int count = stmtt.executeUpdate(queryy);
+                             flag=0;
+                    	}
+                    }
+                    System.out.println("below visits");
+                    if(flag==1)
+                    {
+                    	
+                    	String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"
+                    	        + " values (?, ?, ?, ?, ?, ?, ?)";
+                    	System.out.println(ins_query);
+                    	      PreparedStatement preparedStmt = conn.prepareStatement(ins_query);
+                    	      preparedStmt.setString (1, username);
+                    	      preparedStmt.setString (2, strDate);
+                    	      preparedStmt.setString(3, "Intake Module");
+                    	      preparedStmt.setString(4, "1");
+                    	      preparedStmt.setString(5, strTime);
+                    	      preparedStmt.setString(6, Project_Name);
+                    	      preparedStmt.setString(7, app_Name );
+
+                    	      // execute the preparedstatement
+                    	      preparedStmt.execute();
+                    }
+                    
+                    
+                    String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                    Statement s2 = conn.createStatement();
+                   ResultSet rss = s2.executeQuery(quer2);
+                   while(rss.next())
+                   	session.setAttribute(rss.getString(3),rss.getString(15));
+                   
+                   String quer3="select id from archive_exec where name='"+rs4.getString("appname")+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                   Statement s3 = conn.createStatement();
+                  ResultSet rss1 = s3.executeQuery(quer3);
+                  while(rss1.next())
+                	  imp_id=rss1.getString(1);
+                  System.out.println(imp_id);
+                  String quer4="select * from archive_exec where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                  Statement s4 = conn.createStatement();
+                 ResultSet rss2 = s4.executeQuery(quer4);
+                
+                  while(rss2.next()){
+                  	session.setAttribute(rss2.getString(3),rss2.getString(15));
+                  	System.out.println(rss2.getString(3));
+                  }
+                  
+                  String quer5="select seq_num from archive_exec where name='Build and Test'";
+                  Statement s5 = conn.createStatement();
+                  ResultSet rss3 = s5.executeQuery(quer5);
+                  if(rss3.next())
+                	  sequenceNumber=rss3.getString(1);
+                  System.out.println(sequenceNumber);
+                  String quer6="select * from archive_exec where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
+                  Statement s6 = conn.createStatement();
+                  ResultSet rss4 = s6.executeQuery(quer6);
+                  int knt=0;
+                  System.out.println("bala");
+                  while(rss4.next())
+                  {
+                	  if(knt>2)
+                	  {
+                		  if(rss4.getString(9).equals(""))
+                			  actualHours1+=0;
+                		  else
+                		  actualHours1+=Integer.parseInt(rss4.getString(9));
+                		  if(rss4.getString(13).equals(""))
+                			  plannedHours1+=0;
+                		  else
+                		  plannedHours1+=Integer.parseInt(rss4.getString(13)); 
+                	  }
+                	  else
+                	  { System.out.println("murugan");
+                		  if(rss4.getString(9).equals(""))
+                			  actualHours+=0;
+                		  else
+                		  actualHours+=Integer.parseInt(rss4.getString(9));
+                		  if(rss4.getString(13).equals(""))
+                			  plannedHours+=0;
+                		  else
+                		  plannedHours+=Integer.parseInt(rss4.getString(13)); 
+                		  System.out.println(actualHours);
+                	  }
+                	 knt++;
+                  }
+                    } }%>
+              
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
@@ -169,13 +266,11 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                         </ul>
                                     </li>
 
-                                    <li class="has-children">
+                                   <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Parameters</span></a></li>
-                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a> <span>Archival Cost Estimate</span></a></li>
-                                        </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
+                                             </ul>
                                     </li>
 
                                     <li>
@@ -195,9 +290,8 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                             <li><a href="Intake_Business.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
-
-                                    <li class="has-children">
-                                        <a href="Intake_TechnicalDetails.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+   <li class="has-children">
+                                        <a href="Intake_TechnicalDetails.jsp" class="active-menu"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="Intake_TechnicalDetails.jsp"> <span>Application Data Information</span></a></li>
                                             <li><a href="Intake_TechnicalDetails.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>

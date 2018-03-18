@@ -257,13 +257,11 @@ var f=document.loginForm;
                                         </ul>
                                     </li>
 
-                                    <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                   <li class="has-children">
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
-                                        </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
+                                             </ul>
                                     </li>
                                      <li class="has-children">
                                         <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>

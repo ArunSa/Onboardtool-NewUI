@@ -2,18 +2,14 @@
    
    function validateform1()
    {
-   var location = document.loginForm.dataloc.value
 var server = document.loginForm.servername.value
 var prod = document.loginForm.prodinstance.value
     var instance = document.loginForm.prodinstanceloc.value
-var reasonforaccess = document.loginForm.reasonfor.value
 var database = document.loginForm.dbsize.value
-var number = document.loginForm.nooftable.value
-var record = document.loginForm.noofrec.value
 var decommision = document.loginForm.integname.value
  
 
-if(location == "" || server  ==  "" || prod == "" || instance == "" || reasonforaccess == "" || database == ""|| number == "" || record =="" ||  decommision == "" )
+if(server  ==  "" || prod == "" || instance == "" || database == "" ||  decommision == "" )
  
  
  
@@ -132,11 +128,9 @@ function validateform() {
 var dataType = document.loginForm.datatype.value
 var processname = document.loginForm.pname.value
 var needarch = document.loginForm.archneed.value
- var format1 = document.loginForm.format.value
-   var multi = document.loginForm.mlang.value
-   var local = document.loginForm.loclang.value 
 
- if(((document.loginForm.datatype[0].checked == false) && (document.loginForm.datatype[1].checked == false) && (document.loginForm.datatype[2].checked == false))|| processname=="" || needarch =="" || format1 == "" ||(document.loginForm.mlang.checked == false) || (document.loginForm.loclang.checked == false))  
+
+ if(((document.loginForm.datatype[0].checked == false) && (document.loginForm.datatype[1].checked == false) && (document.loginForm.datatype[2].checked == false))|| processname=="" || needarch =="")  
 {
 alert("Please Fill the Mandatory Field");
   }

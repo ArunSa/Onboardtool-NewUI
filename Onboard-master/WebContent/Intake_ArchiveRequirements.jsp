@@ -307,10 +307,8 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a id="xxx"> <span>Parameters</span></a></li>
-                                            <li><a id="xxz"> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a id="xxy"> <span>Archival Cost Estimate</span></a></li>
-                                        </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
+                                             </ul>
                                     </li>
 
                                     <li>

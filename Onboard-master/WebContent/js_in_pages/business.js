@@ -191,9 +191,8 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         	var path = document.loginForm.file.value
         	var name = document.loginForm.retentionname.value
         	var reason1 = document.loginForm.reason.value
-          var explain = document.loginForm.archexp.value
         	
-          	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="" || explain == "" )
+          	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="")
         	{
         	alert("Please Fill the Mandatory Field");  
         	}
@@ -217,15 +216,7 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         	} 
         
         function validateform3() {
-        	var useforBI = document.loginForm.useforBI.value
-        	
-        	if(useforBI =="") 
-        	{
-        	alert("Please Fill the Mandatory Field"); 
-        	}
-        	else{
             	toggle3();
-            	}
 
         	}
         function toggle3() {
@@ -249,11 +240,9 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         var country = document.loginForm.localcountry.value
         var infra = document.loginForm.localinf.value
         var data = document.loginForm.datacenters.value
-         
         if(local ==""|| country=="" || infra =="" || data == "")     
         {
-        alert("Please Fillll the Mandatory Field");
-          
+        alert("Please Fill the Mandatory Field"); 
         }
         else{
         toggle2();
@@ -264,8 +253,7 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         
         function toggle2()
         {
-
-        var f=document.form;
+      var f=document.form;
         f.method="post";
         f.action="business"
         f.submit();
