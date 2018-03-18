@@ -135,6 +135,7 @@
 int k=0;
 while(rs.next()){
            k++;
+           System.out.println("pname is "+rs.getString(1));
 %>
 <li>
 <h3 class="cbp-vm-title left-col primary" name="name"><%=rs.getString(1)%></h3>
@@ -143,7 +144,7 @@ st1 = con.createStatement();
 ResultSet rs1 = st1.executeQuery(q);
 while(rs1.next())
 {      
-if(rs1.getString(15).equals("100"))
+if(rs1.getString(15).equals("100") || Integer.parseInt(rs1.getString(15))>=100)
 continue;
 else
 {%>
@@ -164,7 +165,7 @@ else if(Integer.parseInt(rs1.getString(15))<65){
 <script>document.getElementById('prog_bar<%=k%>').className='progress-bar progress-bar-warning progress-bar-striped';</script>
 <%
 } %>
-<!-- <h5 class="cbp-vm-title right-col primary" ><%=rs1.getString(3) %></h5> -->
+<h5 class="cbp-vm-title right-col primary" ><%=rs1.getString(3) %></h5>
 <%
 break;
 }

@@ -318,12 +318,10 @@ ResultSet rs2 = st2.executeQuery(q1);
 int l=-1;
 while(rs2.next()){
 	l++;
-	System.out.println(rs2.getString(15));
-	if(rs2.getString(15).equals("100"))
+	if(rs2.getString(15).equals("100") || Integer.parseInt(rs2.getString(15))>=100)
 		continue;
 	else
 	{
-		System.out.println(rs2.getString(15));
 %>
 							<center><div class="progress center-col cbp-vm-detail">
  <div class="progress-bar progress-bar-success" id="prog_bar<%=l %>" role="progressbar" aria-valuenow="<%=rs2.getString(15) %>"
