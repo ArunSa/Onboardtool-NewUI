@@ -467,11 +467,7 @@ if(implement == null)
           </div>
           
         </div>  
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox"  id="businessunits" name="businessunits" value="Yes">Business Units Involved
-                                            </label>                                             
-                                        </div>
+                                      
                                        <!--  <div class="checkbox"> 
                                             <label class="control-label required"> 
                                                 <input type="checkbox"  id="rodch" name="rodch" value="Yes" >&nbsp;Read Only Date                       
@@ -543,11 +539,7 @@ if(implement == null)
                                                 <option value="other">Other</option>                                                 
                                             </select>
                                         </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Reason</div></label>
-            <input  id="archreason" name="archreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
-          </div>
+       
           
         </div>  
         <div class="form-group row log-date">
@@ -631,9 +623,9 @@ if(implement == null)
                                             <label class="control-label" for="formInput26">Does any Records have legal holds/Tax Holds or any indication?</label>                                             
                                             <select id="legalholds" class="form-control" name="legalholds" > 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
-                                                <option>Other</option>                                                 
+                                                <option value="Yes">Yes</option>                                                 
+                                                <option value="No">No</option>  
+                                                <option value="Other">Other</option>                                                 
                                             </select>
                                         </div>   
         <div class="form-group row log-date">
@@ -647,14 +639,14 @@ if(implement == null)
                                             <label class="control-label" for="formInput26"><div class="required">Should this application's data to be archived?</div></label>                                             
                                             <select id="reason_for_access1" class="form-control" name="reason" > 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
+                                                <option value="Yes">Yes</option>                                                 
+                                                <option value="No">No</option>  
                                                                                            
                                             </select>
                                         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label"><div class="required">Brief Explanation</div></label>
+            <label class="control-label">Brief Explanation</label>
             <input  id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div>
           
@@ -677,18 +669,18 @@ if(implement == null)
                                             <label class="control-label" for="formInput26"><div class="">Is this application's been used for BI report?</div></label>                                             
                                             <select id="useforBI" class="form-control" name="useforBI" /> 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
+                                                <option value="Yes">Yes</option>                                                 
+                                                <option value="No">No</option>  
                                                                                            
                                             </select>
                                         </div> 
                                              <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="report" type="checkbox" name ="report" required /> <div class="required">Is BI aware of using new/alternate target application data to support operational report </div></label>                                             
+                                                <input id="report" type="checkbox" name ="report" /> Is BI aware of using new/alternate target application data to support operational report</label>                                             
                                         </div>
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="archive" type="checkbox" name = "archive" required /><div class="required">BI Engagement should be initiated by Application owner and completed prior archiving </div></label>
+                                                <input id="archive" type="checkbox" name = "archive"/>BI Engagement should be initiated by Application owner and completed prior archiving</label>
                                         </div>                                        
                                      <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform3()">   Next<span class="glyphicon glyphicon-chevron-right"></span></button>
                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new2" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>

@@ -150,11 +150,11 @@
         	var daterange = document.loginForm.daterange.value
         	var data = document.loginForm.dbsize.value
         	var archival = document.loginForm.needarch.value
-        	var reason = document.loginForm.archreason.value
+        	
         	var cmnt = document.loginForm.archcmnt.value
 
 
-        	if(legappname=="" || vendor == "" || conExpDate =="" || read=="" || daterange =="" || data=="" || archival=="" || reason=="" || cmnt =="")
+        	if(legappname=="" || vendor == "" || conExpDate =="" || read=="" || daterange =="" || data=="" || archival=="" || cmnt =="")
         	 
         	{
         	alert("Please Fill the Mandatory Field");
@@ -190,9 +190,9 @@
         	var path = document.loginForm.file.value
         	var name = document.loginForm.retentionname.value
         	var reason1 = document.loginForm.reason.value
-        	var explain = document.loginForm.archexp.value
+        	
         	 
-        	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="" || explain == "" ) 
+        	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="") 
         	{
         	alert("Please Fill the Mandatory Field");  
         	}
@@ -217,9 +217,8 @@
         
         function validateform3() {
         	var useforBI = document.loginForm.useforBI.value
-        	var report = document.loginForm.report.value
-        	var archive = document.loginForm.archive.value
-        	if(useforBI ==""|| report==""||archive=="") 
+        	
+        	if(useforBI =="") 
         	{
         	alert("Please Fill the Mandatory Field"); 
         	}

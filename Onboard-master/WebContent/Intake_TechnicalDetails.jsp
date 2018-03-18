@@ -447,9 +447,9 @@ if(implement == null)
                                                 <div class="required">Datatype Characteristics</div>
                                             </label>      
                                             <br />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<input id="checkbox" type="checkbox" name="datatype" value="Structured"> &nbsp; Structured &nbsp;      
-                                            <input id="checkbox1" type="checkbox" name="datatype" value="Unstructured" > &nbsp; Unstructured &nbsp;
-                                            <input id="checkbox2" type="checkbox" name="datatype" value="Hybrid" > &nbsp; Hybrid      &nbsp;                         
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input id="checkbox" type="radio" name="datatype" value="Structured"> &nbsp; Structured &nbsp;      
+                                            <input id="checkbox1" type="radio" name="datatype" value="Unstructured" > &nbsp; Unstructured &nbsp;
+                                            <input id="checkbox2" type="radio" name="datatype" value="Hybrid" > &nbsp; Hybrid      &nbsp;                         
                                         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
@@ -470,29 +470,29 @@ if(implement == null)
        
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label "><div class="required">Please specify the formats</div></label>
-            <input placeholder="Format Name" id="format" name="format" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label ">Please specify the formats</label>
+            <input placeholder="Format Name" id="format" name="format" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
           <div class="checkbox"> 
-                                            <label class="control-label required"> 
-                                                <input id="language" type="checkbox" name ="mlang" value="Yes" required>Any Special/ Multi Language characters or Foreign Language contained in the application?
+                                            <label class="control-label "> 
+                                                <input id="language" type="checkbox" name ="mlang" value="Yes" >Any Special/ Multi Language characters or Foreign Language contained in the application?
                                             </label>                                             
                                         </div> 
                                           <div class="checkbox"> 
-                                            <label class="control-label required"> 
-                                                <input id="archive" type="checkbox" name="loclang" value="Yes" required>If the legacy application contains local language, should the local language be maintained in the archive? 
+                                            <label class="control-label "> 
+                                                <input id="archive" type="checkbox" name="loclang" value="Yes" >If the legacy application contains local language, should the local language be maintained in the archive? 
                                             </label>                                             
                                         </div> 
                                           <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="range" type="checkbox">Based on the application data and date range of the data, is all or part of the data required to be retained beyond application retirement or repurposing?
+                                                <input id="range" type="checkbox" value="Yes" >Based on the application data and date range of the data, is all or part of the data required to be retained beyond application retirement or repurposing?
                                             </label>                                             
                                         </div> 
          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="Documentation" type="checkbox">System Documentation and its Location
+                                                <input id="Documentation" type="checkbox" value="Yes" >System Documentation and its Location
                                             </label>                                             
                                         </div> 
                                         <div class="form-group row log-date">
@@ -624,11 +624,11 @@ if(implement == null)
                                             </label>                                             
                                         </div>
                                         <div class="form-group"> 
-                                            <label class="control-label required" for="formInput26">Is this Application a Hosted Service ?</label>                                             
-                                            <select id="reasonfor" class="form-control" name="reasonfor"  required> 
+                                            <label class="control-label" for="formInput26">Is this Application a Hosted Service ?</label>                                             
+                                            <select id="reasonfor" class="form-control" name="reasonfor" > 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
+                                                <option value="Yes" >Yes</option>                                                 
+                                                <option value="No" >No</option>  
                                                                                          
                                             </select>
                                         </div>  
@@ -671,15 +671,15 @@ if(implement == null)
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label required">Estimated No of Table in the application</label>
-            <input placeholder="" id="nooftable" name="nooftable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label">Estimated No of Table in the application</label>
+            <input placeholder="" id="nooftable" name="nooftable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label required">Estimated No of Records(volume) in the application</label>
-            <input placeholder="" id="noofrec" name="noofrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label">Estimated No of Records(volume) in the application</label>
+            <input placeholder="" id="noofrec" name="noofrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
           </div>
           
         </div> 
@@ -702,12 +702,12 @@ if(implement == null)
         
        <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox5" type="checkbox">&nbsp;VPN access required for application access                        
+                                                <input id="checkbox5" type="checkbox" value="Yes" >&nbsp;VPN access required for application access                        
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox6" type="checkbox">&nbsp;Does data in the Application integrate to or from other systems?                        
+                                                <input id="checkbox6" type="checkbox" value="Yes" >&nbsp;Does data in the Application integrate to or from other systems?                        
                                             </label>                                             
                                         </div>
       
