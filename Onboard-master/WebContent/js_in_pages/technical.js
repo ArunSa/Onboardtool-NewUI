@@ -6,14 +6,13 @@
 var server = document.loginForm.servername.value
 var prod = document.loginForm.prodinstance.value
     var instance = document.loginForm.prodinstanceloc.value
-var reasonforaccess = document.loginForm.reasonfor.value
+
 var database = document.loginForm.dbsize.value
-var number = document.loginForm.nooftable.value
-var record = document.loginForm.noofrec.value
+
 var decommision = document.loginForm.integname.value
  
 
-if(location == "" || server  ==  "" || prod == "" || instance == "" || reasonforaccess == "" || database == ""|| number == "" || record =="" ||  decommision == "" )
+if(location == "" || server  ==  "" || prod == "" || instance == "" || database == ""||  decommision == "" )
  
  
  

@@ -620,7 +620,7 @@ if(implement == null)
         
         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox4" type="checkbox">  &nbsp;Do you need to archive source code?                     
+                                                <input id="checkbox4" type="checkbox" value="Yes" name="checkbox4">  &nbsp;Do you need to archive source code?                     
                                             </label>                                             
                                         </div>
                                         <div class="form-group"> 

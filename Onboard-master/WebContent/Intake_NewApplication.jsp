@@ -409,6 +409,7 @@ catch(Exception e){}
 
         <!-- ========== PAGE JS FILES ========== -->
         <script src="js/prism/prism.js"></script>
+        
         <script src="js/waypoint/waypoints.min.js"></script>
         <script src="js/counterUp/jquery.counterup.min.js"></script>
         <script src="js/amcharts/amcharts.js"></script>
@@ -493,14 +494,16 @@ catch(Exception e){}
                     sideBySide: true
                 });
                 
-                $('#rod').datepicker({
-                    'format': 'mm/dd/yyyy',
-                    'autoclose': true
-                    });
-
+                
             });
         </script>
        
+<script>
+$('#rod').datepicker({
+    'format': 'mm/dd/yyyy',
+    'autoclose': true
+    });
 
+</script>
 </body>
 </html>
