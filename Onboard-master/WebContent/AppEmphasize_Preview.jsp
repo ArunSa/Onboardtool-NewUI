@@ -527,7 +527,7 @@ $(document).ready(function () {
         <tr>
           <th width="20%" >Application Name</th>
           <th width="20%" >Complexity</th>
-          <th width="22%" >Estd.Size of xDB</th>
+          
           <th width="20%" >Priorities</th>  
          </tr>
       </thead>
@@ -546,7 +546,7 @@ while(rs1.next()){
         
           <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><%=rs1.getString("proj_name") %></span></td>
           <td class="row_s" style="cursor:pointer" id="22"><span class="test"><%=rs1.getString("complexity") %></span></td>
-          <td class="row_t" style="cursor:pointer" id="33"><span class="test"><%=rs1.getString("est_db_size") %></span></td>
+        
           <% if(Integer.parseInt(rs1.getString("priorities"))>0){ %>
           <td class="row_d" id="55">
           <span class="test"><%=rs1.getString("priorities")%></span>

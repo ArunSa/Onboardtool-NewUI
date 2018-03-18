@@ -659,8 +659,8 @@ if(implement == null)
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
-                                            <label class="control-label" name="searchparam" > 
-                                                <input type="checkbox" value="Yes">Based on search parameters, data can be exported out of the system for analysis
+                                            <label class="control-label"  > 
+                                                <input type="checkbox"   name="searchparam" value="Yes">Based on search parameters, data can be exported out of the system for analysis
                                             </label>  
                                              <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                                   
