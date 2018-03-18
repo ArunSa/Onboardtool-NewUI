@@ -38,7 +38,17 @@
    
 
  <style>
-
+.newspaper {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 40px; /* Firefox */
+    column-gap: 40px;
+    -webkit-column-rule: 1px solid lightblue; /* Chrome, Safari, Opera */
+    -moz-column-rule: 1px solid lightblue; /* Firefox */
+    column-rule: 1px solid lightblue;
+}
 
 #cmd {
 float:right;
@@ -62,15 +72,8 @@ float:right;
 #wizard {
 padding-left:20px;
 }
- #nav_userid{
-             color:green;
-             }
-               
-              #nav_role{
-              color:blue;
-              }  
-</style>
-<style>
+.text-white { color:#fff !important; }
+
 
 .btn { background: gray;
     color: #fff; }
@@ -253,6 +256,8 @@ ResultSet rs5 = st5.executeQuery(query5);
                                             <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
                                             <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
+  </li>
+					                <li><a href="archive_exec_samp.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                                     </li>
                                 </ul>
 										
@@ -277,7 +282,7 @@ ResultSet rs5 = st5.executeQuery(query5);
 
 
  <div class="row"  id="wizard">
-        
+      <div class="container">  
             <div class="row bs-wizard" style="border-bottom:0;">
                 
                 <div class="col-xs-2 bs-wizard-step complete">
@@ -290,32 +295,32 @@ ResultSet rs5 = st5.executeQuery(query5);
                 <div class="col-xs-2 bs-wizard-step complete"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Summary</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="#" class="bs-wizard-dot text-white">2</a>
                 </div>
                 
                 <div class="col-xs-2 bs-wizard-step active"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Review</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="#" class="bs-wizard-dottext-white">3</a>
                 </div>
                 
                 <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
                   <div class="text-center bs-wizard-stepnum">Approval</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="#" class="bs-wizard-dot">4</a>
                 </div>
                 
                  <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
                   <div class="text-center bs-wizard-stepnum">Final</div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="#" class="bs-wizard-dot">5</a>
                 </div>
             </div>
-  <div class="col-md-11" >
-  
+  <div class="container" >
+  <a href="Intake_Business.jsp" class="btn btn-default btn pull-left">Edit</a>
 <button id="cmd" class="btn btn-primary pull-right" ><span class="glyphicon glyphicon-download-alt"></span> Export PDF</button>
 <button  class="btn btn-primary pull-left" onclick="location.href='Applications.jsp'" >HOME</button>
- <a href="Intake_Business.jsp" class="btn btn-default btn pull-left">Edit</a>&nbsp;
+ 
 </div>
 <div class="container">
 <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table-scroll">
@@ -329,7 +334,11 @@ ResultSet rs5 = st5.executeQuery(query5);
                                                <tr>
                                                      <td valign='top' style='color:#404041;line-height:16px;padding:25px 20px 0px 20px'>
                                                             <p>
-                                                                   
+                                                                <section style='position: relative;clear: both;margin: 5px 0;height: 1px;border-top: 1px solid #cbcbcb;margin-bottom: 25px;margin-top: 10px;text-align: center;'>
+                                                                         <h3 align='center' style='margin-top: -12px;background-color: #FFF;clear: both;width: 30%;margin-right: auto;margin-left: auto;padding-left: 15px;padding-right: 15px; font-family: arial,sans-serif;'>
+                                                                                <span>Summary & Review</span>
+                                                                         </h3>
+                                                                   </section>    
                                                             </p>               
                                                      </td>
                                                </tr>
@@ -337,13 +346,13 @@ ResultSet rs5 = st5.executeQuery(query5);
                                                <tr align='left' >
                                                      <td style='color:#404041;font-size:12px;line-height:16px;padding:10px 16px 20px 18px'>
                                                      
-                                                    
+                                                    <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Bussiness Details</h2></span>
                 <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table1">                                           
     <table width='0' border='0' align='left' cellpadding='0' cellspacing='0'>
                                                            
                                                                    <tbody>
                                                                    <tr>
-                                                                   <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Business Details</h2></span>
+
                                                                      <%
           
 while(rs1.next()){
@@ -452,14 +461,16 @@ while(rs1.next()){
        
        <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table3">  
      <table>
-      <span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Technical Details</h2></span>
-      <h3>Application Data Information :</h3>
+      
       <%
           
 while(rs2.next()){
 
 %>
+<span><h2 style='color: #848484; font-family: arial,sans-serif; font-size: 150%;'>Technical Details</h2></span>
+      
  
+<h3>Application Data Information :</h3>
    <tr>
         
  <tr class="edit_row">  <pre style="font-family:verdana;font-size:100%;">Datatype Characteristics  : <strong align="right"><%=rs2.getString("datatype") %></strong></pre> </tr> 
@@ -499,12 +510,13 @@ while(rs2.next()){
          
         </tr>
  
+   <%} %>
  
  
 
       </table>
       </div>
-    <%} %>
+ 
     
      <div   bgcolor='#e4e4e4'  style='font-family:Arial,Helvetica,sans-serif;' id="table4">  
      <table>

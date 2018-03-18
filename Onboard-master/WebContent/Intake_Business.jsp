@@ -30,15 +30,7 @@
 <script type="text/javascript" src="js_in_pages/tree.js"></script>
   <link rel="stylesheet" href="js_in_pages/business.css" type="text/css" />
   
-   <style>
-     #nav_userid{
-             color:green;
-             }
-               
-              #nav_role{
-              color:blue;
-              }  
-  </style>
+   
   </head><!--from  w  w w  . ja  va 2 s.co  m-->
   
   <body class="top-navbar-fixed">
@@ -406,7 +398,7 @@ if(implement == null)
                     
                  <div class="panel panel-default"> 
                     <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();">Application Information</a> </h4> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" >Application Information</a> </h4> 
                             </div>                             
                         <div id="collapse1" class="panel-collapse collapse in" name="collapse"> 
                               <div class="panel-body">
@@ -416,27 +408,27 @@ if(implement == null)
                                             <div class="required">Legacy Application Name&nbsp;
                                             </div>
                                             </label>
-                                            <input type="text" class="form-control" id="legappname"  name="legappname" value="<%=app_Name%>"  />
+                                            <input type="text" class="form-control" id="legappname" placeholder="Legacy Application Name" name="legappname" value="<%=app_Name%>"  />
                                         </div>
                                         
                                        <div class="form-group"> 
                                             <label class="control-label" for="formInput229">References to Application</label>
-                                            <input type="text" class="form-control" id="reftoapp"  name="reftoapp" >
+                                            <input type="text" class="form-control" id="reftoapp" placeholder="References" name="reftoapp" >
                                      </div>
                                        <div class="form-group row log-date">
            <div class="col-md-12">
             <label class="control-label">Tracking ID</label>
-            <input  id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="ID" id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
             </div>
           
                                        </div>  
-     <!--   <div class="form-group row log-date">
+        <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Description</div></label>
             <input placeholder="Description" id="descr" name="descr" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
           </div> 
           
-        </div>  -->
+        </div>  
         
         
         <div class="form-group row log-date">
@@ -467,12 +459,16 @@ if(implement == null)
           </div>
           
         </div>  
-                                      
-                                       <!--  <div class="checkbox"> 
+                    <div class="checkbox"> 
+                                            <label class="control-label"> 
+                                                <input type="checkbox"  id="businessunits" name="businessunits">Business Units Involved
+                                            </label>                                             
+                                        </div>                  
+                                        <div class="checkbox"> 
                                             <label class="control-label required"> 
                                                 <input type="checkbox"  id="rodch" name="rodch" value="Yes" >&nbsp;Read Only Date                       
                                             </label>                                             
-                                        </div> -->
+                                        </div> 
                                         
                                              
                                        <%if(rs5.next()) {
@@ -539,7 +535,11 @@ if(implement == null)
                                                 <option value="other">Other</option>                                                 
                                             </select>
                                         </div>  
-       
+       <div class="form-group row log-date">
+          <div class="col-md-12">
+            <label class="control-label "><div class="required">Reason</div></label>
+            <input placeholder="Reason" id="archreason" name="archreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+          </div>
           
         </div>  
         <div class="form-group row log-date">
@@ -583,14 +583,6 @@ if(implement == null)
           
         </div> 
         
-        
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Trigger Table/Column</div></label>
-            <input  id="triggertable" name="triggertable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
-          </div>
-          
-        </div> 
         
         
         
@@ -938,13 +930,7 @@ catch(Exception e){}
         </div>
         <!-- /.main-wrapper -->
          
-         <script>
-         
-         if(document.getElementById('role_info').value=="XR" ||document.getElementById('role_info').value=="R" )
-        	 
-         	checkk();
-         </script>
-         
+       
          <!-- ========== COMMON JS FILES ========== -->
          <script src="js/jquery/jquery-2.2.4.min.js"></script>
          <script src="js/jquery-ui/jquery-ui.min.js"></script>

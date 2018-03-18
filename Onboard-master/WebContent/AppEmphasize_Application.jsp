@@ -197,7 +197,7 @@ ResultSet rs1 = st1.executeQuery(query1);
                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-children"><a href="Archive_Execution.jsp">Archive Execution Module</a>
+                                    <li ><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                </li> 
                                 </ul>
 										
@@ -208,13 +208,14 @@ ResultSet rs1 = st1.executeQuery(query1);
                     </div>
                     <!-- /.left-sidebar -->
             
+<div class="main-page">
             
 <section>
 
     <div class="row">
       <div class="container">
                     <h1 class="page-header">Projects</h1>
-                      <div class="main">
+                      
                       
 <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");

@@ -720,14 +720,14 @@ if(implement == null)
           
         </div> 
                        <div class="form-group row log-date">
-          <div class="col-md-12">
+          <div class="col-md-12" id="basicExample">
             <label class="control-label required">Ready Date for Complete Server decommission and Application Retirement</label>
             <input placeholder="dd/mm/yyyy" id="integname" name="integname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
           </div>
           
         </div>                    
-         <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt1" onclick="validateform1();"> <a class="collapsed" href="#collapse3" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-        <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new1" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+         <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform1();"> <a class="collapsed" href="#collapse3" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
+        <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" > <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                                                     
                                     </form>
                                     
@@ -736,7 +736,7 @@ if(implement == null)
                         </div>
                         <div class="panel panel-default"> 
                             <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors1();">Technical Information</a> </h4> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" >Technical Information</a> </h4> 
                             </div>                             
                             <div id="collapse3" class="panel-collapse collapse"> 
                                 <div class="panel-body">
@@ -752,14 +752,14 @@ if(implement == null)
    
     <label text-align:"left">Downloadable Attachment4</label>
     <input type="file"  id="file3" name="file" size="60" />   
-    <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new3" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+    <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" > <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                                             
                                     </form>
                                 </div>                                 
                             </div>                             
                         </div>
           
-                    </div>
+                  
        <input type="hidden" id="pwqej" value="<%= info %>" hidden>
       
     

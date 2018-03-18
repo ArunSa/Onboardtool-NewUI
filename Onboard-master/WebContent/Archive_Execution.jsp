@@ -48,9 +48,13 @@
 <script type="text/javascript" src="js_in_pages/archive_exec.js"></script>
 <script type="text/javascript" src="js_in_pages/tree.js"></script>
 <link rel="stylesheet" href="js_in_pages/archive_exec.css" type="text/css" />
-<link rel="stylesheet" href="old/css0/progressbar.css" type="text/css" />
-
-
+	<script type="text/javascript" src="js/archivesummary/jqueryprogressbar.js"></script>
+	
+	<script type="text/javascript" src="js/archivesummary/main.js"></script>
+        
+ <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
+		<link type="text/css" rel="stylesheet" href="old/css/progressbar.css" />
+		<script src="js/archivesummary/treeTable.js"></script>
 		<script src="js/archivesummary/jstree.min.js"></script>
 
 		
@@ -544,7 +548,53 @@ i++;
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
         <!-- ========== THEME JS ========== -->
+  <script>
+            $(function($) {
+
+               
     
+ // 1st  datepicker
+                $('#basicExample .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+                });
+
+                $('#basicExample .date').datepicker({
+                'format': 'd/m/yyyy',
+                'autoclose': true
+                });
+
+                var basicExampleEl = document.getElementById('basicExample');
+                var datepair = new Datepair(basicExampleEl);
+
+                // 2nd  datepicker
+                $('#datetimepicker1').datetimepicker({
+                    debug: true
+                });
+
+                // 3rd  datepicker
+                $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+                });
+
+                // 4th  datepicker
+                $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+                });
+
+                // 5th  datepicker
+                $('#datetimepicker11').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+                });
+
+                // 6th  datepicker
+                $('#datetimepicker12').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+            });
+        </script>
         
 		<script src="js/jquery.doubleScroll.js"></script>
    <script>

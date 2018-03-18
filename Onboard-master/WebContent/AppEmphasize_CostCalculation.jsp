@@ -35,6 +35,7 @@
                 background-color: #e7e7e7;
                 color: #010101; }
         </style>
+<script src="js_in_pages/tree1.js"></script>
   
 </head>
 <body class="top-navbar-fixed">
@@ -375,7 +376,7 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-children"><a href="archive_exec_samp.jsp">Archive Execution Module</a>
+<li><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                </li> 
                                 </ul>		
                             </div>
@@ -473,11 +474,11 @@ hypercare="0";
 
 
 <div class="row">
-  <div class="panel-group" id="panels1" style="display:block;"> 
+  
         
             <div class="row bs-wizard" style="border-bottom:0;">
                 
-                <div class="col-xs-3 bs-wizard-step active">
+                <div class="col-xs-3 bs-wizard-step complete">
                   <div class="text-center bs-wizard-stepnum">Project Information</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot" style="color:white">1</a>
@@ -487,21 +488,21 @@ hypercare="0";
                   <div class="text-center bs-wizard-stepnum">Application Complexity </div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">2</a>
-                  <div class="bs-wizard-info text-center"></div>
+                 
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Prioritized Applications</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">3</a>
-                  <div class="bs-wizard-info text-center"></div>
+                 
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
                   <div class="text-center bs-wizard-stepnum">Final</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot">4</a>
-                  <div class="bs-wizard-info text-center"></div>
+                
                 </div>
             </div>
         
@@ -509,7 +510,7 @@ hypercare="0";
                <br/>
                     <div class="panel-group" id="panels1"> 
                 <div class="panel panel-default">
-       <!-- <div class="panel-heading"> 
+       <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();"> Parameters   </a> </h4> 
                             </div>  
                                                        
@@ -556,7 +557,7 @@ hypercare="0";
                                         </div>
                                                                         </div>                                 
                             </div>                             
-                        </div> -->
+                        </div> 
     
                                <div class="panel panel-default"> 
                             <div class="panel-heading"> 

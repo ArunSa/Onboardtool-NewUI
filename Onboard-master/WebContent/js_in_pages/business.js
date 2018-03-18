@@ -107,7 +107,7 @@
         	  };
         	  date_input.datepicker(options);
         	});
-        
+   /*     
         function switchColors0()  
         {  
         links=document.getElementsByTagName("li") ;  
@@ -140,21 +140,22 @@
         	for (var i = 0 ; i < x.length ; i ++)  
         	x.item(i).style.backgroundColor = '#3276B1' ; 
         	}
-        
+    */    
         
         function validateform() {
         	var legappname = document.loginForm.legappname.value
+          var description = document.loginForm.descr.value
         	var vendor = document.loginForm.vendor.value
         	var conExpDate = document.loginForm.expdate.value
         	var read = document.loginForm.rod.value
         	var daterange = document.loginForm.daterange.value
         	var data = document.loginForm.dbsize.value
         	var archival = document.loginForm.needarch.value
-        	
+        	var reason = document.loginForm.archreason.value
         	var cmnt = document.loginForm.archcmnt.value
 
 
-        	if(legappname=="" || vendor == "" || conExpDate =="" || read=="" || daterange =="" || data=="" || archival=="" || cmnt =="")
+if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=="" || daterange =="" || data=="" || archival=="" || reason=="" || cmnt =="")
         	 
         	{
         	alert("Please Fill the Mandatory Field");
@@ -190,9 +191,9 @@
         	var path = document.loginForm.file.value
         	var name = document.loginForm.retentionname.value
         	var reason1 = document.loginForm.reason.value
+          var explain = document.loginForm.archexp.value
         	
-        	 
-        	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="") 
+          	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="" || explain == "" )
         	{
         	alert("Please Fill the Mandatory Field");  
         	}
@@ -270,7 +271,7 @@
         f.submit();
         }
         
-        
+     /*   
         function switchColors1()  
         {  
         links=document.getElementsByTagName("li") ;  
@@ -310,19 +311,20 @@
 
         } 
         
-        
+       */ 
         
         function checkk()
         {
         document.getElementById('legappname').readOnly = true;
         document.getElementById('reftoapp').readOnly = true;
         document.getElementById('tid').readOnly = true;
+        document.getElementById('descr').readOnly = true;
         document.getElementById('vendor').readOnly = true;
         document.getElementById('expirydate').readOnly = true;
         document.getElementById('noticeperiod').readOnly = true;
         document.getElementById('contractvalue').readOnly = true;
         document.getElementById('businessunits').disabled = true;
-       
+        document.getElementById('rodch').disabled = true;
         document.getElementById('rod').readOnly = true;
         document.getElementById('cmnt').readOnly = true; 
         document.getElementById('hasdep').readOnly = true; 
@@ -340,9 +342,9 @@
         document.getElementById('triggertable').readOnly = true;
         document.getElementById('retentionperiod').readOnly = true; 
         document.getElementById('retentiontable').readOnly = true; 
-        document.getElementById('file').disabled = true;
+        document.getElementById('file').readOnly = true;
         document.getElementById('retentionname').readOnly = true; 
-        document.getElementById('legalholds').disabled = true; 
+        document.getElementById('reason_for_access').disabled = true; 
         document.getElementById('wholegal').readOnly = true; 
         document.getElementById('reason_for_access1').disabled = true; 
         document.getElementById('archexp').readOnly = true; 
