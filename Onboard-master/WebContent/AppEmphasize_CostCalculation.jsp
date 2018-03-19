@@ -281,6 +281,8 @@ session.setAttribute(rss.getString(3),rss.getString(15));
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
+                           <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
+				
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
@@ -627,37 +629,21 @@ for(var i=0; i<edit_row.length; i++) {
 		 knt++;
 		 
 		 document.getElementById('complexity').value = "<%= rs8.getString("complexity") %>";
-		    document.getElementById('est_db_size').value = "<%= rs8.getString("est_db_size") %>";
-		    document.getElementById('est_cst').value = "<%= rs8.getString("est_cst") %>";
 		    document.getElementById('curnt_users').value = "<%= rs8.getString("curnt_users") %>";
 		    document.getElementById('data_size').value = "<%= rs8.getString("data_size") %>";
 		    document.getElementById('RO_DATE').value = "<%= rs8.getString("read_date") %>";
 		    document.getElementById('SME_DATE').value = "<%= rs8.getString("sme_date") %>";
-		    document.getElementById('est_archive').value = "<%= rs8.getString("est_archive") %>";
 		    document.getElementById('est_scrn').value = "<%= rs8.getString("est_scrn") %>";
-		    document.getElementById('est_hrs').value = "<%= rs8.getString("est_hrs") %>";
-		    document.getElementById('ttl_IA_cst').value = "<%= rs8.getString("ttl_IA_cst") %>";
-		    document.getElementById('ttl_infra_cst').value = "<%= rs8.getString("ttl_infra_cst") %>";
-		    document.getElementById('ttl_IA_prdct_cst').value = "<%= rs8.getString("ttl_IA_prdct_cst") %>";
-		    document.getElementById('ttl').value = "<%= rs8.getString("ttl") %>";
-		 }
+		    }
 <% }
  %>
  if(knt==0){
     document.getElementById('complexity').value = " ";
-    document.getElementById('est_db_size').value = " ";
-    document.getElementById('est_cst').value = " ";
     document.getElementById('curnt_users').value = " ";
     document.getElementById('data_size').value = " ";
     document.getElementById('RO_DATE').value = " ";
     document.getElementById('SME_DATE').value = " ";
-    document.getElementById('est_archive').value = " ";
     document.getElementById('est_scrn').value = " ";
-    document.getElementById('est_hrs').value = " ";
-    document.getElementById('ttl_IA_cst').value = " ";
-    document.getElementById('ttl_infra_cst').value = " ";
-    document.getElementById('ttl_IA_prdct_cst').value = " ";
-    document.getElementById('ttl').value = " ";
  }
     }, false);
 }

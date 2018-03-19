@@ -142,7 +142,8 @@ ResultSet rs3 = st3.executeQuery(query3);
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
-
+  <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
+				
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
                             <!-- /.nav navbar-nav -->
@@ -199,9 +200,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                                     <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Parameters</span></a></li>
-                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a> <span>Archival Cost Estimate</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
                                         </ul>
                                     </li>
 
@@ -238,6 +237,9 @@ ResultSet rs3 = st3.executeQuery(query3);
                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
+                                              </li>
+<li><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
+               </li> 
                                 </ul>
 										
                             </div>

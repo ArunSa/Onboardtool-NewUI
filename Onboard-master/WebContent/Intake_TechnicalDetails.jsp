@@ -76,10 +76,41 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
 <form class="form-signin" name="loginForm" method="post" action="Technical">
 
         <div class="main-wrapper">
-            
+           
+
+            <!-- ========== TOP NAVBAR ========== -->
+            <nav class="navbar top-navbar bg-white box-shadow">
+              <div class="container-fluid">
+                    <div class="row">
+                        <div class="navbar-header no-padding">
+                      <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
+                          <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                      </a>
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                        <i class="fa fa-bars"></i>
+                      </button>
+                    </div>
+                        <!-- /.navbar-header -->
+                        
                    <% if(rs3.next()){ %>
-                    <% if(rs4.next()){ %>
-                   <a class="navbar-brand" href="Project_List.jsp" style="" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
+                    <% if(rs4.next()){ 
+                    	String rowCount="";
+                   	 String query11 = "select * from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
+                        Statement st11 = conn.createStatement();
+                        ResultSet rs11 = st11.executeQuery(query11); 
+                        String query12 = "select count(*) from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                        Statement st12 = conn.createStatement();
+                        ResultSet rs12 = st12.executeQuery(query12);
+                        if(rs12.next())
+                       	 rowCount=rs12.getString(1);
+                    
+                    %>
+                   <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
                     <input type="hidden" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>             
                     <%
                     String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
@@ -141,27 +172,8 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 	  }
                 	 knt++;
                   }
-                    } }%>
-
-
-            <!-- ========== TOP NAVBAR ========== -->
-            <nav class="navbar top-navbar bg-white box-shadow">
-              <div class="container-fluid">
-                    <div class="row">
-                        <div class="navbar-header no-padding">
-                      <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
-                          <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
-                      </a>
-                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </button>
-                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
-                        <i class="fa fa-bars"></i>
-                      </button>
-                    </div>
-                        <!-- /.navbar-header -->
+                    %>
+                        
 
                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
                       
@@ -433,7 +445,7 @@ if(implement == null)
 
 
 
-
+<% if (rs11.next() || rowCount.equals("0")) {%>  
 <div class="panel-group" id="panels1"> 
 <br><br>
                         <div class="panel panel-default"> 
@@ -449,14 +461,14 @@ if(implement == null)
                                                 <div class="required">Datatype Characteristics</div>
                                             </label>      
                                             <br />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<input id="checkbox" type="radio" name="datatype" value="Structured"> &nbsp; Structured &nbsp;      
-                                            <input id="checkbox1" type="radio" name="datatype" value="Unstructured" > &nbsp; Unstructured &nbsp;
-                                            <input id="checkbox2" type="radio" name="datatype" value="Hybrid" > &nbsp; Hybrid      &nbsp;                         
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input id="checkbox" type="radio" name="datatype" <% if(!rowCount.equals("0") && (rs11.getString(1).equals("Structured"))){ %> value="Structured" checked <%} else{%>value="Structured"<%} %>> &nbsp; Structured &nbsp;      
+                                            <input id="checkbox1" type="radio" name="datatype" value="Unstructured" <% if(!rowCount.equals("0") && (rs11.getString(1).equals("Unstructured"))){ %> value="Unstructured" checked <%} else{%>value="Unstructured"<%} %>> &nbsp; Unstructured &nbsp;
+                                            <input id="checkbox2" type="radio" name="datatype" value="Hybrid" <% if(!rowCount.equals("0") && (rs11.getString(1).equals("Hybrid"))){ %> value="Hybrid" checked <%} else{%>value="Hybrid"<%} %>> &nbsp; Hybrid      &nbsp;                         
                                         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">If the Data Type is Unstructured or Hybrid, process for extracting unstructured data? </div></label>
-            <input placeholder="Process Name"  id= "pname" name="pname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <input placeholder="Process Name"  id= "pname" name="pname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("pname") %>" <%} %>>
           </div>
           
         </div>
@@ -464,8 +476,8 @@ if(implement == null)
                                             <label class="control-label"><div class="required">Does Unstructured or Hybrid business objects needs to be archived?</div></label>                                             
                                             <select id="archneed" class="form-control" name="archneed"> 
                                            <option></option>
-                                                 <option value="yes">Yes</option>                                                 
-                                                <option value="no">No</option>  
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("archneed").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("archneed").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
                                                                                                 
                                             </select>
                                         </div>  
@@ -473,97 +485,97 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Please specify the formats</label>
-            <input placeholder="Format Name" id="format" name="format" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Format Name" id="format" name="format" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("formatsp") %>" <%} %>>
           </div>
           
         </div> 
           <div class="checkbox"> 
                                             <label class="control-label "> 
-                                                <input id="language" type="checkbox" name ="mlang" value="Yes" >Any Special/ Multi Language characters or Foreign Language contained in the application?
+                                                <input id="language" type="checkbox" name ="mlang" <% if(!rowCount.equals("0") && (rs11.getString("mlang").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Any Special/ Multi Language characters or Foreign Language contained in the application?
                                             </label>                                             
                                         </div> 
                                           <div class="checkbox"> 
                                             <label class="control-label "> 
-                                                <input id="archive" type="checkbox" name="loclang" value="Yes" >If the legacy application contains local language, should the local language be maintained in the archive? 
+                                                <input id="archive" type="checkbox" name="loclang" <% if(!rowCount.equals("0") && (rs11.getString("loclang").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >If the legacy application contains local language, should the local language be maintained in the archive? 
                                             </label>                                             
                                         </div> 
                                           <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="range" type="checkbox" value="Yes" >Based on the application data and date range of the data, is all or part of the data required to be retained beyond application retirement or repurposing?
+                                                <input id="range" type="checkbox" name="dateretain" <% if(!rowCount.equals("0") && (rs11.getString("dataretain").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Based on the application data and date range of the data, is all or part of the data required to be retained beyond application retirement or repurposing?
                                             </label>                                             
                                         </div> 
          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="Documentation" type="checkbox" value="Yes" >System Documentation and its Location
+                                                <input id="Documentation" type="checkbox" name="systemdoc" <% if(!rowCount.equals("0") && (rs11.getString("systemdoc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >System Documentation and its Location
                                             </label>                                             
                                         </div> 
                                         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">User Documentation</label>
-            <input placeholder="User Documentation" id="userdoc" name="userdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="User Documentation" id="userdoc" name="userdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("userdoc") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Technical Documentation</label>
-            <input placeholder="Technical Documentation" id="techdoc" name="techdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Technical Documentation" id="techdoc" name="techdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("techdoc") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Training Documentation</label>
-            <input placeholder="Training Documentation" id="traindoc" name="traindoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Training Documentation" id="traindoc" name="traindoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"<% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("traindoc") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Support Documentation</label>
-            <input placeholder="Support Documentation" id="supportdoc" name="supportdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Support Documentation" id="supportdoc" name="supportdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("supportdoc") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Data Dictionary</label>
-            <input placeholder="Data Dictionary" id="datadic" name="datadic" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Data Dictionary" id="datadic" name="datadic" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("datadic") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Test Case Documentation</label>
-            <input placeholder="Test Case Documentation" id="testcasedoc" name="testcasedoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Test Case Documentation" id="testcasedoc" name="testcasedoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("testcasedoc") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Testing Records</label>
-            <input placeholder="Testing Records" id="testrec" name="testrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Testing Records" id="testrec" name="testrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("testrec") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Design Specification</label>
-            <input placeholder="Design Specification" id="designspec" name="designspec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Design Specification" id="designspec" name="designspec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("designspec") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Requirements Specification</label>
-            <input placeholder="Requirements Specification" id="reqSpeci" name="reqSpeci" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Requirements Specification" id="reqspec" name="reqspec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("reqspec") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Validation Plan</label>
-            <input placeholder="Validation Plan" id="validityplan" name="validityplan" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Validation Plan" id="validityplan" name="validityplan" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("validityplan") %>" <%} %>>
           </div>
           
         </div> 
@@ -584,14 +596,14 @@ if(implement == null)
                         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label required">Server Name</label>
-            <input placeholder="Server Name" id="servername" name="servername" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Server Name" id="servername" name="servername" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("servername") %>" <%} %>>
           </div>
           
         </div>  
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label required">Production Instances</label>
-            <input placeholder="Production Instances" id="prodinstance" name="prodinstance" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Production Instances" id="prodinstance" name="prodinstance" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("prodinstance") %>" <%} %>>
           </div>
           
         </div>  
@@ -599,7 +611,7 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label required">Location of Production Instances</label>
-            <input placeholder="Location of Production Instances" id="prodinstanceloc" name="prodinstanceloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Location of Production Instances" id="prodinstanceloc" name="prodinstanceloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("prodinstanceloc") %>" <%} %>>
           </div>
           
         </div>  
@@ -610,22 +622,22 @@ if(implement == null)
                                       <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Contact Name or Entity for Infrastructure Engagement </label>
-            <input placeholder="Contact Name or Entity for Infrastructure Engagement " id="infraengage" name="infraengage" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="Contact Name or Entity for Infrastructure Engagement " id="infraengage" name="infraengage" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("infraengage") %>" <%} %>>
           </div>
           
         </div> 
         
         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox4" type="checkbox" value="Yes" name="checkbox4">  &nbsp;Do you need to archive source code?                     
+                                                <input id="sourcearch" type="checkbox" name="sourcearch" <% if(!rowCount.equals("0") && (rs11.getString("sourcearch").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>  &nbsp;Do you need to archive source code?                     
                                             </label>                                             
                                         </div>
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput26">Is this Application a Hosted Service ?</label>                                             
-                                            <select id="reasonfor" class="form-control" name="reasonfor" > 
+                                            <select id="apphost" class="form-control" name="apphost" > 
                                             <option></option>
-                                                <option value="Yes" >Yes</option>                                                 
-                                                <option value="No" >No</option>  
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("apphost").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("apphost").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
                                                                                          
                                             </select>
                                         </div>  
@@ -633,21 +645,21 @@ if(implement == null)
                                         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Duration for retention agreements with the vendor</label>
-            <input placeholder="" id="retenduration" name="retenduration" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="retenduration" name="retenduration" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("retenduration") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Does the legacy applicationâs data need to be archived in the client archive application </label>
-            <input placeholder="" id="clientapp" name="clientapp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="clientapp" name="clientapp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("clientapp") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Is the Application external customer facing or have a component of being external customer facing</label>
-            <input placeholder="" id="extcustfacing" name="extcustfacing" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="extcustfacing" name="extcustfacing" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("extcustfacing") %>" <%} %>>
           </div>
           
         </div> 
@@ -655,28 +667,28 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">If external facing, web apps/website URLs</label>
-            <input placeholder="" id="url" name="url" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="url" name="url" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("url") %>" <%} %>>
           </div>
           
         </div> 
                                         <div class="form-group row log-date">
           <div class="col-md-12">
-            <label class="control-label required">Database size of the application</label>
-            <input placeholder="" id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
+            <label class="control-label ">Database size of the application</label>
+            <input placeholder="" id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("dbsize") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Estimated No of Table in the application</label>
-            <input placeholder="" id="nooftable" name="nooftable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="nooftable" name="nooftable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("nooftable") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Estimated No of Records(volume) in the application</label>
-            <input placeholder="" id="noofrec" name="noofrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="noofrec" name="noofrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("noofrec") %>" <%} %>>
           </div>
           
         </div> 
@@ -685,26 +697,26 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">XML counts for the database</label>
-            <input placeholder="" id="xmlcount" name="xmlcount" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="xmlcount" name="xmlcount" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("xmlcount") %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Does this application utilize any VPN environments (E.g. Citrix) for access</label>
-            <input placeholder="" id="anyvpn" name="anyvpn" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="anyvpn" name="anyvpn" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("anyvpn") %>" <%} %>>
           </div>
           
         </div> 
         
        <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox5" type="checkbox" value="Yes" >&nbsp;VPN access required for application access                        
+                                                <input id="vpnacces" name="vpnacces" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("vpnacces").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >&nbsp;VPN access required for application access                        
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="checkbox6" type="checkbox" value="Yes" >&nbsp;Does data in the Application integrate to or from other systems?                        
+                                                <input id="appintegrate" name="appintegrate" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("appintegrate").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >&nbsp;Does data in the Application integrate to or from other systems?                        
                                             </label>                                             
                                         </div>
       
@@ -712,14 +724,14 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Specify the application to integrate</label>
-            <input placeholder="" id="appintegrate" name="appintegrate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="integname" name="integname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("integname") %>" <%} %>>
           </div>
           
         </div> 
                        <div class="form-group row log-date">
           <div class="col-md-12" id="basicExample">
             <label class="control-label required">Ready Date for Complete Server decommission and Application Retirement</label>
-            <input placeholder="mm/dd/yyyy" id="integname" name="integname" class="form-control in date start" type="text" required>
+            <input placeholder="mm/dd/yyyy" id="decomdate" name="decomdate" class="form-control in date start" type="text"  <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("decomdate") %>" <%} %>>
           </div>
           
         </div>                    
@@ -777,6 +789,9 @@ checkk();
             
       
         <%
+}
+}
+                   }
 }
 }
 catch(Exception e){}

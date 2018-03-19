@@ -64,23 +64,60 @@ public class ArchivalRequirements extends HttpServlet {
 					MDC.put("USERROLE", u_role);
 					
 	       String legalholds = request.getParameter("legalholds");
+	       if(legalholds==null)
+	    	   legalholds="No";
 	       String dataapp = request.getParameter("dataapp");
+	       if(dataapp==null)
+	    	   dataapp="No";
 	       String dataloc = request.getParameter("dataloc");
+	       if(dataloc==null)
+	    	   dataloc="No";
 	       String reconsttools = request.getParameter("reconsttools");
+	       if(reconsttools==null)
+	    	   reconsttools="No";
 	       String viewblob = request.getParameter("viewblob");
+	       if(viewblob==null)
+	    	   viewblob="No";
 	       String fieldprop = request.getParameter("fieldprop");
+	       if(fieldprop==null)
+	    	   fieldprop="No";
 	       String fieldtype = request.getParameter("fieldtype");
+	       if(fieldtype==null)
+	    	   fieldtype="No";
 	       String splchars = request.getParameter("splchars");
+	       if(splchars==null)
+	    	   splchars="No";
 	       String foreignlang = request.getParameter("foreignlang");
+	       if(foreignlang==null)
+	    	   foreignlang="No";
 	       String clob = request.getParameter("clob");
+	       if(clob==null)
+	    	   clob="No";
 	       String unstructarch = request.getParameter("unstructarch");
+	       if(unstructarch==null)
+	    	   unstructarch="No";
 	       String accrole = request.getParameter("accrole");
+	       if(accrole==null)
+	    	   accrole="No";
 	       String dataview = request.getParameter("dataview");
+	       if(dataview==null)
+	    	   dataview="No";
 	       String complctrl = request.getParameter("complctrl");
+	       if(complctrl==null)
+	    	   complctrl="No";
 	       String errctrl = request.getParameter("errctrl");
+	       if(errctrl==null)
+	    	   errctrl="No";
 	       String metadata = request.getParameter("metadata");
+	       if(metadata==null)
+	    	   metadata="No";
 	       String advsearch = request.getParameter("advsearch");
+	       if(advsearch==null)
+	    	   advsearch="No";
 	       String searchparam = request.getParameter("searchparam");
+	       if(searchparam==null)
+	    	   searchparam="No";
+	       String projectname=request.getParameter("project_name");
 	      
 	       
 	       // do some processing here...
@@ -97,8 +134,8 @@ public class ArchivalRequirements extends HttpServlet {
 	         Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	         
 	         // the mysql insert statement
-	         String query = " insert into archivalRequirement (legalholds, dataapp, dataloc, reconsttools,viewblob,fieldprop,fieldtype,splchars,foreignlang,clob,unstructarch,accrole,dataview,complctrl,errctrl,metadata,advsearch,searchparam,appname)"
-	           + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'"+idd+"')";
+	         String query = " insert into archivalRequirement (legalholds, dataapp, dataloc, reconsttools,viewblob,fieldprop,fieldtype,splchars,foreignlang,clob,unstructarch,accrole,dataview,complctrl,errctrl,metadata,advsearch,searchparam,appname,projectname)"
+	           + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'"+idd+"',?)";
 
 	         
 	         PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -120,6 +157,7 @@ public class ArchivalRequirements extends HttpServlet {
 	         preparedStmt.setString (16, metadata);
 	         preparedStmt.setString (17, advsearch);
 	         preparedStmt.setString (18, searchparam);
+	         preparedStmt.setString (19, projectname);
 	        
 	         
 

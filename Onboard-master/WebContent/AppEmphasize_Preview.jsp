@@ -326,7 +326,8 @@ total=rs2.getInt("total");
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
-
+     <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %></a>
+				
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
                             <!-- /.nav navbar-nav -->

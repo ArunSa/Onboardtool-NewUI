@@ -172,9 +172,37 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
             <nav class="navbar top-navbar bg-white box-shadow">
             	<div class="container-fluid">
                     <div class="row">
-                    
+             
+               <div class="navbar-header no-padding" >
+                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
+                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
+                			</a>
+                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
+                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                				<span class="sr-only">Toggle navigation</span>
+                				<i class="fa fa-ellipsis-v"></i>
+                			</button>
+                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                				<i class="fa fa-bars"></i>
+                			</button>
+                		</div>
+                        <!-- /.navbar-header -->
+                               
                  <% if(rs3.next()){ %>
-                 <% if(rs4.next()){ %>
+                 <% if(rs4.next()){ 
+                	 String rowCount="";
+                	 String query11 = "select * from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
+                     Statement st11 = conn.createStatement();
+                     ResultSet rs11 = st11.executeQuery(query11); 
+                     System.out.println(query11);
+                     String query12 = "select count(*) from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                     Statement st12 = conn.createStatement();
+                     ResultSet rs12 = st12.executeQuery(query12);
+                     if(rs12.next())
+                    	 rowCount=rs12.getString(1);
+                 %>
+                      <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
+                    <input type="hidden" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>             
                    
                     <%
                     String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
@@ -236,22 +264,8 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 	  }
                 	 knt++;
                   }
-                    } }%>
+                    %>
               
-               <div class="navbar-header no-padding" >
-                			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
-                			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
-                			</a>
-                            <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
-                			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-                				<span class="sr-only">Toggle navigation</span>
-                				<i class="fa fa-ellipsis-v"></i>
-                			</button>
-                            <button type="button" class="navbar-toggle mobile-nav-toggle" >
-                				<i class="fa fa-bars"></i>
-                			</button>
-                		</div>
-                        <!-- /.navbar-header -->
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1" style = "background-color:#fff " >
                 			
@@ -294,7 +308,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li class="nav-header">
-                                        <span class="">App Emphasize Module</span>
+                                      <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
                                         <a><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
@@ -318,34 +332,34 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                        		
 
                                     <li class="nav-header">
-                                        <span class="">Intake Module</span>
+                                       <a href="Applications.jsp"><span class="">Intake Module</span></a>
                                     </li>
 
-                                    <li class="has-children">
-                                        <a href="Intake_Business.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                  <li class="has-children">
+                                        <a href="Intake_Business.jsp" class="active-menu"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Application Information</span></a></li>
-                                            <li><a> <span>Legacy Retention Information</span></a></li>
-                                            <li><a> <span>Archive Data Management</span></a></li>
-                                            <li><a> <span>System Requirements</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Intake_Business.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
-
-                                    <li class="has-children">
-                                        <a href="Intake_TechnicalDetails.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+   <li class="has-children">
+                                        <a href="Intake_TechnicalDetails.jsp" class="active-menu"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Application Data Information</span></a></li>
-                                            <li><a> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a> <span>Technical Information</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
                                         <a href="Intake_ArchiveRequirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
+
                  		    <li><a href="Archive_Execution.jsp"><span>Archive Execution Module</span></a>
               			    </li> 
                                 </ul>
@@ -564,6 +578,7 @@ if(implement == null)
                                 </div>                                 
                             </div>                             
                         </div>
+                       <% if (rs11.next() || rowCount.equals("0")) {%>   
                         <div class="panel panel-default"> 
                             <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2">Archive Requirements</a> </h4> 
@@ -573,87 +588,87 @@ if(implement == null)
                                     
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="legalholds" value="Yes" >Current Legal holds on the application data must be applied to the application's archived data to override the Retention schedule
+                                                <input type="checkbox" name="legalholds" <% if(!rowCount.equals("0") && (rs11.getString("legalholds").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Current Legal holds on the application data must be applied to the application's archived data to override the Retention schedule
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="dataapp" value="Yes">Data from application must be retained based on the Client Retention schedule.
+                                                <input type="checkbox" name="dataapp" <% if(!rowCount.equals("0") && (rs11.getString("dataapp").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Data from application must be retained based on the Client Retention schedule.
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="dataloc" value="Yes">Data Localization Laws must be followed where relevant.
+                                                <input type="checkbox" name="dataloc" <% if(!rowCount.equals("0") && (rs11.getString("dataloc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Data Localization Laws must be followed where relevant.
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="reconsttools" value="Yes">The System has tools to reconstruct the data in its original format
+                                                <input type="checkbox" name="reconsttools" <% if(!rowCount.equals("0") && (rs11.getString("reconsttools").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System has tools to reconstruct the data in its original format
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="viewblob" value="Yes">The System allows for user viewing of blob data in its original format in relationship to its structured data
+                                                <input type="checkbox" name="viewblob" <% if(!rowCount.equals("0") && (rs11.getString("viewblob").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System allows for user viewing of blob data in its original format in relationship to its structured data
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="fieldprop" value="Yes">Archived data maintains its field properties and formats from the source system (i.e. decimals, %, commas, .00x, YYY-MM-DD) to display values defined in Views and schemas
+                                                <input type="checkbox" name="fieldprop" <% if(!rowCount.equals("0") && (rs11.getString("fieldprop").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Archived data maintains its field properties and formats from the source system (i.e. decimals, %, commas, .00x, YYY-MM-DD) to display values defined in Views and schemas
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="fieldtype" value="Yes">Archived data maintains its field types from the source system (i.e. STRING, Integer, CHAR, VCHAR, Date) to display values defined in Views and schemas
+                                                <input type="checkbox" name="fieldtype" <% if(!rowCount.equals("0") && (rs11.getString("fieldtype").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Archived data maintains its field types from the source system (i.e. STRING, Integer, CHAR, VCHAR, Date) to display values defined in Views and schemas
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="splchars" value="Yes">The System supports archiving special characters as found in source data to include Foreign characters
+                                                <input type="checkbox" name="splchars" <% if(!rowCount.equals("0") && (rs11.getString("splchars").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports archiving special characters as found in source data to include Foreign characters
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="foreignlang" value="Yes">The System supports archiving Foreign Language data and maintains the Language in the archive
+                                                <input type="checkbox" name="foreignlang" <% if(!rowCount.equals("0") && (rs11.getString("foreignlang").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports archiving Foreign Language data and maintains the Language in the archive
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="clob" value="Yes">The System Maintains CLOBs from source systems
+                                                <input type="checkbox" name="clob" <% if(!rowCount.equals("0") && (rs11.getString("clob").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System Maintains CLOBs from source systems
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="unstructarch" value="Yes">The System supports archiving unstructured formats such as word, excel, PowerPoint, pdf.
+                                                <input type="checkbox" name="unstructarch" <% if(!rowCount.equals("0") && (rs11.getString("unstructarch").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports archiving unstructured formats such as word, excel, PowerPoint, pdf.
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="accrole" value="Yes">Access to the Archive is role based and controlled through Active Directory.
+                                                <input type="checkbox" name="accrole" <% if(!rowCount.equals("0") && (rs11.getString("accrole").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Access to the Archive is role based and controlled through Active Directory.
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="dataview" value="Yes">The System allows for configuration of data views.
+                                                <input type="checkbox" name="dataview" <% if(!rowCount.equals("0") && (rs11.getString("dataview").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System allows for configuration of data views.
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="complctrl" value="Yes">Completeness Control - record level check (The number of records sent from the Application are compared to the number of records posted to the target.)
+                                                <input type="checkbox" name="complctrl" <% if(!rowCount.equals("0") && (rs11.getString("complctrl").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Completeness Control - record level check (The number of records sent from the Application are compared to the number of records posted to the target.)
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="errctrl" value="Yes">Error Handling Control - record level check (During the load, records deemed as errors based on program logic will be written to an exception log in their entirety).
+                                                <input type="checkbox" name="errctrl" <% if(!rowCount.equals("0") && (rs11.getString("errctrl").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Error Handling Control - record level check (During the load, records deemed as errors based on program logic will be written to an exception log in their entirety).
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="metadata" value="Yes">The System supports metadata management and indexing.
+                                                <input type="checkbox" name="metadata" <% if(!rowCount.equals("0") && (rs11.getString("metadata").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports metadata management and indexing.
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" name="advsearch" value="Yes">The System provides advanced search tools to include data parameters and the standard search tools
+                                                <input type="checkbox" name="advsearch" <% if(!rowCount.equals("0") && (rs11.getString("advsearch").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System provides advanced search tools to include data parameters and the standard search tools
                                             </label>                                             
                                         </div> 
                                          <div class="checkbox"> 
@@ -702,6 +717,9 @@ if(implement == null)
             
       
         <%
+}
+}
+}
 }
 }
 catch(Exception e){}

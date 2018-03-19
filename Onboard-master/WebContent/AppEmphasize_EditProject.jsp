@@ -412,16 +412,7 @@ hypercare="0";
           </div>
           </div>
           
-        </div>  
-        
-    <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Project Start Date</div></label>
-             <div class="col-sm-12" id="basicExample">
-            <input placeholder="dd/mm/yyyy" id="Startdate" name="Startdate" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" type="text" value="<%=rs3.getString("Startdate")%>" required>
-          </div>
-          </div>
-        </div>                                 
+        </div>                               
         
         <div class="form-group row log-date">
           <div class="col-md-12">

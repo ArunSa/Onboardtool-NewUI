@@ -148,14 +148,12 @@
         	var vendor = document.loginForm.vendor.value
         	var conExpDate = document.loginForm.expdate.value
         	var read = document.loginForm.rod.value
-        	var daterange = document.loginForm.daterange.value
         	var data = document.loginForm.dbsize.value
         	var archival = document.loginForm.needarch.value
-        	var reason = document.loginForm.archreason.value
         	var cmnt = document.loginForm.archcmnt.value
 
 
-if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=="" || daterange =="" || data=="" || archival=="" || reason=="" || cmnt =="")
+if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=="" || data=="" || archival=="" || cmnt =="")
         	 
         	{
         	alert("Please Fill the Mandatory Field");
@@ -190,9 +188,8 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         	var table = document.loginForm.retentiontable.value
         	var path = document.loginForm.file.value
         	var name = document.loginForm.retentionname.value
-        	var reason1 = document.loginForm.reason.value
         	
-          	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="" || reason1 =="")
+          	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="")
         	{
         	alert("Please Fill the Mandatory Field");  
         	}

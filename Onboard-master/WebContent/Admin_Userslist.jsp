@@ -164,6 +164,7 @@ if (session.getAttribute("username")==null)
 <%
 HttpSession details=request.getSession();
 String info=(String)details.getAttribute("admin");
+String prjname=(String)details.getAttribute("nameofproject");
 Class.forName("com.mysql.jdbc.Driver"); 
 java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123"); 
 String query="select * from user_details";
@@ -192,6 +193,7 @@ ResultSet rs=s.executeQuery(query);
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
+                         <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=prjname %></a>
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			

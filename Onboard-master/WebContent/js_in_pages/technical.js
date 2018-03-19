@@ -6,12 +6,10 @@ var server = document.loginForm.servername.value
 var prod = document.loginForm.prodinstance.value
     var instance = document.loginForm.prodinstanceloc.value
 var database = document.loginForm.dbsize.value
-var decommision = document.loginForm.integname.value
+var decommision = document.loginForm.decomdate.value
  
 
 if(server  ==  "" || prod == "" || instance == "" || database == "" ||  decommision == "" )
- 
- 
  
 {
 alert("Please Fill the Mandatory Field");

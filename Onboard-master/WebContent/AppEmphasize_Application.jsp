@@ -103,6 +103,7 @@ ResultSet rs1 = st1.executeQuery(query1);
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
+                         <a class="navbar-brand" href="Project_List" id="sitetitle">Onboarding Tool-<%= Project_name %></a>
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			

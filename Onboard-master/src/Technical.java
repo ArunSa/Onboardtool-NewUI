@@ -71,11 +71,20 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 String datatype = request.getParameter("datatype");
        String pname = request.getParameter("pname");
        String archneed = request.getParameter("archneed");
+      
        String formatsp = request.getParameter("format");
        String mlang = request.getParameter("mlang");
+       if(mlang==null)
+    	   mlang="No";
        String loclang = request.getParameter("loclang");
+       if(loclang==null)
+    	   loclang="No";
        String dataretain = request.getParameter("dataretain");
+       if(dataretain==null)
+    	   dataretain="No";
        String systemdoc = request.getParameter("systemdoc");
+       if(systemdoc==null)
+    	   systemdoc="No";
        String userdoc = request.getParameter("userdoc");
        String techdoc = request.getParameter("techdoc");
        String traindoc = request.getParameter("traindoc");
@@ -84,6 +93,7 @@ String datatype = request.getParameter("datatype");
        String testcasedoc = request.getParameter("testcasedoc");
        String testrec = request.getParameter("testrec");
        String designspec = request.getParameter("designspec");
+       String reqspec = request.getParameter("reqspec");
        String validityplan = request.getParameter("validityplan");
        String dataloc = request.getParameter("dataloc");
        String servername = request.getParameter("servername");
@@ -91,6 +101,9 @@ String datatype = request.getParameter("datatype");
        String prodinstanceloc = request.getParameter("prodinstanceloc");
        String infraengage = request.getParameter("infraengage");
        String sourcearch = request.getParameter("sourcearch");
+       if(sourcearch==null)
+    	   sourcearch="No";
+       
        String apphost = request.getParameter("apphost");
        String retenduration = request.getParameter("retenduration");
        String clientapp = request.getParameter("clientapp");
@@ -102,7 +115,11 @@ String datatype = request.getParameter("datatype");
        String xmlcount = request.getParameter("xmlcount");
        String anyvpn = request.getParameter("anyvpn");
        String vpnacces = request.getParameter("vpnacces");
+       if(vpnacces==null)
+    	   vpnacces="No";
        String appintegrate = request.getParameter("appintegrate");
+       if(appintegrate==null)
+    	   appintegrate="No";
        String integname = request.getParameter("integname");
        String decomdate = request.getParameter("decomdate");
     
@@ -129,8 +146,8 @@ String datatype = request.getParameter("datatype");
    
          
          // the mysql insert statement
-         String query = " insert into technical (datatype, pname, archneed, formatsp, mlang, loclang, dataretain, systemdoc, userdoc, techdoc, traindoc, supportdoc, datadic, testcasedoc, testrec, designspec, validityplan, dataloc, servername, prodinstance, prodinstanceloc, infraengage, sourcearch, apphost, retenduration, clientapp, extcustfacing, url, dbsize, nooftable, noofrec, xmlcount, anyvpn, vpnacces, appintegrate,integname,decomdate,appname)"
-           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
+         String query = " insert into technical (datatype, pname, archneed, formatsp, mlang, loclang, dataretain, systemdoc, userdoc, techdoc, traindoc, supportdoc, datadic, testcasedoc, testrec, designspec, validityplan, dataloc, servername, prodinstance, prodinstanceloc, infraengage, sourcearch, apphost, retenduration, clientapp, extcustfacing, url, dbsize, nooftable, noofrec, xmlcount, anyvpn, vpnacces, appintegrate,integname,decomdate,appname,reqspec,projectname)"
+           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)";
 
          // create the mysql insert preparedstatement
          //Scanner sin=new Scanner(System.in);
@@ -180,6 +197,8 @@ String datatype = request.getParameter("datatype");
          preparedStmt.setString(36, integname);
          preparedStmt.setString(37, decomdate);
          preparedStmt.setString(38, appname);
+         preparedStmt.setString(39, reqspec);
+         preparedStmt.setString(40, projectname);
         
          
          

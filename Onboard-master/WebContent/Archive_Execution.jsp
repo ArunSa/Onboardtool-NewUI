@@ -175,6 +175,7 @@ if(rs4.next()){
                 			</button>
                 		</div>
                 		 <% if(rs.next()){ %>
+                		   <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
                        <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" style="display:none;">                              
                     <%
                     String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";

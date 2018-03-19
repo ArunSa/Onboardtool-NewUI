@@ -191,28 +191,28 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="AppEmphasize_Business.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="AppEmphasize_Business.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="Intake_TechnicalDetails.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="Intake_ArchiveRequirements.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
 

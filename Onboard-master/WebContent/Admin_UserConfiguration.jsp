@@ -206,6 +206,7 @@ int count=0;
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
+                         <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=prjname %></a>
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			

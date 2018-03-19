@@ -2,37 +2,57 @@
 <!DOCTYPE html>  
 <html>  
 
- <meta charset="UTF-8" />
- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Onboard</title>
-
-		<script type="text/javascript" src="js/archivesummary/jqueryprogressbar.js"></script>
-		<script type="text/javascript" src="js/archivesummary/main.js"></script>
-         <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
-		<link type="text/css" rel="stylesheet" href="old/css/progressbar.css" />
-		<script src="js/archivesummary/treeTable.js"></script>
-
-		 <script src="js/archivesummary/jstree.min.js"></script>
-        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Onboard - Archive Executive Sample</title>
         
-     <!-- ========== COMMON STYLES ========== -->
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+  
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
         <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
         <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
 
+        <link rel="stylesheet" type="text/css" href="css/date-picker/jquery.timepicker.css" />
+        <link rel="stylesheet" type="text/css" href="css/date-picker/bootstrap-datepicker.css" />
+
+		<script type="text/javascript" src="js/archivesummary/jqueryprogressbar.js"></script>
+		<script type="text/javascript" src="js/archivesummary/main.js"></script>
+        <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
+		<link type="text/css" rel="stylesheet" href="old/css/progressbar.css" />
+		<script src="js/archivesummary/treeTable.js"></script>
+
         <!-- ========== PAGE STYLES ========== -->
         <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
         <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
         <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
+        <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
         <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
+
+        <!-- ========== PAGE STYLES ========== -->
+        <link rel="stylesheet" type="text/css" href="css/date-picker/jquery.timepicker.css" />
+        <link rel="stylesheet" type="text/css" href="css/date-picker/bootstrap-datepicker.css" />
 
         <!-- ========== THEME CSS ========== -->
         <link rel="stylesheet" href="css/main.css" media="screen" >
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
+	
+<script type="text/javascript" src="js_in_pages/archive_exec.js"></script>
+<script type="text/javascript" src="js_in_pages/tree.js"></script>
+<link rel="stylesheet" href="js_in_pages/archive_exec.css" type="text/css" />
+<link rel="stylesheet" href="old/css0/progressbar.css" type="text/css" />
+
+
+		<script src="js/archivesummary/jstree.min.js"></script>
    
         
 <script>
@@ -520,6 +540,10 @@ function remove(x)
 
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
+		<%
+		HttpSession details=request.getSession();
+		String Project_Name=(String)details.getAttribute("nameofproject");
+		%>
 		
 <form class="form-signin" name="loginForm" method="post" action="archive_exec">
 	
@@ -543,6 +567,7 @@ function remove(x)
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
+                        <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=Project_Name %></a>
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
@@ -577,64 +602,63 @@ function remove(x)
                                         <span class="">Main Category</span>
                                     </li>
                                     <li id='home' item-selected='true'>
-                                        <a href="project.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href="editproject.jsp"><span class="">App Emphasize Module</span></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="editproject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="editproject.jsp"> <span>Project Information</span></a></li>
-                                            <li><a href="application1.jsp"> <span>Application Details</span></a></li>
+                                            <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
                                     </li>
 
-                                    <li class="has-children">
-                                        <a href="tree.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                     <li class="has-children">
+                                        <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a> <span>Parameters</span></a></li>
-                                            <li><a> <span>Archival Complexity Calculation</span></a></li>
-                                            <li><a> <span>Archival Cost Estimate</span></a></li>
-                                        </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
+                                             </ul>
                                     </li>
 
                                     <li>
-                                        <a href="applnprior.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                        <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
                                     </li>
 
                                     <li class="nav-header">
-                                        <a href='firstinsert.jsp'><span class="">Intake Module</span></a>
+                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>System Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-children">
-                                        <a href="firstinsert.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Technical Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
                                         </ul>
                                     </li>
                                      <li class="has-children">
-                                        <a href="firstinsert.jsp" class="active-menu"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="firstinsert.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="firstinsert.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
                                         </ul>
                                     </li>
-                        			<li><a href="archive_exec_samp.jsp"><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span></a></li>
-                                </ul>
+<li><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
+               </li> 
+                                </ul>		
 										
                             </div>
                             <!-- /.sidebar-nav -->
@@ -685,6 +709,19 @@ ResultSet rs7 = st7.executeQuery(query7);
 
 if(rs4.next()){
 	%>
+	 <% if(rs.next()){ %>
+                		                     <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" style="display:none;">                              
+                    <%
+                    String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
+                    Statement s2 = conn.createStatement();
+                    ResultSet rss = s2.executeQuery(q2);
+                    while(rss.next())
+                    {
+                    	session.setAttribute(rss.getString(3),rss.getString(15));
+                    	session.setAttribute((rss.getString(3)+"1"),rss.getString(1));
+                    }
+                    
+                    %>
      
 
                   <script>
@@ -732,6 +769,64 @@ if(rs4.next()){
             	  
                }
                   </script>
+                  
+                  <%
+String initiate=(String)session.getAttribute("Ideation and Initiate");
+String plan=(String)session.getAttribute("Plan");
+String execute=(String)session.getAttribute("Execute");
+String hypercare=(String)session.getAttribute("Closure");
+String initiate_seqno=(String)session.getAttribute("Ideation and Initiate1");
+String plan_seqno=(String)session.getAttribute("Plan1");
+String execute_seqno=(String)session.getAttribute("Execute1");
+String hypercare_seqno=(String)session.getAttribute("Closure1");
+if(initiate == null)
+	initiate="0";
+if(plan == null)
+	plan="0";
+if(execute == null)
+	execute="0";
+if(hypercare == null)
+	hypercare="0";
+System.out.println(plan);
+%>                            
+
+<div class="row">
+
+  <div class="col-md-3">
+  <div class="form-group">
+  <center><label >Initiate</label></center>
+  <div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar" style="width: <%=initiate%>%" aria-valuenow="<%=initiate %>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=initiate %>%</span></div>
+</div></div></div>
+
+  <div class="col-md-3">
+  <div class="form-group">
+  <center><label >Plan</label></center>
+  <div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar1" style="width: <%=plan%>%" aria-valuenow="<%=plan%>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=plan %>%</span></div>
+</div></div></div>
+
+  <div class="col-md-3">
+  <div class="form-group">
+  <center><label >Execute</label></center>
+  <div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="prog_bar2" style="width: <%=execute %>%" aria-valuenow="<%=execute %>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=execute %>%</span></div>
+</div></div></div>
+
+ <div class="col-md-3">
+ <div class="form-group">
+ <center><label >Closure</label></center>
+ <div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-stripedss-bar" role="progressbar" id="prog_bar3" style="width: <%=hypercare %>%" aria-valuenow="<%=hypercare %>" aria-valuemin="0" aria-valuemax="100"><span style="color:black;"><%=hypercare %>%</span></div>
+</div></div></div>
+</div>
+<jsp:include page="progress_details.jsp" >
+<jsp:param name="Initiate" value="<%=initiate %>"/>
+<jsp:param name="Plan" value="<%=plan %>"/>
+<jsp:param name="Execute" value="<%=execute %>"/>
+<jsp:param name="Hypercare" value="<%=hypercare %>"/>
+</jsp:include>
+                  
               
 <h3 align="center">Archive Execution</h3>
 <a href="archive_exec_samp.jsp" class="btn btn-primary" class="btn pull-right">Edit</a>
@@ -854,7 +949,7 @@ i++;
                         
                                   
        <%
-
+	 }
 
 }
 %>

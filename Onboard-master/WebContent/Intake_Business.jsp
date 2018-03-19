@@ -122,12 +122,26 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 		</div>
                         <!-- /.navbar-header -->
                            <% if(rs3.next()){ %>
-                    <% if(rs4.next()){ %>
-                       <input type="text" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" style="display:none;">                              
+                    <% if(rs4.next()){
+                    	String rowCount="";
+                    	 String query11 = "select * from business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
+                         Statement st11 = conn.createStatement();
+                         ResultSet rs11 = st11.executeQuery(query11); 
+                         String query12 = "select count(*) from business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                         Statement st12 = conn.createStatement();
+                         ResultSet rs12 = st12.executeQuery(query12);
+                         if(rs12.next())
+                        	 rowCount=rs12.getString(1);
+                        	 
+                    	%>
+                         <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
+                       <input type="text" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" style="display:none;">
+                                                   
                     <%
                     
                     while(visit_rs.next())
                     {
+                    	if(visit_rs.getString(1)!=null){
                     	if(visit_rs.getString(1).equals(username) && visit_rs.getString(2).equals(strDate) && visit_rs.getString(3).equals("Intake Module") && visit_rs.getString(6).equals(Project_Name) && visit_rs.getString(7).equals(rs4.getString("appname")) )
                     	{
                     		Statement stmtt = conn.createStatement();
@@ -135,6 +149,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                              int count = stmtt.executeUpdate(queryy);
                              flag=0;
                     	}
+                    }
                     }
                     System.out.println("below visits");
                     if(flag==1)
@@ -216,7 +231,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 	  }
                 	 knt++;
                   }
-                    } }%>
+                    %>
               
 
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -487,7 +502,7 @@ if(implement == null)
         
 </div>
 
-
+ <% if (rs11.next() || rowCount.equals("0")) {%>  
 <div class="panel-group" id="panels1" > 
                     
                  <div class="panel panel-default"> 
@@ -507,19 +522,20 @@ if(implement == null)
                                         
                                        <div class="form-group"> 
                                             <label class="control-label" for="formInput229">References to Application</label>
-                                            <input type="text" class="form-control" id="reftoapp" placeholder="References" name="reftoapp" >
+                                            <input type="text" class="form-control" id="reftoapp" placeholder="References" name="reftoapp" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(2) %>" <%} %> >
                                      </div>
+                                    
                                        <div class="form-group row log-date">
            <div class="col-md-12">
             <label class="control-label">Tracking ID</label>
-            <input placeholder="ID" id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="ID" id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(3) %>" <%} %> >
             </div>
           
                                        </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Description</div></label>
-            <input placeholder="Description" id="descr" name="descr" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input placeholder="Description" id="descr" name="descr" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(4) %>" <%} %> >
           </div> 
           
         </div>  
@@ -528,42 +544,32 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Legacy Application Vendor/Manufacturer</div></label>
-            <input  id="vendor" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="vendor" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(5) %>" <%} %> >
           </div>
         
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Contract Expiration Date</div></label>
-            <input placeholder="mm/dd/yyyy" id="expirydate" name="expdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input placeholder="mm/dd/yyyy" id="expirydate" name="expdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(6) %>" <%} %> >
           </div>
           
         </div>  
                     <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Notice Period for Expiration of Contract</label>
-            <input  id="noticeperiod" name="noticeperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="noticeperiod" name="noticeperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(7) %>" <%} %>>
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Contract Value of Application</label>
-            <input  id="contractvalue" name="contractvalue" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="contractvalue" name="contractvalue" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(8) %>" <%} %>>
           </div>
           
         </div>  
-                    <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox"  id="businessunits" name="businessunits">Business Units Involved
-                                            </label>                                             
-                                        </div>                  
-                                        <div class="checkbox"> 
-                                            <label class="control-label required"> 
-                                                <input type="checkbox"  id="rodch" name="rodch" value="Yes" >&nbsp;Read Only Date                       
-                                            </label>                                             
-                                        </div> 
-                                        
+               
                                              
                                        <%if(rs5.next()) {
                                     	   System.out.println("aaa "+rs5.getString("read_date"));
@@ -581,42 +587,37 @@ if(implement == null)
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Comment</label>
-            <input  id="cmnt" name="cmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="cmnt" name="cmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(12) %>" <%} %>>
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">If the applications transitions has dependencies?</label>
-            <input placeholder="" id="hasdep" name="hasdep" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="hasdep" name="hasdep" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(13) %>" <%} %>>
           </div>
           
         </div>    
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label"> <div class="required">What is the date Range of this Data?</div></label>
-            <input placeholder="mm/dd/yyyy" id="daterange" name="daterange" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
-          </div>
-          
-        </div>  
+   
+       
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label"><div class="required">Size of Database</div></label>
-            <input  id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(15) %>" <%} %>>
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Location of Data</label>
-            <input  id="dataloc" name="dataloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="dataloc" name="dataloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(16) %>" <%} %>>
           </div>
           
         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Site Location of Data</label>
-            <input  id="siteloc" name="siteloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="siteloc" name="siteloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(17) %>" <%} %>>
           </div>
           
         </div>
@@ -624,28 +625,22 @@ if(implement == null)
                                             <label class="control-label" for="formInput26"><div class="required">Does the application needs archival?</div></label>                                             
                                             <select id="needarch" class="form-control" name="needarch" > 
                                             <option></option>
-                                                <option value="yes">Yes</option>                                                 
-                                                <option value="no">No</option>  
-                                                <option value="other">Other</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString(18).equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString(18).equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString(18).equals("Other"))){ %> value="Other" selected <%} else{%>value="Other"<%} %>>Other</option>                                                 
                                             </select>
                                         </div>  
-       <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Reason</div></label>
-            <input placeholder="Reason" id="archreason" name="archreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required>
-          </div>
-          
-        </div>  
+  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Comments</div></label>
-            <input  id="archcmnt" name="archcmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="archcmnt" name="archcmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(20) %>" <%} %>>
           </div>
           
         </div> 
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox"  id="sourceoft" name="sourceoft">Is this Application's data the source of Truth?
+                                                <input type="checkbox"  id="sourceoft" name="sourceoft" <% if(!rowCount.equals("0") && (rs11.getString("ssn").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Is this Application's data the source of Truth?
                                             </label>                                             
                                         </div> 
                                         
@@ -665,14 +660,14 @@ if(implement == null)
                                     <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Retention Code</div></label>
-            <input  id="reccode" name="reccode" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"  />
+            <input  id="reccode" name="reccode" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"  <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(22) %>" <%} %>/>
           </div>
           
         </div> 
                                     <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "> <div class="required">Trigger Date Field</div></label>
-            <input placeholder="mm/dd/yyyy"  id="triggerdate" name="triggerdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input placeholder="mm/dd/yyyy"  id="triggerdate" name="triggerdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(23) %>" <%} %>>
           </div>
           
         </div> 
@@ -684,14 +679,14 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Period of Retention</div></label>
-            <input  id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(24) %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Table Name/s where Retention need to apply</div></label>
-            <input  id="retentiontable" name="retentiontable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="retentiontable" name="retentiontable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(25) %>" <%} %>>
           </div>
           
         </div> 
@@ -701,39 +696,38 @@ if(implement == null)
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Name of the Legal Retention & e-Discovery SME</div></label>
-            <input  id="retentionname" name="retentionname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="retentionname" name="retentionname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(26) %>" <%} %>>
           </div>
           
         </div> 
         <div class="form-group"> 
                                             <label class="control-label" for="formInput26">Does any Records have legal holds/Tax Holds or any indication?</label>                                             
-                                            <select id="legalholds" class="form-control" name="legalholds" > 
+                                            <select id="legalholds" class="form-control" name="legalholds"> 
                                             <option></option>
-                                                <option value="Yes">Yes</option>                                                 
-                                                <option value="No">No</option>  
-                                                <option value="Other">Other</option>                                                 
-                                            </select>
+                                               <option <% if(!rowCount.equals("0") && (rs11.getString(27).equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString(27).equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString(27).equals("Other"))){ %> value="Other" selected <%} else{%>value="Other"<%} %>>Other</option>                                                 
+                                           </select>
                                         </div>   
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Who or what entity provided legal or tax hold identification</label>
-            <input  id="wholegal" name="wholegal" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="wholegal" name="wholegal" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(28) %>" <%} %>>
           </div>
           
         </div> 
          <div class="form-group"> 
                                             <label class="control-label" for="formInput26"><div class="required">Should this application's data to be archived?</div></label>                                             
-                                            <select id="reason_for_access1" class="form-control" name="reason" > 
-                                            <option></option>
-                                                <option value="Yes">Yes</option>                                                 
-                                                <option value="No">No</option>  
-                                                                                           
+                                            <select id="app_data_arch" class="form-control" name="app_data_arch" > 
+                                              <option></option>
+                                               <option <% if(!rowCount.equals("0") && (rs11.getString("app_data_arch").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("app_data_arch").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
                                             </select>
                                         </div>  
         <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Brief Explanation</label>
-            <input  id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" >
+            <input  id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(29) %>" <%} %>>
           </div>
           
         </div>             
@@ -753,20 +747,20 @@ if(implement == null)
                               <div class="panel-body">
                                          <div class="form-group"> 
                                             <label class="control-label" for="formInput26"><div class="">Is this application's been used for BI report?</div></label>                                             
-                                            <select id="useforBI" class="form-control" name="useforBI" /> 
+                                            <select id="useforBI" class="form-control" name="useforBI"> 
                                             <option></option>
-                                                <option value="Yes">Yes</option>                                                 
-                                                <option value="No">No</option>  
-                                                                                           
+                                              <option <% if(!rowCount.equals("0") && (rs11.getString("useforBI").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("useforBI").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
+                                                                                             
                                             </select>
                                         </div> 
                                              <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="report" type="checkbox" name ="report" /> Is BI aware of using new/alternate target application data to support operational report</label>                                             
+                                                <input id="BItarget" type="checkbox" name ="BItarget" <% if(!rowCount.equals("0") && (rs11.getString("BItarget").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>> Is BI aware of using new/alternate target application data to support operational report</label>                                             
                                         </div>
                                          <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="archive" type="checkbox" name = "archive"/>BI Engagement should be initiated by Application owner and completed prior archiving</label>
+                                                <input id="BIengagement" type="checkbox" name = "BIengagement" <% if(!rowCount.equals("0") && (rs11.getString("BIengagement").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >BI Engagement should be initiated by Application owner and completed prior archiving</label>
                                         </div>                                        
                                      <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform3()">   Next<span class="glyphicon glyphicon-chevron-right"></span></button>
                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new2" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
@@ -784,158 +778,158 @@ if(implement == null)
                               
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input type="checkbox" id="creditacc" name="creditacc" value="Yes">Account Credit Card
+                                                <input type="checkbox" id="creditacc" name="creditacc" <% if(!rowCount.equals("0") && (rs11.getString("creditacc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Account Credit Card
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="financialacc" type="checkbox" name="financialacc" value="Yes" >Account Number - Financial
+                                                <input id="financialacc" type="checkbox" name="financialacc" <% if(!rowCount.equals("0") && (rs11.getString("financialacc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Account Number - Financial
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="dob" name="dob" type="checkbox" name="dob"  value="Yes">Date of Birth
+                                                <input id="dob" name="dob" type="checkbox" name="dob"  <% if(!rowCount.equals("0") && (rs11.getString("dob").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Date of Birth
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input  id="driverlic" name="driverlic" type="checkbox" name="driverlic" value="Yes" >Driver's License Number
+                                                <input  id="driverlic" name="driverlic" type="checkbox" name="driverlic" <% if(!rowCount.equals("0") && (rs11.getString("driverlic").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Driver's License Number
                                                 <br>
                                             </label>                                             
                                         </div> 
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="email" name="email" type="checkbox" value="Yes">Email Address
+                                                <input id="email" name="email" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("email").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Email Address
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="family"  name="family" type="checkbox" value="Yes">family Status
+                                                <input id="family"  name="family" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("family").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>family Status
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="gender"  name="gender" type="checkbox" value="Yes">Gender
+                                                <input id="gender"  name="gender" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("gender").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Gender
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="geoloc" name="geoloc" type="checkbox" value="Yes">Geo Location
+                                                <input id="geoloc" name="geoloc" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("geoloc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Geo Location
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="img" name="img" type="checkbox" value="Yes">Image/Video
+                                                <input id="img" name="img" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("img").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Image/Video
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="income" type="checkbox" name="income" value="Yes">Income
+                                                <input id="income" type="checkbox" name="income" <% if(!rowCount.equals("0") && (rs11.getString("income").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Income
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="ipadrs" type="checkbox" name="ipadrs" value="Yes">IP Address
+                                                <input id="ipadrs" type="checkbox" name="ipadrs" <% if(!rowCount.equals("0") && (rs11.getString("ipadrs").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>IP Address
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="martialstatus" type="checkbox" name="martialstatus" value="Yes">Martial Status
+                                                <input id="martialstatus" type="checkbox" name="martialstatus" <% if(!rowCount.equals("0") && (rs11.getString("martialstatus").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Martial Status
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="mobid" type="checkbox" name="mobid" value="Yes">Mobile Device Id
+                                                <input id="mobid" type="checkbox" name="mobid" <% if(!rowCount.equals("0") && (rs11.getString("mobid").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Mobile Device Id
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="name" name="name" type="checkbox" value="Yes">Name
+                                                <input id="name" name="name" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("name").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Name
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="phno" name="phno" type="checkbox" value="Yes" >Phone Number
+                                                <input id="phno" name="phno" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("phno").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Phone Number
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="mailadrs" type="checkbox" name="mailadrs" value="Yes">Physical/Mailing Address
+                                                <input id="mailadrs" type="checkbox" name="mailadrs" <% if(!rowCount.equals("0") && (rs11.getString("mailadrs").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Physical/Mailing Address
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="physic" type="checkbox" name="physic" value="Yes" >Physical Description
+                                                <input id="physic" type="checkbox" name="physic" <% if(!rowCount.equals("0") && (rs11.getString("physic").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Physical Description
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="race" type="checkbox" name="race" value="Yes">Race/Ethnicity
+                                                <input id="race" type="checkbox" name="race" <% if(!rowCount.equals("0") && (rs11.getString("race").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Race/Ethnicity
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="religion" type="checkbox" name="religion" value="Yes"> Religion
+                                                <input id="religion" type="checkbox" name="religion" <% if(!rowCount.equals("0") && (rs11.getString("religion").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>> Religion
                                             </label>
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="sexualpref" type="checkbox" name="sexualpref" value="Yes">Sexual Preference
+                                                <input id="sexualpref" type="checkbox" name="sexualpref" <% if(!rowCount.equals("0") && (rs11.getString("sexualpref").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Sexual Preference
                                                 <br>
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input id="ssn" name="ssn" type="checkbox" value="Yes">SSN/SIN
+                                                <input id="ssn" name="ssn" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("ssn").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>SSN/SIN
                                             </label>                                             
                                         </div>
                                         <div class="checkbox"> 
                                             <label class="control-label"> 
-                                                <input  id="others" type="checkbox" name="others" value="Yes">Others
+                                                <input  id="others" type="checkbox" name="others" <% if(!rowCount.equals("0") && (rs11.getString("others").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Others
                                             </label>                                             
                                         </div>
                                          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Brief Explanation</label>
-            <input  id="expl" name="expl" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="expl" name="expl" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("expl") %>" <%} %>>
           </div>
           
         </div> 
                            <h4>Security Information:</h4>
                                          <div class="form-group"> 
                                             <label class="control-label" for="formInput26"><div class="required">Does the application have localization requirement/ regulations</div></label>                                             
-                                            <select id="localreq" class="form-control" name="localreq" > 
+                                            <select id="localreq" class="form-control" name="localreq"> 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
-                                                                                           
+                                             <option <% if(!rowCount.equals("0") && (rs11.getString("localreq").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("localreq").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
+                                                                                                
                                             </select>
                                         </div> 
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput26"><div class="required">List of Countries where localization requirement/ regulations apply</div></label>                                             
-                                            <select id="localcountry" class="form-control" name="localcountry" > 
+                                            <select id="localcountry" class="form-control" name="localcountry"> 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
-                                                                                           
+                                              <option <% if(!rowCount.equals("0") && (rs11.getString("localcountry").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("localcountry").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
+                                                                                                 
                                             </select>
                                         </div> 
                                         <div class="form-group"> 
                                             <label class="control-label" for="formInput26"><div class="required">Are the Localization requirements/regulations enforced with infrastructure or geofencing</div></label>                                             
-                                            <select id="localinf" class="form-control" name="localinf" > 
+                                            <select id="localinf" class="form-control" name="localinf"> 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
-                                                                                           
+                                              <option <% if(!rowCount.equals("0") && (rs11.getString("localinf").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("localinf").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
+                                                                                               
                                             </select>
                                         </div> 
                                          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label "><div class="required">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
-            <input  id="datacenters" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="datacenters" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("datacenters") %>" <%} %>>
           </div>
           
         </div> 
@@ -943,53 +937,54 @@ if(implement == null)
                                             <label class="control-label" for="formInput26">External access  for archived data</label>                                             
                                             <select id="extaccess" class="form-control" name="extaccess"> 
                                             <option></option>
-                                                <option>Yes</option>                                                 
-                                                <option>No</option>  
-                                                                                           
+                                              <option <% if(!rowCount.equals("0") && (rs11.getString("extaccess").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
+                                                <option <% if(!rowCount.equals("0") && (rs11.getString("extaccess").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
+                                                                                                 
                                             </select>
                                         </div>  
                                          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Describe who or what external entity needs access </label>
-            <input placeholder="" id="who" name="who" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input placeholder="" id="who" name="who" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("who") %>" <%} %>>
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">User Name</label>
-            <input  id="uname" name="uname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="uname" name="uname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("uname") %>" <%} %>>
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Role Description</label>
-            <input  id="roledesc" name="roledesc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="roledesc" name="roledesc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("roledesc") %>" <%} %>>
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Reason for Access</label>
-            <input  id="accreason" name="accreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="accreason" name="accreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("accreason") %>" <%} %>>
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label ">Frequency of Access</label>
-            <input  id="accfreq" name="accfreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="accfreq" name="accfreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("accfreq") %>" <%} %>>
           </div>
           
         </div> 
          <div class="form-group row log-date">
           <div class="col-md-12">
             <label class="control-label">Additional System Requirements</label>
-            <input  id="sysreq" name="sysreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text">
+            <input  id="sysreq" name="sysreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("sysreq") %>" <%} %>>
           </div>
           
         </div> 
+      
                                          <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new3" onclick="validateform3()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                              
                                 </div>                                 
@@ -1008,6 +1003,9 @@ if(implement == null)
                 
       
         <%
+}
+}
+}
 }
 }
 catch(Exception e){}

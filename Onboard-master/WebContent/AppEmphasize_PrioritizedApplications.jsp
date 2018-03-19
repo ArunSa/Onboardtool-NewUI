@@ -110,7 +110,8 @@ System.out.println(App_Priorities);
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
-
+   <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=Project_name %></a>
+				
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
                             <!-- /.nav navbar-nav -->

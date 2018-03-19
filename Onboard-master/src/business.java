@@ -95,6 +95,8 @@ String legappname = request.getParameter("legappname");
        String archreason = request.getParameter("archreason");
        String archcmnt = request.getParameter("archcmnt");
        String sourceoft = request.getParameter("sourceoft");
+       if(sourceoft==null)
+    	   sourceoft="No";
        String reccode = request.getParameter("reccode");
        String triggerdate = request.getParameter("triggerdate");
        String retentionperiod = request.getParameter("retentionperiod");
@@ -104,6 +106,7 @@ String legappname = request.getParameter("legappname");
        String wholegal = request.getParameter("wholegal");
        String archexp = request.getParameter("archexp");
        String useforBI = request.getParameter("useforBI");
+       String app_data_arch = request.getParameter("app_data_arch");
 String creditacc = request.getParameter("creditacc");
 if(creditacc==null)
 	creditacc="No";
@@ -182,6 +185,12 @@ if(creditacc==null)
        String accreason = request.getParameter("accreason");
        String accfreq = request.getParameter("accfreq");
        String sysreq = request.getParameter("sysreq"); 
+       String BItarget = request.getParameter("BItarget"); 
+       if(BItarget==null)
+    	   BItarget="No";
+       String BIengagement = request.getParameter("BIengagement");
+       if(BIengagement==null)
+    	   BIengagement="No";
        
        // do some processing here...
         
@@ -196,8 +205,8 @@ if(creditacc==null)
          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
          
          // the mysql insert statement
-         String query = " insert into business (legappname, reftoapp, tid, descr, vendor, expdate,noticeperiod, contractvalue, businessunits, rodch, rod, cmnt, hasdep, daterange, dbsize, dataloc, siteloc, needarch, archreason, archcmnt, sourceoft, reccode, triggerdate, retentionperiod, retentiontable, retentionname, legalholds, wholegal, archexp, useforBI, creditacc, financialacc, dob, driverlic, email, family, gender, geoloc, img, income, ipadrs, martialstatus, mobid, name, phno, mailadrs, physic, race, religion, sexualpref, ssn, others, expl, localreq, localcountry, localinf, datacenters, extaccess, who, uname, roledesc, accreason, accfreq, sysreq, appname)"
-           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         String query = " insert into business (legappname, reftoapp, tid, descr, vendor, expdate,noticeperiod, contractvalue, businessunits, rodch, rod, cmnt, hasdep, daterange, dbsize, dataloc, siteloc, needarch, archreason, archcmnt, sourceoft, reccode, triggerdate, retentionperiod, retentiontable, retentionname, legalholds, wholegal, archexp, useforBI, creditacc, financialacc, dob, driverlic, email, family, gender, geoloc, img, income, ipadrs, martialstatus, mobid, name, phno, mailadrs, physic, race, religion, sexualpref, ssn, others, expl, localreq, localcountry, localinf, datacenters, extaccess, who, uname, roledesc, accreason, accfreq, sysreq, appname,projectname,app_data_arch,BItarget,BIengagement)"
+           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
          
          PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -266,6 +275,10 @@ if(creditacc==null)
          preparedStmt.setString (63, accfreq);
          preparedStmt.setString   (64, sysreq);
          preparedStmt.setString   (65, application_name);
+         preparedStmt.setString   (66, projectname);
+         preparedStmt.setString   (67, app_data_arch);
+         preparedStmt.setString   (68, BItarget);
+         preparedStmt.setString   (69, BIengagement);
 
          
          
