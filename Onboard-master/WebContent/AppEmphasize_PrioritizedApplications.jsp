@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedHashMap"%>
 <html lang="en">
 <head>
 
@@ -84,6 +88,8 @@ ResultSet rs2 = st2.executeQuery(query2);
 {
 App_Priorities=rs2.getInt("total");
 System.out.println(App_Priorities);
+//System.out.println(rs2.getString(2));
+
 
 %>
 
@@ -110,8 +116,7 @@ System.out.println(App_Priorities);
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
-   <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=Project_name %></a>
-				
+  <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%= Project_name %></a>
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
                             <!-- /.nav navbar-nav -->
@@ -162,11 +167,13 @@ System.out.println(App_Priorities);
                                         </ul>
                                     </li>
 
-                                  <li class="has-children">
+                                    <li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
-                                             </ul>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Parameters</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Complexity Calculation</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Archival Cost Estimate</span></a></li>
+                                        </ul>
                                     </li>
 
                                     <li>
@@ -220,6 +227,7 @@ System.out.println(App_Priorities);
                       <div class="main">
                       
           <%
+List<String> records=new ArrayList<String>();          
 String initiate=(String)session.getAttribute("Ideation and Initiate");
 String plan=(String)session.getAttribute("Plan");
 String execute=(String)session.getAttribute("Execute");
@@ -327,33 +335,122 @@ if(hypercare == null)
       </thead>
      
       <tbody>   
-        
-      <%int i=0	; %>
-          <%
-        
-while(rs1.next()){
+      
+     
+      
+       <%int i=0; %>
+      
+       
+        <%! LinkedHashMap<Integer,String> SettingPriority(ArrayList<String> complexity){
 
-%>
-
+        ArrayList<String> indexes=new ArrayList<String>();
+       	ArrayList<String> priorities=new ArrayList<String>();
+       	priorities.add("Low");
+       	priorities.add("Low to Medium");
+       	priorities.add("Medium");
+       	priorities.add("Medium to High");
+       	priorities.add("High");
+       	
+          
+           LinkedHashMap<Integer,String> map=new LinkedHashMap<Integer,String>();
+          for(int i=0;i<complexity.size();i++)
+          {
+       	   map.put(i, "P"+(i+1));
+          }
+          
+          
+            
+           filter(complexity, priorities, indexes);
+           System.out.println(indexes);
+           int size=0;
+           for(Object obj:indexes)
+           {
+           	ArrayList a1=(ArrayList) obj;
+           	size=size+a1.size();
+           }
+           int i=1;
+           for(Object ob:indexes)
+           {
+           	
+           	ArrayList a=(ArrayList) ob;
+           	if(a.size()==0)
+           	{
+           		i=i-1;
+           	}
+           	for(Object str:a)		
+           	{
+           	
+           	
+           		map.put(Integer.parseInt(str.toString()),"P"+i);
+           		
+           	
+           	
+           	}
+           	i++;
+           	
+           }
+        	
+        	
+            return map;
+      } %>
+      
+      
+      <%!
+      public static void filter(List<String> category,ArrayList priorities,ArrayList indexes){
+      	for(Object ob:priorities)
+      	{
+      		ArrayList rindex=new ArrayList();
+          for(int i=0; i<category.size(); i++){
+              if(category.get(i).equalsIgnoreCase(ob.toString()))
+              {               
+                  String id = Integer.toString(i);
+                  rindex.add(id);
+              }
+          }
+          indexes.add(rindex);
+          }
+      }
+      
+      
+      %>
+       
+      <%  
+          ArrayList appname=new ArrayList();
+          ArrayList complexity=new ArrayList();
+          ArrayList screen=new ArrayList();
+          ArrayList priority=new ArrayList();
+          while(rs1.next()){
+    	  appname.add(rs1.getString("appname"));
+    	  complexity.add(rs1.getString("complexity"));
+    	  screen.add(rs1.getString("est_scrn"));
+    	 
+    	  i++;
+      }
+          
+         LinkedHashMap priorityMap= SettingPriority(complexity);
+          
+    	  %>
+     
+       
+      
+      <%for(int j=0;j<appname.size();j++) 
+      {     
+      %>
         <tr>
         
-          <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><input type="text" id="project_name<%=i%>" name="project_name<%=i%>" value="<%=rs1.getString("appname") %>"></span></td>
-          <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("complexity") %>"></span></td>
-         <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=i%>" name="complexity<%=i%>" value="<%=rs1.getString("est_scrn") %>"></span></td>
+          <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><input type="text" id="project_name<%=j%>" name="project_name<%=j%>" value="<%=appname.get(j) %>"></span></td>
+          <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="complexity<%=j%>" name="complexity<%=j%>" value="<%=complexity.get(j) %>"></span></td>
+         <td class="row_s" style="cursor:pointer" id="22"><span class="test"><input type="text" id="est_scrn<%=j%>" name="est_scrn<%=j%>" value="<%=screen.get(j) %>"></span></td>
           <td class="row_d" id="55">
-          <span class="test"><input type="text" name="priority<%=i %>" id="priority<%=i %>" value="<%=rs2.getInt("total")-i %>"></span>
+          
+          <span class="test"><input type="text" name="priority<%=j %>" id="priority<%=j %>" value="<%=priorityMap.get(j) %>"></span>
         </td>
 
-       
+       <%} %>
          
          
         </tr>
-        <%
-i++;        
-} 
-        
-	
-        %>
+
         
     </tbody>
     </table>
@@ -378,7 +475,7 @@ for(var i=0; i<edit_row.length; i++) {
      
   </div>
   <br />
-                                
+                          
                         
                             <br/>
                       

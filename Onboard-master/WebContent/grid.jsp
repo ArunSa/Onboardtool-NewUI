@@ -121,7 +121,7 @@ if(rs.next())
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
-
+  <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
                 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
                 			
                             <!-- /.nav navbar-nav -->
