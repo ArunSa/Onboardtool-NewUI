@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedHashMap"%>
 <html lang="en">
 <head>
 <title>AppEmphasize Preview</title>
@@ -45,11 +50,9 @@
    
 <style>
  
-
  td {
   border:1px solid black
 }
-
 #exportview {
 float:right;
 } 
@@ -113,12 +116,9 @@ float:right;
         });
     </script>
       <style>
-
 .glyphicon { cursor: pointer; }
-
 input,
 select { width: 100%; }
-
 .bar {
   background-color: lightblue;
   height: 100%;
@@ -127,16 +127,12 @@ select { width: 100%; }
 .test input {
     border: 0;
 }
-
-
 .invoice-title h2{
     display: inline-block;
 }
-
 </style>
   <style>
 .bs-wizard {margin-top: 40px;}
-
 /*Form Wizard*/
 .bs-wizard {border-bottom: solid 2px #e0e0e0; padding: 0 0 10px 0;}
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
@@ -157,7 +153,6 @@ select { width: 100%; }
 .bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 /*END Form Wizard*/
-
 </style>
      <script>
 function myFunction1() {
@@ -208,7 +203,6 @@ function myFunction4() {
     }
 </script>
 <script>
-
 $(function() {
     $("#datamig").change(function() {
         if ($(this).val() == "yes") {
@@ -233,8 +227,6 @@ $(function() {
         }
     });
 });
-
-
 </script>
 <script type="text/javascript">
     function ShowHideDiv() {
@@ -281,16 +273,18 @@ try {
 	String det=(String)session.getAttribute("theName");
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
+
 String query3 = "select * from projinfo where id = "+det;
 String name=(String)session.getAttribute("newname");
-System.out.println(name);
+
+System.out.println("testinpreview"+name);
 Statement st1 = conn.createStatement();
 Statement st2 = conn.createStatement();
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-String query1= "SELECT * from app_prior where prj_name='"+name+"' and priorities is not null ORDER BY priorities";
+String query1= "SELECT * from appinfo where prjname='"+name+"'";
 ResultSet rs1 = st1.executeQuery(query1);
-String query2= "select count(prj_name) As total from app_prior where prj_name='"+name+"'";
+String query2= "select count(prjname) As total from appinfo where prjname='"+name+"'";
 ResultSet rs2 = st2.executeQuery(query2);
 {
 %>
@@ -298,7 +292,6 @@ ResultSet rs2 = st2.executeQuery(query2);
 <%if(rs2.next())
 {
 total=rs2.getInt("total");
-
 %>
  
 <form class="form-signin" name="loginForm" method="post">
@@ -432,7 +425,6 @@ total=rs2.getInt("total");
 $(document).ready(function () {
     var table = $('#table-scroll').DataTable();
 });
-
 </script>
                
  <script>
@@ -521,64 +513,166 @@ $(document).ready(function () {
   <div class="table-responsive" border= "1" id="table-scroll" > 
      
     
-                 
-                 
-    <table class="js-dynamitable   table table-condensed" id="myTable" >
-      <thead align="center">
-        <tr>
-          <th width="20%" >Application Name</th>
-          <th width="20%" >Complexity</th>
-          <th width="20%" >Estimated No of Screens</th>
-          <th width="20%" >Priorities</th>  
-         </tr>
-      </thead>
+
+   
+    <table class="js-dynamitable table table-bordered" id="myTable" >
       
-      <!-- table body -->
+      <thead>
+
+        <tr>
+          <th>Application Name</th>
+          <th>Complexity</th>
+          <th>Estimated Number of Screens</th>
+          <th>Priorities</th>
+         
+    </tr>
+        
+        
+      </thead>
+     
       <tbody>   
-        
-      <%int i=0	; %>
-          <%
-        
-while(rs1.next()){
-
-%>
-
-       <tr>
-        
-          <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><%=rs1.getString("proj_name") %></span></td>
-          <td class="row_s" style="cursor:pointer" id="22"><span class="test"><%=rs1.getString("complexity") %></span></td>
-          <td class="row_s" style="cursor:pointer" id="22"><span class="test"><%=rs1.getString("est_scrn") %></span></td>
-          <% if(Integer.parseInt(rs1.getString("priorities"))>0){ %>
-          <td class="row_d" id="55">
-          <span class="test"><%=rs1.getString("priorities")%></span>
-        </td>
-        <%}else{ %>
-          <td class="row_d" id="55">
-          <span class="test"><%=rs2.getInt("total")-i %></span>
-        </td>
-        <%} %>
+      
+     
+      
+       <%int i=0; %>
+      
        
+        <%! LinkedHashMap<Integer,String> SettingPriority(ArrayList<String> complexity){
+
+        ArrayList<String> indexes=new ArrayList<String>();
+       	ArrayList<String> priorities=new ArrayList<String>();
+       	priorities.add("Low");
+       	priorities.add("Low to Medium");
+       	priorities.add("Medium");
+       	priorities.add("Medium to High");
+       	priorities.add("High");
+       	
+          
+           LinkedHashMap<Integer,String> map=new LinkedHashMap<Integer,String>();
+          for(int i=0;i<complexity.size();i++)
+          {
+       	   map.put(i, "P"+(i+1));
+          }
+          
+          
+            
+           filter(complexity, priorities, indexes);
+           System.out.println("c"+indexes);
+           int size=0;
+           for(Object obj:indexes)
+           {
+           	ArrayList a1=(ArrayList) obj;
+           	size=size+a1.size();
+           }
+           int i=1;
+           for(Object ob:indexes)
+           {
+           	
+           	ArrayList a=(ArrayList) ob;
+           	if(a.size()==0)
+           	{
+           		i=i-1;
+           	}
+           	for(Object str:a)		
+           	{
+           	
+           	
+           		map.put(Integer.parseInt(str.toString()),"P"+i);
+           		
+           	
+           	
+           	}
+           	i++;
+           	
+           }
+        	
+        	
+            return map;
+      } %>
+      
+      
+      <%!
+      public static void filter(List<String> category,ArrayList priorities,ArrayList indexes){
+      	for(Object ob:priorities)
+      	{
+      		ArrayList rindex=new ArrayList();
+          for(int i=0; i<category.size(); i++){
+              if(category.get(i).equalsIgnoreCase(ob.toString()))
+              {               
+                  String id = Integer.toString(i);
+                  rindex.add(id);
+              }
+          }
+          indexes.add(rindex);
+          }
+      }
+      
+      
+      %>
+       
+      <%  
+          ArrayList appname=new ArrayList();
+          ArrayList complexity=new ArrayList();
+          ArrayList screen=new ArrayList();
+          ArrayList priority=new ArrayList();
+          while(rs1.next()){
+    	  appname.add(rs1.getString("appname"));
+    	  complexity.add(rs1.getString("complexity"));
+    	  screen.add(rs1.getString("est_scrn"));
+    	 
+    	  i++;
+      }
+          
+         LinkedHashMap priorityMap= SettingPriority(complexity);
+ String x[]=new String[appname.size()];
+        for(int j=0;j<appname.size();j++){
+        	x[j]=(String)priorityMap.get(j);
+        }
+         Arrays.sort(x);
+      System.out.println("the elements are");
+      for(int j=0;j<appname.size();j++)
+        System.out.print(x[j]);
+          
+    	  %>
+     
+       
+     
+  <%
+        for(int k=0;k<appname.size();k++){
+	      for(int j=0;j<appname.size();j++) 
+      {     
+	if(x[k].equals((String)priorityMap.get(j))){
+      %>
+        <tr>
+        
+          <td class="edit_row" style="cursor:pointer" id="11"><span class="test"><%=appname.get(j) %></span></td>
+          <td class="row_s" style="cursor:pointer" id="22"><span class="test"><%=complexity.get(j) %></span></td>
+         <td class="row_s" style="cursor:pointer" id="22"><span class="test"><%=screen.get(j) %></span></td>
+          <td class="row_d" id="55">
+          
+          <span class="test"><%=priorityMap.get(j) %></span>
+        </td>
+
+ <%
+       break;
+       }
+    	}
+	
+     
+       } %>
          
          
         </tr>
-        
-        
-        
-        <%
-i++;        
-} 
-        
-	
-        %>
+
         
     </tbody>
     </table>
+
      
     </div>
 </div>
     <script>
   
-
     function ggg(id)
     {
     	for(i=0;i<4;i++){
@@ -588,12 +682,9 @@ i++;
     	}
     	document.getElementById("5").disabled=false;	
     }
-
-
     </script>
       <script>
 // JavaScript script from: http://coursesweb.net/javascript/
-
 // gets all the .edit_row cells, registers click to each one
 var edit_row = document.querySelectorAll('#myTable .edit_row');
 for(var i=0; i<edit_row.length; i++) {
@@ -606,7 +697,6 @@ for(var i=0; i<edit_row.length; i++) {
     document.getElementById('est_cst').value = tr_parent.querySelector('.row_d').innerHTML;
     }, false);
 }
-
 </script>
      
   <br />
@@ -620,7 +710,6 @@ for(var i=0; i<edit_row.length; i++) {
                                 </div>                                 
                             </div>
                              <%
-
 }}
 catch(Exception e){}
 %>
@@ -644,13 +733,11 @@ catch(Exception e){}
  
   pdf.setFontSize(10);
   pdf.addImage(imgData, 'JPEG', 680, 20, 150, 50);
-
 var specialElementHandlers = {
     '#editor': function (element, renderer) {
         return true;
     }
 };
-
 var margins = {
         top: 200,
         bottom: 20,
@@ -659,9 +746,7 @@ var margins = {
         width:100
     };
     
-
 $('#exportview').click(function () {  
-
 	
 	
 	pdf.fromHTML($('#table-scroll').get(0),margins.left,
@@ -674,10 +759,7 @@ $('#exportview').click(function () {
 	 var d = new Date().toISOString().slice(0, 19);
      filename = 'ApplicationPriority' +"_"+ d + '.pdf';
      pdf.save(filename);
-
 });
-
-
 </script>  
 
 
@@ -771,42 +853,34 @@ $('#exportview').click(function () {
         <!-- ========== THEME JS ========== -->
         <script>
             $(function($) {
-
                 // 1st  datepicker
                 $('#basicExample .time').timepicker({
                 'showDuration': true,
                 'timeFormat': 'g:ia'
                 });
-
                 $('#basicExample .date').datepicker({
                 'format': 'm/d/yyyy',
                 'autoclose': true
                 });
-
                 var basicExampleEl = document.getElementById('basicExample');
                 var datepair = new Datepair(basicExampleEl);
-
                 // 2nd  datepicker
                 $('#datetimepicker1').datetimepicker({
                     debug: true
                 });
-
                 // 3rd  datepicker
                 $('#datetimepicker9').datetimepicker({
                 viewMode: 'years'
                 });
-
                 // 4th  datepicker
                 $('#datetimepicker10').datetimepicker({
                 viewMode: 'years',
                 format: 'MM/YYYY'
                 });
-
                 // 5th  datepicker
                 $('#datetimepicker11').datetimepicker({
                 daysOfWeekDisabled: [0, 6]
                 });
-
                 // 6th  datepicker
                 $('#datetimepicker12').datetimepicker({
                     inline: true,
@@ -818,5 +892,3 @@ $('#exportview').click(function () {
 
 	</body>
 </html>
-
-

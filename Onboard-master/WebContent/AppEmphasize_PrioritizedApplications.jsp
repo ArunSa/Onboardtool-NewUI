@@ -40,6 +40,7 @@
 <%@page import="java.sql.*"%>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="onboard.DBconnection" %>
+<%@ page import="java.util.*" %>
 <%
 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -317,7 +318,7 @@ if(hypercare == null)
         
                                 
                                 
-  <div class="table-responsive" id="table-scroll"  > 
+  <div class="table-responsive" id="table-scroll"> 
    
     <table class="js-dynamitable table table-bordered" id="myTable" >
       
@@ -361,7 +362,7 @@ if(hypercare == null)
           
             
            filter(complexity, priorities, indexes);
-           System.out.println(indexes);
+           System.out.println("c "+indexes);
            int size=0;
            for(Object obj:indexes)
            {
@@ -428,13 +429,27 @@ if(hypercare == null)
       }
           
          LinkedHashMap priorityMap= SettingPriority(complexity);
+         
+        String x[]=new String[appname.size()];
+        for(int j=0;j<appname.size();j++){
+        	x[j]=(String)priorityMap.get(j);
+        }
+         Arrays.sort(x);
+      System.out.println("the elements are");
+      for(int j=0;j<appname.size();j++)
+        System.out.print(x[j]);
+        
           
     	  %>
      
        
       
-      <%for(int j=0;j<appname.size();j++) 
+      <%
+      for(int k=0;k<appname.size();k++){
+      for(int j=0;j<appname.size();j++) 
       {     
+    	if(x[k].equals((String)priorityMap.get(j))){  
+      
       %>
         <tr>
         
@@ -446,7 +461,11 @@ if(hypercare == null)
           <span class="test"><input type="text" name="priority<%=j %>" id="priority<%=j %>" value="<%=priorityMap.get(j) %>"></span>
         </td>
 
-       <%} %>
+       <%
+       break;
+       }
+    	}
+      } %>
          
          
         </tr>
