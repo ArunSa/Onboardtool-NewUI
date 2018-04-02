@@ -18,13 +18,16 @@
       
 
         <!-- ========== THEME CSS ========== -->
-        <link rel="stylesheet" href="assets/css/main.css" media="screen" >
+        <link rel="stylesheet" href="css/main.css" media="screen" >
          <style type="text/css">
             .breadcrumb-div {
                 background-color: #e7e7e7;
                 color: #010101; }
             h6 { line-height: 1.5em; }
-
+            
+            body{
+            background:white;
+            }
         </style>
         
         <!-- ========== COMMON JS FILES ========== -->
@@ -37,7 +40,7 @@
                     <div class="row">
                         <div class="navbar-header no-padding">
                 <a class="navbar-brand" href="index.php">
-                    <img src="assets/images/logo1.png" alt="Options - Admin Template" class="logo">
+                    <img src="images/logo1.png" alt="Options - Admin Template" class="logo">
                 </a>
                    </div>
                 </div>
