@@ -269,7 +269,7 @@ if(rs.next())
                  </div>
 
                 <div class="col-md-2 col-sm-2">
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -405,7 +405,7 @@ if(rs.next())
                 
 
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -540,7 +540,7 @@ else if(roles.equals("ArchivalAdmin"))
 
                  </div>
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -674,7 +674,7 @@ else if(roles.equals("ArchivalProgramManager"))
                  </div>
 				 
                                <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -814,7 +814,7 @@ else if(roles.equals("LegacyBusinessSME"))
                 
                  </div>
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -955,7 +955,7 @@ else if(roles.equals("LegacyTechnicalSME"))
                  </div>
 
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -1092,7 +1092,7 @@ else if(roles.equals("LegacyProgramManager"))
                  </div>
                
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -1229,7 +1229,7 @@ else if(roles.equals("ArchivalBusinessAnalyst"))
                 
                  </div>
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -1367,7 +1367,7 @@ else if(roles.equals("ArchivalTechnicalLead"))
                 
 
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -1506,7 +1506,7 @@ else if(roles.equals("ArchivalProjectManager"))
                  </div>
 
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -1643,7 +1643,7 @@ else if(roles.equals("ArchivalDeveloper"))
                 
                  </div>
                 <div class="col-md-2 col-sm-2" >
-                  <a href="#">
+                  <a href="RoleUIDashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
