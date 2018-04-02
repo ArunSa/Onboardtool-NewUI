@@ -19,7 +19,7 @@ String country=request.getParameter("count");
  Class.forName("com.mysql.jdbc.Driver").newInstance();  
  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123");  
  Statement stmt = con.createStatement();  
- ResultSet rs = stmt.executeQuery("Select * from logs where roles='"+country+"' ");  
+ ResultSet rs = stmt.executeQuery("Select * from user_details where roles='"+country+"' ");  
    while(rs.next()){
    buffer=buffer+"<option value='"+rs.getString(1)+"'>"+rs.getString(1)+"</option>";  
    }  
