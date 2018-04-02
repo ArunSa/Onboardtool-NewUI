@@ -455,7 +455,7 @@ while(rs2.next())
                                 <div class="row">
                                     <h3 class="title">&nbsp;&nbsp;Overview of Visits</h3>
                             
-                                    <div id="curve_chart" style="height: 250px; width:600px;"></div>
+                                    <div id="curve_chart" style="height: 250px; width:800px;"></div>
                                 </div>
                             </div>
                         </div>
