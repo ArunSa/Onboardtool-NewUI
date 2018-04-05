@@ -646,7 +646,7 @@ pager.showPage(1);
       
       </script> 
       <%
-      String query8 = "select * from user_details where roles='admin' and uname='admin'";
+      String query8 = "select * from user_details where roles='"+roles+"'and uname='"+uname+"'"; 
       Statement st8 = conn.createStatement();
       ResultSet rs8 = st8.executeQuery(query8);
       %>  
