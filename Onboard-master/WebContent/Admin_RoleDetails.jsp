@@ -140,7 +140,7 @@ int count=0;
                          String role=(String)details.getAttribute("role");%>                   
 	<li ><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
 		
-<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
+<li><a href="Logout" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
 					

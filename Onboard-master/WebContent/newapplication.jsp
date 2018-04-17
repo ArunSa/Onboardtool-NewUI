@@ -76,7 +76,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                         <img src="assets/images/logo1.png" id="image" class="img-rounded" height="50" width="80" alt="Platform3Solutions" />&nbsp;
 </li>
                        <li style="background:#3276B1">
-   <a href="logout.jsp" style="color:white; background:#3276B1">Logout</a>
+   <a href="Logout" style="color:white; background:#3276B1">Logout</a>
 </li>
                     </ul>
                     

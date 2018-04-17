@@ -226,7 +226,7 @@ window.alert("Invalid Email");
                             <!-- /.nav navbar-nav -->
  <ul class="nav navbar-nav navbar-right">
       
-<li><a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a>
+<li><a href="Logout" class="text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
 					

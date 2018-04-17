@@ -240,7 +240,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
  <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span id="nav_userid"><%=username%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=roles%></span></a></li>
       
-<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
+<li><a href="Logout" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
 					

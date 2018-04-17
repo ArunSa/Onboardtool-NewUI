@@ -184,7 +184,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                          String role=(String)details.getAttribute("role");%>
  <p><span id="nav_userid"><%=uid%>&nbsp;logged in as &nbsp;</span><span id='nav_role'><%=role%></span></p>
 </li>  
-<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
+<li><a href="Logout" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
           

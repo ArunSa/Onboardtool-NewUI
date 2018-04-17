@@ -63,6 +63,7 @@ background: #269af8;
 padding: 2px 4px 2px 4px; 
 }
 
+
 </style>
  
   <body class="top-navbar-fixed">
@@ -174,7 +175,7 @@ if(rs.next()){
                          String uname=(String)details.getAttribute("username");
                          String role=(String)details.getAttribute("role");%>                   
 	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
-							<li> <a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
+							<li> <a href="Logout" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
                      </ul>
 					
                 		</div>
@@ -449,18 +450,32 @@ while(rs2.next())
       
       <div class="row">
                     <!-- Column -->
-                    <div class="col-lg-8 col-md-7">
+                    <div class="col-lg-7 col-md-7">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
+                                  <div class="col-lg-8 col-md-5">
                                     <h3 class="title">&nbsp;&nbsp;Overview of Visits</h3>
-                            
-                                    <div id="curve_chart" style="height: 250px; width:800px;"></div>
+                                      </div>
+                                     <!-- dropdown -->
+                                      <div class="col-lg-4 col-md-5">
+ 
+										 <span>
+										      <select id="linedrop"> 
+										      <option disabled> Select any option </option>
+										      <option id="weekly" value="weekly" selected> Weekly &nbsp;&nbsp; </option>
+										       <option id="monthly" value="monthly"> Monthly</option>
+										        <option id="yearly" value="yearly"> Yearly</option>
+										      </select>  
+										    </span>  
+										
+										    </div>
+                                    <div id="curve_chart" style="height: 250px; width:700px;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-5">
+                    <div class="col-lg-5 col-md-5">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">Role Status</h3>
@@ -645,11 +660,13 @@ pager.showPage(1);
       
       
       </script> 
+     
       <%
       String query8 = "select * from user_details where roles='"+roles+"'and uname='"+uname+"'"; 
       Statement st8 = conn.createStatement();
       ResultSet rs8 = st8.executeQuery(query8);
       %>  
+  
     <script type="text/javascript">
 // Load google charts
 google.charts.load('current', {'packages':['corechart']});
@@ -657,6 +674,12 @@ google.charts.setOnLoadCallback(drawChart);
 
 // Draw the chart and set the chart values
 function drawChart() {
+	 
+	 var selectedRole = $('#slct1').val();  
+	 var selecteduser = $('#username').val();  
+    
+	 console.log("selectedROle is : " + selectedRole + " selectedUser is :" + selecteduser);
+	
 	var dataTable = new google.visualization.DataTable();
     dataTable.addColumn('string', 'Year');
     dataTable.addColumn('number', 'Sales');
@@ -664,10 +687,11 @@ function drawChart() {
     dataTable.addColumn({type: 'string', role: 'tooltip'});
     dataTable.addRows([
   <% while(rs8.next()){ 
+	 
   String query22 = "select * from archive_exec where projects='"+rs8.getString("projects")+"' and level=1";
 	Statement st22 = conn.createStatement();
 	ResultSet rs22 = st22.executeQuery(query22);
-
+	
 	while(rs22.next())
 	{
 	if(rs22.getString("progressbar")=="100")
@@ -678,6 +702,7 @@ function drawChart() {
 
 	String status=rs22.getString("name");
 	String progressBar=rs22.getString("progressbar");
+	
 	if(progressBar.equals("0"))
 		progressBar="1";
 	  String query23 = "select sum(count) from visits where projects='"+rs8.getString("projects")+"'";
@@ -740,15 +765,16 @@ function drawChart() {
 		
 	
     %>
-    ['<%= rs8.getString(6) %>', <%= progressBar %>, "Total Visits : <%= ttl_visits %>\nVisits in current day : <%= CurntDay_visits %>\n Last Visited Module : <%= last_visited_Module %>\n Last Visited Application : <%= last_visited_App %>\n Application : <%= rs8.getString(11)%>,Status : <%= Stats %>,Percentage of Completion : <%= ProgresBar %>%"],
+    ['<%= rs8.getString(6) %>', <%= progressBar %>, "Total Visits : <%= ttl_visits %>\nVisits in current day : <%= CurntDay_visits %>\n Last Visited Module : <%= last_visited_Module %>\n Last Visited Application : <%= last_visited_App %>\n Application : <%= rs8.getString(11)%>,Status : <%= Stats %>\n Percentage of Completion : <%= progressBar %>%"],
   <% }  %>
 ]);
 
   // Optional; add a title and set the width and height of the chart
   var options = {
-		  'title':'My Average Day',
-		  'width':300,
-		  'height':380,
+		  'title':'',
+		  'width':400,
+		  'height':350,
+		
 		  pieSliceText: 'label',
 		  legend : 'none'
   };
@@ -759,6 +785,7 @@ function drawChart() {
   chart.draw(dataTable, options);
 }
 </script>
+
 <%
 String query10 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW()";
 Statement st10 = conn.createStatement();
@@ -787,7 +814,9 @@ while(rs13.next())
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
+    	  
         var data = google.visualization.arrayToDataTable([
+        	
           ['day', 'Visits'],
           ['Last 10 days', <%= last_10 %> ],
           ['Last 20 days', <%= last_20 %>],
