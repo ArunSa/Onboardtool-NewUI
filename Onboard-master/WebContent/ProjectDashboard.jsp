@@ -88,6 +88,7 @@ String info=(String)details.getAttribute("app_emp");
 try {
 String det=(String)session.getAttribute("theName");
 String proj_count="",active_users="";
+int Serial_No=0;
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
 String query = "select count(*) from projinfo";
@@ -107,6 +108,9 @@ while(rs1.next())
 	active_users=rs1.getString(1);
 	
 }
+String query3 = "select * from projinfo";
+Statement st3 = conn.createStatement();
+ResultSet rs3 = st.executeQuery(query3);
 
 %>
  
@@ -335,30 +339,19 @@ while(rs1.next())
                                             </tr>
                                             </thead>
                                             <tbody>
+                                           <%while(rs3.next())
+                                           {
+                                        	   Serial_No++;                                    		
+                                        %>
                                             <tr>
-                                                <td>1</td>
-                                                <td>CGEN1</td>
-                                                <td>01/01/2017</td>
-                                                <td>26/04/2017</td>
+                                                <td><%=Serial_No %></td>
+                                                <td><%=rs3.getString("projectname") %></td>
+                                                <td><%=rs3.getString("Intdate") %></td>
+                                                <td><%=rs3.getString("Enddate") %></td>
                                                 <td><span class="label label-success">Completed</span></td>
                                                 <td>Rajesh</td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>CGEN2</td>
-                                                <td>01/01/2018</td>
-                                                <td>26/04/2018</td>
-                                                <td><span class="label label-success">Completed</span></td>
-                                                <td>Harsha</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>CGEN3</td>
-                                                <td>01/05/2015</td>
-                                                <td>10/05/2019</td>
-                                                <td><span class="label label-info">Work in Progress</span></td>
-                                                <td>Harsha</td>
-                                            </tr>
+                                           <%} %>
                                             
                                             </tbody>
                                         </table>
