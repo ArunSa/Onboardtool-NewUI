@@ -115,12 +115,14 @@ public class Login extends HttpServlet {
 	
 	int i=0,exec_det=0,dum=0,lm=0;
 	
-	
+		
 try
 {
 	Class.forName("com.mysql.jdbc.Driver"); 
 	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123");
 
+	
+	
 	Statement st5= con.createStatement(); 
 	ResultSet rs5=st5.executeQuery("select * from archive_details");
 	Statement st6= con.createStatement(); 

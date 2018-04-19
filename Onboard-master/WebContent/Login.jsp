@@ -185,6 +185,12 @@ form[role=login] {
 </head>
 <body background="onboard/images/bg.jpg" onLoad="Clear();">
 <br/><br/><br/><br/><br/>
+
+
+<jsp:include page="db_creation.jsp"/>
+	<jsp:include page="tablecreation.jsp"/>
+	
+	
 <div class="container" id="main">
   <div class="col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6">
   <section class="login-form">
