@@ -31,7 +31,7 @@
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
          <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-       <script type="text/javascript" src="js/paging.js"></script> 
+             <script type="text/javascript" src="js/paging.js"></script> 
        
   	
 	<script type="text/javascript" src="js_in_pages/tree.js"></script>
@@ -87,6 +87,198 @@ if (session.getAttribute("username")==null)
 response.sendRedirect("Login.html");
 }
 %>
+<script type="text/javascript">
+function line_chart()
+{
+
+var samp=document.getElementById("year").value;
+
+var date =[];
+var month =[];
+var year =[];
+var no_of_visits =[];
+var monthname =[];
+var distinct_monthname =[];
+var final_count =[];
+var final_month=[];
+var final_visits=[];
+var flag=0;
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+String[] values_name = new String[5];
+ArrayList<String> date = new ArrayList<String>();
+ArrayList<String> month = new ArrayList<String>();
+ArrayList<String> year = new ArrayList<String>();
+ArrayList<String> no_of_visits = new ArrayList<String>();
+ArrayList<String> monthname = new ArrayList<String>();
+ArrayList<String> distinct_monthname = new ArrayList<String>();
+ArrayList<String> final_count = new ArrayList<String>();
+
+    DBconnection d=new DBconnection();
+    Connection con = (Connection)d.getConnection();
+    Statement st_distinct= con.createStatement(); 
+
+
+    ResultSet rs_distinct=st_distinct.executeQuery("select distinct(monthname(date)) from  visits ");
+    while (rs_distinct.next())
+    {
+    %>
+    distinct_monthname.push("\"<%=rs_distinct.getString(1)%>\"");
+    <%}
+    
+Statement st_line_chart_month= con.createStatement(); 
+
+
+ResultSet rs_line_chart_month=st_line_chart_month.executeQuery("select monthname(date),SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits ");
+while (rs_line_chart_month.next())
+{
+	%>
+monthname.push("\"<%=rs_line_chart_month.getString(1)%>\"");
+year.push(<%=rs_line_chart_month.getString(2)%>);
+month.push(<%=rs_line_chart_month.getString(3)%>);
+date.push(<%=rs_line_chart_month.getString(4)%>);
+no_of_visits.push(<%=rs_line_chart_month.getString(5)%>);
+<%}%>   
+var count=0;
+for(var i=0;i<year.length;i++)
+	{
+	if(samp==year[i])
+	{
+		final_month.push(monthname[i]);
+		final_visits.push(no_of_visits[i]);
+	
+	}
+	else
+		continue;
+	
+}
+for(var m=0;m<distinct_monthname.length;m++)
+{
+	
+	for(var j=0;j<final_month.length;j++)
+	{
+		if(distinct_monthname[m]==final_month[j])
+			{
+			
+			count=count+final_visits[j];
+			
+			}
+		else
+			{
+			continue;
+			}
+		
+	}
+	
+	final_count.push(count);
+	count=0;
+}
+google.charts.load('current', {'packages':['corechart','line']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+	var name;
+	
+    
+  var data = new google.visualization.DataTable();
+  data.addColumn('string','name');
+  data.addColumn('number','No of Visits');
+
+  for(var i=0;i<final_count.length;i++)
+	  {
+	  
+	  data.addRow([distinct_monthname[i].substring(1, distinct_monthname[i].length - 1),Number(final_count[i])]);
+	  }
+	
+  var options = {
+        title: '',
+        curveType: 'function',
+        pointSize: 5,
+        
+        colors: ['#fb8532'],
+       
+        vAxis: {
+          title: 'No of visits',
+          minValue: 0,
+        },
+        backgroundColor: '#f6f8fa'
+      };
+
+  var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+  
+
+  
+
+  chart.draw(data, options);
+ 
+}
+	
+	
+	
+}
+
+
+
+function line_chart_view()
+{
+google.charts.load('current', {'packages':['corechart','line']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+	var name;
+
+  var data = google.visualization.arrayToDataTable([
+   
+    ['Monthly', 'Visits'],
+      
+   
+     <% 
+     String name=request.getParameter("tid");
+    // System.out.println("Year"+name);
+     for(int a=0;a<year.size();a++)
+     {
+     %>
+    
+
+     [ '\'<%=monthname.get(a) %>\'', <%=no_of_visits.get(a)%>],
+     
+    
+     <% }
+    %>
+  
+
+  ]);
+
+  var options = {
+        title: '',
+        curveType: 'function',
+        pointSize: 5,
+        
+        colors: ['#fb8532'],
+       
+        vAxis: {
+          title: 'No of visits',
+          minValue: 0,
+        },
+        backgroundColor: '#f6f8fa'
+      };
+
+  var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+  
+
+  
+
+  chart.draw(data, options);
+ 
+} 
+
+}
+</script>
+ 
+
 <%
 
 HttpSession details=request.getSession();
@@ -175,7 +367,7 @@ if(rs.next()){
                          String uname=(String)details.getAttribute("username");
                          String role=(String)details.getAttribute("role");%>                   
 	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
-							<li> <a href="Logout" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
+							<li> <a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
                      </ul>
 					
                 		</div>
@@ -458,19 +650,67 @@ while(rs2.next())
                                     <h3 class="title">&nbsp;&nbsp;Overview of Visits</h3>
                                       </div>
                                      <!-- dropdown -->
-                                      <div class="col-lg-4 col-md-5">
- 
-										 <span>
-										      <select id="linedrop"> 
-										      <option disabled> Select any option </option>
-										      <option id="weekly" value="weekly" selected> Weekly &nbsp;&nbsp; </option>
-										       <option id="monthly" value="monthly"> Monthly</option>
-										        <option id="yearly" value="yearly"> Yearly</option>
+                                     <div class="col-lg-12 col-md-12">
+                                      <div class="col-lg-4 col-md-4">
+                                        
+										   <span>
+										      <select id='linedrop' onchange="linechartvalues(this.value)"> 
+										      <option disabled selected>Select any option </option>
+										      <option  value="daily"> Daily &nbsp;&nbsp; </option>
+										      <option  value="weekly"> Weekly &nbsp;&nbsp; </option>
+										       <option  value="monthly"> Monthly</option>
+										        <option value="yearly"> Yearly</option>
 										      </select>  
 										    </span>  
-										
+										   
 										    </div>
+										    <div class="col-lg-4 col-md-4">
+										    
+										    <span>
+										     <select id='month' onchange="val(this.value,linedrop)" hidden> 
+										      <option disabled selected>Select any option</option>
+										      <option  value="Jan"> Jan </option>
+										       <option  value="Feb"> Feb </option>
+										        <option  value="Mar"> Mar </option>
+										         <option  value="April"> April </option>
+										          <option  value="May"> May </option>
+										           <option  value="June"> June </option>
+										            <option  value="July"> July </option>
+										             <option  value="Aug"> Aug </option>
+										              <option  value="Sep"> Sep </option>
+										               <option  value="Oct"> Oct </option>
+										                <option  value="Nov"> Nov </option>
+										                 <option  value="Dec"> Dec </option>
+										     
+										      </select>  
+										    </span>
+										   
+										    </div>
+										    <div class="col-lg-4 col-md-4">
+										   
+										    <span>
+										     <select id="year"  onchange="line_chart(this.value)"  hidden> 
+										      <option disabled selected> Select any option </option>
+										      <option  value="2015">2015</option>
+										      <option  value="2016">2016</option>
+										      <option  value="2017">2017</option>
+										      <option  value="2018">2018</option>
+										      <option  value="2019">2019</option>
+										      <option  value="2020">2020</option>
+										      <option  value="2021">2021</option>
+										       
+										     
+										      </select>  
+										    </span>
+										   
+										 
+										  
+										    </div>
+										 <div>
+										 </div>
+										 </div>
                                     <div id="curve_chart" style="height: 250px; width:700px;"></div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -799,6 +1039,16 @@ ResultSet rs13 = st13.executeQuery(query13);
 String query11 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 50 DAY) AND NOW()";
 Statement st11 = conn.createStatement();
 ResultSet rs11 = st11.executeQuery(query11);
+String query15 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
+Statement st15 = conn.createStatement();
+ResultSet rs15 = st15.executeQuery(query15);
+String query16 = "select SUBSTR(date,1,4), MONTHNAME(date),SUBSTR(date,9,2),count from  visits";
+Statement st16 = conn.createStatement();
+ResultSet rs16 = st16.executeQuery(query16);
+String query17 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
+Statement st17 = conn.createStatement();
+ResultSet rs17 = st17.executeQuery(query17);
+
 int last_10=0,last_30=0,last_50=0,last_20=0;
 while(rs10.next())
 	last_10+=Integer.parseInt(rs10.getString(4));
@@ -809,6 +1059,187 @@ while(rs12.next())
 while(rs13.next())
 	last_30+=Integer.parseInt(rs13.getString(4));
 %>
+        <script type="text/javascript">
+ function linechartvalues(){
+ var lineweekly =document.getElementById("linedrop").value;
+ 
+ 
+
+ 
+  
+ if (lineweekly == 'daily') {
+	 document.getElementById('month').style.display = 'none';
+	 document.getElementById('year').style.display = 'none';
+	 
+	
+	 
+	 google.charts.load('current', {'packages':['corechart','line']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+   	
+       var data = google.visualization.arrayToDataTable([
+       	
+         ['Date', 'No.of.Visits'],
+        
+        <%
+        while(rs15.next())
+        {
+        %>
+       	 
+       
+         [ new Date(<%=rs15.getString(1)%>,<%=rs15.getString(2)%>,<%=rs15.getString(3)%>), <%= rs15.getString(4)%>],
+        
+        <%}%>
+      
+       ]);
+
+       var options = {
+         title: '',
+         curveType: 'function',
+         pointSize: 5,
+         colors: ['rgb(71, 0, 200)'],
+         hAxis: {
+             title: 'Date',
+             format: 'MM/dd/yy',
+            
+            	 titleTextStyle: {
+            		          		    fontSize: '16',
+            		  }
+         },
+         vAxis: {
+           title: 'No of visits',
+           minValue: 0,
+         },
+         
+       
+       };
+
+       var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+       
+          
+       chart.draw(data, options);
+          
+     
+     
+	}
+ }
+   
+ else if(lineweekly == 'weekly'){
+	 document.getElementById('month').style.display = 'block';
+	 document.getElementById('year').style.display = 'block';
+	 var xmlHttp
+	   function onYear(inp1,inp2,inp3)
+	   {
+		
+		   var input1 = document.getElementById('linedrop').value;
+		   var input2 = document.getElementById('month').value;
+		   var input3 = document.getElementById('year').value;
+		  
+		   console.log("Selected Values : " + input1 + " and " +input2 + " and  " +input3);
+		   
+		      if (typeof XMLHttpRequest != "undefined"){
+		      xmlHttp= new XMLHttpRequest();
+		      }
+		      else if (window.ActiveXObject){
+		      xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+		      }
+		      if (xmlHttp==null){
+		      alert("Browser does not support XMLHTTP Request")
+		      return;
+		      } 
+		      
+		      var url="chart.jsp";
+		      url +="?session=" +input1 + "&wmonth=" + input2 + "&wyear=" + input3;
+		      xmlHttp.onreadystatechange = stateChange;
+		      xmlHttp.open("GET", url, true);
+		      xmlHttp.send(null);
+		      
+		            }
+	<%
+	String months =(String)session.getAttribute("month") ;
+	String years =(String)session.getAttribute("year") ;
+
+	System.out.println(""+months);
+	System.out.println(""+years);
+
+	String query18 = "Select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where MONTHNAME(date) = '"+months+"' and SUBSTR(date,1,4)= '"+years+"' ";
+	System.out.println(""+query18);
+	Statement st18 = conn.createStatement();
+	ResultSet rs18 = st18.executeQuery(query18);
+
+
+	%>
+		      function stateChange(){   
+		      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
+		     
+		    	   google.charts.load('current', {'packages':['corechart']});
+		    	      google.charts.setOnLoadCallback(drawChart);
+
+		    	      function drawChart() {
+		    	    	  
+		    	        var data = google.visualization.arrayToDataTable([
+		    	        	
+		    	          ['Week', ' No.of.Visits'],
+		    	         
+		    	          <%
+		    	          while(rs18.next())
+		    	          {
+		    	          %>
+		    	         	 
+		    	           [ new Date(<%=rs18.getString(1)%>,<%=rs18.getString(2)%>,<%=rs18.getString(3)%>), <%= rs18.getString(4)%>],
+		    	          
+		    	          <%}%>
+		    	        ]);
+
+		    	        var options = {
+		    	          title: '',
+		    	          curveType: 'function',
+		    	          pointSize: 5,
+		    	          colors: ['rgb(0, 191, 255)'],
+		    	          
+		    	          hAxis: {
+		    	        	  title: 'Week of The Month',
+		    	              format:'DDD',
+		    	              gridlines: {count: 15}
+		    	            },
+		    	            vAxis: {
+		    	             
+		    	              minValue: 0,
+		    	              title: 'No of visits',
+		    	            },
+		    	         
+		    	         
+		    	        };
+
+		    	        var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+
+		    	        chart.draw(data, options);
+		    	      }
+		     
+		      }   
+		      
+		     
+		      
+		     
+		    
+		 }
+		 
+	  
+ } 
+ 
+ else if(lineweekly == 'monthly'){
+	 document.getElementById('month').style.display = 'none';
+	 document.getElementById('year').style.display = 'block';
+	 line_chart();
+ } 
+ }
+ 
+ 
+    </script> 
+
+
+
  <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -836,35 +1267,7 @@ while(rs13.next())
       }
     </script> 
     
-    <script>
-      function filter(input,s2) {
-      // Declare variables 
-      var input, filter, table, tr, td, i;
-      input = document.getElementById("username").value;
-      
-      s2 = document.getElementById("slct1").value;
-      
-    console.log("Role : " + s2 + " Username :" + input)
-     
-    $.ajax({
-          type:"Post",
-          url:"fetch.jsp",
-         data:{
-              s2: s2,
-              input: input
-             
-           }, 
-         async:true,
-         cache:false,
-         success:function(data) {
-
-console.log(data);
-         }
-          });
-     
-    }
-      </script>
-      
+    
       <!-- filter Html table -->
       
       <script>
@@ -896,7 +1299,7 @@ function filter(input,s2)
 
 
 </script>
-      <!-- pagination  -->
+      <!-- linechart  -->
       
   <%
 }
@@ -1017,5 +1420,9 @@ catch(Exception e){}
                 });
             });
         </script>
+       
+        
+
+        
 </body>
 </html>
