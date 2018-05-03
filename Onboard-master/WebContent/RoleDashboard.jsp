@@ -4,13 +4,10 @@
  <meta charset="UTF-8" />
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-           <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-       
+ 
+         
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
      <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
@@ -87,6 +84,7 @@ if (session.getAttribute("username")==null)
 response.sendRedirect("Login.html");
 }
 %>
+
 <script type="text/javascript">
 function line_chart()
 {
@@ -277,7 +275,6 @@ function drawChart() {
 
 }
 </script>
- 
 
 <%
 
@@ -655,8 +652,8 @@ while(rs2.next())
                                         
 										   <span>
 										      <select id='linedrop' onchange="linechartvalues(this.value)"> 
-										      <option disabled selected>Select any option </option>
-										      <option  value="daily"> Daily &nbsp;&nbsp; </option>
+										      <option disabled >Select any option </option>
+										      <option  value="daily" selected> Daily &nbsp;&nbsp; </option>
 										      <option  value="weekly"> Weekly &nbsp;&nbsp; </option>
 										       <option  value="monthly"> Monthly</option>
 										        <option value="yearly"> Yearly</option>
@@ -667,20 +664,20 @@ while(rs2.next())
 										    <div class="col-lg-4 col-md-4">
 										    
 										    <span>
-										     <select id='month' onchange="val(this.value,linedrop)" hidden> 
-										      <option disabled selected>Select any option</option>
-										      <option  value="Jan"> Jan </option>
-										       <option  value="Feb"> Feb </option>
-										        <option  value="Mar"> Mar </option>
-										         <option  value="April"> April </option>
+										     <select id='month' onchange="val(this.id)" hidden> 
+										      <option disabled selected>-- Select --</option>
+										      <option  value="January"> Jan </option>
+										       <option  value="February"> Feb </option>
+										        <option  value="March"> Mar </option>
+										         <option  value="April" selected> Apr</option>
 										          <option  value="May"> May </option>
 										           <option  value="June"> June </option>
 										            <option  value="July"> July </option>
-										             <option  value="Aug"> Aug </option>
-										              <option  value="Sep"> Sep </option>
-										               <option  value="Oct"> Oct </option>
-										                <option  value="Nov"> Nov </option>
-										                 <option  value="Dec"> Dec </option>
+										             <option  value="August"> Aug </option>
+										              <option  value="September"> Sep </option>
+										               <option  value="October"> Oct </option>
+										                <option  value="November"> Nov </option>
+										                 <option  value="December"> Dec </option>
 										     
 										      </select>  
 										    </span>
@@ -689,12 +686,12 @@ while(rs2.next())
 										    <div class="col-lg-4 col-md-4">
 										   
 										    <span>
-										     <select id="year"  onchange="line_chart(this.value)"  hidden> 
-										      <option disabled selected> Select any option </option>
+										     <select id="year"  onchange="weekly_chart(this.value)"  hidden> 
+										      <option disabled > -- Select --  </option>
 										      <option  value="2015">2015</option>
 										      <option  value="2016">2016</option>
 										      <option  value="2017">2017</option>
-										      <option  value="2018">2018</option>
+										      <option  value="2018" selected>2018</option>
 										      <option  value="2019">2019</option>
 										      <option  value="2020">2020</option>
 										      <option  value="2021">2021</option>
@@ -856,7 +853,8 @@ pager.init();
 pager.showPageNav('pager', 'pageNavPosition');
 pager.showPage(1);
 </script>      
-                                                                                                                      
+
+  
  
                    
    <!--  script for role,piechart curvechart-->
@@ -1048,6 +1046,9 @@ ResultSet rs16 = st16.executeQuery(query16);
 String query17 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
 Statement st17 = conn.createStatement();
 ResultSet rs17 = st17.executeQuery(query17);
+String query19 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
+Statement st19 = conn.createStatement();
+ResultSet rs19 = st19.executeQuery(query19);
 
 int last_10=0,last_30=0,last_50=0,last_20=0;
 while(rs10.next())
@@ -1059,6 +1060,7 @@ while(rs12.next())
 while(rs13.next())
 	last_30+=Integer.parseInt(rs13.getString(4));
 %>
+
         <script type="text/javascript">
  function linechartvalues(){
  var lineweekly =document.getElementById("linedrop").value;
@@ -1068,11 +1070,9 @@ while(rs13.next())
  
   
  if (lineweekly == 'daily') {
+	 
 	 document.getElementById('month').style.display = 'none';
 	 document.getElementById('year').style.display = 'none';
-	 
-	
-	 
 	 google.charts.load('current', {'packages':['corechart','line']});
      google.charts.setOnLoadCallback(drawChart);
 
@@ -1097,6 +1097,7 @@ while(rs13.next())
        var options = {
          title: '',
          curveType: 'function',
+        
          pointSize: 5,
          colors: ['rgb(71, 0, 200)'],
          hAxis: {
@@ -1115,6 +1116,12 @@ while(rs13.next())
        
        };
 
+       if (data.getNumberOfRows() === 0) {
+    	   data.addRows([
+    	        ['0', 0, null, 'No Data Copy']
+    	      ]);
+    	    }
+
        var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
        
           
@@ -1123,150 +1130,179 @@ while(rs13.next())
      
      
 	}
+	 
  }
    
  else if(lineweekly == 'weekly'){
+	 
 	 document.getElementById('month').style.display = 'block';
 	 document.getElementById('year').style.display = 'block';
-	 var xmlHttp
-	   function onYear(inp1,inp2,inp3)
-	   {
-		
-		   var input1 = document.getElementById('linedrop').value;
-		   var input2 = document.getElementById('month').value;
-		   var input3 = document.getElementById('year').value;
-		  
-		   console.log("Selected Values : " + input1 + " and " +input2 + " and  " +input3);
-		   
-		      if (typeof XMLHttpRequest != "undefined"){
-		      xmlHttp= new XMLHttpRequest();
-		      }
-		      else if (window.ActiveXObject){
-		      xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
-		      }
-		      if (xmlHttp==null){
-		      alert("Browser does not support XMLHTTP Request")
-		      return;
-		      } 
-		      
-		      var url="chart.jsp";
-		      url +="?session=" +input1 + "&wmonth=" + input2 + "&wyear=" + input3;
-		      xmlHttp.onreadystatechange = stateChange;
-		      xmlHttp.open("GET", url, true);
-		      xmlHttp.send(null);
-		      
-		            }
-	<%
-	String months =(String)session.getAttribute("month") ;
-	String years =(String)session.getAttribute("year") ;
-
-	System.out.println(""+months);
-	System.out.println(""+years);
-
-	String query18 = "Select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where MONTHNAME(date) = '"+months+"' and SUBSTR(date,1,4)= '"+years+"' ";
-	System.out.println(""+query18);
-	Statement st18 = conn.createStatement();
-	ResultSet rs18 = st18.executeQuery(query18);
-
-
-	%>
-		      function stateChange(){   
-		      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-		     
-		    	   google.charts.load('current', {'packages':['corechart']});
-		    	      google.charts.setOnLoadCallback(drawChart);
-
-		    	      function drawChart() {
-		    	    	  
-		    	        var data = google.visualization.arrayToDataTable([
-		    	        	
-		    	          ['Week', ' No.of.Visits'],
-		    	         
-		    	          <%
-		    	          while(rs18.next())
-		    	          {
-		    	          %>
-		    	         	 
-		    	           [ new Date(<%=rs18.getString(1)%>,<%=rs18.getString(2)%>,<%=rs18.getString(3)%>), <%= rs18.getString(4)%>],
-		    	          
-		    	          <%}%>
-		    	        ]);
-
-		    	        var options = {
-		    	          title: '',
-		    	          curveType: 'function',
-		    	          pointSize: 5,
-		    	          colors: ['rgb(0, 191, 255)'],
-		    	          
-		    	          hAxis: {
-		    	        	  title: 'Week of The Month',
-		    	              format:'DDD',
-		    	              gridlines: {count: 15}
-		    	            },
-		    	            vAxis: {
-		    	             
-		    	              minValue: 0,
-		    	              title: 'No of visits',
-		    	            },
-		    	         
-		    	         
-		    	        };
-
-		    	        var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
-
-		    	        chart.draw(data, options);
-		    	      }
-		     
-		      }   
-		      
-		     
-		      
-		     
-		    
-		 }
-		 
-	  
+	 
+	 weekly_chart();
+	 
+	 
  } 
- 
  else if(lineweekly == 'monthly'){
 	 document.getElementById('month').style.display = 'none';
 	 document.getElementById('year').style.display = 'block';
 	 line_chart();
  } 
+ 
+ else if(lineweekly == 'yearly'){
+	 document.getElementById('month').style.display = 'none';
+	 document.getElementById('year').style.display = 'none';
+	 google.charts.load('current', {'packages':['corechart','line']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+   	
+       var data = google.visualization.arrayToDataTable([
+    	   
+         ['Year', 'No.of.Visits'],
+        
+        <%
+        while(rs19.next())
+        {
+        %>
+       	 
+       
+         [new Date(<%=rs19.getString(1)%>,<%=rs19.getString(2)%>,<%=rs19.getString(3)%>), <%= rs19.getString(4)%>],
+        
+        <%}%>
+        [new Date(2019,01,01), null],
+       
+       ]);
+
+       var options = {
+         title: '',
+         curveType: 'function',
+        
+         colors: ['rgb(71, 0, 200)'],
+         hAxis: {
+             title: 'Year',
+            format : 'yyyy',
+             viewWindow: {min:new Date(2016,01,01)},
+            	 titleTextStyle: {
+            		          		    fontSize: '16',
+            		  }
+         },
+         vAxis: {
+           title: 'No of visits',
+           minValue: 0,
+         },
+         
+       
+       };
+
+       if (data.getNumberOfRows() === 0) {
+    	   data.addRows([
+    	        ['0', 0, null, 'No Data Copy']
+    	      ]);
+    	    }
+
+       var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+       
+          
+       chart.draw(data, options);
+          
+     
+     
+	}
+	 
+ } 
  }
  
  
     </script> 
+<script>
+  function weekly_chart(){
+	  var str_array=[];
+  
+  	var month=document.getElementById("month").value;
+  	var year=document.getElementById("year").value;
+  	console.log(" month : " + month + "  year  : " + year);
+  	
+  	$.ajax({
+  	      url: "Weekly_linechart",
+  	      type: "Post",
+  	      data: { field1: month, field2 : year},
+  	      dataType: "text",
+  	      
+  	    
+  	      success : function(data) {
+  	    	var str = data;
+  	    	
+  	    	str_array=" ";
+  	        str_array = str.split(',');
+  	     
+  	        for(var i = 0; i < str_array.length; i++) {
+  	   
+  	        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+  	     
+  	        //alert("Select : " +str_array[i]);
+  	}
+  	    	  
+  	         
+  	          
+  	      }   
+  });
+  	
+  	google.charts.load('current', {'packages':['corechart','line']});
+  	google.charts.setOnLoadCallback(drawChart);
+
+  	function drawChart() {
+  		var name;
+  		  	    
+  	  var data = new google.visualization.DataTable();
+  	  data.addColumn('string','name');
+  	  data.addColumn('number','value');
+  	   
+  	  for(var i=0;i<str_array.length;i=i+2)
+  		  {
+  	
+  		
+  		  data.addRow([str_array[i],Number(str_array[i+1])]);
+  		  }
+  		
+  	
+  	  var options = {
+  	        title: '',
+  	        curveType: 'function',
+  	        pointSize: 5,
+  	        
+  	        colors: ['#fb8532'],
+  	       
+  	        vAxis: {
+  	          title: 'No of visits',
+  	          minValue: 0,
+  	         
+  	        },
+  	        
+  	        hAxis: {
+  	            title: 'No of weeks',
+  	            minValue: 0,
+  	           
+  	          },
+  	        backgroundColor: '#f6f8fa'
+  	      };
+
+  	  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  	  
+
+  	  
+
+  	  chart.draw(data, options);
+  	 
+  	}
+ 
+	  
+  }
+  
+  
+  </script>
 
 
-
- <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-    	  
-        var data = google.visualization.arrayToDataTable([
-        	
-          ['day', 'Visits'],
-          ['Last 10 days', <%= last_10 %> ],
-          ['Last 20 days', <%= last_20 %>],
-          ['Last 30 days', <%= last_30 %>],
-          ['Last 50 days', <%= last_50 %>]
-        ]);
-
-        var options = {
-          title: '',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script> 
-    
+ 
     
       <!-- filter Html table -->
       
@@ -1335,12 +1371,9 @@ catch(Exception e){}
       
        
        
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         
-        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+       
         <script src="js/jquery-ui/jquery-ui.min.js"></script>
         <script src="js/bootstrap/bootstrap.min.js"></script>
         <script src="js/pace/pace.min.js"></script>
