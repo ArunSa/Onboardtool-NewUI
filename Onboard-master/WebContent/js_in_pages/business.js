@@ -141,31 +141,7 @@
         	x.item(i).style.backgroundColor = '#3276B1' ; 
         	}
     */    
-        
-        function validateform() {
-        	var legappname = document.loginForm.legappname.value
-          var description = document.loginForm.descr.value
-        	var vendor = document.loginForm.vendor.value
-        	var conExpDate = document.loginForm.expdate.value
-        	var read = document.loginForm.rod.value
-        	var data = document.loginForm.dbsize.value
-        	var archival = document.loginForm.needarch.value
-        	var cmnt = document.loginForm.archcmnt.value
-
-
-if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=="" || data=="" || archival=="" || cmnt =="")
-        	 
-        	{
-        	alert("Please Fill the Mandatory Field");
-        	}
-        	else{
-        	 
-        	toggle();
-        	}
-        	}
-        
-        
-        
+   
         
         
         function toggle() {
@@ -180,24 +156,7 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         	text.innerHTML = "hide";
         	}
         	} 
-        function validateform1() {
-        	 
-        	var record = document.loginForm.reccode.value
-        	var trigger = document.loginForm.triggerdate.value
-        	var retention = document.loginForm.retentionperiod.value
-        	var table = document.loginForm.retentiontable.value
-        	var path = document.loginForm.file.value
-        	var name = document.loginForm.retentionname.value
-        	
-          	if(record ==""|| trigger==""||retention=="" ||table=="" || path == "" || name =="")
-        	{
-        	alert("Please Fill the Mandatory Field");  
-        	}
-        	else{
-        	toggle1();
-        	}
-        	}
-        
+      
         
         function toggle1() {
         	var ele = document.getElementById("collapse3");
@@ -212,10 +171,7 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         	}
         	} 
         
-        function validateform3() {
-            	toggle3();
-
-        	}
+   
         function toggle3() {
         	var ele = document.getElementById("collapse4");
         	 
@@ -231,22 +187,7 @@ if(legappname=="" || description=="" || vendor == "" || conExpDate =="" || read=
         
         
 
-        function validateform2() {
-         
-        var local = document.loginForm.localreq.value
-        var country = document.loginForm.localcountry.value
-        var infra = document.loginForm.localinf.value
-        var data = document.loginForm.datacenters.value
-        if(local ==""|| country=="" || infra =="" || data == "")     
-        {
-        alert("Please Fill the Mandatory Field"); 
-        }
-        else{
-        toggle2();
-        }
-        }
-        
-        
+    
         
         function toggle2()
         {
