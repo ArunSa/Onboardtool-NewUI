@@ -32,6 +32,112 @@
   
    
   </head><!--from  w  w w  . ja  va 2 s.co  m-->
+    <style>
+ body {
+  font-family: Arial, sans-serif;
+
+  background-size: cover;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 50px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 210px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color:black;
+}
+.popup .close:hover {
+  color: black;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.button{
+color:white;
+}
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+  
+}
+
+ #nav_userid{
+             color:green;
+             }
+               
+              #nav_role{
+              color:blue;
+              }  
+.ScrollStyle
+{
+    max-height: 350px;
+    overflow-y: scroll;
+}
+/*END Form Wizard*/
+
+
+</style>
+ 
   
   <body class="top-navbar-fixed">
 
@@ -42,6 +148,7 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Date" %>
 <%@page import="java.util.Calendar" %>
+<%@ page import="java.util.*" %>
 <%
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
@@ -94,12 +201,13 @@ String query5 = "select read_date from app_prior where prj_name ='"+Project_Name
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
 String imp_id="";
-String sequenceNumber="";
+String sequenceNumber="",pan_ID="";
 int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
+ArrayList<String> list=new ArrayList<String>();
 {
 %>
 
-<form class="form-signin" name="loginForm" method="post" action="business" >
+<form class="form-signin" name="loginForm" method="post">
 
  <div class="main-wrapper">
             
@@ -124,18 +232,20 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                            <% if(rs3.next()){ %>
                     <% if(rs4.next()){
                     	String rowCount="";
-                    	 String query11 = "select * from business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
+                    	 String query11 = "select * from sample_business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from sample_business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
                          Statement st11 = conn.createStatement();
                          ResultSet rs11 = st11.executeQuery(query11); 
-                         String query12 = "select count(*) from business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                         String query12 = "select count(*) from sample_business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                          Statement st12 = conn.createStatement();
                          ResultSet rs12 = st12.executeQuery(query12);
                          if(rs12.next())
                         	 rowCount=rs12.getString(1);
+                       
                         	 
                     	%>
                          <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
                        <input type="text" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" style="display:none;">
+                        <input type="text" id="appln_name" name="appln_name" value="<%= app_Name%>" style="display:none;">
                                                    
                     <%
                     
@@ -151,13 +261,13 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                     	}
                     }
                     }
-                    System.out.println("below visits");
+                  
                     if(flag==1)
                     {
                     	
                     	String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"
                     	        + " values (?, ?, ?, ?, ?, ?, ?)";
-                    	System.out.println(ins_query);
+                    
                     	      PreparedStatement preparedStmt = conn.prepareStatement(ins_query);
                     	      preparedStmt.setString (1, username);
                     	      preparedStmt.setString (2, strDate);
@@ -183,14 +293,14 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                   ResultSet rss1 = s3.executeQuery(quer3);
                   while(rss1.next())
                 	  imp_id=rss1.getString(1);
-                  System.out.println(imp_id);
+     
                   String quer4="select * from archive_exec where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
                   Statement s4 = conn.createStatement();
                  ResultSet rss2 = s4.executeQuery(quer4);
                 
                   while(rss2.next()){
                   	session.setAttribute(rss2.getString(3),rss2.getString(15));
-                  	System.out.println(rss2.getString(3));
+                  
                   }
                   
                   String quer5="select seq_num from archive_exec where name='Build and Test'";
@@ -198,12 +308,12 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                   ResultSet rss3 = s5.executeQuery(quer5);
                   if(rss3.next())
                 	  sequenceNumber=rss3.getString(1);
-                  System.out.println(sequenceNumber);
+             
                   String quer6="select * from archive_exec where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
                   Statement s6 = conn.createStatement();
                   ResultSet rss4 = s6.executeQuery(quer6);
                   int knt=0;
-                  System.out.println("bala");
+       
                   while(rss4.next())
                   {
                 	  if(knt>2)
@@ -218,7 +328,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 		  plannedHours1+=Integer.parseInt(rss4.getString(13)); 
                 	  }
                 	  else
-                	  { System.out.println("murugan");
+                	  { 
                 		  if(rss4.getString(9).equals(""))
                 			  actualHours+=0;
                 		  else
@@ -227,7 +337,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 			  plannedHours+=0;
                 		  else
                 		  plannedHours+=Integer.parseInt(rss4.getString(13)); 
-                		  System.out.println(actualHours);
+                	
                 	  }
                 	 knt++;
                   }
@@ -240,7 +350,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
  <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span id="nav_userid"><%=username%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=roles%></span></a></li>
       
-<li><a href="Logout" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
+<li><a href="logout.jsp" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
 					
@@ -501,9 +611,38 @@ if(implement == null)
             </div>
         
 </div>
+ <% 
+ String query22 = "SELECT * from samp_business";
+ Statement st22 = conn.createStatement();
+ ResultSet rs22 = st22.executeQuery(query22);
+ while(rs22.next())
+	 list.add(rs22.getString("idname"));
+ ArrayList<String> list2=new ArrayList<String>();
+ String query20 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'sample_business' ORDER BY ORDINAL_POSITION";
+ Statement st20 = conn.createStatement();
+ ResultSet rs20 = st20.executeQuery(query20);
+ while(rs20.next())
+ {
+ 	list2.add(rs20.getString(1));
+ }
+ Iterator itr=list.iterator();  
+ while(itr.hasNext()){  
+ 	String value=(String)itr.next();
+  boolean retval=list2.contains(value);
 
- <% if (rs11.next() || rowCount.equals("0")) {%>  
-<div class="panel-group" id="panels1" > 
+  if( retval == false)
+  {
+      Statement st21 = conn.createStatement();
+      st21.executeUpdate("alter table sample_business add column "+value+" varchar(255) DEFAULT ''");
+      
+  }
+ }  
+ 
+ if (rs11.next() || rowCount.equals("0")) { 
+ String qury="select * from samp_business where panels='P1'";
+ Statement stm = conn.createStatement();
+ ResultSet Rs = stm.executeQuery(qury);
+%>  
                     
                  <div class="panel panel-default"> 
                     <div class="panel-heading"> 
@@ -511,480 +650,427 @@ if(implement == null)
                             </div>                             
                         <div id="collapse1" class="panel-collapse collapse in" name="collapse"> 
                               <div class="panel-body">
-                                  <form role="form"> 
-                                       <div class="form-group"> 
+                              <%
+                              int k=0,Count=0,Count_1=0,Del_count=1;
+                              while(Rs.next()){ 
+                           
+                              %>
+                           <div class="form-group"> 
                                             <label class="control-label" for="formInput198" >
-                                            <div class="required">Legacy Application Name&nbsp;
-                                            </div>
+                                           
+                                            <%if(Rs.getString(3).equals("Yes") && !Rs.getString(1).equals("")) {%><div class="required"> <%=Rs.getString(1) %>&nbsp; <input type="checkbox" id="c1<%= Count_1 %>" name="<%= Rs.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d1<%= Count_1 %>" onclick="edit_page('<%= Rs.getString(1) %>','<%= Rs.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs.getString(1).equals("")){ %>
+                                            <div><%=Rs.getString(1) %>&nbsp;<input type="checkbox" id="c1<%= Count_1 %>" name="<%= Rs.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d1<%= Count_1 %>" onclick="edit_page('<%= Rs.getString(1) %>','<%= Rs.getString("idname") %>');"></span>
+                                            <%} 
+                                            %>
+                                           
                                             </label>
-                                            <input type="text" class="form-control" id="legappname" placeholder="Legacy Application Name" name="legappname" value="<%=app_Name%>"  />
-                                        </div>
+                                        <%if(Rs.getString(2).equals("Text box")){ 
+                                      
+                                        %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>
+                                            
+                              <%}else if(Rs.getString(2).equals("Dropdown")){
+                  				String box[]=Rs.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                          	else if(Rs.getString(2).equals("Radio box")){
+                    			String box[]=Rs.getString(7).split("/");
+                    			int number_of_boxes=Integer.parseInt(Rs.getString(6));%>
+                    			 <div class="radio"><%
+                    			for(int i=0;i<number_of_boxes;i++){
+                    		%> 
+                    	<input type="radio" style="margin-left:20px;" name="<%= Rs.getString("idname") %>" <% if(rs11.getString(Rs.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                    	                                       
+                    		<%}%></div><%}
                                         
-                                       <div class="form-group"> 
-                                            <label class="control-label" for="formInput229">References to Application</label>
-                                            <input type="text" class="form-control" id="reftoapp" placeholder="References" name="reftoapp" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(2) %>" <%} %> >
-                                     </div>
-                                    
-                                       <div class="form-group row log-date">
-           <div class="col-md-12">
-            <label class="control-label">Tracking ID</label>
-            <input placeholder="ID" id="tid" name="tid" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(3) %>" <%} %> >
-            </div>
-          
-                                       </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Description</div></label>
-            <input placeholder="Description" id="descr" name="descr" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(4) %>" <%} %> >
-          </div> 
-          
-        </div>  
-        
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Legacy Application Vendor/Manufacturer</div></label>
-            <input  id="vendor" name="vendor" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(5) %>" <%} %> >
-          </div>
-        
-        </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Contract Expiration Date</div></label>
-            <input placeholder="mm/dd/yyyy" id="expirydate" name="expdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(6) %>" <%} %> >
-          </div>
-          
-        </div>  
-                    <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Notice Period for Expiration of Contract</label>
-            <input  id="noticeperiod" name="noticeperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(7) %>" <%} %>>
-          </div>
-          
-        </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Contract Value of Application</label>
-            <input  id="contractvalue" name="contractvalue" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(8) %>" <%} %>>
-          </div>
-          
-        </div>  
-               
-                                             
-                                       <%if(rs5.next()) {
-                                    	   System.out.println("aaa "+rs5.getString("read_date"));
-                                       %>
-                                        
-                                        
-                                        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label"><div class="required">Read Only Date</div></label>
-            <input placeholder="mm/dd/yyyy" id="rod" name="rod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" value="<%=rs5.getString("read_date")%>">
-          </div>
-          <%} %>
-          
-        </div>
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Comment</label>
-            <input  id="cmnt" name="cmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(12) %>" <%} %>>
-          </div>
-          
-        </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">If the applications transitions has dependencies?</label>
-            <input placeholder="" id="hasdep" name="hasdep" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(13) %>" <%} %>>
-          </div>
-          
-        </div>    
-   
-       
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label"><div class="required">Size of Database</div></label>
-            <input  id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(15) %>" <%} %>>
-          </div>
-          
-        </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Location of Data</label>
-            <input  id="dataloc" name="dataloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(16) %>" <%} %>>
-          </div>
-          
-        </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Site Location of Data</label>
-            <input  id="siteloc" name="siteloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(17) %>" <%} %>>
-          </div>
-          
-        </div>
-         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Does the application needs archival?</div></label>                                             
-                                            <select id="needarch" class="form-control" name="needarch" > 
-                                            <option></option>
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString(18).equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString(18).equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString(18).equals("Other"))){ %> value="Other" selected <%} else{%>value="Other"<%} %>>Other</option>                                                 
-                                            </select>
-                                        </div>  
-  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Comments</div></label>
-            <input  id="archcmnt" name="archcmnt" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(20) %>" <%} %>>
-          </div>
-          
-        </div> 
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox"  id="sourceoft" name="sourceoft" <% if(!rowCount.equals("0") && (rs11.getString("ssn").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Is this Application's data the source of Truth?
-                                            </label>                                             
-                                        </div> 
-                                        
+                              else if(Rs.getString(2).equals("Datepicker")){%>
+                              
+                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>>
+                              <%
+                              k++;
+                              } else if(Rs.getString(2).equals("Check box")){
+                            	  String box[]=Rs.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                          	<% } %></div>
+                          	<% } %></div>
+                          	
+                             <%
+                             Count_1++;
+                              } %>
+                         
+                           
+                    
+                       <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup1" id="P1">Add</a></button> &nbsp;  
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del1" onclick="deletee('c1',<%=Count_1%>,'Del1','Del2')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del2" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d1',<%=Count_1%>);" >Edit</button>
   <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick=" validateform()"> Next<span class="glyphicon glyphicon-chevron-right"></span></button> 
-                                       
+                                       <br/><br/>
                                 </div>                                 
                             </div>                             
-                        </div>
+                        </div>  
+                         <script>
+                           function deletee(id,Count_1,Del1,Del2)
+                           {
+                           var x=Count_1;  
+                        	   for(var i=0;i<x;i++){
+                        		   document.getElementById(id+i).style.display='block';
+                        	   }
+                        	   document.getElementById(Del1).style.display='none';
+                        	   document.getElementById(Del2).style.display='block';
+                        	   
+                           }
+                           function edit_page(x,y)
+                           {
+                        	   var f=document.loginForm;
+                               f.method="post";
+                               f.action='edit_business.jsp?label='+x+'&idname='+y;
+                               f.submit();  
+                           }
+                           function edit_form(d1,Count_1)
+                           {
+                           var x=Count_1;  
+                        	   for(var i=0;i<x;i++){
+                        		   document.getElementById(d1+i).style.display='block';
+                        	   }
+                        	                       	   
+                           }
+                   
+                           
+                           
+                           </script>
+         
+                        <script>
+                        var count=0,mandtry,Idss;
+                        function validateform(){
+                        <% 
+                        String q1="select * from samp_business where panels='P1'";
+                        Statement stq = conn.createStatement();
+                        ResultSet rsq = stq.executeQuery(q1);
+                        while(rsq.next())
+                        {
+                        %>
+                        if('<%=rsq.getString("mandatory") %>' == "Yes")
+                        	{
+                        	if(document.getElementsByName('<%=rsq.getString("idname") %>')[0].value == "")
+                        		{
+                        		count++;
+                        		}
+                        	} 
+                        <%}%>
+                        if(count>0)
+                        	alert("fill the mandatory fields");
+                        else
+                            toggle();
+                        }
                         
-                 <div class="panel panel-default"> 
+                        </script>
+                    
+                     
+                        
+<%
+String qury1="select * from samp_business where panels='P2'";
+Statement stm1 = conn.createStatement();
+ResultSet Rs1 = stm1.executeQuery(qury1);
+%>     
+                      
+                   <div class="panel panel-default"> 
                      <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">Legacy Retention Information</a> </h4> 
                       </div>                             
                          <div id="collapse2" class="panel-collapse collapse"> 
                              <div class="panel-body">
-                                <form role="form">
-                                    <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Retention Code</div></label>
-            <input  id="reccode" name="reccode" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"  <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(22) %>" <%} %>/>
-          </div>
-          
-        </div> 
-                                    <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "> <div class="required">Trigger Date Field</div></label>
-            <input placeholder="mm/dd/yyyy"  id="triggerdate" name="triggerdate" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(23) %>" <%} %>>
-          </div>
-          
-        </div> 
-        
-        
-        
-        
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Period of Retention</div></label>
-            <input  id="retentionperiod" name="retentionperiod" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(24) %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Table Name/s where Retention need to apply</div></label>
-            <input  id="retentiontable" name="retentiontable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(25) %>" <%} %>>
-          </div>
-          
-        </div> 
-                                        <label text-align:"left"><div class="required">Retention Document to refer to</div></label>
-                                        <input type="file" name="file" id="file" size="60"  />
-                                                            
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Name of the Legal Retention & e-Discovery SME</div></label>
-            <input  id="retentionname" name="retentionname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(26) %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group"> 
-                                            <label class="control-label" for="formInput26">Does any Records have legal holds/Tax Holds or any indication?</label>                                             
-                                            <select id="legalholds" class="form-control" name="legalholds"> 
-                                            <option></option>
-                                               <option <% if(!rowCount.equals("0") && (rs11.getString(27).equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString(27).equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString(27).equals("Other"))){ %> value="Other" selected <%} else{%>value="Other"<%} %>>Other</option>                                                 
-                                           </select>
-                                        </div>   
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Who or what entity provided legal or tax hold identification</label>
-            <input  id="wholegal" name="wholegal" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(28) %>" <%} %>>
-          </div>
-          
-        </div> 
-         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Should this application's data to be archived?</div></label>                                             
-                                            <select id="app_data_arch" class="form-control" name="app_data_arch" > 
-                                              <option></option>
-                                               <option <% if(!rowCount.equals("0") && (rs11.getString("app_data_arch").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("app_data_arch").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
-                                            </select>
-                                        </div>  
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Brief Explanation</label>
-            <input  id="archexp" name="archexp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString(29) %>" <%} %>>
-          </div>
-          
-        </div>             
-           <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt1" onclick="validateform1()"> <a class="collapsed"  href="#collapse3">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+                             
+                              <%
+                              k=0;
+                             int Count_2=0;
+                              while(Rs1.next()){
+                            	 
+                            	 
+                            	  %>
+                           <div class="form-group"> 
+                                            <label class="control-label" for="formInput198" >
+                                            <%if(Rs1.getString(3).equals("Yes") && !Rs1.getString(1).equals("")) {%><div class="required"> <%=Rs1.getString(1) %>&nbsp; <input type="checkbox" id="c2<%= Count_2 %>" name="<%= Rs1.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d2<%= Count_2 %>" onclick="edit_page('<%= Rs1.getString(1) %>','<%= Rs1.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs1.getString(1).equals("")){ %>
+                                            <div><%=Rs1.getString(1) %>&nbsp;<input type="checkbox" id="c2<%= Count_2 %>" name="<%= Rs1.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d2<%= Count_2 %>" onclick="edit_page('<%= Rs1.getString(1) %>','<%= Rs1.getString("idname") %>');"></span>
+
+                                            <%} %>
+                                         
+                                            </label>
+                                              
+                                        <%if(Rs1.getString(2).equals("Text box")){ %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs1.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>/>
+                              <%}else if(Rs1.getString(2).equals("Dropdown")){
+                  				String box[]=Rs1.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs1.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs1.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                              else if(Rs1.getString(2).equals("Radio box")){
+                      			String box[]=Rs1.getString(7).split("/");
+                      			int number_of_boxes=Integer.parseInt(Rs1.getString(6));%>
+                      			 <div class="radio"><%
+                      			for(int i=0;i<number_of_boxes;i++){
+                      		%> 
+                      	<input type="radio" style="margin-left:20px;" name="<%= Rs1.getString("idname") %>" <% if(rs11.getString(Rs1.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                      	                                       
+                      		<%}%></div><%}
                                         
-                                    </form>
+                              else if(Rs1.getString(2).equals("Datepicker")){%>
+                              
+                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs1.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>>
+                              <%
+                              k++;
+                              } else if(Rs1.getString(2).equals("file")){
+                            	%>  
+                            	<input type="file" name="file" id="file" size="60" value="" />
+                            	 <%}  else if(Rs1.getString(2).equals("Check box")){
+                              
+                            	  String box[]=Rs1.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs1.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs1.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs1.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                       <% } %></div>
+                          	<% } %></div>
+                             <% 
+                             Count_2++;
+                              } %>
+                        
+                         	 <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup2">Add</a></button>     
+                         	 <button type="button"  class="btn btn-danger  pull-left" id="Del11" onclick="deletee('c2',<%=Count_2%>,'Del11','Del21')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del21" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d2',<%=Count_2%>);" >Edit</button>  
+                                                                  
+              <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt1" onclick="validateform1()"> Next<span class="glyphicon glyphicon-chevron-right"></span></button>
+                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+                 
                                 </div>                                 
                             </div>                             
                         </div>
-                       
+                                     
+                               <script>
+                               var count1=0;
+                        function validateform1(){
+                           
+                        <% 
+                        String q2="select * from samp_business where panels='P2'";
+                        Statement stq2 = conn.createStatement();
+                        ResultSet rsq2 = stq2.executeQuery(q2);
+                        while(rsq2.next())
+                        {
+                        %>
+                        if('<%=rsq2.getString("mandatory") %>' == "Yes")
+                        	{
+                        	if(document.getElementsByName('<%=rsq2.getString("idname") %>')[0].value == "")
+                        		{
+                        		count1++;
+            		}
+                        	} 
+                        <%}%>
+                        if(count1>0)
+                        	alert("fill the mandatory fields");
+                        else
+                        	toggle1();
+                        }
+                        
+                        </script>
+          <%
+String qury2="select * from samp_business where panels='P3'";
+Statement stm2 = conn.createStatement();
+ResultSet Rs2 = stm2.executeQuery(qury2);
+%>                  
                  <div class="panel panel-default"> 
                      <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors1();">Archive Data Management</a> </h4> 
                             </div>                             
                          <div id="collapse3" class="panel-collapse collapse"> 
                               <div class="panel-body">
-                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="">Is this application's been used for BI report?</div></label>                                             
-                                            <select id="useforBI" class="form-control" name="useforBI"> 
-                                            <option></option>
-                                              <option <% if(!rowCount.equals("0") && (rs11.getString("useforBI").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("useforBI").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
-                                                                                             
-                                            </select>
-                                        </div> 
-                                             <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="BItarget" type="checkbox" name ="BItarget" <% if(!rowCount.equals("0") && (rs11.getString("BItarget").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>> Is BI aware of using new/alternate target application data to support operational report</label>                                             
-                                        </div>
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="BIengagement" type="checkbox" name = "BIengagement" <% if(!rowCount.equals("0") && (rs11.getString("BIengagement").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >BI Engagement should be initiated by Application owner and completed prior archiving</label>
-                                        </div>                                        
+                              
+                              <%
+                              k=0;
+                             int Count_3=0;
+                              while(Rs2.next()){
+                          
+                            	  %>
+                           <div class="form-group"> 
+                                            <label class="control-label" for="formInput198" >
+                                            <%if(Rs2.getString(3).equals("Yes") && !Rs2.getString(1).equals("")) {%><div class="required"> <%=Rs2.getString(1) %>&nbsp; <input type="checkbox" id="c3<%= Count_3 %>" name="<%= Rs2.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d3<%= Count_3 %>" onclick="edit_page('<%= Rs2.getString(1) %>','<%= Rs2.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs2.getString(1).equals("")){ %>
+                                            <div><%=Rs2.getString(1) %>&nbsp;<input type="checkbox" id="c3<%= Count_3 %>" name="<%= Rs2.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d3<%= Count_3 %>" onclick="edit_page('<%= Rs2.getString(1) %>','<%= Rs2.getString("idname") %>');"></span>
+
+                                            <%} %>
+                                            </label>
+                                        <%if(Rs2.getString(2).equals("Text box")){ %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs2.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs2.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs2.getString("idname"))%>" <%}} %>/>
+                              <%}else if(Rs2.getString(2).equals("Dropdown")){
+                  				String box[]=Rs2.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs2.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs2.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                              else if(Rs2.getString(2).equals("Radio box")){
+                      			String box[]=Rs2.getString(7).split("/");
+                      			int number_of_boxes=Integer.parseInt(Rs2.getString(6));%>
+                      			 <div class="radio"><%
+                      			for(int i=0;i<number_of_boxes;i++){
+                      		%> 
+                      	<input type="radio" style="margin-left:20px;" name="<%= Rs2.getString("idname") %>" <% if(rs11.getString(Rs2.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                      	                                       
+                      		<%}%></div><%}
+                                        
+                              else if(Rs2.getString(2).equals("Datepicker")){%>
+                              
+                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs2.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs2.getString("idname")) %>">
+                              <%
+                              k++;
+                              } else if(Rs2.getString(2).equals("file")){
+                            	%>  
+                            	<input type="file" name="<%= Rs2.getString("idname") %>" id="<%= Rs2.getString("idname") %>" size="60"  />
+                            	 <%}  else if(Rs2.getString(2).equals("Check box")){
+                              
+                            	  String box[]=Rs2.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs2.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs2.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs2.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                       <% } %></div>
+                          	<% } %></div>
+                             <%
+                             Count_3++;
+                              } %>
+                             <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup3">Add</a></button>
+                    	 <button type="button"  class="btn btn-danger  pull-left" id="Del12" onclick="deletee('c3',<%=Count_3%>,'Del12','Del22')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del22" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d3',<%=Count_3%>);" >Edit</button>  
+              
+                                                                            
                                      <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform3()">   Next<span class="glyphicon glyphicon-chevron-right"></span></button>
                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new2" onclick="switchColors();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                                        
                                 </div>                                 
                             </div>                             
                         </div>
+                                              
+                          <script>
+                        function validateform3(){
+                            var count=0;
+                        <% 
+                        String q3="select * from samp_business where panels='P3'";
+                        Statement stq3 = conn.createStatement();
+                        ResultSet rsq3 = stq3.executeQuery(q3);
+                        while(rsq3.next())
+                        {
+                        %>
+                        if('<%=rsq3.getString("mandatory") %>' == "Yes")
+                        	{
+                        	if(document.getElementsByName('<%=rsq3.getString("idname") %>')[0].value == "")
+                        		{
+                        		count++;
+                        		}
+                        	} 
+                        <%}%>
+                        if(count>0)
+                        	alert("fill the mandatory fields");
+                        else
+                        	toggle3();
+                        }
                         
+                        </script>
+                <%
+String qury3="select * from samp_business where panels='P4'";
+Statement stm3 = conn.createStatement();
+ResultSet Rs3 = stm3.executeQuery(qury3);
+%>                        
                  <div class="panel panel-default"> 
-                      <div class="panel-heading"> 
+                    <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" onclick="switchColors2();">Privacy Classification</a> </h4> 
-                            </div>                             
-                          <div id="collapse4" class="panel-collapse collapse"> 
+                            </div>       
+                             <div id="collapse4" class="panel-collapse collapse"> 
                               <div class="panel-body">
+                                <%
+                              k=0;
+                                int Count_4=0;
+                              while(Rs3.next()){
+                            	
+                            	  %>
+                           <div class="form-group"> 
+                                            <label class="control-label" for="formInput198" >
+                                            <%if(Rs3.getString(3).equals("Yes") && !Rs3.getString(1).equals("")) {%><div class="required"> <%=Rs3.getString(1) %>&nbsp; <input type="checkbox" id="c4<%= Count_4 %>" name="<%= Rs3.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d4<%= Count_4 %>" onclick="edit_page('<%= Rs3.getString(1) %>','<%= Rs3.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs3.getString(1).equals("")){ %>
+                                            <div><%=Rs3.getString(1) %>&nbsp;<input type="checkbox" id="c4<%= Count_4 %>" name="<%= Rs3.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d4<%= Count_4 %>" onclick="edit_page('<%= Rs3.getString(1) %>','<%= Rs3.getString("idname") %>');"></span>
+
+                                            <%} %>
+                                            </label>
+                                        <%if(Rs3.getString(2).equals("Text box")){ %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs3.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs3.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs3.getString("idname"))%>" <%}} %>/>
+                              <%}else if(Rs3.getString(2).equals("Dropdown")){
+                  				String box[]=Rs3.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs3.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs3.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                              else if(Rs3.getString(2).equals("Radio box")){
+                      			String box[]=Rs3.getString(7).split("/");
+                      			int number_of_boxes=Integer.parseInt(Rs3.getString(6));%>
+                      			 <div class="radio"><%
+                      			for(int i=0;i<number_of_boxes;i++){
+                      		%> 
+                      	<input type="radio" style="margin-left:20px;" name="<%= Rs3.getString("idname") %>" <% if(rs11.getString(Rs3.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                      	                                       
+                      		<%}%></div><%}
+                                        
+                              else if(Rs3.getString(2).equals("Datepicker")){%>
                               
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" id="creditacc" name="creditacc" <% if(!rowCount.equals("0") && (rs11.getString("creditacc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Account Credit Card
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="financialacc" type="checkbox" name="financialacc" <% if(!rowCount.equals("0") && (rs11.getString("financialacc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Account Number - Financial
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="dob" name="dob" type="checkbox" name="dob"  <% if(!rowCount.equals("0") && (rs11.getString("dob").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Date of Birth
-                                            </label>
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input  id="driverlic" name="driverlic" type="checkbox" name="driverlic" <% if(!rowCount.equals("0") && (rs11.getString("driverlic").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Driver's License Number
-                                                <br>
-                                            </label>                                             
-                                        </div> 
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="email" name="email" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("email").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Email Address
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="family"  name="family" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("family").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>family Status
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="gender"  name="gender" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("gender").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Gender
-                                            </label>
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="geoloc" name="geoloc" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("geoloc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Geo Location
-                                                <br>
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="img" name="img" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("img").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Image/Video
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="income" type="checkbox" name="income" <% if(!rowCount.equals("0") && (rs11.getString("income").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Income
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="ipadrs" type="checkbox" name="ipadrs" <% if(!rowCount.equals("0") && (rs11.getString("ipadrs").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>IP Address
-                                            </label>
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="martialstatus" type="checkbox" name="martialstatus" <% if(!rowCount.equals("0") && (rs11.getString("martialstatus").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Martial Status
-                                                <br>
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="mobid" type="checkbox" name="mobid" <% if(!rowCount.equals("0") && (rs11.getString("mobid").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Mobile Device Id
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="name" name="name" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("name").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Name
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="phno" name="phno" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("phno").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Phone Number
-                                            </label>
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="mailadrs" type="checkbox" name="mailadrs" <% if(!rowCount.equals("0") && (rs11.getString("mailadrs").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Physical/Mailing Address
-                                                <br>
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="physic" type="checkbox" name="physic" <% if(!rowCount.equals("0") && (rs11.getString("physic").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Physical Description
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="race" type="checkbox" name="race" <% if(!rowCount.equals("0") && (rs11.getString("race").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Race/Ethnicity
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="religion" type="checkbox" name="religion" <% if(!rowCount.equals("0") && (rs11.getString("religion").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>> Religion
-                                            </label>
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="sexualpref" type="checkbox" name="sexualpref" <% if(!rowCount.equals("0") && (rs11.getString("sexualpref").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Sexual Preference
-                                                <br>
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="ssn" name="ssn" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("ssn").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>SSN/SIN
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input  id="others" type="checkbox" name="others" <% if(!rowCount.equals("0") && (rs11.getString("others").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Others
-                                            </label>                                             
-                                        </div>
-                                         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Brief Explanation</label>
-            <input  id="expl" name="expl" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("expl") %>" <%} %>>
-          </div>
-          
-        </div> 
-                           <h4>Security Information:</h4>
-                                         <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Does the application have localization requirement/ regulations</div></label>                                             
-                                            <select id="localreq" class="form-control" name="localreq"> 
-                                            <option></option>
-                                             <option <% if(!rowCount.equals("0") && (rs11.getString("localreq").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("localreq").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
-                                                                                                
-                                            </select>
-                                        </div> 
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">List of Countries where localization requirement/ regulations apply</div></label>                                             
-                                            <select id="localcountry" class="form-control" name="localcountry"> 
-                                            <option></option>
-                                              <option <% if(!rowCount.equals("0") && (rs11.getString("localcountry").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("localcountry").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
-                                                                                                 
-                                            </select>
-                                        </div> 
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput26"><div class="required">Are the Localization requirements/regulations enforced with infrastructure or geofencing</div></label>                                             
-                                            <select id="localinf" class="form-control" name="localinf"> 
-                                            <option></option>
-                                              <option <% if(!rowCount.equals("0") && (rs11.getString("localinf").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("localinf").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
-                                                                                               
-                                            </select>
-                                        </div> 
-                                         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">Infrastructure Localization enforcement, please list the locations of the datacenters</div></label>
-            <input  id="datacenters" name="datacenters" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("datacenters") %>" <%} %>>
-          </div>
-          
-        </div> 
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput26">External access  for archived data</label>                                             
-                                            <select id="extaccess" class="form-control" name="extaccess"> 
-                                            <option></option>
-                                              <option <% if(!rowCount.equals("0") && (rs11.getString("extaccess").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("extaccess").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>    
-                                                                                                 
-                                            </select>
-                                        </div>  
-                                         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Describe who or what external entity needs access </label>
-            <input placeholder="" id="who" name="who" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("who") %>" <%} %>>
-          </div>
-          
-        </div> 
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">User Name</label>
-            <input  id="uname" name="uname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("uname") %>" <%} %>>
-          </div>
-          
-        </div> 
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Role Description</label>
-            <input  id="roledesc" name="roledesc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("roledesc") %>" <%} %>>
-          </div>
-          
-        </div> 
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Reason for Access</label>
-            <input  id="accreason" name="accreason" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("accreason") %>" <%} %>>
-          </div>
-          
-        </div> 
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Frequency of Access</label>
-            <input  id="accfreq" name="accfreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("accfreq") %>" <%} %>>
-          </div>
-          
-        </div> 
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Additional System Requirements</label>
-            <input  id="sysreq" name="sysreq" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("sysreq") %>" <%} %>>
-          </div>
-          
-        </div> 
-      
+                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs3.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs3.getString("idname")) %>">
+                              <%
+                              k++;
+                              } else if(Rs3.getString(2).equals("file")){
+                            	%>  
+                            	<input type="file" name="<%= Rs1.getString("idname") %>" id="file" size="60"  />
+                            	 <%}  else if(Rs3.getString(2).equals("Check box")){
+                              
+                            	  String box[]=Rs3.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs3.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs3.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs3.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                       <% } %></div>
+                          	<% } %></div>
+                             <%
+                             Count_4++;
+                              } %>                      
+                      <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup4">Add</a></button>
+                      <button type="button"  class="btn btn-danger  pull-left" id="Del13" onclick="alert('<%=Count_4%>');deletee('c4',<%=Count_4%>,'Del13','Del23')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del23" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d4',<%=Count_4%>);" >Edit</button>  
+              
                                          <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new3" onclick="validateform3()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
                              
                                 </div>                                 
@@ -993,25 +1079,61 @@ if(implement == null)
         </div>
                      <input type="text" id="role_info" value="<%= role_info %>" style="display:none">   
        
-                    <button type="submit" class="btn btn-primary btn pull-right" onclick="validateform2();">Save & Continue...</button>&nbsp;
+                    <button type="button" class="btn btn-primary btn pull-right" onclick="validateform2();">Save & Continue...</button>&nbsp;
 
                     <button type="button" class="btn btn-default" onclick="location.href = 'grid.jsp';">Cancel</button> 
                      
  </div>  
                    
        </div>
-                
+      
+        <script>
+                        function validateform2(){
+                            var count=0;
+                        <% 
+                        String q4="select * from samp_business where panels='P4'";
+                        Statement stq4 = conn.createStatement();
+                        ResultSet rsq4 = stq3.executeQuery(q4);
+                        while(rsq4.next())
+                        {
+                        %>
+                        if('<%=rsq4.getString("mandatory") %>' == "Yes" && '<%=rsq4.getString("idname") %>' != "retentiontable" )
+                        	{
+                        	if(document.getElementsByName('<%=rsq4.getString("idname") %>')[0].value == "")
+                        		{
+                        		count++;
+                        		}
+                        	} 
+                        <%}%>
+                        if(count>0)
+                        	alert("fill the mandatory fields");
+                        else
+                            validateform9();
+                        }
+                        
+                        </script>
+                <script>
+                function validateform9() {
+             	   var f=document.loginForm;
+                    f.method="post";
+                    f.action="Business_sam"
+                    f.submit();
+                }
+                </script>
       
         <%
+        
+   
 }
 }
 }
 }
 }
+
 catch(Exception e){}
 %>
 </form>
-
+	<jsp:include page="samp_business_forms.jsp"/>
                    <!-- /.row -->
 				</section>
                         <!-- /.section -->

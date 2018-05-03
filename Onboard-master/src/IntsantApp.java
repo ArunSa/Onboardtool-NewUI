@@ -71,6 +71,92 @@ public class IntsantApp extends HttpServlet {
 				logger.info("created application "+appname+" in project "+prjname+" for AppEmphasize module");
 				
 				System.out.println(appname+" "+prjname);
+				class Application
+				{
+					
+					String label, type_of_box, mandatory, no_of_box, checkbox_labels, no_of_Rbox, radiobox_labels, no_of_drpdwn, dropdown_labels,panels, idname;
+					Application(String label, String type_of_box, String mandatory,String no_of_box,String checkbox_labels,String no_of_Rbox,String radiobox_labels,String no_of_drpdwn,String dropdown_labels,String panels,String idname)
+					{
+						this.label=label;
+						this.type_of_box=type_of_box;
+						this.mandatory=mandatory;
+						this.no_of_box=no_of_box;
+						this.checkbox_labels=checkbox_labels;
+						this.no_of_Rbox=no_of_Rbox;
+						this.radiobox_labels=radiobox_labels;
+						this.no_of_drpdwn=no_of_drpdwn;
+						this.dropdown_labels=dropdown_labels;
+						this.panels=panels;
+						this.idname=idname;
+						
+					}
+				}
+				
+				Application app[]=new Application[70];
+app[0]=new Application("Legacy Application Name", "Text box", "Yes", "", "", "", "", "", "", "P1", "legappname");
+app[1]=new Application("References to Application", "Text box", "No", "", "", "", "", "", "", "P1", "reftoapp");
+app[2]=new Application("Tracking ID", "Text box", "No", "", "", "", "", "", "", "P1", "tid");
+app[3]=new Application("Description", "Text box", "Yes", "", "", "", "", "", "", "P1", "descr");
+app[4]=new Application("Legacy Application Vendor/Manufacturer", "Text box", "Yes", "", "", "", "", "", "", "P1", "vendor");
+app[5]=new Application("Contract Expiration Date", "Datepicker", "Yes", "", "", "", "", "", "", "P1", "expdate");
+app[6]=new Application("Notice Period for Expiration of Contract", "Text box", "No", "", "", "", "", "", "", "P1", "noticeperiod");
+app[7]=new Application("Contract Value of Application", "Text box", "No", "", "", "", "", "", "", "P1", "contractvalue");
+app[8]=new Application("Read Only Date", "Datepicker", "Yes", "", "", "", "", "", "", "P1", "rod");
+app[9]=new Application("Comment", "Text box", "No", "", "", "", "", "", "", "P1", "cmnt");
+app[10]=new Application("If the applications transitions has dependencies?", "Text box", "No", "", "", "", "", "", "", "P1", "hasdep");
+app[11]=new Application("Size of Database", "Text box", "Yes", "", "", "", "", "", "", "P1", "dbsize");
+app[12]=new Application("Location of Data", "Text box", "No", "", "", "", "", "", "", "P1", "dataloc");
+app[13]=new Application("Site Location of Data", "Text box", "No", "", "", "", "", "", "", "P1", "siteloc");
+app[14]=new Application("Does the application needs archival?", "Dropdown", "Yes", "", "", "", "", "3", "Yes/No/Other/", "P1", "needarch");
+app[15]=new Application("Comments", "Text box", "Yes", " ", " ", " ", "", " ", "", "P1", "archcmnt");
+app[16]=new Application("Is this Application\"s data the source of Truth?", "Check box", "No", "1", "Is this Application\"s data the source of Truth?/", "", "", "", "", "P1", "sourceoft");
+app[17]=new Application("Retention Code", "Text box", "Yes", "", "", "", "", "", "", "P2", "reccode");
+app[18]=new Application("Trigger Date Field", "Datepicker", "Yes", "", "", "", "", "", "", "P2", "triggerdate");
+app[19]=new Application("Period of Retention", "Text box", "Yes", "", "", "", "", "", "", "P2", "retentionperiod");
+app[20]=new Application("Table Name/s where Retention need to apply", "file", "Yes", "", "", "", "", "", "", "P2", "retentiontable");
+app[21]=new Application("Name of the Legal Retention & e-Discovery SME", "Text box", "Yes", "", "", "", "", "", "", "P2", "retentionname");
+app[22]=new Application("Does any Records have legal holds/Tax Holds or any indication?", "Dropdown", "No", "", "", "", "", "3", "Yes/No/Other", "P2", "legalholds");
+app[23]=new Application("Who or what entity provided legal or tax hold identification", "Text box", "No", "", "", "", "", "", "", "P2", "wholegal");
+app[24]=new Application("Should this application\"s data to be archived?", "Dropdown", "Yes", "", "", "", "", "2", "Yes/No", "P2", "app_data_arch");
+app[25]=new Application("Brief Explanation", "Text box", "No", "", "", "", "", "", "", "P2", "archexp");
+app[26]=new Application("Is this application\"s been used for BI report?", "Dropdown", "No", "", "", "", "", "2", "Yes/No", "P3", "useforBI");
+app[27]=new Application("Is BI aware of using new/alternate target application data to support operational report/", "Check box", "No", "1", "Is BI aware of using new/alternate target application data to support operational report/", "", "", "", "", "P3", "BItarget");
+app[28]=new Application("BI Engagement should be initiated by Application owner and completed prior archiving", "Check box", "No", "1", "BI Engagement should be initiated by Application owner and completed prior archiving/", "", "", "", "", "P3", "BIengagement");
+app[29]=new Application("Account Credit Card", "Check box", "No", "1", "Account Credit Card/", "", "", "", "", "P4", "creditacc");
+app[30]=new Application("Account Number - Financial", "Check box", "No", "1", "Account Number - Financial/", "", "", "", "", "P4", "financialacc");
+app[31]=new Application("Date of Birth", "Check box", "No", "1", "Date of Birth/", "", "", "", "", "P4", "dob");
+app[32]=new Application("Drivers License Number", "Check box", "No", "1", "Drivers License Number/", "", "", "", "", "P4", "driverlic");
+app[33]=new Application("Email Address", "Check box", "No", "1", "Email Address/", "", "", "", "", "P4", "email");
+app[34]=new Application("family Status", "Check box", "No", "1", "family Status/", "", "", "", "", "P4", "family");
+app[35]=new Application("Gender", "Check box", "No", "1", "Gender/", "", "", "", "", "P4", "gender");
+app[36]=new Application("Geo Location", "Check box", "No", "1", "Geo Location/", "", "", "", "", "P4", "geoloc");
+app[37]=new Application("Image or Video", "Check box", "No", "1", "Image or Video/", "", "", "", "", "P4", "img");
+app[38]=new Application("Income", "Check box", "No", "1", "Income/", "", "", "", "", "P4", "income");
+app[39]=new Application("IP Address", "Check box", "No", "1", "IP Address/", "", "", "", "", "P4", "ipadrs");
+app[40]=new Application("Martial Status", "Check box", "No", "1", "Martial Status/", "", "", "", "", "P4", "martialstatus");
+app[41]=new Application("Mobile Device Id", "Check box", "No", "1", "Mobile Device Id/", "", "", "", "", "P4", "mobid");
+app[42]=new Application("Name", "Check box", "No", "1", "Name/", "", "", "", "", "P4", "name");
+app[43]=new Application("Phone Number", "Check box", "No", "1", "Phone Number/", "", "", "", "", "P4", "phno");
+app[44]=new Application("Physical or Mailing Address", "Check box", "No", "1", "Physical or Mailing Address/", "", "", "", "", "P4", "mailadrs");
+app[45]=new Application("Physical Description", "Check box", "No", "1", "Physical Description/", "", "", "", "", "P4", "physic");
+app[46]=new Application("Race or Ethnicity", "Check box", "No", "1", "Race or Ethnicity/", "", "", "", "", "P4", "race");
+app[47]=new Application("Religion", "Check box", "No", "1", "Religion/", "", "", "", "", "P4", "religion");
+app[48]=new Application("Sexual Preference", "Check box", "No", "1", "Sexual Preference/", "", "", "", "", "P4", "sexualpref");
+app[49]=new Application("SSN", "Check box", "No", "1", "SSN/", "", "", "", "", "P4", "ssn");
+app[50]=new Application("Others", "Check box", "No", "1", "Others/", "", "", "", "", "P4", "others");
+app[51]=new Application("Brief Explanation", "Text box", "No", "", "", "", "", "", "", "P4", "expl");
+app[52]=new Application("Does the application have localization requirement/ regulations", "Dropdown", "Yes", "", "", "", "", "2", "Yes/No", "P4", "localreq");
+app[53]=new Application("List of Countries where localization requirement/ regulations apply", "Dropdown", "Yes", "", "", "", "", "2", "Yes/No", "P4", "localcountry");
+app[54]=new Application("Are the Localization requirements/regulations enforced with infrastructure or geofencing", "Dropdown", "Yes", "", "", "", "", "2", "Yes/No", "P4", "localinf");
+app[55]=new Application("Infrastructure Localization enforcement, please list the locations of the datacenters", "Dropdown", "Yes", "", "", "", "", "2", "Yes/No", "P4", "datacenters");
+app[56]=new Application("External access for archived data", "Dropdown", "No", "", "", "", "", "2", "Yes/No", "P4", "extaccess");
+app[57]=new Application("Describe who or what external entity needs access", "Text box", "No", "", "", "", "", "", "", "P4", "who");
+app[58]=new Application("User Name", "Text box", "No", "", "", "", "", "", "", "P4", "uname");
+app[59]=new Application("Role Description", "Text box", "No", "", "", "", "", "", "", "P4", "roledesc");
+app[60]=new Application("Reason for Access", "Text box", "No", "", "", "", "", "", "", "P4", "accreason");
+app[61]=new Application("Frequency of Access", "Text box", "No", "", "", "", "", "", "", "P4", "accfreq");
+app[62]=new Application("Additional System Requirements", "Text box", "No", "", "", "", "", "", "", "P4", "sysreq");
+
 	
 		    
 		        
@@ -81,7 +167,30 @@ public class IntsantApp extends HttpServlet {
 		          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
 		          Class.forName(myDriver);
 		          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-		         
+		          for(int j=0;j<63;j++){
+		        	    String query = " insert into samp_business (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
+		        	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		        	          PreparedStatement preparedStmt = conn.prepareStatement(query);
+		        	          preparedStmt.setString(1, app[j].label);
+		        	          preparedStmt.setString(2, app[j].type_of_box);
+		        	          preparedStmt.setString(3, app[j].mandatory);
+		        	          preparedStmt.setString(4, app[j].no_of_box);
+		        	          preparedStmt.setString(5, app[j].checkbox_labels);
+		        	          preparedStmt.setString(6, app[j].no_of_Rbox);
+		        	          preparedStmt.setString(7, app[j].radiobox_labels);
+		        	          preparedStmt.setString(8, app[j].no_of_drpdwn);
+		        	          preparedStmt.setString(9, app[j].dropdown_labels);
+		        	          preparedStmt.setString(10, app[j].panels);
+		        	          preparedStmt.setString(11, app[j].idname);
+		        	          preparedStmt.setString(12, appname);
+		        	          preparedStmt.setString(13, prjname);
+		        	          
+		        	   
+		        	  	          
+		        	     preparedStmt.execute();
+		        	}
+
 				     int i=0;
 				
 		          // the mysql insert statement
