@@ -100,6 +100,34 @@ var distinct_monthname =[];
 var final_count =[];
 var final_month=[];
 var final_visits=[];
+var result_months=[];
+var result_visits=[];
+result_months.push("January");
+result_months.push("February");
+result_months.push("March");
+result_months.push("April");
+result_months.push("May");
+result_months.push("June");
+result_months.push("July");
+result_months.push("August");
+result_months.push("September");
+result_months.push("October");
+result_months.push("November");
+result_months.push("December");
+
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+result_visits.push("0");
+
 var flag=0;
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
@@ -114,6 +142,7 @@ ArrayList<String> no_of_visits = new ArrayList<String>();
 ArrayList<String> monthname = new ArrayList<String>();
 ArrayList<String> distinct_monthname = new ArrayList<String>();
 ArrayList<String> final_count = new ArrayList<String>();
+//ArrayList<String> final_month = new ArrayList<String>();
 
     DBconnection d=new DBconnection();
     Connection con = (Connection)d.getConnection();
@@ -141,16 +170,21 @@ date.push(<%=rs_line_chart_month.getString(4)%>);
 no_of_visits.push(<%=rs_line_chart_month.getString(5)%>);
 <%}%>   
 var count=0;
+var flag=0;
 for(var i=0;i<year.length;i++)
 	{
 	if(samp==year[i])
 	{
+		flag=1;
 		final_month.push(monthname[i]);
 		final_visits.push(no_of_visits[i]);
 	
 	}
 	else
+		{
+		
 		continue;
+		}
 	
 }
 for(var m=0;m<distinct_monthname.length;m++)
@@ -174,6 +208,32 @@ for(var m=0;m<distinct_monthname.length;m++)
 	final_count.push(count);
 	count=0;
 }
+
+for(var x=0;x<result_months.length;x++)
+	{
+	
+
+	
+	for(var y=0;y<distinct_monthname.length;y++)
+		{
+		
+		if(distinct_monthname[y].substr(1,distinct_monthname[y].length -2)==result_months[x])
+			{
+			
+			result_visits[x]=final_count[y];
+			
+			}
+		
+		else
+			{
+			continue;
+			}
+		}
+	
+	}
+	
+console.log("month with selected year " +samp );
+
 google.charts.load('current', {'packages':['corechart','line']});
 google.charts.setOnLoadCallback(drawChart);
 
@@ -183,29 +243,38 @@ function drawChart() {
     
   var data = new google.visualization.DataTable();
   data.addColumn('string','name');
-  data.addColumn('number','No of Visits');
+  data.addColumn('number','value');
 
-  for(var i=0;i<final_count.length;i++)
+  for(var i=0;i<result_months.length;i++)
 	  {
 	  
-	  data.addRow([distinct_monthname[i].substring(1, distinct_monthname[i].length - 1),Number(final_count[i])]);
+	  data.addRow([result_months[i],Number(result_visits[i])]);
 	  }
+	
 	
   var options = {
         title: '',
         curveType: 'function',
         pointSize: 5,
         
-        colors: ['#fb8532'],
+        colors: ['rgb(255, 0, 0)'],
        
         vAxis: {
           title: 'No of visits',
           minValue: 0,
+          ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
         },
-        backgroundColor: '#f6f8fa'
+        
+        hAxis: {
+            title: 'Months',
+            minValue: 0,
+            format: 'mmm',
+            
+          },
+       
       };
 
-  var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
   
 
   
@@ -229,12 +298,12 @@ function drawChart() {
 	var name;
 
   var data = google.visualization.arrayToDataTable([
-   
+	 
     ['Monthly', 'Visits'],
       
    
      <% 
-     String name=request.getParameter("tid");
+     String name=request.getParameter("year");
     // System.out.println("Year"+name);
      for(int a=0;a<year.size();a++)
      {
@@ -261,7 +330,7 @@ function drawChart() {
           title: 'No of visits',
           minValue: 0,
         },
-        backgroundColor: '#f6f8fa'
+       
       };
 
   var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
@@ -664,8 +733,8 @@ while(rs2.next())
 										    <div class="col-lg-4 col-md-4">
 										    
 										    <span>
-										     <select id='month' onchange="val(this.id)" hidden> 
-										      <option disabled selected>-- Select --</option>
+										     <select id='month' onchange="val()" hidden> 
+										      <option disabled >-- Select --</option>
 										      <option  value="January"> Jan </option>
 										       <option  value="February"> Feb </option>
 										        <option  value="March"> Mar </option>
@@ -680,13 +749,26 @@ while(rs2.next())
 										                 <option  value="December"> Dec </option>
 										     
 										      </select>  
-										    </span>
+										    
 										   
+										     <select id="year1"  onchange="weeklyline_chart(this.value,'month')"  hidden> 
+										      <option disabled > -- Select --  </option>
+										      <option  value="2015">2015</option>
+										      <option  value="2016">2016</option>
+										      <option  value="2017">2017</option>
+										      <option  value="2018" selected>2018</option>
+										      <option  value="2019">2019</option>
+										      <option  value="2020">2020</option>
+										      <option  value="2021">2021</option>
+										       
+										     
+										      </select>  
+										    </span>
 										    </div>
 										    <div class="col-lg-4 col-md-4">
 										   
 										    <span>
-										     <select id="year"  onchange="weekly_chart(this.value)"  hidden> 
+										     <select id="year"  onchange="line_chart(this.value)"  hidden> 
 										      <option disabled > -- Select --  </option>
 										      <option  value="2015">2015</option>
 										      <option  value="2016">2016</option>
@@ -1060,6 +1142,66 @@ while(rs12.next())
 while(rs13.next())
 	last_30+=Integer.parseInt(rs13.getString(4));
 %>
+<script>
+google.charts.load('current', {'packages':['corechart','line']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+	
+  var data = google.visualization.arrayToDataTable([
+  	
+    ['Date', 'No.of.Visits'],
+   
+   <%
+   while(rs15.next())
+   {
+   %>
+  	 
+  
+    [ new Date(<%=rs15.getString(1)%>,<%=rs15.getString(2)%>,<%=rs15.getString(3)%>), <%= rs15.getString(4)%>],
+   
+   <%}%>
+ 
+  ]);
+
+  var options = {
+    title: '',
+    curveType: 'function',
+   
+    pointSize: 5,
+    colors: ['rgb(71, 0, 200)'],
+    hAxis: {
+        title: 'Date',
+        format: 'MM/dd/yy',
+       
+       	 titleTextStyle: {
+       		          		    fontSize: '16',
+       		  }
+    },
+    vAxis: {
+      title: 'No of visits',
+      minValue: 0,
+      ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
+    },
+    
+  
+  };
+
+  if (data.getNumberOfRows() === 0) {
+	   data.addRows([
+	        ['0', 0, null, 'No Data Copy']
+	      ]);
+	    }
+
+  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  
+     
+  chart.draw(data, options);
+     
+
+
+}
+</script>
 
         <script type="text/javascript">
  function linechartvalues(){
@@ -1111,6 +1253,7 @@ while(rs13.next())
          vAxis: {
            title: 'No of visits',
            minValue: 0,
+           ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
          },
          
        
@@ -1122,7 +1265,7 @@ while(rs13.next())
     	      ]);
     	    }
 
-       var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
        
           
        chart.draw(data, options);
@@ -1136,21 +1279,25 @@ while(rs13.next())
  else if(lineweekly == 'weekly'){
 	 
 	 document.getElementById('month').style.display = 'block';
-	 document.getElementById('year').style.display = 'block';
+	 document.getElementById('year1').style.display = 'block';
+	 document.getElementById('year').style.display = 'none';
 	 
-	 weekly_chart();
+	 weeklyline_chart();
 	 
 	 
  } 
  else if(lineweekly == 'monthly'){
 	 document.getElementById('month').style.display = 'none';
 	 document.getElementById('year').style.display = 'block';
+	 document.getElementById('year1').style.display = 'none';
 	 line_chart();
+	 
  } 
  
  else if(lineweekly == 'yearly'){
 	 document.getElementById('month').style.display = 'none';
 	 document.getElementById('year').style.display = 'none';
+	 document.getElementById('year1').style.display = 'none';
 	 google.charts.load('current', {'packages':['corechart','line']});
      google.charts.setOnLoadCallback(drawChart);
 
@@ -1177,10 +1324,11 @@ while(rs13.next())
          title: '',
          curveType: 'function',
         
-         colors: ['rgb(71, 0, 200)'],
+         colors: ['rgb(255, 0, 200)'],
          hAxis: {
              title: 'Year',
             format : 'yyyy',
+            pointSize: 5,
              viewWindow: {min:new Date(2016,01,01)},
             	 titleTextStyle: {
             		          		    fontSize: '16',
@@ -1189,6 +1337,8 @@ while(rs13.next())
          vAxis: {
            title: 'No of visits',
            minValue: 0,
+           
+           ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
          },
          
        
@@ -1200,7 +1350,7 @@ while(rs13.next())
     	      ]);
     	    }
 
-       var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
        
           
        chart.draw(data, options);
@@ -1215,11 +1365,11 @@ while(rs13.next())
  
     </script> 
 <script>
-  function weekly_chart(){
+  function weeklyline_chart(){
 	  var str_array=[];
   
   	var month=document.getElementById("month").value;
-  	var year=document.getElementById("year").value;
+  	var year=document.getElementById("year1").value;
   	console.log(" month : " + month + "  year  : " + year);
   	
   	$.ajax({
@@ -1231,69 +1381,69 @@ while(rs13.next())
   	    
   	      success : function(data) {
   	    	var str = data;
-  	    	
+  	    	console.log("Result : " + str);
   	    	str_array=" ";
   	        str_array = str.split(',');
-  	     
+  	    
   	        for(var i = 0; i < str_array.length; i++) {
   	   
   	        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
   	     
-  	        //alert("Select : " +str_array[i]);
+  	        
   	}
   	    	  
-  	         
+  	      google.charts.load('current', {'packages':['corechart','line']});
+  	  	google.charts.setOnLoadCallback(drawChart);
+  	  
+  	  	function drawChart() {
+  	  		var name;
+  	  		  	    
+  	  	  var data = new google.visualization.DataTable();
+  	  	  data.addColumn('string','name');
+  	  	  data.addColumn('number','value');
+  	  	   
+  	  	  for(var i=0;i<str_array.length;i=i+2)
+  	  		  {
+  	  	
+  	  		
+  	  		  data.addRow([str_array[i],Number(str_array[i+1])]);
+  	  		  }
+  	  		
+  	  	
+  	  	  var options = {
+  	  	        title: '',
+  	  	        curveType: 'function',
+  	  	        pointSize: 5,
+  	  	        
+  	  	        colors: ['#fb8532'],
+  	  	       
+  	  	        vAxis: {
+  	  	          title: 'No of visits',
+  	  	          minValue: 0,
+  	  	      ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
+  	  	        },
+  	  	        
+  	  	        hAxis: {
+  	  	            title: 'No of weeks',
+  	  	            minValue: 0,
+  	  	        pointSize: 5,
+  	  	          },
+  	  	        
+  	  	      };
+
+  	  	  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  	  	  
+
+  	  	  
+
+  	  	  chart.draw(data, options);
+  	  	 
+  	  	}  
   	          
   	      }   
   });
   	
-  	google.charts.load('current', {'packages':['corechart','line']});
-  	google.charts.setOnLoadCallback(drawChart);
-
-  	function drawChart() {
-  		var name;
-  		  	    
-  	  var data = new google.visualization.DataTable();
-  	  data.addColumn('string','name');
-  	  data.addColumn('number','value');
-  	   
-  	  for(var i=0;i<str_array.length;i=i+2)
-  		  {
   	
-  		
-  		  data.addRow([str_array[i],Number(str_array[i+1])]);
-  		  }
-  		
-  	
-  	  var options = {
-  	        title: '',
-  	        curveType: 'function',
-  	        pointSize: 5,
-  	        
-  	        colors: ['#fb8532'],
-  	       
-  	        vAxis: {
-  	          title: 'No of visits',
-  	          minValue: 0,
-  	         
-  	        },
-  	        
-  	        hAxis: {
-  	            title: 'No of weeks',
-  	            minValue: 0,
-  	           
-  	          },
-  	        backgroundColor: '#f6f8fa'
-  	      };
-
-  	  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-  	  
-
-  	  
-
-  	  chart.draw(data, options);
-  	 
-  	}
  
 	  
   }
