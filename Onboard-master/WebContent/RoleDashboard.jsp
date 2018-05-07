@@ -85,6 +85,7 @@ response.sendRedirect("Login.html");
 }
 %>
 
+
 <script type="text/javascript">
 function line_chart()
 {
@@ -721,8 +722,8 @@ while(rs2.next())
                                         
 										   <span>
 										      <select id='linedrop' onchange="linechartvalues(this.value)"> 
-										      <option disabled >Select any option </option>
-										      <option  value="daily" selected> Daily &nbsp;&nbsp; </option>
+										      <option disabled selected>Select any option </option>
+										      <option  value="daily"> Daily &nbsp;&nbsp; </option>
 										      <option  value="weekly"> Weekly &nbsp;&nbsp; </option>
 										       <option  value="monthly"> Monthly</option>
 										        <option value="yearly"> Yearly</option>
@@ -733,7 +734,7 @@ while(rs2.next())
 										    <div class="col-lg-4 col-md-4">
 										    
 										    <span>
-										     <select id='month' onchange="val()" hidden> 
+										     <select id='month' onchange="val(this.value)" hidden> 
 										      <option disabled >-- Select --</option>
 										      <option  value="January"> Jan </option>
 										       <option  value="February"> Feb </option>
@@ -751,7 +752,7 @@ while(rs2.next())
 										      </select>  
 										    
 										   
-										     <select id="year1"  onchange="weeklyline_chart(this.value,'month')"  hidden> 
+										     <select id="year1"  onchange="weeklyline_chart(this.value)"  hidden> 
 										      <option disabled > -- Select --  </option>
 										      <option  value="2015">2015</option>
 										      <option  value="2016">2016</option>
@@ -937,7 +938,6 @@ pager.showPage(1);
 </script>      
 
   
- 
                    
    <!--  script for role,piechart curvechart-->
    <script language="javascript" type="text/javascript">  
@@ -998,7 +998,6 @@ function drawChart() {
 	 var selectedRole = $('#slct1').val();  
 	 var selecteduser = $('#username').val();  
     
-	 console.log("selectedROle is : " + selectedRole + " selectedUser is :" + selecteduser);
 	
 	var dataTable = new google.visualization.DataTable();
     dataTable.addColumn('string', 'Year');
@@ -1142,69 +1141,38 @@ while(rs12.next())
 while(rs13.next())
 	last_30+=Integer.parseInt(rs13.getString(4));
 %>
-<script>
-google.charts.load('current', {'packages':['corechart','line']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-	
-  var data = google.visualization.arrayToDataTable([
-  	
-    ['Date', 'No.of.Visits'],
-   
-   <%
-   while(rs15.next())
-   {
-   %>
-  	 
-  
-    [ new Date(<%=rs15.getString(1)%>,<%=rs15.getString(2)%>,<%=rs15.getString(3)%>), <%= rs15.getString(4)%>],
-   
-   <%}%>
- 
-  ]);
-
-  var options = {
-    title: '',
-    curveType: 'function',
-   
-    pointSize: 5,
-    colors: ['rgb(71, 0, 200)'],
-    hAxis: {
-        title: 'Date',
-        format: 'MM/dd/yy',
-       
-       	 titleTextStyle: {
-       		          		    fontSize: '16',
-       		  }
-    },
-    vAxis: {
-      title: 'No of visits',
-      minValue: 0,
-      ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
-    },
-    
-  
-  };
-
-  if (data.getNumberOfRows() === 0) {
-	   data.addRows([
-	        ['0', 0, null, 'No Data Copy']
-	      ]);
-	    }
-
-  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-  
-     
-  chart.draw(data, options);
-     
 
 
-}
-</script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+    	  
+        var data = google.visualization.arrayToDataTable([
+        	
+          ['day', 'Visits'],
+          ['Last 10 days', <%= last_10 %> ],
+          ['Last 20 days', <%= last_20 %>],
+          ['Last 30 days', <%= last_30 %>],
+          ['Last 50 days', <%= last_50 %>]
+        ]);
+
+        var options = {
+          title: '',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script> 
 
         <script type="text/javascript">
  function linechartvalues(){
+	 
  var lineweekly =document.getElementById("linedrop").value;
  
  
@@ -1215,6 +1183,8 @@ function drawChart() {
 	 
 	 document.getElementById('month').style.display = 'none';
 	 document.getElementById('year').style.display = 'none';
+	 document.getElementById('year1').style.display = 'none';
+	 
 	 google.charts.load('current', {'packages':['corechart','line']});
      google.charts.setOnLoadCallback(drawChart);
 
@@ -1282,7 +1252,7 @@ function drawChart() {
 	 document.getElementById('year1').style.display = 'block';
 	 document.getElementById('year').style.display = 'none';
 	 
-	 weeklyline_chart();
+	 val();
 	 
 	 
  } 
@@ -1364,7 +1334,30 @@ function drawChart() {
  
  
     </script> 
+    <script>
+    function val(){
+    	
+    	var month=document.getElementById("month").value;
+    	
+    	
+    	if (month != null ){
+    		
+    		weeklyline_chart();
+    		
+    	}
+    	
+    	
+    	
+    	
+    	
+    }
+    
+    </script>
 <script>
+
+
+
+
   function weeklyline_chart(){
 	  var str_array=[];
   
