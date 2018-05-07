@@ -155,7 +155,7 @@ response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setHeader("Expires", "0"); // Proxies.
 if (session.getAttribute("username")==null)
 {
-response.sendRedirect("Login.html");
+response.sendRedirect("Login.jsp");
 }
 %>
 

@@ -65,7 +65,7 @@ public class update_pass extends HttpServlet {
 	        System.err.println("Got an exception!");
 	        System.err.println(e.getMessage());
 	      }		
-		 response.sendRedirect("Login.html");
+		 response.sendRedirect("Login.jsp");
 	}
 
 }

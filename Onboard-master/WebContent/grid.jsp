@@ -65,6 +65,10 @@ $(document).ready(function() {
             
 <%@page language="java"%>
 <%@page import="java.sql.*"%>
+<%@page import="java.text.DateFormat" %>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date" %>
+<%@page import="java.util.Calendar" %>
 <%
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
@@ -72,7 +76,7 @@ response.setHeader("Expires", "0"); // Proxies.
 
 if (session.getAttribute("username")==null)
 {
-	response.sendRedirect("Login.html");
+	response.sendRedirect("Login.jsp");
 	
 }
 else{
@@ -92,6 +96,8 @@ try{
 Class.forName(driver).newInstance();
 con = DriverManager.getConnection(url+db,userName,password);
 Statement st1;
+
+
 String query1 = "select * from projinfo where id = "+name;
 st1 = con.createStatement();
 ResultSet rs = st1.executeQuery(query1);
@@ -106,7 +112,7 @@ if(rs.next())
                     <div class="row">
                      <%
               details.setAttribute("nameofproject",rs.getString("projectname"));
-              %> 
+                                   %> 
                         <div class="navbar-header no-padding">
                 			<a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">

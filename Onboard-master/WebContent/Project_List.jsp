@@ -34,6 +34,9 @@
 
 <body class="top-navbar-fixed">
   <%@page language="java"%>
+  <%@page import="java.text.DateFormat" %>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date" %>
   <%@page import="java.sql.*"%>
   <%@ page import="onboard.DBconnection" %>
 <%
@@ -41,7 +44,7 @@
   response.setHeader("Pragma", "no-cache");
   response.setHeader("Expires", "0");
   if (session.getAttribute("username")==null){
-     response.sendRedirect("Login.html");
+     response.sendRedirect("Login.jsp");
    }
 %>
 <%
@@ -56,6 +59,52 @@
   String roles=(String)details.getAttribute("role");
   DBconnection d=new DBconnection();
   Connection con = (Connection)d.getConnection();
+  String visit_query="select * from visits";
+  Statement visit_st = con.createStatement();
+  ResultSet visit_rs = visit_st.executeQuery(visit_query);
+  int flag=1,knt=0;
+  Date date = new Date();
+  SimpleDateFormat ft,ft1;
+  String username=(String)details.getAttribute("u_Name");
+  
+  ft=new SimpleDateFormat ("yyyy-MM-dd");
+  ft1=new SimpleDateFormat ("hh:mm:ss");
+  String strDate=ft.format(date);
+  String strTime=ft1.format(date);
+  while(visit_rs.next())
+  {
+   if(visit_rs.getString(6)!=null)
+  	{
+  	if(visit_rs.getString(1).equals(username) && visit_rs.getString(2).equals(strDate) && visit_rs.getString(3).equals("Logged in"))
+  	{
+  		Statement stmtt = con.createStatement();
+           String queryy = "update visits set count=count+1,time='"+strTime+"' where uname='"+username+"' and module='Logged in'  and date ='"+strDate+"'";
+           int count = stmtt.executeUpdate(queryy);
+           flag=0;
+           break;
+  	}
+  }
+
+  }
+  System.out.println("the flag value is "+flag);
+  if(flag==1)
+  {
+  	String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"
+  	        + " values (?, ?, ?, ?, ?, ?, ?)";
+  	      PreparedStatement preparedStmt = con.prepareStatement(ins_query);
+  	      preparedStmt.setString (1, username);
+  	      preparedStmt.setString (2, strDate);
+  	      preparedStmt.setString(3, "Logged in");
+  	      preparedStmt.setString(4, "1");
+  	      preparedStmt.setString(5, strTime);
+  	      preparedStmt.setString(6, "None");
+  	      preparedStmt.setString(7, "");
+
+  	      // execute the preparedstatement
+  	      preparedStmt.execute();
+  }
+
+  
   if(Projets.equals("all"))
      query = "select * from projinfo";
   else

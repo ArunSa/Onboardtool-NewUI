@@ -59,7 +59,7 @@ public class Logout extends HttpServlet {
 	logger.info("Logged Out"); 
 		if (session.getAttribute("username")==null)
 		{
-			response.sendRedirect("Login.html");
+			response.sendRedirect("Login.jsp");
 		}
 		session.invalidate();
 		response.sendRedirect("Login.jsp");
