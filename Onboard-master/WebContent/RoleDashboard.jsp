@@ -66,6 +66,7 @@ padding: 2px 4px 2px 4px;
   <body class="top-navbar-fixed">
 
 <%@page language="java"%>
+<%@ page import="java.util.ArrayList" %>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
 <%@page import="java.text.DateFormat" %>
@@ -81,7 +82,7 @@ response.setHeader("Expires", "0"); // Proxies.
 
 if (session.getAttribute("username")==null)
 {
-response.sendRedirect("Login.html");
+response.sendRedirect("Login.jsp");
 }
 %>
 
@@ -130,9 +131,10 @@ result_visits.push("0");
 result_visits.push("0");
 
 var flag=0;
+
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
-<%@ page import="java.util.ArrayList" %>
+
 
 <%
 String[] values_name = new String[5];
@@ -350,6 +352,7 @@ function drawChart() {
 
 HttpSession details=request.getSession();
 String roles=(String)details.getAttribute("role");
+String uname=(String)details.getAttribute("username");
 String info=(String)details.getAttribute("app_emp");
 try {
 String det=(String)session.getAttribute("theName");
@@ -361,7 +364,7 @@ ResultSet rs = st.executeQuery(query);
 String query3 = "select * from projinfo where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-String query2 = "select * from logs";
+String query2 = "select * from logs where USER_ID='"+uname+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
 String query1 = "SELECT role FROM role_details";
@@ -431,7 +434,7 @@ if(rs.next()){
                             <!-- /.nav navbar-nav -->
 					 <ul class="nav navbar-nav navbar-right">
 					 	<%
-                         String uname=(String)details.getAttribute("username");
+                         
                          String role=(String)details.getAttribute("role");%>                   
 	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
 							<li> <a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
@@ -789,7 +792,7 @@ while(rs2.next())
 										 <div>
 										 </div>
 										 </div>
-                                    <div id="curve_chart" style="height: 250px; width:700px;"></div>
+                                    <div id="curve_chart" style="height: 250px; width:800px;"></div>
                                    
                                 </div>
                             </div>
@@ -1024,13 +1027,13 @@ function drawChart() {
 	
 	if(progressBar.equals("0"))
 		progressBar="1";
-	  String query23 = "select sum(count) from visits where projects='"+rs8.getString("projects")+"'";
+	  String query23 = "select sum(count) from visits where module= 'Logged in' and uname='"+uname+"'";
 		Statement st23 = conn.createStatement();
 		ResultSet rs23 = st23.executeQuery(query23);
 		String ttl_visits="",CurntDay_visits="",last_visited_Module="",last_visited_App="";
 		while(rs23.next())
 			 ttl_visits=rs23.getString(1);
-		 String query24 = "select count(*) from visits where date=CURDATE() and projects='"+rs8.getString("projects")+"'";
+		 String query24 = "select sum(count) from visits where date=CURDATE() and uname='"+uname+"'";
 			Statement st24 = conn.createStatement();
 			ResultSet rs24 = st24.executeQuery(query24);
 			while(rs24.next())
@@ -1286,7 +1289,8 @@ while(rs13.next())
          [new Date(<%=rs19.getString(1)%>,<%=rs19.getString(2)%>,<%=rs19.getString(3)%>), <%= rs19.getString(4)%>],
         
         <%}%>
-        [new Date(2019,01,01), null],
+        
+      
        
        ]);
 
@@ -1299,7 +1303,9 @@ while(rs13.next())
              title: 'Year',
             format : 'yyyy',
             pointSize: 5,
-             viewWindow: {min:new Date(2016,01,01)},
+             viewWindow: {min:new Date(2017,01,01),
+            	 max:new Date(2022,01,01), 
+             },
             	 titleTextStyle: {
             		          		    fontSize: '16',
             		  }

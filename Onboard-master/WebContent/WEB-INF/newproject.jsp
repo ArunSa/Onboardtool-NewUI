@@ -189,7 +189,7 @@ $(function() {
                             <a href="#">Profile</a>
                         </li>
                         <li>
-                            <a href="Login.html">Logout</a>
+                            <a href="Login.jsp">Logout</a>
                         </li>
                     </ul>
                     

@@ -61,13 +61,13 @@ public class confirmation extends HttpServlet {
 		message.setRecipients(Message.RecipientType.TO,
 		InternetAddress.parse(email));
 		message.setSubject("Registration Successfull");
-		message.setText("Thanks for Registering...Please click on the below link\n\nhttp://localhost:8080/onboard/Login.html");
+		message.setText("Thanks for Registering...Please click on the below link\n\nhttp://localhost:8080/onboard/Login.jsp");
 
 		Transport.send(message);
 
 		pw.println("<html><body>");  
 		pw.println("Registration Successfull \n");
-		pw.println("<a href=\"Login.html\" style='color:blue'> Click Here </a>");
+		pw.println("<a href=\"Login.jsp\" style='color:blue'> Click Here </a>");
 		pw.println("</body></html>");  
 		  
 		pw.close();
