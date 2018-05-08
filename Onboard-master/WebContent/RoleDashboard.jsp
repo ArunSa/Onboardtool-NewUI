@@ -300,7 +300,7 @@ function drawChart() {
 
   var data = google.visualization.arrayToDataTable([
 	 
-    ['Monthly', 'Visits'],
+    ['Monthly', 'Visits','asd'],
       
    
      <% 
@@ -311,7 +311,7 @@ function drawChart() {
      %>
     
 
-     [ '\'<%=monthname.get(a) %>\'', <%=no_of_visits.get(a)%>],
+     [ '\'<%=monthname.get(a) %>\'', <%=no_of_visits.get(a)%>,'ads'],
      
     
      <% }
