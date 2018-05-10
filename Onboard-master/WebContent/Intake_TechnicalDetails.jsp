@@ -155,7 +155,7 @@ response.setHeader("Expires", "0"); // Proxies.
 
 if (session.getAttribute("username")==null)
 {
-response.sendRedirect("Login.jsp");
+response.sendRedirect("Login.html");
 }
 %>
 
@@ -697,8 +697,9 @@ if(implement == null)
                            </script>
          
                         <script>
-                        var count=0,mandtry,Idss;
+                        
                         function validateform(){
+                        	var count=0;
                         <% 
                         String q1="select * from samp_technical where panels='P1'";
                         Statement stq = conn.createStatement();
@@ -716,6 +717,8 @@ if(implement == null)
                         <%}%>
                         if(count>0)
                         	alert("fill the mandatory fields");
+                        else
+                        	toggle();
                         }
                         
                         </script>
@@ -773,7 +776,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                                         
                               else if(Rs1.getString(2).equals("Datepicker")){%>
                               
-                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs1.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>>
+                                      <input placeholder="mm/dd/yyyy" id="rod1<%=k %>" name="<%= Rs1.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>>
                               <%
                               k++;
                               } else if(Rs1.getString(2).equals("file")){
@@ -807,9 +810,9 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         </div>
                                      
                                <script>
-                               var count1=0;
+                              
                         function validateform1(){
-                           
+                        	 var count1=0;
                         <% 
                         String q2="select * from samp_technical where panels='P2'";
                         Statement stq2 = conn.createStatement();
@@ -819,8 +822,10 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         %>
                         if('<%=rsq2.getString("mandatory") %>' == "Yes")
                         	{
+                        	
                         	if(document.getElementsByName('<%=rsq2.getString("idname") %>')[0].value == "")
                         		{
+                        		alert('<%=rsq2.getString(1) %>');
                         		count1++;
             		}
                         	} 
@@ -839,9 +844,9 @@ ResultSet Rs3 = stm3.executeQuery(qury3);
 %>                        
                  <div class="panel panel-default"> 
                     <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse4" onclick="switchColors2();">Privacy Classification</a> </h4> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors2();">Privacy Classification</a> </h4> 
                             </div>       
-                             <div id="collapse4" class="panel-collapse collapse"> 
+                             <div id="collapse3" class="panel-collapse collapse"> 
                               <div class="panel-body">
                                 <%
                               k=0;
@@ -881,7 +886,7 @@ ResultSet Rs3 = stm3.executeQuery(qury3);
                                         
                               else if(Rs3.getString(2).equals("Datepicker")){%>
                               
-                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs3.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs3.getString("idname")) %>">
+                                      <input placeholder="mm/dd/yyyy" id="rod2<%=k %>" name="<%= Rs3.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs3.getString("idname")) %>">
                               <%
                               k++;
                               } else if(Rs3.getString(2).equals("file")){

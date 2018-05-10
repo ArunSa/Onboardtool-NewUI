@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class sampadd
+ * Servlet implementation class Edit_Requirements
  */
-@WebServlet("/sampadd")
-public class sampadd extends HttpServlet {
+@WebServlet("/Edit_Requirements")
+public class Edit_Requirements extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sampadd() {
+    public Edit_Requirements() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,23 +40,20 @@ public class sampadd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		String project_name=request.getParameter("project_name");
-		String appln_name = request.getParameter("appln_name");
-		String Pid=request.getParameter("panel");
-		String panel_name = "P" + request.getParameter("panel");
 		String c_labels="",r_labels="",d_labels="";
-		String label = request.getParameter("label"+Pid);
-		String type = request.getParameter("types"+Pid);
-		String mandatory = request.getParameter("mandatory"+Pid);
-		String col_name= request.getParameter("idname"+Pid);
+		String label = request.getParameter("label");
+		String type = request.getParameter("types");
+		String mandatory = request.getParameter("mandatory");
+		String panel= request.getParameter("pan_value");
+		String col_name= request.getParameter("idname");
 		
-		String number = request.getParameter("number"+Pid);
+		String number = request.getParameter("number");
 		if(number==null || number=="")
 			number="0";
-		String Rnumber = request.getParameter("radio_number"+Pid);
+		String Rnumber = request.getParameter("radio_number");
 		if(Rnumber==null || Rnumber=="")
 			Rnumber="0";
-		String Dnumber = request.getParameter("drop_number"+Pid);
+		String Dnumber = request.getParameter("drop_number");
 		if(Dnumber==null || Dnumber=="")
 			Dnumber="0";
 		
@@ -66,10 +63,6 @@ public class sampadd extends HttpServlet {
 			r_labels+=request.getParameter("Rlabel"+i)+"/";
 		for(int i=1;i<=Integer.parseInt(Dnumber);i++)
 			d_labels+=request.getParameter("drp_label"+i)+"/";
-		
-		System.out.println("dadition   -- "+label+" "+type+" "+mandatory+"\n------------------------");
-		System.out.println(project_name+" "+appln_name);
-
 			
 		
 		   try
@@ -82,22 +75,9 @@ public class sampadd extends HttpServlet {
 	        
 	         
 	          // the mysql insert statement
-	          String query = " insert into samp_business (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
-	            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	          String query = "update samp_archivalrequirement set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
+	          
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);
-	          preparedStmt.setString (1, label);
-	          preparedStmt.setString (2, type);
-	          preparedStmt.setString (3, mandatory);
-	          preparedStmt.setString (4, number);
-	          preparedStmt.setString (5, c_labels);
-	          preparedStmt.setString (6, Rnumber);
-	          preparedStmt.setString (7, r_labels);
-	          preparedStmt.setString (8, Dnumber);
-	          preparedStmt.setString (9, d_labels);
-	         preparedStmt.setString (10, col_name);
-	         preparedStmt.setString (11, panel_name);
-	         preparedStmt.setString (12, project_name);
-	         preparedStmt.setString (13, appln_name);
 	          preparedStmt.execute();
 	          conn.close();
 	        }
@@ -107,9 +87,7 @@ public class sampadd extends HttpServlet {
 	          System.err.println("Got an exception!");
 	          System.err.println(e.getMessage());
 	        }
-	          
-		
-		response.sendRedirect("Intake_Business.jsp");
+		   response.sendRedirect("Intake_ArchiveRequirements.jsp");
 	}
 
 }

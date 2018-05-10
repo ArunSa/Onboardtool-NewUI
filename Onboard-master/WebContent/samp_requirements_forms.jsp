@@ -59,11 +59,12 @@ document.getElementById("demo"+q).innerHTML=s;
    }
    </script>
 
-<% 
+<%
 String ProjectName=request.getParameter("ProjectName");
 String AppName=request.getParameter("AppName");
-for(int i=1;i<=4;i++){ %>
-<form class="form-signin" name="LloginForm" method="post" action="sampadd">
+for(int i=2;i<=2;i++){ 
+%>
+<form class="form-signin" name="LloginForm" method="post" action="samp_Req">
  <div id="popup<%=i %>" class="overlay">        
 <div class="popup">
 		 <a class="close" href="#">&times;</a> 
@@ -77,7 +78,7 @@ for(int i=1;i<=4;i++){ %>
 </div>
  </div>
  </div><br/>
-      <input type="hidden" id="project_name" name="project_name" value="<%=ProjectName%>">
+         <input type="hidden" id="project_name" name="project_name" value="<%=ProjectName%>">
                     
                        <input type="text" id="appln_name" name="appln_name" value="<%= AppName %>" style="display:none;">             
            
@@ -177,4 +178,4 @@ for(int i=1;i<=4;i++){ %>
 <%} %>
  
   
-  
+   </form> 

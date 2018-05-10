@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class sampadd
+ * Servlet implementation class samp_Req
  */
-@WebServlet("/sampadd")
-public class sampadd extends HttpServlet {
+@WebServlet("/samp_Req")
+public class samp_Req extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sampadd() {
+    public samp_Req() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -67,10 +67,6 @@ public class sampadd extends HttpServlet {
 		for(int i=1;i<=Integer.parseInt(Dnumber);i++)
 			d_labels+=request.getParameter("drp_label"+i)+"/";
 		
-		System.out.println("dadition   -- "+label+" "+type+" "+mandatory+"\n------------------------");
-		System.out.println(project_name+" "+appln_name);
-
-			
 		
 		   try
 	        {
@@ -82,7 +78,7 @@ public class sampadd extends HttpServlet {
 	        
 	         
 	          // the mysql insert statement
-	          String query = " insert into samp_business (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+	          String query = " insert into samp_archivalrequirement (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
 	            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);
 	          preparedStmt.setString (1, label);
@@ -109,7 +105,7 @@ public class sampadd extends HttpServlet {
 	        }
 	          
 		
-		response.sendRedirect("Intake_Business.jsp");
+		response.sendRedirect("Intake_ArchiveRequirements.jsp");
 	}
 
 }

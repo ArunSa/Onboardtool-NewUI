@@ -131,8 +131,12 @@ color:white;
               #nav_role{
               color:blue;
               }  
-              .btn { background: gray;
-    color: #fff; }
+              
+              .ScrollStyle
+{
+    max-height: 350px;
+    overflow-y: scroll;
+}
 
 /*END Form Wizard*/
 </style>
@@ -162,6 +166,8 @@ ResultSet rs7 = st7.executeQuery(query7);
 String imp_id="";
 String sequenceNumber="";
 int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
+if(rs3.next()){ 
+	String project_NAME=rs3.getString("projectname");
 {
 %>
 <form class="form-signin"name="loginForm" method="post">
@@ -187,22 +193,24 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
-                               
-                 <% if(rs3.next()){ %>
+          
                  <% if(rs4.next()){ 
-                	 String rowCount="";
+                 String rowCount="";
                 	 String query11 = "select * from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
                      Statement st11 = conn.createStatement();
                      ResultSet rs11 = st11.executeQuery(query11); 
                      System.out.println(query11);
-                     String query12 = "select count(*) from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                    String query12 = "select count(*) from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                      Statement st12 = conn.createStatement();
                      ResultSet rs12 = st12.executeQuery(query12);
                      if(rs12.next())
-                    	 rowCount=rs12.getString(1);
+                    	 rowCount=rs12.getString(1); 	
+                    	
                  %>
                       <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
-                    <input type="hidden" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>             
+                    <input type="hidden" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>
+                            <input type="text" id="appln_name" name="appln_name" value="<%= idd %>" style="display:none;">             
+                            
                    
                     <%
                     String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
@@ -577,115 +585,151 @@ if(implement == null)
                                        
                                 </div>                                 
                             </div>                             
-                        </div>
-                       <% if (rs11.next() || rowCount.equals("0")) {%>   
+                  
+                       <%
+                       String qury="select * from samp_archivalrequirement where panels='P2'";
+                       Statement stm = conn.createStatement();
+                       ResultSet Rs = stm.executeQuery(qury);
+                       if (rs11.next() || rowCount.equals("0")) {%>   
                         <div class="panel panel-default"> 
                             <div class="panel-heading"> 
                                 <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2">Archive Requirements</a> </h4> 
                             </div>                             
-                            <div id="collapse2" class="panel-collapse collapse"> 
-                                <div class="panel-body">
-                                    
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="legalholds" <% if(!rowCount.equals("0") && (rs11.getString("legalholds").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Current Legal holds on the application data must be applied to the application's archived data to override the Retention schedule
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="dataapp" <% if(!rowCount.equals("0") && (rs11.getString("dataapp").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Data from application must be retained based on the Client Retention schedule.
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="dataloc" <% if(!rowCount.equals("0") && (rs11.getString("dataloc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Data Localization Laws must be followed where relevant.
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="reconsttools" <% if(!rowCount.equals("0") && (rs11.getString("reconsttools").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System has tools to reconstruct the data in its original format
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="viewblob" <% if(!rowCount.equals("0") && (rs11.getString("viewblob").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System allows for user viewing of blob data in its original format in relationship to its structured data
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="fieldprop" <% if(!rowCount.equals("0") && (rs11.getString("fieldprop").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Archived data maintains its field properties and formats from the source system (i.e. decimals, %, commas, .00x, YYY-MM-DD) to display values defined in Views and schemas
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="fieldtype" <% if(!rowCount.equals("0") && (rs11.getString("fieldtype").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Archived data maintains its field types from the source system (i.e. STRING, Integer, CHAR, VCHAR, Date) to display values defined in Views and schemas
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="splchars" <% if(!rowCount.equals("0") && (rs11.getString("splchars").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports archiving special characters as found in source data to include Foreign characters
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="foreignlang" <% if(!rowCount.equals("0") && (rs11.getString("foreignlang").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports archiving Foreign Language data and maintains the Language in the archive
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="clob" <% if(!rowCount.equals("0") && (rs11.getString("clob").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System Maintains CLOBs from source systems
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="unstructarch" <% if(!rowCount.equals("0") && (rs11.getString("unstructarch").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports archiving unstructured formats such as word, excel, PowerPoint, pdf.
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="accrole" <% if(!rowCount.equals("0") && (rs11.getString("accrole").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Access to the Archive is role based and controlled through Active Directory.
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="dataview" <% if(!rowCount.equals("0") && (rs11.getString("dataview").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System allows for configuration of data views.
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="complctrl" <% if(!rowCount.equals("0") && (rs11.getString("complctrl").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Completeness Control - record level check (The number of records sent from the Application are compared to the number of records posted to the target.)
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="errctrl" <% if(!rowCount.equals("0") && (rs11.getString("errctrl").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>Error Handling Control - record level check (During the load, records deemed as errors based on program logic will be written to an exception log in their entirety).
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="metadata" <% if(!rowCount.equals("0") && (rs11.getString("metadata").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System supports metadata management and indexing.
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input type="checkbox" name="advsearch" <% if(!rowCount.equals("0") && (rs11.getString("advsearch").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>The System provides advanced search tools to include data parameters and the standard search tools
-                                            </label>                                             
-                                        </div> 
-                                         <div class="checkbox"> 
-                                            <label class="control-label"  > 
-                                                <input type="checkbox"   name="searchparam" value="Yes">Based on search parameters, data can be exported out of the system for analysis
-                                            </label>  
-                                             <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
-                                                  
-                                        </div> 
+                        <div id="collapse1" class="panel-collapse collapse in" name="collapse"> 
+                              <div class="panel-body">
+                              <%
+                              int k=0,Count=0,Count_1=0,Del_count=1;
+                              while(Rs.next()){ 
+                           
+                              %>
+                           <div class="form-group"> 
+                                            <label class="control-label" for="formInput198" >
+                                           
+                                            <%if(Rs.getString(3).equals("Yes") && !Rs.getString(1).equals("")) {%><div class="required"> <%=Rs.getString(1) %>&nbsp; <input type="checkbox" id="c1<%= Count_1 %>" name="<%= Rs.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d1<%= Count_1 %>" onclick="edit_page('<%= Rs.getString(1) %>','<%= Rs.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs.getString(1).equals("")){ %>
+                                            <div><%=Rs.getString(1) %>&nbsp;<input type="checkbox" id="c1<%= Count_1 %>" name="<%= Rs.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d1<%= Count_1 %>" onclick="edit_page('<%= Rs.getString(1) %>','<%= Rs.getString("idname") %>');"></span>
+                                            <%} 
+                                            %>
+                                           
+                                            </label>
+                                        <%if(Rs.getString(2).equals("Text box")){ 
+                                      
+                                        %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>
+                                            
+                              <%}else if(Rs.getString(2).equals("Dropdown")){
+                  				String box[]=Rs.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                          	else if(Rs.getString(2).equals("Radio box")){
+                    			String box[]=Rs.getString(7).split("/");
+                    			int number_of_boxes=Integer.parseInt(Rs.getString(6));%>
+                    			 <div class="radio"><%
+                    			for(int i=0;i<number_of_boxes;i++){
+                    		%> 
+                    	<input type="radio" style="margin-left:20px;" name="<%= Rs.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs.getString("idname")).equals(box[i])){ %> value="<%= box[i] %>" checked <%} else{%>value="<%= box[i] %>"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                    	                                       
+                    		<%}%></div><%}
+                                        
+                              else if(Rs.getString(2).equals("Datepicker")){%>
+                              
+                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>>
+                              <%
+                              k++;
+                              } else if(Rs.getString(2).equals("Check box")){
+                            	  String box[]=Rs.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                          	<% } %></div>
+                          	<% } %></div>
+                          	
+                             <%
+                             Count_1++;
+                              } %>
+                         
+                           
+                    
+                       <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup2">Add</a></button> &nbsp;  
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del1" onclick="deletee('c1',<%=Count_1%>,'Del1','Del2')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del2" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d1',<%=Count_1%>);" >Edit</button>
+  <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick=" validateform()"> Previous<span class="glyphicon glyphicon-chevron-left"></span></button> 
+                                       <br/><br/>
                                 </div>                                 
-                            </div>                             
+                            </div>                            
                         </div>
                     
                    
                     </div>
+                              <script>
+                           function deletee(id,Count_1,Del1,Del2)
+                           {
+                           var x=Count_1;  
+                        	   for(var i=0;i<x;i++){
+                        		   document.getElementById(id+i).style.display='block';
+                        	   }
+                        	   document.getElementById(Del1).style.display='none';
+                        	   document.getElementById(Del2).style.display='block';
+                        	   
+                           }
+                           function edit_page(x,y)
+                           {
+                        	   var f=document.loginForm;
+                               f.method="post";
+                               f.action='edit_requirements.jsp?label='+x+'&idname='+y;
+                               f.submit();  
+                           }
+                           function edit_form(d1,Count_1)
+                           {
+                           var x=Count_1;  
+                        	   for(var i=0;i<x;i++){
+                        		   document.getElementById(d1+i).style.display='block';
+                        	   }
+                        	                       	   
+                           }
+                   
+                           
+                           
+                           </script>
+         
+                        <script>
+                        
+                        function validateform(){
+                        	var count=0;
+                        <% 
+                        String q1="select * from samp_technical where panels='P1'";
+                        Statement stq = conn.createStatement();
+                        ResultSet rsq = stq.executeQuery(q1);
+                        while(rsq.next())
+                        {
+                        %>
+                        if('<%=rsq.getString("mandatory") %>' == "Yes")
+                        	{
+                        	if(document.getElementsByName('<%=rsq.getString("idname") %>')[0].value == "")
+                        		{
+                        		count++;
+                        		}
+                        	} 
+                        <%}%>
+                        if(count>0)
+                        	alert("fill the mandatory fields");
+                        else
+                        	toggle();
+                        }
+                        
+                        </script>
+                       
        
-       <button type="button" class="btn btn-primary" onclick="call()" >Save</button> &nbsp;
+       <button type="button" class="btn btn-primary" onclick="validateform9()" >Save</button> &nbsp;
 
                     <button type="button" class="btn btn-default" onclick="location.href = 'grid.jsp';">Cancel</button> 
        </div>
@@ -694,6 +738,7 @@ if(implement == null)
             
             </div>
 				    </div>
+				    
                                     <!-- /.col-md-6 -->
 
                                 </div>
@@ -709,22 +754,34 @@ if(implement == null)
 
                 </div>
                 <!-- /.content-container -->
-            </div>
-            <!-- /.content-wrapper -->
-
-        </div>
+     
         <!-- /.main-wrapper -->
+                             <script>
+                function validateform9() {
+                	alert("inside servlet");
+                    var f=document.loginForm;
+                    f.method="post";
+                    f.action='ArchivalRequirements';
+                    f.submit();
+             	  
+                }
+                </script>
             
       
         <%
-}
-}
-}
-}
-}
-catch(Exception e){}
-%>
-</form>
+                       }
+                 }
+                  %> </form>
+                 <jsp:include page="samp_requirements_forms.jsp">
+                       <jsp:param name="ProjectName" value="<%=project_NAME %>"/>
+                        <jsp:param name="AppName" value="<%=idd %>"/>
+                        </jsp:include>
+                 <%
+                 }
+                 }
+                 }
+                 catch(Exception e){}
+                 %>
   
         <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>

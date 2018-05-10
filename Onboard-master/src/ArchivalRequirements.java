@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -55,116 +57,80 @@ public class ArchivalRequirements extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession details=request.getSession(); 
+		String project_name=request.getParameter("project_name");
+		String app_name=request.getParameter("appln_name");
+		System.out.println(project_name+" "+app_name);
+		int DEL_count=0;
+	try{
+	    String myDriver = "org.gjt.mm.mysql.Driver";
+	    String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	    Class.forName(myDriver);
+	    Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 		
-		String u_name=(String)details.getAttribute("username");
-		String u_role=(String)details.getAttribute("role");
+		/*String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'sample_business' ORDER BY ORDINAL_POSITION";
+	    Statement st = conn.createStatement();
+	    ResultSet rs = st.executeQuery(query);*/
+	   int i=2;
+	   String query21 = "SELECT * from samp_archivalrequirement where panels='P"+i+"'";
+	    Statement st21 = conn.createStatement();
+	    ResultSet rs21 = st21.executeQuery(query21);
+	    while(rs21.next())
+	    {
+	    	String val=request.getParameter(rs21.getString("idname")+"1");
+	    	String Idname=rs21.getString("idname");
+	    	if(val != null)
+	    	{
+	    		String query4 = "delete from samp_archivalrequirement where idname='"+Idname+"'";
+	        	PreparedStatement preparedStmt4 = conn.prepareStatement(query4);
+	        	 preparedStmt4.execute();
 
-			String userid=u_name;
-					MDC.put("USERID", userid);
-					MDC.put("USERROLE", u_role);
-					
-	       String legalholds = request.getParameter("legalholds");
-	       if(legalholds==null)
-	    	   legalholds="No";
-	       String dataapp = request.getParameter("dataapp");
-	       if(dataapp==null)
-	    	   dataapp="No";
-	       String dataloc = request.getParameter("dataloc");
-	       if(dataloc==null)
-	    	   dataloc="No";
-	       String reconsttools = request.getParameter("reconsttools");
-	       if(reconsttools==null)
-	    	   reconsttools="No";
-	       String viewblob = request.getParameter("viewblob");
-	       if(viewblob==null)
-	    	   viewblob="No";
-	       String fieldprop = request.getParameter("fieldprop");
-	       if(fieldprop==null)
-	    	   fieldprop="No";
-	       String fieldtype = request.getParameter("fieldtype");
-	       if(fieldtype==null)
-	    	   fieldtype="No";
-	       String splchars = request.getParameter("splchars");
-	       if(splchars==null)
-	    	   splchars="No";
-	       String foreignlang = request.getParameter("foreignlang");
-	       if(foreignlang==null)
-	    	   foreignlang="No";
-	       String clob = request.getParameter("clob");
-	       if(clob==null)
-	    	   clob="No";
-	       String unstructarch = request.getParameter("unstructarch");
-	       if(unstructarch==null)
-	    	   unstructarch="No";
-	       String accrole = request.getParameter("accrole");
-	       if(accrole==null)
-	    	   accrole="No";
-	       String dataview = request.getParameter("dataview");
-	       if(dataview==null)
-	    	   dataview="No";
-	       String complctrl = request.getParameter("complctrl");
-	       if(complctrl==null)
-	    	   complctrl="No";
-	       String errctrl = request.getParameter("errctrl");
-	       if(errctrl==null)
-	    	   errctrl="No";
-	       String metadata = request.getParameter("metadata");
-	       if(metadata==null)
-	    	   metadata="No";
-	       String advsearch = request.getParameter("advsearch");
-	       if(advsearch==null)
-	    	   advsearch="No";
-	       String searchparam = request.getParameter("searchparam");
-	       if(searchparam==null)
-	    	   searchparam="No";
-	       String projectname=request.getParameter("project_name");
-	      
-	       
-	       // do some processing here...
-	        
-	       // get response writer
-	       
-	       try
-	       {
-	    	   String idd=(String)details.getAttribute("appidd");
-	         // create a mysql database connection
-	         String myDriver = "org.gjt.mm.mysql.Driver";
-	         String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
-	         Class.forName(myDriver);
-	         Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-	         
-	         // the mysql insert statement
-	         String query = " insert into archivalRequirement (legalholds, dataapp, dataloc, reconsttools,viewblob,fieldprop,fieldtype,splchars,foreignlang,clob,unstructarch,accrole,dataview,complctrl,errctrl,metadata,advsearch,searchparam,appname,projectname)"
-	           + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'"+idd+"',?)";
+	     		String query5 = "alter table archivalRequirement drop "+Idname;
+	         	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
+	         	 preparedStmt5.execute();
+	         	 System.out.println("*********Deletion quey**********");
+	         	 System.out.println(query4+"\n"+query5);
+	         	 DEL_count++;
+	         	 
+	    	}
+	    		
+	    }
+	    
+	    if(DEL_count==0){
+	    String query = "SELECT * from samp_archivalrequirement where appname='"+app_name+"'";
+	    Statement st = conn.createStatement();
+	    ResultSet rs = st.executeQuery(query);
+	    int cnt=0;
+	    String ref_id="";
+	    while(rs.next())
+	    {
+	    	if(cnt==0){
+	    	String n=request.getParameter(rs.getString("idname"));
+	    	cnt++;
+	    	String query1 = "insert into archivalRequirement("+rs.getString("idname")+",appname,projectname) values('"+n+"','"+app_name+"','"+project_name+"')";
 
-	         
-	         PreparedStatement preparedStmt = conn.prepareStatement(query);
-	         preparedStmt.setString (1, legalholds);
-	         preparedStmt.setString   (2, dataapp);
-	         preparedStmt.setString (3, dataloc);
-	         preparedStmt.setString(4, reconsttools);
-	         preparedStmt.setString(5, viewblob);
-	         preparedStmt.setString (6, fieldprop);
-	         preparedStmt.setString   (7, fieldtype);
-	         preparedStmt.setString (8, splchars);
-	         preparedStmt.setString (9, foreignlang);
-	         preparedStmt.setString (10, clob);
-	         preparedStmt.setString (11, unstructarch);
-	         preparedStmt.setString (12, accrole);
-	         preparedStmt.setString (13, dataview);
-	         preparedStmt.setString (14, complctrl);
-	         preparedStmt.setString (15, errctrl);
-	         preparedStmt.setString (16, metadata);
-	         preparedStmt.setString (17, advsearch);
-	         preparedStmt.setString (18, searchparam);
-	         preparedStmt.setString (19, projectname);
-	        
-	         
+	    	PreparedStatement preparedStmt = conn.prepareStatement(query1);
+	    	 preparedStmt.execute();
+	    	 String query10 = "SELECT max(id) from archivalRequirement where appname='"+app_name+"'";
+	    	    Statement st10 = conn.createStatement();
+	    	    ResultSet rs10 = st10.executeQuery(query10);
+	    	    if(rs10.next())
+	    	    	ref_id=rs10.getString(1);
+	    	    
+	    	}
+	    	else{
+	    		String n=request.getParameter(rs.getString("idname"));
+	    		if(rs.getString("type_of_box").equals("Check box") && n == null)
+	    			n="no";
 
-	         // execute the preparedstatement
-	         preparedStmt.execute();
-	         
-	         conn.close();
+	    
+	    	String query2 = "update archivalRequirement set "+rs.getString("idname")+" = '"+n+"' where id = '"+ref_id+"'";
+	    	PreparedStatement preparedStmt1 = conn.prepareStatement(query2);
+	    	 preparedStmt1.execute();
+	    	}
+	    	
+	    }
+	    }
+	    conn.close();
 	       }
 	       catch (Exception e)
 	       {
@@ -173,7 +139,8 @@ public class ArchivalRequirements extends HttpServlet {
 	         System.err.println(e.getMessage());
 	       }
 	       // return response
-	       response.sendRedirect("Intake_ReviewPage.jsp");
+	       response.sendRedirect("Intake_ArchiveRequirements.jsp");
+
 	}
 
 	}
