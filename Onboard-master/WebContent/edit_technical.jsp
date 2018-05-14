@@ -17,6 +17,100 @@
 <script
   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+     <style type="text/css">
+            .breadcrumb-div {
+                background-color: #e7e7e7;
+                color: #010101; }
+        
+.glyphicon.glyphicon-asterisk
+{
+color:red;
+font-size:6px;
+}
+span.multiselect-native-select {
+position: relative
+}
+span.multiselect-native-select select {
+border: 0 !important;
+clip: rect(0 0 0 0) !important;
+height: 1px !important;
+margin: -1px -1px -1px -3px !important;
+overflow: hidden !important;
+padding: 0 !important;
+position: absolute !important;
+width: 1px !important;
+left: 50%;
+top: 30px
+}
+.multiselect-container {
+position: absolute;
+list-style-type: none;
+margin: 0;
+padding: 0
+}
+.multiselect-container .input-group {
+margin: 5px
+}
+.multiselect-container>li {
+padding: 0
+}
+.multiselect-container>li>a.multiselect-all label {
+font-weight: 700
+}
+.multiselect-container>li.multiselect-group label {
+margin: 0;
+padding: 3px 20px 3px 20px;
+height: 100%;
+font-weight: 700
+}
+.multiselect-container>li.multiselect-group-clickable label {
+cursor: pointer
+}
+.multiselect-container>li>a {
+padding: 0
+}
+.multiselect-container>li>a>label {
+margin: 0;
+height: 100%;
+cursor: pointer;
+font-weight: 400;
+padding: 3px 0 3px 30px
+}
+.multiselect-container>li>a>label.radio, .multiselect-container>li>a>label.checkbox {
+margin: 0
+}
+.multiselect-container>li>a>label>input[type=checkbox] {
+margin-bottom: 5px
+}
+.btn-group>.btn-group:nth-child(2)>.multiselect.btn {
+border-top-left-radius: 4px;
+border-bottom-left-radius: 4px
+}
+.form-inline .multiselect-container label.checkbox, .form-inline .multiselect-container label.radio {
+padding: 3px 20px 3px 40px
+}
+.form-inline .multiselect-container li a label.checkbox input[type=checkbox], .form-inline .multiselect-container li a label.radio input[type=radio] {
+margin-left: -20px;
+margin-right: 0
+}
+.well
+{
+background-color: rgba(0, 0, 0, 0.76);
+border: none;
+}
+.form-control {
+    border-radius: 0px;
+    background-color: #212a31;
+    color: #bebebe; }
+    
+label { font-weight: 500 !important; }
+
+.btn { border-radius: 0;
+    background-color: #4CAF50; }
+    
+label .imp { color:#f83223; } 
+  
+</style>
    <script>
  function chk(){
 var number=document.getElementById("number").value;
@@ -82,7 +176,22 @@ document.getElementById("demo").innerHTML=s;
 String label=request.getParameter("label");
 String id=request.getParameter("idname");
 %>
+  <div class="content-wrapper">
+                <div class="content-container">
+            
+                    <div class="main-page">
+<h1>Edit Page</h1>                    
+ <div class="container">
+    <br/><br/>
+<div class=" well col-lg-6 col-lg-push-1 well">
+<div class="row">
+<div class="col-sm-12" style="padding:10px">
 <form class="form-signin" name="loginForm" method="post" action="Edit_Technical">
+ <div class="content-wrapper">
+                <div class="content-container">
+            
+                    <div class="main-page">
+                     <div class="container">
 <div class="row">
  <div class="form-group"> 
  <div class="col-sm-4">
@@ -176,9 +285,19 @@ String id=request.getParameter("idname");
  </div>
 <br/><br/>
  <button type="submit" class="btn btn-primary">Submit</button>
- <button type="button" onclick="window.location.href='samp_business.jsp'" class="btn btn-default">Cancel</button>
+ <button type="button" onclick="window.location.href='Intake_TechnicalDetails.jsp'" class="btn btn-default">Cancel</button>
+ </div></div></div>
   </form>
  
+
+</div> 
+</div>
+</div>
+</div>
+  </div>
+  </div>
+  </div>
+  
  
 </body>
 </html>

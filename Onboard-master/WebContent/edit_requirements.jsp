@@ -111,7 +111,6 @@ label { font-weight: 500 !important; }
 label .imp { color:#f83223; } 
   
 </style>
-   
    <script>
  function chk(){
 var number=document.getElementById("number").value;
@@ -172,12 +171,11 @@ document.getElementById("demo").innerHTML=s;
    }
    </script>
 </head>
-<body style="margin-left:30px" background="images/bg.jpg" ><br/><br/>
+<body style="margin-left:30px;"><br/><br/>
 <%
 String label=request.getParameter("label");
 String id=request.getParameter("idname");
 %>
-
   <div class="content-wrapper">
                 <div class="content-container">
             
@@ -188,7 +186,7 @@ String id=request.getParameter("idname");
 <div class=" well col-lg-6 col-lg-push-1 well">
 <div class="row">
 <div class="col-sm-12" style="padding:10px">
-<form class="form-signin" name="loginForm" method="post" action="Edit_Business">
+<form class="form-signin" name="loginForm" method="post" action="Edit_Requirements">
  <div class="content-wrapper">
                 <div class="content-container">
             
@@ -287,7 +285,7 @@ String id=request.getParameter("idname");
  </div>
 <br/><br/>
  <button type="submit" class="btn btn-primary">Submit</button>
- <button type="button" onclick="window.location.href='Intake_Business.jsp'" class="btn btn-default">Cancel</button>
+ <button type="button" onclick="window.location.href='Intake_ArchiveRequirements.jsp'" class="btn btn-default">Cancel</button>
  </div></div></div>
   </form>
  
@@ -296,15 +294,7 @@ String id=request.getParameter("idname");
 </div>
 </div>
 </div>
-  
-<!-- Project List End -->
-
-                </div>
-                <!-- /.content-container -->
-            </div>
-            <!-- /.content-wrapper -->
-
-        </div>
+  </div></div></div>
  
 </body>
 </html>

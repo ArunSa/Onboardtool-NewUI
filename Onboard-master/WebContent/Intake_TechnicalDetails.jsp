@@ -584,7 +584,7 @@ if(implement == null)
  }  
  
  if (rs11.next() || rowCount.equals("0")) { 
- String qury="select * from samp_technical where panels='P1'";
+ String qury="select * from samp_technical where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
  Statement stm = conn.createStatement();
  ResultSet Rs = stm.executeQuery(qury);
 %>  
@@ -701,7 +701,7 @@ if(implement == null)
                         function validateform(){
                         	var count=0;
                         <% 
-                        String q1="select * from samp_technical where panels='P1'";
+                        String q1="select * from samp_technical where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq = conn.createStatement();
                         ResultSet rsq = stq.executeQuery(q1);
                         while(rsq.next())
@@ -726,7 +726,7 @@ if(implement == null)
                      
                         
 <%
-String qury1="select * from samp_technical where panels='P2'";
+String qury1="select * from samp_technical where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
 Statement stm1 = conn.createStatement();
 ResultSet Rs1 = stm1.executeQuery(qury1);
 %>     
@@ -814,7 +814,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         function validateform1(){
                         	 var count1=0;
                         <% 
-                        String q2="select * from samp_technical where panels='P2'";
+                        String q2="select * from samp_technical where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq2 = conn.createStatement();
                         ResultSet rsq2 = stq2.executeQuery(q2);
                         while(rsq2.next())
@@ -838,7 +838,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         
                         </script>
                 <%
-String qury3="select * from samp_technical where panels='P3'";
+String qury3="select * from samp_technical where panels='P3' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
 Statement stm3 = conn.createStatement();
 ResultSet Rs3 = stm3.executeQuery(qury3);
 %>                        

@@ -1,3 +1,4 @@
+
 <script>
  function chk(q){
 var number=document.getElementById("number"+q).value;
@@ -175,6 +176,8 @@ for(int i=1;i<=4;i++){ %>
 </div>
   </form>
 <%} %>
+
+
  
   
   

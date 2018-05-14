@@ -587,7 +587,7 @@ if(implement == null)
                             </div>                             
                   
                        <%
-                       String qury="select * from samp_archivalrequirement where panels='P2'";
+                       String qury="select * from samp_archivalrequirement where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                        Statement stm = conn.createStatement();
                        ResultSet Rs = stm.executeQuery(qury);
                        if (rs11.next() || rowCount.equals("0")) {%>   
@@ -729,7 +729,7 @@ if(implement == null)
                         </script>
                        
        
-       <button type="button" class="btn btn-primary" onclick="validateform9()" >Save</button> &nbsp;
+       <button type="button" class="btn btn-primary btn pull-right" onclick="validateform9()" >Save & continue</button> &nbsp;
 
                     <button type="button" class="btn btn-default" onclick="location.href = 'grid.jsp';">Cancel</button> 
        </div>
