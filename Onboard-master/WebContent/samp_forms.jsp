@@ -62,9 +62,11 @@ document.getElementById("demo"+q).innerHTML=s;
 <%
 String ProjectName=request.getParameter("ProjectName");
 String AppName=request.getParameter("AppName");
-for(int i=2;i<=2;i++){ 
+int n=Integer.parseInt(request.getParameter("number"));
+String servlet=request.getParameter("servlet");
+for(int i=1;i<=n;i++){ 
 %>
-<form class="form-signin" name="LloginForm" method="post" action="samp_Req">
+<form class="form-signin" name="LloginForm" method="post" action="dynamic_addition">
  <div id="popup<%=i %>" class="overlay">        
 <div class="popup">
 		 <a class="close" href="#">&times;</a> 
@@ -80,7 +82,9 @@ for(int i=2;i<=2;i++){
  </div><br/>
          <input type="hidden" id="project_name" name="project_name" value="<%=ProjectName%>">
                     
-                       <input type="text" id="appln_name" name="appln_name" value="<%= AppName %>" style="display:none;">             
+                       <input type="text" id="appln_name" name="appln_name" value="<%= AppName %>" style="display:none;"> 
+                       <input type="text" id="servlet_name" name="servlet_name" value="<%= servlet %>" style="display:none;">      
+                              
            
  <div class="row">
  <div class="form-group"> 

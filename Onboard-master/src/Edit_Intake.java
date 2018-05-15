@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Edit_Requirements
+ * Servlet implementation class Edit_Intake
  */
-@WebServlet("/Edit_Requirements")
-public class Edit_Requirements extends HttpServlet {
+@WebServlet("/Edit_Intake")
+public class Edit_Intake extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Edit_Requirements() {
+    public Edit_Intake() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,6 +40,7 @@ public class Edit_Requirements extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String servlet_name=request.getParameter("servlet_name");
 		String c_labels="",r_labels="",d_labels="";
 		String label = request.getParameter("label");
 		String type = request.getParameter("types");
@@ -63,6 +64,8 @@ public class Edit_Requirements extends HttpServlet {
 			r_labels+=request.getParameter("Rlabel"+i)+"/";
 		for(int i=1;i<=Integer.parseInt(Dnumber);i++)
 			d_labels+=request.getParameter("drp_label"+i)+"/";
+		
+		System.out.println("servlet_name is "+servlet_name);
 			
 		
 		   try
@@ -73,13 +76,35 @@ public class Edit_Requirements extends HttpServlet {
 	          Class.forName(myDriver);
 	          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	        
-	         
+	         String query="";
 	          // the mysql insert statement
-	          String query = "update samp_archivalrequirement set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
+	          if(servlet_name.equals("Business"))
+	          {
+	        	   query="update samp_business set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
+	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);
+	 	          preparedStmt.execute();
+	 	          conn.close();
+	 	         response.sendRedirect("Intake_Business.jsp");
+	          }
+	          if(servlet_name.equals("Technical"))
+	          {
+	        	   query="update samp_technical set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";  
+	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);
+	 	          preparedStmt.execute();
+	 	          conn.close();
+	 	        response.sendRedirect("Intake_TechnicalDetails.jsp");
+	          }
+	          if(servlet_name.equals("Requirements"))
+	          {
+	        	   query="update samp_archivalrequirement set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
+	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);
+	 	          preparedStmt.execute();
+	 	          conn.close();
+	 	         response.sendRedirect("Intake_ArchiveRequirements.jsp");
+	          }
 	          
-	          PreparedStatement preparedStmt = conn.prepareStatement(query);
-	          preparedStmt.execute();
-	          conn.close();
+	         // System.out.println("update query is "+query);
+	         
 	        }
 	        catch (Exception e)
 	        {
@@ -87,7 +112,7 @@ public class Edit_Requirements extends HttpServlet {
 	          System.err.println("Got an exception!");
 	          System.err.println(e.getMessage());
 	        }
-		   response.sendRedirect("Intake_ArchiveRequirements.jsp");
+		 
 	}
 
 }

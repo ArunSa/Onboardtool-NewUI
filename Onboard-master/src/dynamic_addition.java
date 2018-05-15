@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class samp_Tech
+ * Servlet implementation class dynamic_addition
  */
-@WebServlet("/samp_Tech")
-public class samp_Tech extends HttpServlet {
+@WebServlet("/dynamic_addition")
+public class dynamic_addition extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public samp_Tech() {
+    public dynamic_addition() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,6 +40,9 @@ public class samp_Tech extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String servlet_name=request.getParameter("servlet_name");
+		System.out.println(servlet_name);
+		
 		String project_name=request.getParameter("project_name");
 		String appln_name = request.getParameter("appln_name");
 		String Pid=request.getParameter("panel");
@@ -51,6 +54,7 @@ public class samp_Tech extends HttpServlet {
 		String col_name= request.getParameter("idname"+Pid);
 		
 		String number = request.getParameter("number"+Pid);
+		
 		if(number==null || number=="")
 			number="0";
 		String Rnumber = request.getParameter("radio_number"+Pid);
@@ -67,20 +71,31 @@ public class samp_Tech extends HttpServlet {
 		for(int i=1;i<=Integer.parseInt(Dnumber);i++)
 			d_labels+=request.getParameter("drp_label"+i)+"/";
 		
-	System.out.println("Samp_Tech.java "+project_name+"  "+appln_name);
+	
 		
-		   try
+		  try
 	        {
 	          // create a mysql database connection
 	          String myDriver = "org.gjt.mm.mysql.Driver";
 	          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
 	          Class.forName(myDriver);
 	          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
+	          String query="";
 	        
 	         
 	          // the mysql insert statement
-	          String query = " insert into samp_technical (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+	          if(servlet_name.equals("Business")){
+	           query = " insert into samp_business (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
 	            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	          }
+	          if(servlet_name.equals("Technical")){
+		           query = " insert into samp_technical (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+		            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		          }
+	          if(servlet_name.equals("Requirements")){
+		           query = " insert into samp_archivalrequirement (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+		            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		          }
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);
 	          preparedStmt.setString (1, label);
 	          preparedStmt.setString (2, type);
@@ -105,8 +120,15 @@ public class samp_Tech extends HttpServlet {
 	          System.err.println(e.getMessage());
 	        }
 	          
-		
-		response.sendRedirect("Intake_TechnicalDetails.jsp");
+		  if(servlet_name.equals("Business")){
+		response.sendRedirect("Intake_Business.jsp");
+		  }
+		  if(servlet_name.equals("Technical")){
+				response.sendRedirect("Intake_TechnicalDetails.jsp");
+				  }
+		  if(servlet_name.equals("Requirements")){
+				response.sendRedirect("Intake_ArchiveRequirements.jsp");
+				  }
 	}
 
 }
