@@ -82,11 +82,11 @@ try{
     	String Idname=rs21.getString("idname");
     	if(val != null)
     	{
-    		String query4 = "delete from samp_technical where idname='"+Idname+"'";
+    		String query4 = "delete from samp_technical where idname='"+Idname+"' and projectname='"+project_name+"' and appname='"+app_name+"'";
         	PreparedStatement preparedStmt4 = conn.prepareStatement(query4);
         	 preparedStmt4.execute();
 
-     		String query5 = "alter table technical drop "+Idname;
+     		String query5 = "alter table technical drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
          	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
          	 preparedStmt5.execute();
          	 System.out.println("*********Deletion quey**********");
@@ -98,7 +98,7 @@ try{
     }
     }
     if(DEL_count==0){
-    String query = "SELECT * from samp_technical where appname='"+app_name+"'";
+    String query = "SELECT * from samp_technical where appname='"+app_name+"' and projectname='"+project_name+"'";
     Statement st = conn.createStatement();
     ResultSet rs = st.executeQuery(query);
     int cnt=0;

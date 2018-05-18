@@ -685,7 +685,7 @@ if(implement == null)
                            {
                         	   var f=document.loginForm;
                                f.method="post";
-                               f.action='edit_requirements.jsp?label='+x+'&idname='+y;
+                               f.action="Edit_Pages.jsp?label="+x+"&idname="+y+"&name='Requirements'";
                                f.submit();  
                            }
                            function edit_form(d1,Count_1)
@@ -772,9 +772,11 @@ if(implement == null)
                        }
                  }
                   %> </form>
-                 <jsp:include page="samp_requirements_forms.jsp">
+                 <jsp:include page="samp_forms.jsp">
                        <jsp:param name="ProjectName" value="<%=project_NAME %>"/>
                         <jsp:param name="AppName" value="<%=idd %>"/>
+                           <jsp:param name="number" value="2"/>
+                           <jsp:param name="servlet" value="Requirements"/>
                         </jsp:include>
                  <%
                  }
@@ -837,61 +839,14 @@ if(implement == null)
 
 
         <!-- ========== THEME JS ========== -->
-        
-<script type="text/javascript">
-    $('.datepicker').datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d'
+<script>
+$(function() {
+     $( "#rod"+i ).datepicker({
+        format: "dd/mm/yyyy",
+        autoclose: true
+    });
 });
 </script>
-
-
-        <!-- ========== THEME JS ========== -->
-        <script>
-            $(function($) {
-
-                // 1st  datepicker
-                $('#basicExample .time').timepicker({
-                'showDuration': true,
-                'timeFormat': 'g:ia'
-                });
-
-                $('#basicExample .date').datepicker({
-                'format': 'm/d/yyyy',
-                'autoclose': true
-                });
-
-                var basicExampleEl = document.getElementById('basicExample');
-                var datepair = new Datepair(basicExampleEl);
-
-                // 2nd  datepicker
-                $('#datetimepicker1').datetimepicker({
-                    debug: true
-                });
-
-                // 3rd  datepicker
-                $('#datetimepicker9').datetimepicker({
-                viewMode: 'years'
-                });
-
-                // 4th  datepicker
-                $('#datetimepicker10').datetimepicker({
-                viewMode: 'years',
-                format: 'MM/YYYY'
-                });
-
-                // 5th  datepicker
-                $('#datetimepicker11').datetimepicker({
-                daysOfWeekDisabled: [0, 6]
-                });
-
-                // 6th  datepicker
-                $('#datetimepicker12').datetimepicker({
-                    inline: true,
-                    sideBySide: true
-                });
-            });
-        </script>
        
 	</body>
 </html>

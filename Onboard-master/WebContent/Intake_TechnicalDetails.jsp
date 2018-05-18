@@ -680,7 +680,7 @@ if(implement == null)
                            {
                         	   var f=document.loginForm;
                                f.method="post";
-                               f.action='edit_technical.jsp?label='+x+'&idname='+y;
+                               f.action="Edit_Pages.jsp?label="+x+"&idname="+y+"&name='Technical'";
                                f.submit();  
                            }
                            function edit_form(d1,Count_1)
@@ -825,7 +825,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         	
                         	if(document.getElementsByName('<%=rsq2.getString("idname") %>')[0].value == "")
                         		{
-                        		alert('<%=rsq2.getString(1) %>');
+                        	
                         		count1++;
             		}
                         	} 
@@ -931,7 +931,7 @@ ResultSet Rs3 = stm3.executeQuery(qury3);
     
                 <script>
                 function validateform9() {
-                	alert("servlet");
+                
              	   var f=document.loginForm;
                     f.method="post";
                     f.action="Technical"
@@ -946,9 +946,11 @@ ResultSet Rs3 = stm3.executeQuery(qury3);
 }
 }
  %> </form>
-<jsp:include page="samp_technical_forms.jsp">
+<jsp:include page="samp_forms.jsp">
       <jsp:param name="ProjectName" value="<%=project_NAME %>"/>
        <jsp:param name="AppName" value="<%=idd %>"/>
+          <jsp:param name="number" value="3"/>
+    <jsp:param name="servlet" value="Technical"/>
        </jsp:include>
 <%
 }
@@ -1038,62 +1040,33 @@ catch(Exception e){}
          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 
-         <!-- ========== THEME JS ========== -->
-         
- <script type="text/javascript">
-     $('.datepicker').datepicker({
-     format: 'mm/dd/yyyy',
-     startDate: '-3d'
- });
- </script>
+<script>
 
-
-         <!-- ========== THEME JS ========== -->
-         <script>
-             $(function($) {
-
-                 // 1st  datepicker
-                 $('#basicExample .time').timepicker({
-                 'showDuration': true,
-                 'timeFormat': 'g:ia'
-                 });
-
-                 $('#basicExample .date').datepicker({
-                 'format': 'm/d/yyyy',
-                 'autoclose': true
-                 });
-
-                 var basicExampleEl = document.getElementById('basicExample');
-                 var datepair = new Datepair(basicExampleEl);
-
-                 // 2nd  datepicker
-                 $('#datetimepicker1').datetimepicker({
-                     debug: true
-                 });
-
-                 // 3rd  datepicker
-                 $('#datetimepicker9').datetimepicker({
-                 viewMode: 'years'
-                 });
-
-                 // 4th  datepicker
-                 $('#datetimepicker10').datetimepicker({
-                 viewMode: 'years',
-                 format: 'MM/YYYY'
-                 });
-
-                 // 5th  datepicker
-                 $('#datetimepicker11').datetimepicker({
-                 daysOfWeekDisabled: [0, 6]
-                 });
-
-                 // 6th  datepicker
-                 $('#datetimepicker12').datetimepicker({
-                     inline: true,
-                     sideBySide: true
-                 });
-             });
-         </script>
+$(function() {
+for(var i=0;i<10;i++){
+    $( "#rod"+i ).datepicker({
+        format: "dd/mm/yyyy",
+        autoclose: true
+    });
+}
+});
+$(function() {
+	for(var i=0;i<10;i++){
+	        $( "#rod1"+i ).datepicker({
+	            format: "dd/mm/yyyy",
+	            autoclose: true
+	        });
+	}
+	    });
+$(function() {
+	for(var i=0;i<10;i++){
+	        $( "#rod2"+i ).datepicker({
+	            format: "dd/mm/yyyy",
+	            autoclose: true
+	        });
+	}
+	    });
+</script>
 
 
 </body>
