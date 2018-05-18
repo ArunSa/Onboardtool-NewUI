@@ -470,7 +470,7 @@ if(rs.next()){
                                         <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="AppEmphasize_EditProject.jsp" class="active-menu"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp" ><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
@@ -519,6 +519,15 @@ if(rs.next()){
                                     </li>
    <li class="has-children"><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                </li> 
+               
+                <li class="has-children">
+                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="RoleDashboard.jsp" class="active-menu"> <span>Role Dashboard</span></a></li>
+                                            <li><a href="ProjectDashboard.jsp"> <span>Project Dashboard</span></a></li>
+                                            <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
 										
                             </div>
@@ -1109,28 +1118,28 @@ function drawChart() {
 </script>
 
 <%
-String query10 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW()";
+String query10 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() and uname='"+uname+"'";
 Statement st10 = conn.createStatement();
 ResultSet rs10 = st10.executeQuery(query10);
-String query12 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 20 DAY) AND NOW()";
+String query12 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 20 DAY) AND NOW() and uname='"+uname+"'";
 Statement st12 = conn.createStatement();
 ResultSet rs12 = st12.executeQuery(query12);
-String query13 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW()";
+String query13 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() and uname='"+uname+"'";
 Statement st13 = conn.createStatement();
 ResultSet rs13 = st13.executeQuery(query13);
-String query11 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 50 DAY) AND NOW()";
+String query11 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 50 DAY) AND NOW() and uname='"+uname+"'";
 Statement st11 = conn.createStatement();
 ResultSet rs11 = st11.executeQuery(query11);
-String query15 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
+String query15 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
 Statement st15 = conn.createStatement();
 ResultSet rs15 = st15.executeQuery(query15);
-String query16 = "select SUBSTR(date,1,4), MONTHNAME(date),SUBSTR(date,9,2),count from  visits";
+String query16 = "select SUBSTR(date,1,4), MONTHNAME(date),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
 Statement st16 = conn.createStatement();
 ResultSet rs16 = st16.executeQuery(query16);
-String query17 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
+String query17 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
 Statement st17 = conn.createStatement();
 ResultSet rs17 = st17.executeQuery(query17);
-String query19 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
+String query19 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
 Statement st19 = conn.createStatement();
 ResultSet rs19 = st19.executeQuery(query19);
 
