@@ -643,7 +643,7 @@ hypercare="0";
         </div>
           <div class="col-lg-4 col-md-4">
           <select id="slct1" name="slct1" onchange="getValue(this.value)">
-  <option disabled selected>Please Select any Option</option>
+  <option  disabled selected>Please Select any Option</option>
    <%
     while(rs1.next()){
      %>
@@ -1374,85 +1374,96 @@ while(rs13.next())
 
 
   function weeklyline_chart(){
-	  var str_array=[];
-  
-  	var month=document.getElementById("month").value;
-  	var year=document.getElementById("year1").value;
-  	console.log(" month : " + month + "  year  : " + year);
-  	
-  	$.ajax({
-  	      url: "Weekly_linechart",
-  	      type: "Post",
-  	      data: { field1: month, field2 : year},
-  	      dataType: "text",
-  	      
-  	    
-  	      success : function(data) {
-  	    	var str = data;
-  	    	console.log("Result : " + str);
-  	    	str_array=" ";
-  	        str_array = str.split(',');
-  	    
-  	        for(var i = 0; i < str_array.length; i++) {
-  	   
-  	        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
-  	     
-  	        
-  	}
-  	    	  
-  	      google.charts.load('current', {'packages':['corechart','line']});
-  	  	google.charts.setOnLoadCallback(drawChart);
-  	  
-  	  	function drawChart() {
-  	  		var name;
-  	  		  	    
-  	  	  var data = new google.visualization.DataTable();
-  	  	  data.addColumn('string','name');
-  	  	  data.addColumn('number','value');
-  	  	   
-  	  	  for(var i=0;i<str_array.length;i=i+2)
-  	  		  {
-  	  	
-  	  		
-  	  		  data.addRow([str_array[i],Number(str_array[i+1])]);
-  	  		  }
-  	  		
-  	  	
-  	  	  var options = {
-  	  	        title: '',
-  	  	        curveType: 'function',
-  	  	        pointSize: 5,
-  	  	        
-  	  	        colors: ['#fb8532'],
-  	  	       
-  	  	        vAxis: {
-  	  	          title: 'No of visits',
-  	  	          minValue: 0,
-  	  	      ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
-  	  	        },
-  	  	        
-  	  	        hAxis: {
-  	  	            title: 'No of weeks',
-  	  	            minValue: 0,
-  	  	        pointSize: 5,
-  	  	          },
-  	  	        
-  	  	      };
+	   	var str_array=[];
+    	var form = $('#id');
+    	var month=document.getElementById("month").value;
+    	var year=document.getElementById("year").value;
+    	var select_val=document.getElementById("username").value;
+    	if(select_val == "Please Select any Option")
+    		select_val="none";
+    	alert("select_val = "+select_val);
+    	var uid;
+    	 if(select_val=="none")
+		 {
+		 uid="<%= details.getAttribute("username") %>";
+		 }
+	 else
+		 {
+		 uid=select_val;
+		 }
+    	 alert("UID = "+uid);
+    	
+    	$.ajax({
+    	      url: "Weekly_linechart",
+    	      type: "Post",
+    	      data: { field1: month, field2 : year,userid:uid},
+    	      dataType: "text",
+    	      
+    	    
+    	      success : function(data) {
+    	    	var str = data;
+    	    	str_array="";
+    	        str_array = str.split(',');
 
-  	  	  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-  	  	  
+    	        for(var i = 0; i < str_array.length; i++) {
+    	   
+    	        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+    	     
+    	        //alert(str_array[i]);
+    	}
+    	    	  
+    	        google.charts.load('current', {'packages':['corechart','line']});
+    	    	google.charts.setOnLoadCallback(drawChart);
 
-  	  	  
+    	    	function drawChart() {
+    	    		var name;
+    	    		
+    	    	    
+    	    	  var data = new google.visualization.DataTable();
+    	    	  data.addColumn('string','name');
+    	    	  data.addColumn('number','value');
+    	    	
+    	    	  for(var i=0;i<str_array.length;i=i+2)
+    	    		  {
+    	    		  alert(str_array[i]+","+str_array[i+1])
+    	    		  data.addRow([str_array[i],Number(str_array[i+1])]);
+    	    		  }
+    	    		
+    	    	
+    	    	  var options = {
+    	    	        title: '',
+    	    	        curveType: 'function',
+    	    	        pointSize: 5,
+    	    	        
+    	    	        colors: ['#fb8532'],
+    	    	       
+    	    	        vAxis: {
+    	    	          title: 'No of visits',
+    	    	          minValue: 0,
+    	    	          ticks: [{v:0, f:'0'},{v:10, f:'10'},{v:20, f:'20'},{v:30, f:'30'}],
+    	    	        },
+    	    	        
+    	    	        hAxis: {
+    	    	            title: 'No of weeks',
+    	    	            minValue: 0,
+    	    	           
+    	    	          },
+    	    	        backgroundColor: '#f6f8fa'
+    	    	      };
 
-  	  	  chart.draw(data, options);
-  	  	 
-  	  	}  
-  	          
-  	      }   
-  });
-  	
-  	
- 
+    	    	  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    	    	  
+
+    	    	  
+
+    	    	  chart.draw(data, options);
+    	    	 
+    	    	}        
+    	          
+    	      }   
+    });
+    	
+    	
 	  
   }
   
