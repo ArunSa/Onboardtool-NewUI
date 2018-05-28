@@ -1,3 +1,5 @@
+
+
 /*
 function switchColors()  
 {  
@@ -35,13 +37,6 @@ x.item(i).style.backgroundColor = '#3276B1' ;
 
 
 } */
-function call()
-{
-var f=document.loginForm;
-    f.method="post";
-    f.action='ArchivalRequirements';
-    f.submit();
-}
 
   $(function () {
     // 6 create an instance when the DOM is ready

@@ -1,30 +1,4 @@
-  
-    $(function() {
-        $( "#expirydate" ).datepicker({
-            format: "dd/mm/yyyy",
-            autoclose: true
-        });
-    });
-    $(function() {
-        $( "#rod" ).datepicker({
-            format: "dd/mm/yyyy",
-            autoclose: true
-        });
-    });
-    $(function() {
-        $( "#daterange" ).datepicker({
-            format: "dd/mm/yyyy",
-            autoclose: true
-        });
-    });
-    
-    $(function() {
-        $( "#triggerdate" ).datepicker({
-            format: "dd/mm/yyyy",
-            autoclose: true
-        });
-    });
-    
+
         $(document).ready(function () {
             // Create jqxTree
             $('#jqxTree').jqxTree({ height: '650px', width: '0px' });

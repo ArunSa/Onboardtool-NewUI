@@ -32,6 +32,113 @@
    <script type="text/javascript" src="js_in_pages/technical.js"></script>
 	<script type="text/javascript" src="js_in_pages/tree.js"></script>
   <link rel="stylesheet" href="js_in_pages/technical.css" type="text/css" />
+  
+   <style>
+ body {
+  font-family: Arial, sans-serif;
+
+  background-size: cover;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 50px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 210px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color:black;
+}
+.popup .close:hover {
+  color: black;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.button{
+color:white;
+}
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+  
+}
+
+ #nav_userid{
+             color:green;
+             }
+               
+              #nav_role{
+              color:blue;
+              }  
+.ScrollStyle
+{
+    max-height: 350px;
+    overflow-y: scroll;
+}
+/*END Form Wizard*/
+
+
+</style>
+  
 
 </head>
 <body class="top-navbar-fixed">
@@ -39,6 +146,7 @@
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
+<%@ page import="java.util.*" %>
 <%
 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -47,7 +155,7 @@ response.setHeader("Expires", "0"); // Proxies.
 
 if (session.getAttribute("username")==null)
 {
-response.sendRedirect("Login.jsp");
+response.sendRedirect("Login.html");
 }
 %>
 
@@ -57,7 +165,6 @@ HttpSession details=request.getSession();
 String info=(String)details.getAttribute("intake");
 
 String roles=(String)details.getAttribute("role");
-System.out.println("IntakeModule    "+ info);
 String det=(String)session.getAttribute("theName");
 String idd=(String)session.getAttribute("appidd");
 DBconnection d=new DBconnection();
@@ -71,7 +178,10 @@ ResultSet rs4 = st4.executeQuery(query4);
 String imp_id="";
 String sequenceNumber="";
 int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
+ArrayList<String> list=new ArrayList<String>();
 {
+	if(rs3.next()){ 
+		String project_NAME=rs3.getString("projectname");
 %>
 <form class="form-signin" name="loginForm" method="post" action="Technical">
 
@@ -97,7 +207,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                     </div>
                         <!-- /.navbar-header -->
                         
-                   <% if(rs3.next()){ %>
+                   
                     <% if(rs4.next()){ 
                     	String rowCount="";
                    	 String query11 = "select * from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
@@ -108,10 +218,13 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                         ResultSet rs12 = st12.executeQuery(query12);
                         if(rs12.next())
                        	 rowCount=rs12.getString(1);
+                        
                     
                     %>
                    <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs3.getString("projectname") %>-<%=rs4.getString("appname") %></a>
-                    <input type="hidden" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>             
+                    <input type="hidden" id="project_name" name="project_name" value="<%=rs3.getString("projectname")%>" hidden>
+                    
+                       <input type="text" id="appln_name" name="appln_name" value="<%= idd %>" style="display:none;">             
                     <%
                     String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
@@ -124,14 +237,14 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                   ResultSet rss1 = s3.executeQuery(quer3);
                   while(rss1.next())
                 	  imp_id=rss1.getString(1);
-                  System.out.println(imp_id);
+     
                   String quer4="select * from archive_exec where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
                   Statement s4 = conn.createStatement();
                  ResultSet rss2 = s4.executeQuery(quer4);
                 
                   while(rss2.next()){
                   	session.setAttribute(rss2.getString(3),rss2.getString(15));
-                  	System.out.println(rss2.getString(3));
+       
                   }
                   
                   String quer5="select seq_num from archive_exec where name='Build and Test'";
@@ -139,12 +252,12 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                   ResultSet rss3 = s5.executeQuery(quer5);
                   if(rss3.next())
                 	  sequenceNumber=rss3.getString(1);
-                  System.out.println(sequenceNumber);
+     
                   String quer6="select * from archive_exec where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
                   Statement s6 = conn.createStatement();
                   ResultSet rss4 = s6.executeQuery(quer6);
                   int knt=0;
-                  System.out.println("bala");
+              
                   while(rss4.next())
                   {
                 	  if(knt>2)
@@ -159,7 +272,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 		  plannedHours1+=Integer.parseInt(rss4.getString(13)); 
                 	  }
                 	  else
-                	  { System.out.println("murugan");
+                	  { 
                 		  if(rss4.getString(9).equals(""))
                 			  actualHours+=0;
                 		  else
@@ -168,7 +281,7 @@ int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
                 			  plannedHours+=0;
                 		  else
                 		  plannedHours+=Integer.parseInt(rss4.getString(13)); 
-                		  System.out.println(actualHours);
+             
                 	  }
                 	 knt++;
                   }
@@ -443,360 +556,410 @@ if(implement == null)
         
 </div>
 
+<% 
+ String query22 = "SELECT * from samp_technical";
+ Statement st22 = conn.createStatement();
+ ResultSet rs22 = st22.executeQuery(query22);
+ while(rs22.next())
+	 list.add(rs22.getString("idname"));
+ ArrayList<String> list2=new ArrayList<String>();
+ String query20 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'technical' ORDER BY ORDINAL_POSITION";
+ Statement st20 = conn.createStatement();
+ ResultSet rs20 = st20.executeQuery(query20);
+ while(rs20.next())
+ {
+ 	list2.add(rs20.getString(1));
+ }
+ Iterator itr=list.iterator();  
+ while(itr.hasNext()){  
+ 	String value=(String)itr.next();
+  boolean retval=list2.contains(value);
 
-
-<% if (rs11.next() || rowCount.equals("0")) {%>  
-<div class="panel-group" id="panels1"> 
-<br><br>
-                        <div class="panel panel-default"> 
-                            <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#panels1" href="#collapse1" onclick="switchColors0();">                            Application Data Information                            </a> </h4> 
+  if( retval == false)
+  {
+      Statement st21 = conn.createStatement();
+      st21.executeUpdate("alter table technical add column "+value+" varchar(255) DEFAULT ''");
+      
+  }
+ }  
+ 
+ if (rs11.next() || rowCount.equals("0")) { 
+ String qury="select * from samp_technical where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+ Statement stm = conn.createStatement();
+ ResultSet Rs = stm.executeQuery(qury);
+%>  
+                    
+                 <div class="panel panel-default"> 
+                    <div class="panel-heading"> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" >Application Information</a> </h4> 
                             </div>                             
-                            <div id="collapse1" class="panel-collapse collapse in"> 
-                                <div class="panel-body text-left">
-                               
-                                  <form role="form"> 
-                          <div class="form-group"> 
-                                            <label class="control-label"> 
-                                                <div class="required">Datatype Characteristics</div>
-                                            </label>      
-                                            <br />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<input id="checkbox" type="radio" name="datatype" <% if(!rowCount.equals("0") && (rs11.getString(1).equals("Structured"))){ %> value="Structured" checked <%} else{%>value="Structured"<%} %>> &nbsp; Structured &nbsp;      
-                                            <input id="checkbox1" type="radio" name="datatype" value="Unstructured" <% if(!rowCount.equals("0") && (rs11.getString(1).equals("Unstructured"))){ %> value="Unstructured" checked <%} else{%>value="Unstructured"<%} %>> &nbsp; Unstructured &nbsp;
-                                            <input id="checkbox2" type="radio" name="datatype" value="Hybrid" <% if(!rowCount.equals("0") && (rs11.getString(1).equals("Hybrid"))){ %> value="Hybrid" checked <%} else{%>value="Hybrid"<%} %>> &nbsp; Hybrid      &nbsp;                         
-                                        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label "><div class="required">If the Data Type is Unstructured or Hybrid, process for extracting unstructured data? </div></label>
-            <input placeholder="Process Name"  id= "pname" name="pname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("pname") %>" <%} %>>
-          </div>
-          
-        </div>
-         <div class="form-group"> 
-                                            <label class="control-label"><div class="required">Does Unstructured or Hybrid business objects needs to be archived?</div></label>                                             
-                                            <select id="archneed" class="form-control" name="archneed"> 
-                                           <option></option>
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("archneed").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("archneed").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
-                                                                                                
-                                            </select>
-                                        </div>  
-       
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Please specify the formats</label>
-            <input placeholder="Format Name" id="format" name="format" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("formatsp") %>" <%} %>>
-          </div>
-          
-        </div> 
-          <div class="checkbox"> 
-                                            <label class="control-label "> 
-                                                <input id="language" type="checkbox" name ="mlang" <% if(!rowCount.equals("0") && (rs11.getString("mlang").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Any Special/ Multi Language characters or Foreign Language contained in the application?
-                                            </label>                                             
-                                        </div> 
-                                          <div class="checkbox"> 
-                                            <label class="control-label "> 
-                                                <input id="archive" type="checkbox" name="loclang" <% if(!rowCount.equals("0") && (rs11.getString("loclang").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >If the legacy application contains local language, should the local language be maintained in the archive? 
-                                            </label>                                             
-                                        </div> 
-                                          <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="range" type="checkbox" name="dateretain" <% if(!rowCount.equals("0") && (rs11.getString("dataretain").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >Based on the application data and date range of the data, is all or part of the data required to be retained beyond application retirement or repurposing?
-                                            </label>                                             
-                                        </div> 
-         <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="Documentation" type="checkbox" name="systemdoc" <% if(!rowCount.equals("0") && (rs11.getString("systemdoc").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >System Documentation and its Location
-                                            </label>                                             
-                                        </div> 
-                                        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">User Documentation</label>
-            <input placeholder="User Documentation" id="userdoc" name="userdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("userdoc") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Technical Documentation</label>
-            <input placeholder="Technical Documentation" id="techdoc" name="techdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("techdoc") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Training Documentation</label>
-            <input placeholder="Training Documentation" id="traindoc" name="traindoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text"<% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("traindoc") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Support Documentation</label>
-            <input placeholder="Support Documentation" id="supportdoc" name="supportdoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("supportdoc") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Data Dictionary</label>
-            <input placeholder="Data Dictionary" id="datadic" name="datadic" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("datadic") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Test Case Documentation</label>
-            <input placeholder="Test Case Documentation" id="testcasedoc" name="testcasedoc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("testcasedoc") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Testing Records</label>
-            <input placeholder="Testing Records" id="testrec" name="testrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("testrec") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Design Specification</label>
-            <input placeholder="Design Specification" id="designspec" name="designspec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("designspec") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Requirements Specification</label>
-            <input placeholder="Requirements Specification" id="reqspec" name="reqspec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("reqspec") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Validation Plan</label>
-            <input placeholder="Validation Plan" id="validityplan" name="validityplan" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("validityplan") %>" <%} %>>
-          </div>
-          
-        </div> 
-                                     <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt2" onclick="validateform()"> <a class="collapsed"  href="#collapse2" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-                                        
-                                </div>                                 
-                            </div>                             
-                        </div>
-                        <div class="panel panel-default"> 
-                            <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">Infrastructure & Environment Information</a> </h4> 
-                            </div>                             
-                            <div id="collapse2" class="panel-collapse collapse"> 
-                                <div class="panel-body">
-                                    <form role="form">
-                                    
-                                  
-                        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label required">Server Name</label>
-            <input placeholder="Server Name" id="servername" name="servername" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("servername") %>" <%} %>>
-          </div>
-          
-        </div>  
-         <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label required">Production Instances</label>
-            <input placeholder="Production Instances" id="prodinstance" name="prodinstance" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("prodinstance") %>" <%} %>>
-          </div>
-          
-        </div>  
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label required">Location of Production Instances</label>
-            <input placeholder="Location of Production Instances" id="prodinstanceloc" name="prodinstanceloc" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("prodinstanceloc") %>" <%} %>>
-          </div>
-          
-        </div>  
-        
-        
-        
-        
-                                      <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Contact Name or Entity for Infrastructure Engagement </label>
-            <input placeholder="Contact Name or Entity for Infrastructure Engagement " id="infraengage" name="infraengage" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("infraengage") %>" <%} %>>
-          </div>
-          
-        </div> 
-        
-        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="sourcearch" type="checkbox" name="sourcearch" <% if(!rowCount.equals("0") && (rs11.getString("sourcearch").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>>  &nbsp;Do you need to archive source code?                     
-                                            </label>                                             
-                                        </div>
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="formInput26">Is this Application a Hosted Service ?</label>                                             
-                                            <select id="apphost" class="form-control" name="apphost" > 
-                                            <option></option>
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("apphost").equals("Yes"))){ %> value="Yes" selected <%} else{%>value="Yes"<%} %> >Yes</option>                                                 
-                                                <option <% if(!rowCount.equals("0") && (rs11.getString("apphost").equals("No"))){ %> value="No" selected <%} else{%>value="No"<%} %>>No</option>  
-                                                                                         
-                                            </select>
-                                        </div>  
+                        <div id="collapse1" class="panel-collapse collapse in" name="collapse"> 
+                              <div class="panel-body">
+                              <%
+                              int k=0,Count=0,Count_1=0,Del_count=1;
+                              while(Rs.next()){ 
+                           
+                              %>
+                           <div class="form-group"> 
+                                            <label class="control-label" for="formInput198" >
                                            
-                                        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Duration for retention agreements with the vendor</label>
-            <input placeholder="" id="retenduration" name="retenduration" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("retenduration") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Does the legacy applicationâs data need to be archived in the client archive application </label>
-            <input placeholder="" id="clientapp" name="clientapp" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("clientapp") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Is the Application external customer facing or have a component of being external customer facing</label>
-            <input placeholder="" id="extcustfacing" name="extcustfacing" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("extcustfacing") %>" <%} %>>
-          </div>
-          
-        </div> 
-          
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">If external facing, web apps/website URLs</label>
-            <input placeholder="" id="url" name="url" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("url") %>" <%} %>>
-          </div>
-          
-        </div> 
-                                        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Database size of the application</label>
-            <input placeholder="" id="dbsize" name="dbsize" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" required <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("dbsize") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Estimated No of Table in the application</label>
-            <input placeholder="" id="nooftable" name="nooftable" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("nooftable") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label">Estimated No of Records(volume) in the application</label>
-            <input placeholder="" id="noofrec" name="noofrec" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("noofrec") %>" <%} %>>
-          </div>
-          
-        </div> 
-     
-   
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">XML counts for the database</label>
-            <input placeholder="" id="xmlcount" name="xmlcount" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("xmlcount") %>" <%} %>>
-          </div>
-          
-        </div> 
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Does this application utilize any VPN environments (E.g. Citrix) for access</label>
-            <input placeholder="" id="anyvpn" name="anyvpn" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("anyvpn") %>" <%} %>>
-          </div>
-          
-        </div> 
-        
-       <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="vpnacces" name="vpnacces" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("vpnacces").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >&nbsp;VPN access required for application access                        
-                                            </label>                                             
-                                        </div>
-                                        <div class="checkbox"> 
-                                            <label class="control-label"> 
-                                                <input id="appintegrate" name="appintegrate" type="checkbox" <% if(!rowCount.equals("0") && (rs11.getString("appintegrate").equals("Yes"))){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> >&nbsp;Does data in the Application integrate to or from other systems?                        
-                                            </label>                                             
-                                        </div>
-      
-        
-        <div class="form-group row log-date">
-          <div class="col-md-12">
-            <label class="control-label ">Specify the application to integrate</label>
-            <input placeholder="" id="integname" name="integname" class="form-control ember-text-field zf-date-picker date-picker ember-view" type="text" <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("integname") %>" <%} %>>
-          </div>
-          
-        </div> 
-                       <div class="form-group row log-date">
-          <div class="col-md-12" id="basicExample">
-            <label class="control-label required">Ready Date for Complete Server decommission and Application Retirement</label>
-            <input placeholder="mm/dd/yyyy" id="decomdate" name="decomdate" class="form-control in date start" type="text"  <% if(rowCount.equals("0")) {%>value=""<%} else {%> value="<%= rs11.getString("decomdate") %>" <%} %>>
-          </div>
-          
-        </div>                    
-         <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick="validateform1();"> <a class="collapsed" href="#collapse3" style="color:white">  Next</a><span class="glyphicon glyphicon-chevron-right"></span></button>
-        <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" > <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
-                                                                    
-                                    </form>
-                                    
+                                            <%if(Rs.getString(3).equals("Yes") && !Rs.getString(1).equals("")) {%><div class="required"> <%=Rs.getString(1) %>&nbsp; <input type="checkbox" id="c1<%= Count_1 %>" name="<%= Rs.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d1<%= Count_1 %>" onclick="edit_page('<%= Rs.getString(1) %>','<%= Rs.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs.getString(1).equals("")){ %>
+                                            <div><%=Rs.getString(1) %>&nbsp;<input type="checkbox" id="c1<%= Count_1 %>" name="<%= Rs.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d1<%= Count_1 %>" onclick="edit_page('<%= Rs.getString(1) %>','<%= Rs.getString("idname") %>');"></span>
+                                            <%} 
+                                            %>
+                                           
+                                            </label>
+                                        <%if(Rs.getString(2).equals("Text box")){ 
+                                      
+                                        %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>
+                                            
+                              <%}else if(Rs.getString(2).equals("Dropdown")){
+                  				String box[]=Rs.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                          	else if(Rs.getString(2).equals("Radio box")){
+                    			String box[]=Rs.getString(7).split("/");
+                    			int number_of_boxes=Integer.parseInt(Rs.getString(6));%>
+                    			 <div class="radio"><%
+                    			for(int i=0;i<number_of_boxes;i++){
+                    		%> 
+                    	<input type="radio" style="margin-left:20px;" name="<%= Rs.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs.getString("idname")).equals(box[i])){ %> value="<%= box[i] %>" checked <%} else{%>value="<%= box[i] %>"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                    	                                       
+                    		<%}%></div><%}
+                                        
+                              else if(Rs.getString(2).equals("Datepicker")){%>
+                              
+                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>>
+                              <%
+                              k++;
+                              } else if(Rs.getString(2).equals("Check box")){
+                            	  String box[]=Rs.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                          	<% } %></div>
+                          	<% } %></div>
+                          	
+                             <%
+                             Count_1++;
+                              } %>
+                         
+                           
+                    
+                       <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup1" id="P1">Add</a></button> &nbsp;  
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del1" onclick="deletee('c1',<%=Count_1%>,'Del1','Del2')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del2" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d1',<%=Count_1%>);" >Edit</button>
+  <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt" onclick=" validateform()"> Next<span class="glyphicon glyphicon-chevron-right"></span></button> 
+                                       <br/><br/>
+                                </div>                                 
+                            </div>                             
+                        </div>  
+                         <script>
+                           function deletee(id,Count_1,Del1,Del2)
+                           {
+                           var x=Count_1;  
+                        	   for(var i=0;i<x;i++){
+                        		   document.getElementById(id+i).style.display='block';
+                        	   }
+                        	   document.getElementById(Del1).style.display='none';
+                        	   document.getElementById(Del2).style.display='block';
+                        	   
+                           }
+                           function edit_page(x,y)
+                           {
+                        	   var f=document.loginForm;
+                               f.method="post";
+                               f.action="Edit_Pages.jsp?label="+x+"&idname="+y+"&name='Technical'";
+                               f.submit();  
+                           }
+                           function edit_form(d1,Count_1)
+                           {
+                           var x=Count_1;  
+                        	   for(var i=0;i<x;i++){
+                        		   document.getElementById(d1+i).style.display='block';
+                        	   }
+                        	                       	   
+                           }
+                   
+                           
+                           
+                           </script>
+         
+                        <script>
+                        
+                        function validateform(){
+                        	var count=0;
+                        <% 
+                        String q1="select * from samp_technical where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                        Statement stq = conn.createStatement();
+                        ResultSet rsq = stq.executeQuery(q1);
+                        while(rsq.next())
+                        {
+                        %>
+                        if('<%=rsq.getString("mandatory") %>' == "Yes")
+                        	{
+                        	if(document.getElementsByName('<%=rsq.getString("idname") %>')[0].value == "")
+                        		{
+                        		count++;
+                        		}
+                        	} 
+                        <%}%>
+                        if(count>0)
+                        	alert("fill the mandatory fields");
+                        else
+                        	toggle();
+                        }
+                        
+                        </script>
+                    
+                     
+                        
+<%
+String qury1="select * from samp_technical where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+Statement stm1 = conn.createStatement();
+ResultSet Rs1 = stm1.executeQuery(qury1);
+%>     
+                      
+                   <div class="panel panel-default"> 
+                     <div class="panel-heading"> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" onclick="switchColors();">Legacy Retention Information</a> </h4> 
+                      </div>                             
+                         <div id="collapse2" class="panel-collapse collapse"> 
+                             <div class="panel-body">
+                             
+                              <%
+                              k=0;
+                             int Count_2=0;
+                              while(Rs1.next()){
+                            		  %>
+                           <div class="form-group"> 
+                                            <label class="control-label" for="formInput198" >
+                                            <%if(Rs1.getString(3).equals("Yes") && !Rs1.getString(1).equals("")) {%><div class="required"> <%=Rs1.getString(1) %>&nbsp; <input type="checkbox" id="c2<%= Count_2 %>" name="<%= Rs1.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d2<%= Count_2 %>" onclick="edit_page('<%= Rs1.getString(1) %>','<%= Rs1.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs1.getString(1).equals("")){ %>
+                                            <div><%=Rs1.getString(1) %>&nbsp;<input type="checkbox" id="c2<%= Count_2 %>" name="<%= Rs1.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d2<%= Count_2 %>" onclick="edit_page('<%= Rs1.getString(1) %>','<%= Rs1.getString("idname") %>');"></span>
+
+                                            <%} %>
+                                         
+                                            </label>
+                                              
+                                        <%if(Rs1.getString(2).equals("Text box")){ %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs1.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>/>
+                              <%}else if(Rs1.getString(2).equals("Dropdown")){
+                  				String box[]=Rs1.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs1.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs1.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                              else if(Rs1.getString(2).equals("Radio box")){
+                      			String box[]=Rs1.getString(7).split("/");
+                      			int number_of_boxes=Integer.parseInt(Rs1.getString(6));%>
+                      			 <div class="radio"><%
+                      			for(int i=0;i<number_of_boxes;i++){
+                      		%> 
+                      	<input type="radio" style="margin-left:20px;" name="<%= Rs1.getString("idname") %>" <% if(rs11.getString(Rs1.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                      	                                       
+                      		<%}%></div><%}
+                                        
+                              else if(Rs1.getString(2).equals("Datepicker")){%>
+                              
+                                      <input placeholder="mm/dd/yyyy" id="rod1<%=k %>" name="<%= Rs1.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>>
+                              <%
+                              k++;
+                              } else if(Rs1.getString(2).equals("file")){
+                            	%>  
+                            	<input type="file" name="file" id="file" size="60" value="" />
+                            	 <%}  else if(Rs1.getString(2).equals("Check box")){
+                              
+                            	  String box[]=Rs1.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs1.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs1.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs1.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                       <% } %></div>
+                          	<% } %></div>
+                             <% 
+                             Count_2++;
+                              } %>
+                        
+                         	 <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup2">Add</a></button>     
+                         	 <button type="button"  class="btn btn-danger  pull-left" id="Del11" onclick="deletee('c2',<%=Count_2%>,'Del11','Del21')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del21" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d2',<%=Count_2%>);" >Edit</button>  
+                                                                  
+              <button type="button"  class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myModal" id="btt1" onclick="validateform1()"> Next<span class="glyphicon glyphicon-chevron-right"></span></button>
+                                       <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" onclick="switchColors0();"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse1"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+                 
                                 </div>                                 
                             </div>                             
                         </div>
-                        <div class="panel panel-default"> 
-                            <div class="panel-heading"> 
-                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" >Technical Information</a> </h4> 
-                            </div>                             
-                            <div id="collapse3" class="panel-collapse collapse"> 
-                                <div class="panel-body">
-                                    <form role="form"> 
-                                        <label text-align:"left">Downloadable Attachment1</label>
-    <input type="file" id="file" name="file" size="60" />
-   
-    <label text-align:"left">Downloadable Attachment2</label>
-    <input type="file" id="file1" name="file" size="60" />
-   
-    <label text-align:"left">Downloadable Attachment3</label>
-    <input type="file" id="file2" name="file" size="60" />
-   
-    <label text-align:"left">Downloadable Attachment4</label>
-    <input type="file"  id="file3" name="file" size="60" />   
-    <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new" > <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse2" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
-                                                            
-                                    </form>
+                                     
+                               <script>
+                              
+                        function validateform1(){
+                        	 var count1=0;
+                        <% 
+                        String q2="select * from samp_technical where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                        Statement stq2 = conn.createStatement();
+                        ResultSet rsq2 = stq2.executeQuery(q2);
+                        while(rsq2.next())
+                        {
+                        %>
+                        if('<%=rsq2.getString("mandatory") %>' == "Yes")
+                        	{
+                        	
+                        	if(document.getElementsByName('<%=rsq2.getString("idname") %>')[0].value == "")
+                        		{
+                        	
+                        		count1++;
+            		}
+                        	} 
+                        <%}%>
+                        if(count1>0)
+                        	alert("fill the mandatory fields");
+                        else
+                        	toggle1();
+                        }
+                        
+                        </script>
+                <%
+String qury3="select * from samp_technical where panels='P3' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+Statement stm3 = conn.createStatement();
+ResultSet Rs3 = stm3.executeQuery(qury3);
+%>                        
+                 <div class="panel panel-default"> 
+                    <div class="panel-heading"> 
+                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" onclick="switchColors2();">Privacy Classification</a> </h4> 
+                            </div>       
+                             <div id="collapse3" class="panel-collapse collapse"> 
+                              <div class="panel-body">
+                                <%
+                              k=0;
+                                int Count_3=0;
+                              while(Rs3.next()){
+                            	 
+                            	
+                            	  %>
+                           <div class="form-group"> 
+                                            <label class="control-label" for="formInput198" >
+                                            <%if(Rs3.getString(3).equals("Yes") && !Rs3.getString(1).equals("")) {%><div class="required"> <%=Rs3.getString(1) %>&nbsp; <input type="checkbox" id="c3<%= Count_3 %>" name="<%= Rs3.getString("idname") %>1" style="float:right;display:none" value="yes"><span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d3<%= Count_3 %>" onclick="edit_page('<%= Rs3.getString(1) %>','<%= Rs3.getString("idname") %>');"></span>
+                                            </div><%} else if(!Rs3.getString(1).equals("")){ %>
+                                            <div><%=Rs3.getString(1) %>&nbsp;<input type="checkbox" id="c3<%= Count_3 %>" name="<%= Rs3.getString("idname")%>1" style="float:right;display:none;" value="yes"></div> <span class="glyphicon glyphicon-pencil" style="float:right;display:none;" id="d3<%= Count_3 %>" onclick="edit_page('<%= Rs3.getString(1) %>','<%= Rs3.getString("idname") %>');"></span>
+
+                                            <%} %>
+                                            </label>
+                                        <%if(Rs3.getString(2).equals("Text box")){ %>    
+                                            <input type="text" class="form-control" id="legappname" name="<%= Rs3.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs3.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs3.getString("idname"))%>" <%}} %>/>
+                              <%}else if(Rs3.getString(2).equals("Dropdown")){
+                  				String box[]=Rs3.getString(9).split("/");
+                				int number_of_boxes=Integer.parseInt(Rs3.getString(8));%>
+                				 <select id="type" class="form-control" name="<%= Rs3.getString("idname") %>" required > 
+                				 <%
+                				for(int i=0;i<number_of_boxes;i++){
+                			%> 
+                			<option value="<%=box[i] %>"><%=box[i] %></option>                                       
+                			<%}%></select><%}
+                              else if(Rs3.getString(2).equals("Radio box")){
+                      			String box[]=Rs3.getString(7).split("/");
+                      			int number_of_boxes=Integer.parseInt(Rs3.getString(6));%>
+                      			 <div class="radio"><%
+                      			for(int i=0;i<number_of_boxes;i++){
+                      		%> 
+                      	<input type="radio" style="margin-left:20px;" name="<%= Rs3.getString("idname") %>" <% if(rs11.getString(Rs3.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %> ><span style="margin-left:35px;"><%=box[i] %></span><br/>                      
+                      	                                       
+                      		<%}%></div><%}
+                                        
+                              else if(Rs3.getString(2).equals("Datepicker")){%>
+                              
+                                      <input placeholder="mm/dd/yyyy" id="rod2<%=k %>" name="<%= Rs3.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs3.getString("idname")) %>">
+                              <%
+                              k++;
+                              } else if(Rs3.getString(2).equals("file")){
+                            	
+                            	%>  
+                            	<input type="file" name="<%= Rs3.getString("idname") %>" id="file" size="60"  />
+                            	 <%}  else if(Rs3.getString(2).equals("Check box")){
+                              
+                            	  String box[]=Rs3.getString(5).split("/");
+                          		int number_of_boxes=Integer.parseInt(Rs3.getString(4));%>
+                          		 <div class="checkbox"><%
+                          		for(int i=0;i<number_of_boxes;i++){
+                          	%> 
+                          <input type="checkbox" style="margin-left:20px;" name="<%= Rs3.getString("idname") %>" <% if(!rowCount.equals("0") && rs11.getString(Rs3.getString("idname")).equals("Yes")){ %> value="Yes" checked <%} else{%>value="Yes"<%} %>><span style="margin-left:35px;"><%=box[i] %></span>                      
+                                                                 
+                       <% } %></div>
+                          	<% } %></div>
+                             <%
+      
+                             Count_3++;
+                              } %>                      
+                      <button type="button"  class="btn btn-success  pull-left" > <a class="button" href="#popup3">Add</a></button>
+                      <button type="button"  class="btn btn-danger  pull-left" id="Del13" onclick="deletee('c3',<%=Count_3%>,'Del13','Del23')" >Delete</button>&nbsp;                                
+                       <button type="button"  class="btn btn-danger  pull-left" id="Del23" style='display:none;' onclick="validateform9();" >Delete</button>&nbsp;
+                       <button type="button"  class="btn btn-primary  pull-left" id="Ed1" onclick="edit_form('d3',<%=Count_3%>);" >Edit</button>  
+              
+                                         <button type="button"  class="btn btn-default  pull-right" data-toggle="modal" data-target="#myModal" id="btn_new3" onclick="validateform3()"> <a class="collapsed" data-toggle="collapse" data-parent="#panels1" href="#collapse3" style="color:black"><span class="glyphicon glyphicon-chevron-left"></span>  Previous</a></button>
+                             
                                 </div>                                 
                             </div>                             
                         </div>
-          
-                  
-       <input type="hidden" id="pwqej" value="<%= info %>" hidden>
-      
-    
+        </div>
+                    
+                    <button type="button" class="btn btn-primary btn pull-right" onclick="validateform9();">Save & Continue...</button>&nbsp;
+
                     <button type="button" class="btn btn-default" onclick="location.href = 'grid.jsp';">Cancel</button> 
-                   <button type="submit" class="btn btn-primary btn pull-right" >Save & Continue ...</button>&nbsp;
-    
-                    <script>
- if(document.getElementById('pwqej').value=="RX" || document.getElementById('pwqej').value=="R")
- 
-checkk();
- 
- </script>        
-            
+                     
+ </div>  
+                   
        </div>
+      
+    
+                <script>
+                function validateform9() {
                 
-            </div>
-            
-            
+             	   var f=document.loginForm;
+                    f.method="post";
+                    f.action="Technical"
+                    f.submit();
+                }
+                </script>
+  
       
         <%
+        
+   
 }
 }
-                   }
+ %> </form>
+<jsp:include page="samp_forms.jsp">
+      <jsp:param name="ProjectName" value="<%=project_NAME %>"/>
+       <jsp:param name="AppName" value="<%=idd %>"/>
+          <jsp:param name="number" value="3"/>
+    <jsp:param name="servlet" value="Technical"/>
+       </jsp:include>
+<%
+}
 }
 }
 catch(Exception e){}
 %>
-</form>
+    
+	
 
 
 
@@ -877,62 +1040,33 @@ catch(Exception e){}
          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 
-         <!-- ========== THEME JS ========== -->
-         
- <script type="text/javascript">
-     $('.datepicker').datepicker({
-     format: 'mm/dd/yyyy',
-     startDate: '-3d'
- });
- </script>
+<script>
 
-
-         <!-- ========== THEME JS ========== -->
-         <script>
-             $(function($) {
-
-                 // 1st  datepicker
-                 $('#basicExample .time').timepicker({
-                 'showDuration': true,
-                 'timeFormat': 'g:ia'
-                 });
-
-                 $('#basicExample .date').datepicker({
-                 'format': 'm/d/yyyy',
-                 'autoclose': true
-                 });
-
-                 var basicExampleEl = document.getElementById('basicExample');
-                 var datepair = new Datepair(basicExampleEl);
-
-                 // 2nd  datepicker
-                 $('#datetimepicker1').datetimepicker({
-                     debug: true
-                 });
-
-                 // 3rd  datepicker
-                 $('#datetimepicker9').datetimepicker({
-                 viewMode: 'years'
-                 });
-
-                 // 4th  datepicker
-                 $('#datetimepicker10').datetimepicker({
-                 viewMode: 'years',
-                 format: 'MM/YYYY'
-                 });
-
-                 // 5th  datepicker
-                 $('#datetimepicker11').datetimepicker({
-                 daysOfWeekDisabled: [0, 6]
-                 });
-
-                 // 6th  datepicker
-                 $('#datetimepicker12').datetimepicker({
-                     inline: true,
-                     sideBySide: true
-                 });
-             });
-         </script>
+$(function() {
+for(var i=0;i<10;i++){
+    $( "#rod"+i ).datepicker({
+        format: "dd/mm/yyyy",
+        autoclose: true
+    });
+}
+});
+$(function() {
+	for(var i=0;i<10;i++){
+	        $( "#rod1"+i ).datepicker({
+	            format: "dd/mm/yyyy",
+	            autoclose: true
+	        });
+	}
+	    });
+$(function() {
+	for(var i=0;i<10;i++){
+	        $( "#rod2"+i ).datepicker({
+	            format: "dd/mm/yyyy",
+	            autoclose: true
+	        });
+	}
+	    });
+</script>
 
 
 </body>

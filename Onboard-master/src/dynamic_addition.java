@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class sampadd
+ * Servlet implementation class dynamic_addition
  */
-@WebServlet("/sampadd")
-public class sampadd extends HttpServlet {
+@WebServlet("/dynamic_addition")
+public class dynamic_addition extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sampadd() {
+    public dynamic_addition() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,6 +40,11 @@ public class sampadd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String servlet_name=request.getParameter("servlet_name");
+		System.out.println(servlet_name);
+		
+		String project_name=request.getParameter("project_name");
+		String appln_name = request.getParameter("appln_name");
 		String Pid=request.getParameter("panel");
 		String panel_name = "P" + request.getParameter("panel");
 		String c_labels="",r_labels="",d_labels="";
@@ -49,6 +54,7 @@ public class sampadd extends HttpServlet {
 		String col_name= request.getParameter("idname"+Pid);
 		
 		String number = request.getParameter("number"+Pid);
+		
 		if(number==null || number=="")
 			number="0";
 		String Rnumber = request.getParameter("radio_number"+Pid);
@@ -65,23 +71,31 @@ public class sampadd extends HttpServlet {
 		for(int i=1;i<=Integer.parseInt(Dnumber);i++)
 			d_labels+=request.getParameter("drp_label"+i)+"/";
 		
-		System.out.println("dadition   -- "+label+" "+type+" "+mandatory+"\n------------------------");
-		System.out.println(number);
-
-			
+	
 		
-		   try
+		  try
 	        {
 	          // create a mysql database connection
 	          String myDriver = "org.gjt.mm.mysql.Driver";
 	          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
 	          Class.forName(myDriver);
 	          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
+	          String query="";
 	        
 	         
 	          // the mysql insert statement
-	          String query = " insert into samp_business (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels)"
-	            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	          if(servlet_name.equals("Business")){
+	           query = " insert into samp_business (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+	            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	          }
+	          if(servlet_name.equals("Technical")){
+		           query = " insert into samp_technical (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+		            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		          }
+	          if(servlet_name.equals("Requirements")){
+		           query = " insert into samp_archivalrequirement (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+		            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		          }
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);
 	          preparedStmt.setString (1, label);
 	          preparedStmt.setString (2, type);
@@ -94,6 +108,8 @@ public class sampadd extends HttpServlet {
 	          preparedStmt.setString (9, d_labels);
 	         preparedStmt.setString (10, col_name);
 	         preparedStmt.setString (11, panel_name);
+	         preparedStmt.setString (12, project_name);
+	         preparedStmt.setString (13, appln_name);
 	          preparedStmt.execute();
 	          conn.close();
 	        }
@@ -104,8 +120,15 @@ public class sampadd extends HttpServlet {
 	          System.err.println(e.getMessage());
 	        }
 	          
-		
+		  if(servlet_name.equals("Business")){
 		response.sendRedirect("Intake_Business.jsp");
+		  }
+		  if(servlet_name.equals("Technical")){
+				response.sendRedirect("Intake_TechnicalDetails.jsp");
+				  }
+		  if(servlet_name.equals("Requirements")){
+				response.sendRedirect("Intake_ArchiveRequirements.jsp");
+				  }
 	}
 
 }

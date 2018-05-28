@@ -155,7 +155,7 @@ response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setHeader("Expires", "0"); // Proxies.
 if (session.getAttribute("username")==null)
 {
-response.sendRedirect("Login.jsp");
+response.sendRedirect("Login.html");
 }
 %>
 
@@ -204,6 +204,8 @@ String imp_id="";
 String sequenceNumber="",pan_ID="";
 int actualHours=0,plannedHours=0,actualHours1=0,plannedHours1=0;
 ArrayList<String> list=new ArrayList<String>();
+if(rs3.next()){
+	String project_NAME=rs3.getString("projectname");
 {
 %>
 
@@ -229,7 +231,7 @@ ArrayList<String> list=new ArrayList<String>();
                 			</button>
                 		</div>
                         <!-- /.navbar-header -->
-                           <% if(rs3.next()){ %>
+                         
                     <% if(rs4.next()){
                     	String rowCount="";
                     	 String query11 = "select * from sample_business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from sample_business where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
@@ -639,7 +641,7 @@ if(implement == null)
  }  
  
  if (rs11.next() || rowCount.equals("0")) { 
- String qury="select * from samp_business where panels='P1'";
+ String qury="select * from samp_business where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
  Statement stm = conn.createStatement();
  ResultSet Rs = stm.executeQuery(qury);
 %>  
@@ -666,9 +668,12 @@ if(implement == null)
                                            
                                             </label>
                                         <%if(Rs.getString(2).equals("Text box")){ 
-                                      
+                                                if(Rs.getString("idname").equals("legappname")){
                                         %>    
+                                        <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value="<%= rs4.getString("appname") %>"<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value="<%= rs4.getString("appname") %>"<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>
+                                        <%}else { %>
                                             <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>
+                                            <%} %>
                                             
                               <%}else if(Rs.getString(2).equals("Dropdown")){
                   				String box[]=Rs.getString(9).split("/");
@@ -689,10 +694,24 @@ if(implement == null)
                     	                                       
                     		<%}%></div><%}
                                         
-                              else if(Rs.getString(2).equals("Datepicker")){%>
+                              else if(Rs.getString(2).equals("Datepicker")){
+                            	   if(Rs.getString("idname").equals("rod")){ 
+                                      String date_query="select read_date from app_prior where prj_name='"+project_NAME+"' and proj_name='"+rs4.getString("appname")+"'";
+                                      Statement dt_st = conn.createStatement();
+                                      ResultSet rslt_dt = dt_st.executeQuery(date_query);
+                                      String result_date="0";
+                                      if(rslt_dt.next()){
+                                    	  if(rslt_dt.getString(1)!=null)
+                                    		  result_date=rslt_dt.getString(1);
+                                    	  
+                                      %>
+                                        <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value="<%= result_date %>"<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value="<%= result_date %>"<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>      
+                                             <%}}
+                                      else{    %>
                               
-                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>>
-                              <%
+                                        <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>>  
+                             
+                              <%}
                               k++;
                               } else if(Rs.getString(2).equals("Check box")){
                             	  String box[]=Rs.getString(5).split("/");
@@ -735,7 +754,7 @@ if(implement == null)
                            {
                         	   var f=document.loginForm;
                                f.method="post";
-                               f.action='edit_business.jsp?label='+x+'&idname='+y;
+                               f.action="Edit_Pages.jsp?label="+x+"&idname="+y+"&name=Business";
                                f.submit();  
                            }
                            function edit_form(d1,Count_1)
@@ -752,10 +771,11 @@ if(implement == null)
                            </script>
          
                         <script>
-                        var count=0,mandtry,Idss;
+             
                         function validateform(){
+                            var count=0,mandtry,Idss;
                         <% 
-                        String q1="select * from samp_business where panels='P1'";
+                        String q1="select * from samp_business where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq = conn.createStatement();
                         ResultSet rsq = stq.executeQuery(q1);
                         while(rsq.next())
@@ -780,7 +800,7 @@ if(implement == null)
                      
                         
 <%
-String qury1="select * from samp_business where panels='P2'";
+String qury1="select * from samp_business where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
 Statement stm1 = conn.createStatement();
 ResultSet Rs1 = stm1.executeQuery(qury1);
 %>     
@@ -832,7 +852,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                                         
                               else if(Rs1.getString(2).equals("Datepicker")){%>
                               
-                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs1.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>>
+                                      <input placeholder="mm/dd/yyyy" id="rod1<%=k %>" name="<%= Rs1.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs1.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs1.getString("idname"))%>" <%}} %>>
                               <%
                               k++;
                               } else if(Rs1.getString(2).equals("file")){
@@ -866,17 +886,17 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         </div>
                                      
                                <script>
-                               var count1=0;
+                             
                         function validateform1(){
-                           
+                        	  var count1=0;  
                         <% 
-                        String q2="select * from samp_business where panels='P2'";
+                        String q2="select * from samp_business where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq2 = conn.createStatement();
                         ResultSet rsq2 = stq2.executeQuery(q2);
                         while(rsq2.next())
                         {
                         %>
-                        if('<%=rsq2.getString("mandatory") %>' == "Yes")
+                        if('<%=rsq2.getString("mandatory") %>' == "Yes" && '<%=rsq2.getString(2) %>' != "file")
                         	{
                         	if(document.getElementsByName('<%=rsq2.getString("idname") %>')[0].value == "")
                         		{
@@ -892,7 +912,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         
                         </script>
           <%
-String qury2="select * from samp_business where panels='P3'";
+String qury2="select * from samp_business where panels='P3' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
 Statement stm2 = conn.createStatement();
 ResultSet Rs2 = stm2.executeQuery(qury2);
 %>                  
@@ -940,7 +960,7 @@ ResultSet Rs2 = stm2.executeQuery(qury2);
                                         
                               else if(Rs2.getString(2).equals("Datepicker")){%>
                               
-                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs2.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs2.getString("idname")) %>">
+                                      <input placeholder="mm/dd/yyyy" id="rod2<%=k %>" name="<%= Rs2.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs2.getString("idname")) %>">
                               <%
                               k++;
                               } else if(Rs2.getString(2).equals("file")){
@@ -977,7 +997,7 @@ ResultSet Rs2 = stm2.executeQuery(qury2);
                         function validateform3(){
                             var count=0;
                         <% 
-                        String q3="select * from samp_business where panels='P3'";
+                        String q3="select * from samp_business where panels='P3' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq3 = conn.createStatement();
                         ResultSet rsq3 = stq3.executeQuery(q3);
                         while(rsq3.next())
@@ -999,7 +1019,7 @@ ResultSet Rs2 = stm2.executeQuery(qury2);
                         
                         </script>
                 <%
-String qury3="select * from samp_business where panels='P4'";
+String qury3="select * from samp_business where panels='P4' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
 Statement stm3 = conn.createStatement();
 ResultSet Rs3 = stm3.executeQuery(qury3);
 %>                        
@@ -1046,7 +1066,7 @@ ResultSet Rs3 = stm3.executeQuery(qury3);
                                         
                               else if(Rs3.getString(2).equals("Datepicker")){%>
                               
-                                      <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs3.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs3.getString("idname")) %>">
+                                      <input placeholder="mm/dd/yyyy" id="rod3<%=k %>" name="<%= Rs3.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" value="<%= rs11.getString(Rs3.getString("idname")) %>">
                               <%
                               k++;
                               } else if(Rs3.getString(2).equals("file")){
@@ -1091,7 +1111,7 @@ ResultSet Rs3 = stm3.executeQuery(qury3);
                         function validateform2(){
                             var count=0;
                         <% 
-                        String q4="select * from samp_business where panels='P4'";
+                        String q4="select * from samp_business where panels='P4' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq4 = conn.createStatement();
                         ResultSet rsq4 = stq3.executeQuery(q4);
                         while(rsq4.next())
@@ -1124,16 +1144,22 @@ ResultSet Rs3 = stm3.executeQuery(qury3);
         <%
         
    
-}
-}
-}
-}
-}
-
-catch(Exception e){}
-%>
-</form>
-	<jsp:include page="samp_business_forms.jsp"/>
+ }
+                    }
+                     %> </form>
+                    <jsp:include page="samp_forms.jsp">
+                          <jsp:param name="ProjectName" value="<%=project_NAME %>"/>
+                           <jsp:param name="AppName" value="<%=app_Name %>"/>
+                           <jsp:param name="number" value="4"/>
+                           <jsp:param name="servlet" value="Business"/>
+                           </jsp:include>
+                    <%
+                    }
+                    }
+                    }
+                    catch(Exception e){}
+                    %>
+       
                    <!-- /.row -->
 				</section>
                         <!-- /.section -->
@@ -1200,61 +1226,43 @@ catch(Exception e){}
 
 
          <!-- ========== THEME JS ========== -->
-         
- <script type="text/javascript">
-     $('.datepicker').datepicker({
-     format: 'mm/dd/yyyy',
-     startDate: '-3d'
- });
- </script>
+  <script>
 
-
+  $(function() {
+for(var i=0;i<10;i++){
+      $( "#rod"+i ).datepicker({
+          format: "dd/mm/yyyy",
+          autoclose: true
+      });
+}
+  });
+  $(function() {
+  	for(var i=0;i<10;i++){
+  	        $( "#rod1"+i ).datepicker({
+  	            format: "dd/mm/yyyy",
+  	            autoclose: true
+  	        });
+  	}
+  	    });
+  $(function() {
+  	for(var i=0;i<10;i++){
+  	        $( "#rod2"+i ).datepicker({
+  	            format: "dd/mm/yyyy",
+  	            autoclose: true
+  	        });
+  	}
+  	    });
+  $(function() {
+  	for(var i=0;i<10;i++){
+  	        $( "#rod3"+i ).datepicker({
+  	            format: "dd/mm/yyyy",
+  	            autoclose: true
+  	        });
+  	}
+  	    });
+  </script>
          <!-- ========== THEME JS ========== -->
-         <script>
-             $(function($) {
-
-                 // 1st  datepicker
-                 $('#basicExample .time').timepicker({
-                 'showDuration': true,
-                 'timeFormat': 'g:ia'
-                 });
-
-                 $('#basicExample .date').datepicker({
-                 'format': 'm/d/yyyy',
-                 'autoclose': true
-                 });
-
-                 var basicExampleEl = document.getElementById('basicExample');
-                 var datepair = new Datepair(basicExampleEl);
-
-                 // 2nd  datepicker
-                 $('#datetimepicker1').datetimepicker({
-                     debug: true
-                 });
-
-                 // 3rd  datepicker
-                 $('#datetimepicker9').datetimepicker({
-                 viewMode: 'years'
-                 });
-
-                 // 4th  datepicker
-                 $('#datetimepicker10').datetimepicker({
-                 viewMode: 'years',
-                 format: 'MM/YYYY'
-                 });
-
-                 // 5th  datepicker
-                 $('#datetimepicker11').datetimepicker({
-                 daysOfWeekDisabled: [0, 6]
-                 });
-
-                 // 6th  datepicker
-                 $('#datetimepicker12').datetimepicker({
-                     inline: true,
-                     sideBySide: true
-                 });
-             });
-         </script>
+       
 
 </body>
 </html>

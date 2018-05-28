@@ -1,25 +1,4 @@
-
-   
-   function validateform1()
-   {
-var server = document.loginForm.servername.value
-var prod = document.loginForm.prodinstance.value
-    var instance = document.loginForm.prodinstanceloc.value
-var database = document.loginForm.dbsize.value
-var decommision = document.loginForm.decomdate.value
- 
-
-if(server  ==  "" || prod == "" || instance == "" || database == "" ||  decommision == "" )
- 
-{
-alert("Please Fill the Mandatory Field");
-  }
-     else{
- 
-toggle1();
-}
-   }
- 
+     
 function toggle2()
 {
 
@@ -66,30 +45,8 @@ x.item(i).style.backgroundColor = '#3276B1' ;
 
 
 } */
-function validate() {
- 
-var data = document.loginForm.dataloc.value
-var name = document.loginForm.servername.value
-var prod = document.loginForm.prodinstance.value
-    var location = document.loginForm.prodinstanceloc.value
-var reason = document.loginForm.reasonfor.value
-var size = document.loginForm.dbsize.value
-var number = document.loginForm.nooftable.value
-var record = document.loginForm.noofrec.value
-var decommision = document.loginForm.integname.value
- 
-if(data == "" || name == "" || prod == "" ||location == ""||  reason == ""|| size == "" || number == "" || record == "" || decommision == "" )
-{
-alert("Please Fill the Mandatory Field");
-  }
-     else
-     {
- 
-toggle1();
-}
- 
- 
-}
+
+
 function toggle1() {
 var ele = document.getElementById("collapse3");
  
@@ -121,24 +78,7 @@ x.item(i).style.backgroundColor = '#3276B1' ;
 
 
 } */
-function validateform() {
  
-var dataType = document.loginForm.datatype.value
-var processname = document.loginForm.pname.value
-var needarch = document.loginForm.archneed.value
-
-
- if(((document.loginForm.datatype[0].checked == false) && (document.loginForm.datatype[1].checked == false) && (document.loginForm.datatype[2].checked == false))|| processname=="" || needarch =="")  
-{
-alert("Please Fill the Mandatory Field");
-  }
-     else{
- 
-toggle();
-}
- 
- 
-}
 function toggle() {
 var ele = document.getElementById("collapse2");
  

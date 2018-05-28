@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import org.apache.log4j.BasicConfigurator;
 
 import org.apache.log4j.Logger;
@@ -56,171 +59,89 @@ response.getWriter().append("Served at: ").append(request.getContextPath());
 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 */
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	HttpSession details=request.getSession(); 
-	HttpSession session=request.getSession();
-	String u_name=(String)details.getAttribute("username");
+	String project_name=request.getParameter("project_name");
+	String app_name=request.getParameter("appln_name");
+	System.out.println(project_name+" "+app_name);
+	int DEL_count=0;
+try{
+    String myDriver = "org.gjt.mm.mysql.Driver";
+    String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+    Class.forName(myDriver);
+    Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	
-	String appname=(String)session.getAttribute("appidd");
+	/*String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'sample_business' ORDER BY ORDINAL_POSITION";
+    Statement st = conn.createStatement();
+    ResultSet rs = st.executeQuery(query);*/
+    for(int i=1;i<=3;i++){
+   String query21 = "SELECT * from samp_technical where panels='P"+i+"'";
+    Statement st21 = conn.createStatement();
+    ResultSet rs21 = st21.executeQuery(query21);
+    while(rs21.next())
+    {
+    	String val=request.getParameter(rs21.getString("idname")+"1");
+    	String Idname=rs21.getString("idname");
+    	if(val != null)
+    	{
+    		String query4 = "delete from samp_technical where idname='"+Idname+"' and projectname='"+project_name+"' and appname='"+app_name+"'";
+        	PreparedStatement preparedStmt4 = conn.prepareStatement(query4);
+        	 preparedStmt4.execute();
 
-		String userid=u_name;
-				MDC.put("USERID", userid);
-				String u_role=(String)details.getAttribute("role");
-				MDC.put("USERROLE", u_role);
-				String projectname=request.getParameter("project_name");
-				logger.info("modified project "+projectname); 
-String datatype = request.getParameter("datatype");
-       String pname = request.getParameter("pname");
-       String archneed = request.getParameter("archneed");
-      
-       String formatsp = request.getParameter("format");
-       String mlang = request.getParameter("mlang");
-       if(mlang==null)
-    	   mlang="No";
-       String loclang = request.getParameter("loclang");
-       if(loclang==null)
-    	   loclang="No";
-       String dataretain = request.getParameter("dataretain");
-       if(dataretain==null)
-    	   dataretain="No";
-       String systemdoc = request.getParameter("systemdoc");
-       if(systemdoc==null)
-    	   systemdoc="No";
-       String userdoc = request.getParameter("userdoc");
-       String techdoc = request.getParameter("techdoc");
-       String traindoc = request.getParameter("traindoc");
-       String supportdoc = request.getParameter("supportdoc");
-       String datadic = request.getParameter("datadic");
-       String testcasedoc = request.getParameter("testcasedoc");
-       String testrec = request.getParameter("testrec");
-       String designspec = request.getParameter("designspec");
-       String reqspec = request.getParameter("reqspec");
-       String validityplan = request.getParameter("validityplan");
-       String dataloc = request.getParameter("dataloc");
-       String servername = request.getParameter("servername");
-       String prodinstance = request.getParameter("prodinstance");
-       String prodinstanceloc = request.getParameter("prodinstanceloc");
-       String infraengage = request.getParameter("infraengage");
-       String sourcearch = request.getParameter("sourcearch");
-       if(sourcearch==null)
-    	   sourcearch="No";
-       
-       String apphost = request.getParameter("apphost");
-       String retenduration = request.getParameter("retenduration");
-       String clientapp = request.getParameter("clientapp");
-       String extcustfacing = request.getParameter("extcustfacing");
-       String url = request.getParameter("url");
-       String dbsize = request.getParameter("dbsize");
-       String nooftable = request.getParameter("nooftable");
-       String noofrec = request.getParameter("noofrec");
-       String xmlcount = request.getParameter("xmlcount");
-       String anyvpn = request.getParameter("anyvpn");
-       String vpnacces = request.getParameter("vpnacces");
-       if(vpnacces==null)
-    	   vpnacces="No";
-       String appintegrate = request.getParameter("appintegrate");
-       if(appintegrate==null)
-    	   appintegrate="No";
-       String integname = request.getParameter("integname");
-       String decomdate = request.getParameter("decomdate");
+     		String query5 = "alter table technical drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
+         	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
+         	 preparedStmt5.execute();
+         	 System.out.println("*********Deletion quey**********");
+         	 System.out.println(query4+"\n"+query5);
+         	 DEL_count++;
+         	 
+    	}
+    		
+    }
+    }
+    if(DEL_count==0){
+    String query = "SELECT * from samp_technical where appname='"+app_name+"' and projectname='"+project_name+"'";
+    Statement st = conn.createStatement();
+    ResultSet rs = st.executeQuery(query);
+    int cnt=0;
+    String ref_id="";
+    while(rs.next())
+    {
+    	if(cnt==0){
+    	String n=request.getParameter(rs.getString("idname"));
+    	cnt++;
+    	String query1 = "insert into technical("+rs.getString("idname")+",appname,projectname) values('"+n+"','"+app_name+"','"+project_name+"')";
+
+    	PreparedStatement preparedStmt = conn.prepareStatement(query1);
+    	 preparedStmt.execute();
+    	 String query10 = "SELECT max(id) from technical where appname='"+app_name+"'";
+    	    Statement st10 = conn.createStatement();
+    	    ResultSet rs10 = st10.executeQuery(query10);
+    	    if(rs10.next())
+    	    	ref_id=rs10.getString(1);
+    	    
+    	}
+    	else{
+    		String n=request.getParameter(rs.getString("idname"));
+    		if(rs.getString("type_of_box").equals("Check box") && n == null)
+    			n="no";
+
     
-        
-       
-       // do some processing here...
-        
-       // get response writer
-       PrintWriter writer = response.getWriter();
-        
-       // build HTML code
-       String htmlRespone = "<html>";
-       htmlRespone += "<h2>Your Order Has been Taken</h2>";  
-       htmlRespone += "</html>";
-       writer.println(htmlRespone);
-       try
-       {
-         // create a mysql database connection
-         String myDriver = "org.gjt.mm.mysql.Driver";
-         String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
-         Class.forName(myDriver);
-         Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-       
-   
-         
-         // the mysql insert statement
-         String query = " insert into technical (datatype, pname, archneed, formatsp, mlang, loclang, dataretain, systemdoc, userdoc, techdoc, traindoc, supportdoc, datadic, testcasedoc, testrec, designspec, validityplan, dataloc, servername, prodinstance, prodinstanceloc, infraengage, sourcearch, apphost, retenduration, clientapp, extcustfacing, url, dbsize, nooftable, noofrec, xmlcount, anyvpn, vpnacces, appintegrate,integname,decomdate,appname,reqspec,projectname)"
-           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)";
-
-         // create the mysql insert preparedstatement
-         //Scanner sin=new Scanner(System.in);
-         //String id,food,extra;
-         //System.out.println("Enter Your id");
-         //id=sin.next();
-         //System.out.println("Please tell what food you want");
-         //food=sin.next();
-         //System.out.println("would you like to have extra food today say y or n");
-         //extra=sin.next();
-         PreparedStatement preparedStmt = conn.prepareStatement(query);
-         preparedStmt.setString(1, datatype);
-         preparedStmt.setString(2, pname);
-         preparedStmt.setString(3, archneed);
-         preparedStmt.setString(4, formatsp);
-         preparedStmt.setString(5, mlang);
-         preparedStmt.setString(6, loclang);
-         preparedStmt.setString(7, dataretain);
-         preparedStmt.setString(8, systemdoc);
-         preparedStmt.setString(9, userdoc);
-         preparedStmt.setString(10, techdoc);
-         preparedStmt.setString(11, traindoc);
-         preparedStmt.setString(12, supportdoc);
-         preparedStmt.setString(13, datadic);
-         preparedStmt.setString(14, testcasedoc);
-         preparedStmt.setString(15, testrec);
-         preparedStmt.setString(16, designspec);
-         preparedStmt.setString(17, validityplan);
-         preparedStmt.setString(18, dataloc);
-         preparedStmt.setString(19, servername);
-         preparedStmt.setString(20, prodinstance);
-         preparedStmt.setString(21, prodinstanceloc);
-         preparedStmt.setString(22, infraengage);
-         preparedStmt.setString(23, sourcearch);
-         preparedStmt.setString(24, apphost);
-         preparedStmt.setString(25, retenduration);
-         preparedStmt.setString(26, clientapp);
-         preparedStmt.setString(27, extcustfacing);
-         preparedStmt.setString(28, url);
-         preparedStmt.setString(29, dbsize);
-         preparedStmt.setString(30, nooftable);
-         preparedStmt.setString(31, noofrec);
-         preparedStmt.setString(32, xmlcount);
-         preparedStmt.setString(33, anyvpn);
-         preparedStmt.setString(34, vpnacces);
-         preparedStmt.setString(35, appintegrate);
-         preparedStmt.setString(36, integname);
-         preparedStmt.setString(37, decomdate);
-         preparedStmt.setString(38, appname);
-         preparedStmt.setString(39, reqspec);
-         preparedStmt.setString(40, projectname);
-        
-         
-         
-         
-
-         // execute the preparedstatement
-         preparedStmt.execute();
-         
-         conn.close();
+    	String query2 = "update technical set "+rs.getString("idname")+" = '"+n+"' where id = '"+ref_id+"'";
+    	PreparedStatement preparedStmt1 = conn.prepareStatement(query2);
+    	 preparedStmt1.execute();
+    	}
+    	
+    }
+    }
+    conn.close();
        }
        catch (Exception e)
        {
        
-System.out.println("HIII");
          System.err.println("Got an exception!");
          System.err.println(e.getMessage());
-         System.out.println("Hello");
-         e.getStackTrace();
        }
        // return response
-       response.sendRedirect("Intake_ArchiveRequirements.jsp");
-
+       response.sendRedirect("Intake_TechnicalDetails.jsp");
 
 }
 

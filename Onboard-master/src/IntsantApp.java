@@ -157,6 +157,112 @@ app[60]=new Application("Reason for Access", "Text box", "No", "", "", "", "", "
 app[61]=new Application("Frequency of Access", "Text box", "No", "", "", "", "", "", "", "P4", "accfreq");
 app[62]=new Application("Additional System Requirements", "Text box", "No", "", "", "", "", "", "", "P4", "sysreq");
 
+class Technical
+{
+	
+	String label, type_of_box, mandatory, no_of_box, checkbox_labels, no_of_Rbox, radiobox_labels, no_of_drpdwn, dropdown_labels,panels, idname;
+	Technical(String label, String type_of_box, String mandatory,String no_of_box,String checkbox_labels,String no_of_Rbox,String radiobox_labels,String no_of_drpdwn,String dropdown_labels,String panels,String idname)
+	{
+		this.label=label;
+		this.type_of_box=type_of_box;
+		this.mandatory=mandatory;
+		this.no_of_box=no_of_box;
+		this.checkbox_labels=checkbox_labels;
+		this.no_of_Rbox=no_of_Rbox;
+		this.radiobox_labels=radiobox_labels;
+		this.no_of_drpdwn=no_of_drpdwn;
+		this.dropdown_labels=dropdown_labels;
+		this.panels=panels;
+		this.idname=idname;
+		
+	}
+}
+
+Technical t[]=new Technical[70];
+t[0]=new Technical("Datatype Characteristics", "Radio box", "Yes", " ", " ", "3", "Structured/Unstructured/Hybrid/", " ", " ", "P1", "datatype");
+t[1]=new Technical("If the Data Type is Unstructured or Hybrid, process for extracting unstructured data?", "Text box", "Yes", " ", " ", " ", " ", " ", " ", "P1", "pname");
+t[2]=new Technical("Does Unstructured or Hybrid business objects needs to be archived?", "Dropdown", "Yes", " ", " ", " ", " ", "2", "Yes/No", "P1", "archneed");
+t[3]=new Technical("Please specify the formats", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "format");
+t[4]=new Technical(" ", "Check box", "No", "1", "Any Special or Multi Language characters or Foreign Language contained in the application?", " ", " ", " ", " ", "P1", "mlang");
+t[5]=new Technical(" ", "Check box", "No", "1", "If the legacy application contains local language, should the local language be maintained in the archive?", " ", " ", " ", " ", "P1", "loclang");
+t[6]=new Technical(" ", "Check box", "No", "1", "Based on the application data and date range of the data, is all or part of the data required to be retained beyond application retirement or repurposing?", " ", " ", " ", " ", "P1", "dateretain");
+t[7]=new Technical(" ", "Check box", "No", "1", "System Documentation and its Location", " ", " ", " ", " ", "P1", "systemdoc");
+t[8]=new Technical("User Documentation", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "userdoc");
+t[9]=new Technical("Technical Documentation", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "techdoc");
+t[10]=new Technical("Training Documentation", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "traindoc");
+t[11]=new Technical("Support Documentation", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "supportdoc");
+t[12]=new Technical("Data Dictionary", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "datadic");
+t[13]=new Technical("Test Case Documentation", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "testcasedoc");
+t[14]=new Technical("Testing Records", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "testrec");
+t[15]=new Technical("Design Specification", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "designspec");
+t[16]=new Technical("Requirements Specification", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "reqspec");
+t[17]=new Technical("Validation Plan", "Text box", "No", " ", " ", " ", " ", " ", " ", "P1", "validityplan");
+t[18]=new Technical("Server Name", "Text box", "Yes", " ", " ", " ", " ", " ", " ", "P2", "servername");
+t[19]=new Technical("Production Instances", "Text box", "Yes", " ", " ", " ", " ", " ", " ", "P2", "prodinstance");
+t[20]=new Technical("Location of Production Instances", "Text box", "Yes", " ", " ", " ", " ", " ", " ", "P2", "prodinstanceloc");
+t[21]=new Technical("Contact Name or Entity for Infrastructure Engagement", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "infraengage");
+t[22]=new Technical(" ", "Check box", "No", "1", "Do you need to archive source code?", " ", " ", " ", " ", "P2", "sourcearch");
+t[23]=new Technical("Is this Application a Hosted Service ?", "Dropdown", "No", " ", " ", " ", " ", "2", "Yes/No", "P2", "apphost");
+t[24]=new Technical("Duration for retention agreements with the vendor", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "retenduration");
+t[25]=new Technical("Does the legacy applicationâs data need to be archived in the client archive application", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "clientapp");
+t[26]=new Technical("Is the Application external customer facing or have a component of being external customer facing", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "extcustfacing");
+t[27]=new Technical("If external facing, web apps/website URLs", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "url");
+t[28]=new Technical("Database size of the application", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "dbsize");
+t[29]=new Technical("Estimated No of Table in the application", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "nooftable");
+t[30]=new Technical("Estimated No of Records(volume) in the application", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "noofrec");
+t[31]=new Technical("XML counts for the database", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "xmlcount");
+t[32]=new Technical("Does this application utilize any VPN environments (E.g. Citrix) for access", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "anyvpn");
+t[33]=new Technical("VPN access required for application access", "Check box", "No", "1", "Yes", " ", " ", " ", " ", "P2", "vpnacces");
+t[34]=new Technical("Does data in the Application integrate to or from other systems? ", "Check box", "No", "1", "Yes", " ", " ", " ", " ", "P2", "appintegrate");
+t[35]=new Technical("Specify the application to integrate ", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "integname");
+t[36]=new Technical("Ready Date for Complete Server decommission and Application Retirement", "Text box", "No", " ", " ", " ", " ", " ", " ", "P2", "decomdate");
+t[37]=new Technical("Downloadable Attachment1", "file", "No", " ", " ", " ", " ", " ", " ", "P3", "file1");
+t[38]=new Technical("Downloadable Attachment2", "file", "No", " ", " ", " ", " ", " ", " ", "P3", "file2");
+t[39]=new Technical("Downloadable Attachment3 ", "file", "No", " ", " ", " ", " ", " ", " ", "P3", "file3");
+t[40]=new Technical("Downloadable Attachment4", "file", "No", " ", " ", " ", " ", " ", " ", "P3", "file4");
+
+class Arch_Req
+{
+	
+	String label, type_of_box, mandatory, no_of_box, checkbox_labels, no_of_Rbox, radiobox_labels, no_of_drpdwn, dropdown_labels,panels, idname;
+	Arch_Req(String label, String type_of_box, String mandatory,String no_of_box,String checkbox_labels,String no_of_Rbox,String radiobox_labels,String no_of_drpdwn,String dropdown_labels,String panels,String idname)
+	{
+		this.label=label;
+		this.type_of_box=type_of_box;
+		this.mandatory=mandatory;
+		this.no_of_box=no_of_box;
+		this.checkbox_labels=checkbox_labels;
+		this.no_of_Rbox=no_of_Rbox;
+		this.radiobox_labels=radiobox_labels;
+		this.no_of_drpdwn=no_of_drpdwn;
+		this.dropdown_labels=dropdown_labels;
+		this.panels=panels;
+		this.idname=idname;
+		
+	}
+}
+Arch_Req ar[]=new Arch_Req[30];
+ar[0]=new Arch_Req(" ", "Check box", "No", "1", "Current Legal holds on the application data must be applied to the application\"s archived data to override the Retention schedule", " ", " ", " ", "", "P2", "legalholds");
+ar[1]=new Arch_Req(" ", "Check box", "No", "1", "Data from application must be retained based on the Client Retention schedule", " ", " ", " ", "", "P2", "dataapp");
+ar[2]=new Arch_Req(" ", "Check box", "No", "1", "Data Localization Laws must be followed where relevant", " ", " ", " ", "", "P2", "dataloc");
+ar[3]=new Arch_Req(" ", "Check box", "No", "1", "The System has tools to reconstruct the data in its original format", " ", " ", " ", "", "P2", "reconsttools");
+ar[4]=new Arch_Req(" ", "Check box", "No", "1", "The System allows for user viewing of blob data in its original format in relationship to its structured data", " ", " ", " ", "", "P2", "viewblob");
+ar[5]=new Arch_Req(" ", "Check box", "No", "1", "Archived data maintains its field properties and formats from the source system (i.e. decimals, %, commas, .00x, YYY-MM-DD) to display values defined in Views and schemas", " ", " ", " ", "", "P2", "fieldprop");
+ar[6]=new Arch_Req(" ", "Check box", "No", "1", "Archived data maintains its field types from the source system (i.e. STRING, Integer, CHAR, VCHAR, Date) to display values defined in Views and schemas", " ", " ", " ", "", "P2", "fieldtype");
+ar[7]=new Arch_Req(" ", "Check box", "No", "1", "The System supports archiving special characters as found in source data to include Foreign characters", " ", " ", " ", "", "P2", "splchars");
+ar[8]=new Arch_Req(" ", "Check box", "No", "1", "The System supports archiving Foreign Language data and maintains the Language in the archive", " ", " ", " ", "", "P2", "foreignlang");
+ar[9]=new Arch_Req(" ", "Check box", "No", "1", "The System Maintains CLOBs from source systems", " ", " ", " ", "", "P2", "clob");
+ar[10]=new Arch_Req(" ", "Check box", "No", "1", "The System supports archiving unstructured formats such as word, excel, PowerPoint, pdf.", " ", " ", " ", "", "P2", "unstructarch");
+ar[11]=new Arch_Req(" ", "Check box", "No", "1", "Access to the Archive is role based and controlled through Active Directory.", " ", " ", " ", "", "P2", "accrole");
+ar[12]=new Arch_Req(" ", "Check box", "No", "1", "The System allows for configuration of data views.", " ", " ", " ", "", "P2", "dataview");
+ar[13]=new Arch_Req(" ", "Check box", "No", "1", "Completeness Control - record level check (The number of records sent from the Application are compared to the number of records posted to the target.)", " ", " ", " ", "", "P2", "complctrl");
+ar[14]=new Arch_Req(" ", "Check box", "No", "1", "Error Handling Control - record level check (During the load, records deemed as errors based on program logic will be written to an exception log in their entirety).", " ", " ", " ", "", "P2", "errctrl");
+ar[15]=new Arch_Req(" ", "Check box", "No", "1", "The System supports metadata management and indexing", " ", " ", " ", "", "P2", "metadata");
+ar[16]=new Arch_Req(" ", "Check box", "No", "1", "The System provides advanced search tools to include data parameters and the standard search tools", " ", " ", " ", "", "P2", "advsearch");
+ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, data can be exported out of the system for analysis", " ", " ", " ", "", "P2", "searchparam");
+
+
+
 	
 		    
 		        
@@ -167,6 +273,7 @@ app[62]=new Application("Additional System Requirements", "Text box", "No", "", 
 		          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
 		          Class.forName(myDriver);
 		          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
+		          try{
 		          for(int j=0;j<63;j++){
 		        	    String query = " insert into samp_business (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
 		        	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -190,6 +297,65 @@ app[62]=new Application("Additional System Requirements", "Text box", "No", "", 
 		        	  	          
 		        	     preparedStmt.execute();
 		        	}
+		          }
+		          catch(Exception e)
+		          {
+		        	  System.err.println("Business page");
+		          }
+		          try{
+		          for(int j=0;j<41;j++){
+		        	    String query1 = " insert into samp_technical (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
+		        	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		        	          PreparedStatement preparedStmt1 = conn.prepareStatement(query1);
+		        	          preparedStmt1.setString(1, t[j].label);
+		        	          preparedStmt1.setString(2, t[j].type_of_box);
+		        	          preparedStmt1.setString(3, t[j].mandatory);
+		        	          preparedStmt1.setString(4, t[j].no_of_box);
+		        	          preparedStmt1.setString(5, t[j].checkbox_labels);
+		        	          preparedStmt1.setString(6, t[j].no_of_Rbox);
+		        	          preparedStmt1.setString(7, t[j].radiobox_labels);
+		        	          preparedStmt1.setString(8, t[j].no_of_drpdwn);
+		        	          preparedStmt1.setString(9, t[j].dropdown_labels);
+		        	          preparedStmt1.setString(10, t[j].panels);
+		        	          preparedStmt1.setString(11, t[j].idname);
+		        	          preparedStmt1.setString(12, appname);
+		        	          preparedStmt1.setString(13, prjname);
+		        	          
+		        	   
+		        	  	          
+		        	     preparedStmt1.execute();
+		        	}
+		          }
+		          catch(Exception e)
+		          {
+		        	  System.err.println("Technical page");  
+		          }
+		         try{
+		          for(int j=0;j<18;j++){
+		        	    String query2 = " insert into samp_archivalrequirement (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
+		        	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		        	          PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
+		        	          preparedStmt2.setString(1, ar[j].label);
+		        	          preparedStmt2.setString(2, ar[j].type_of_box);
+		        	          preparedStmt2.setString(3, ar[j].mandatory);
+		        	          preparedStmt2.setString(4, ar[j].no_of_box);
+		        	          preparedStmt2.setString(5, ar[j].checkbox_labels);
+		        	          preparedStmt2.setString(6, ar[j].no_of_Rbox);
+		        	          preparedStmt2.setString(7, ar[j].radiobox_labels);
+		        	          preparedStmt2.setString(8, ar[j].no_of_drpdwn);
+		        	          preparedStmt2.setString(9, ar[j].dropdown_labels);
+		        	          preparedStmt2.setString(10, ar[j].panels);
+		        	          preparedStmt2.setString(11, ar[j].idname);
+		        	          preparedStmt2.setString(12, appname);
+		        	          preparedStmt2.setString(13, prjname);         
+		        	     preparedStmt2.execute();
+		        	}
+		         }
+		          catch(Exception e)
+		         {
+		        	  System.err.println("Requirement page");   
+		         }
 
 				     int i=0;
 				
