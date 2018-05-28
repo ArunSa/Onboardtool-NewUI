@@ -798,7 +798,7 @@ while(rs2.next())
 										 <div>
 										 </div>
 										 </div>
-                                    <div id="curve_chart" style="height: 250px; width:700px;"></div>
+                                    <div id="curve_chart" style="height: 250px; width:800px;"></div>
                                    
                                 </div>
                             </div>
@@ -1338,7 +1338,8 @@ while(rs13.next())
          [new Date(<%=rs19.getString(1)%>,<%=rs19.getString(2)%>,<%=rs19.getString(3)%>), <%= rs19.getString(4)%>],
         
         <%}%>
-        [new Date(2019,01,01), null],
+        
+      
        
        ]);
 
@@ -1351,8 +1352,9 @@ while(rs13.next())
              title: 'Year',
             format : 'yyyy',
             pointSize: 5,
-            viewWindow: {min:new Date(2017,01,01),
-           	 max:new Date(2022,01,01)},
+             viewWindow: {min:new Date(2017,01,01),
+            	 max:new Date(2022,01,01), 
+             },
             	 titleTextStyle: {
             		          		    fontSize: '16',
             		  }
