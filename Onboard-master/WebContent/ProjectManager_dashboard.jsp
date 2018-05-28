@@ -372,16 +372,16 @@ ResultSet rs2 = st2.executeQuery(query2);
 String query1 = "SELECT role FROM role_details";
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
-String query4 = "select count(uname) from user_details";
+String query4 = "select count(*) from projinfo";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
-String query5 = "select count(role) from role_details";
+String query5 = "select count(mem_ass) from archive_exec where mem_ass!=''";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
 String query6 = "select count(roles) from logs";
 Statement st6 = conn.createStatement();
 ResultSet rs6 = st6.executeQuery(query6);
-String query7 = "select sum(count) from visits where module= 'Logged in' and uname='"+uname+"' ";
+String query7 = "select count(*) from appinfo";
 Statement st7 = conn.createStatement();
 ResultSet rs7 = st6.executeQuery(query7);
 
@@ -594,7 +594,7 @@ hypercare="0";
 								  <%= rs4.getString(1) %>
 								  
 								  <%}%> </h1>
-								  <span class="ui-label">Users</span>
+								  <span class="ui-label">No of Projects</span>
 								</div> 
                             </div>
                         </div>
@@ -607,7 +607,7 @@ hypercare="0";
                             <div class="card-body">
                                <div class="ui-widgets">
 						    <h1 class="ui-values"> <%  while(rs7.next()){ %><%= rs7.getString(1) %><%}%> </h1>
-						     <span class="ui-label">No.of Visit</span>
+						     <span class="ui-label">No of Applications</span>
 						</div>
                             </div>
                         </div>
@@ -622,7 +622,7 @@ hypercare="0";
                                <div class="ui-widgett">
                                 
 							  <h1 class="ui-valuet"><%  while(rs5.next()){ %><%= rs5.getString(1) %><%}%></h1> 
-							  <span class="ui-label">Roles</span>
+							  <span class="ui-label">No of Resource Assigned</span>
 							  
 							</div>
                             </div>
@@ -633,84 +633,7 @@ hypercare="0";
    </div> 
         <!-- table -->
         <br>
-        <div class="container-fluid">
-        <div class="row">
  
-<div class="col-lg-12 col-md-12">
-<div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="row">
-        <div class="col-lg-1 col-md-1">
-         <label>Roles :</label>
-        </div>
-          <div class="col-lg-4 col-md-4">
-          <select id="slct1" name="slct1" onchange="getValue(this.value)">
-  <option  disabled selected>Please Select any Option</option>
-   
-  </select>
-   </div>
-   <div class="col-lg-2 col-md-1">
-        <label>UserName :</label>
-        </div>
-     <div class="col-lg-4 col-md-5">
- 
- <span id="state">
-      <select name='state' id="username" onchange="filter(this.id,'slct1')">  
-     <option disabled selected>Please Select any Option</option>
-      </select>  
-    </span>  
-
-    </div>
-         
-        </div>
-      </div>
- 
-       
-   
-      
-        <table id="tablepaging" class="table table-bordered table-striped" align="center">
-          <thead>
-            <tr>
-              <th class="text-center">User Name</th>
-              <th class="text-center"> Role </th>
-              <th class="text-center">Date </th>
-              <th class="text-center">Details </th>
-             
-            </tr>
-          </thead>
-          <tbody>
-          <%
-while(rs2.next())
-{
-
-%>
-
-          
-            <tr class="content">
-              <td  class="text-center"><%=rs2.getString(1)%></td>
-              <td  class="text-center"> <%=rs2.getString(6) %> </td>
-              <td class="text-center"><%=rs2.getString(2) %></td>
-              <td  class="text-center"><%=rs2.getString(5)%></td>
-             
-            </tr>
-
-<%} %>
-                      </tbody>
-                      
-                      
-                       
-                     
-        </table>
-        <div class="form-group">
-      <div id="pageNavPosition" style="padding-top: 20px" align="center"><br>
-      </div>
-</div>
- 
-        </div>
-        
-       </div>
-    </div>
-      </div>
        <br>
         
         <!-- graph -->
@@ -1543,7 +1466,88 @@ while(rs13.next())
 
 
 </script>      <!-- linechart  -->
-      
+<%
+String[] Project_names=new String[20];
+String[] Progressbar=new String[20];
+String[] status=new String[20];
+String[] num_ass=new String[20];
+int count1=0,count2=0,count3=0,count4=0;
+String dbquery="select * from projinfo";
+Statement dst = conn.createStatement();
+ResultSet drs = dst.executeQuery(dbquery);
+int ttl_cnt=0;
+while(drs.next()){
+String db_query="select * from archive_exec where level=1 and projects='"+drs.getString("projectname")+"'";
+Statement db_st = conn.createStatement();
+ResultSet db_rs = db_st.executeQuery(db_query);
+
+String db_query1="select count(*) from archive_exec where projects='"+drs.getString("projectname")+"' and mem_ass!=''";
+Statement db_st1 = conn.createStatement();
+ResultSet db_rs1 = db_st1.executeQuery(db_query1);
+  if(db_rs1.next())
+	  num_ass[ttl_cnt]=db_rs1.getString(1);
+
+Project_names[ttl_cnt]=drs.getString("projectname");
+while(db_rs.next())
+{
+	if(db_rs.getString("name").equals("Ideation and Initiate") && !db_rs.getString("progressbar").equals("100")){
+		count1++;
+		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
+		status[ttl_cnt]=db_rs.getString("name");
+		break;
+	}
+	else if(db_rs.getString("name").equals("Plan") && !db_rs.getString("progressbar").equals("100"))
+	{
+		count2++;
+		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
+		status[ttl_cnt]=db_rs.getString("name");
+		break;
+	}
+	else if(db_rs.getString("name").equals("Execute") && !db_rs.getString("progressbar").equals("100"))
+	{
+		count3++;
+		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
+		status[ttl_cnt]=db_rs.getString("name");
+		break;
+	}
+	else if(db_rs.getString("name").equals("Closure") && !db_rs.getString("progressbar").equals("100"))
+	{
+		count4++;
+		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
+		status[ttl_cnt]=db_rs.getString("name");
+		break;
+	}
+	
+}
+ttl_cnt++;
+}
+System.out.println("Total count is "+ttl_cnt);
+
+
+%>
+ <script type="text/javascript">
+ google.charts.load('current', {'packages':['corechart']});
+ google.charts.setOnLoadCallback(draw_Chart);
+
+ function draw_Chart() {
+   var dataTable = new google.visualization.DataTable();
+   dataTable.addColumn('string', 'Status');
+   dataTable.addColumn('number', 'Visits');
+   // A column for custom tooltip content
+   dataTable.addColumn({type: 'string', role: 'tooltip'});
+   dataTable.addRows([
+     ['Ideation and Initiate', <%= count1 %>,"Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Ideation and Initiate")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"],
+     ['Plan', <%= count2 %>, "Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Plan")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"],
+     ['Execute', <%= count3 %>, "Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Execute")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"],
+     ['Hypercare', <%= count4 %>, "Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Closure")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"]
+   ]);
+
+   var options = { legend: 'none' };
+   var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
+   chart.draw(dataTable, options);
+ }
+    </script>
+    <div id="tooltip_action" style="width: 800px; height: 500px;"></div>      
   <%
 }
 

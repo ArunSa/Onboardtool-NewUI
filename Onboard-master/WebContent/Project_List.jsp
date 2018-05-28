@@ -56,6 +56,7 @@
   String query;
   HttpSession details=request.getSession();
   String Projets=(String)details.getAttribute("projects");
+  System.out.println(Projets);
   String roles=(String)details.getAttribute("role");
   DBconnection d=new DBconnection();
   Connection con = (Connection)d.getConnection();

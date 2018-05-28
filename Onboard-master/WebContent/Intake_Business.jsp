@@ -668,9 +668,12 @@ if(implement == null)
                                            
                                             </label>
                                         <%if(Rs.getString(2).equals("Text box")){ 
-                                      
+                                                if(Rs.getString("idname").equals("legappname")){
                                         %>    
+                                        <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value="<%= rs4.getString("appname") %>"<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value="<%= rs4.getString("appname") %>"<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>
+                                        <%}else { %>
                                             <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>
+                                            <%} %>
                                             
                               <%}else if(Rs.getString(2).equals("Dropdown")){
                   				String box[]=Rs.getString(9).split("/");
@@ -691,11 +694,24 @@ if(implement == null)
                     	                                       
                     		<%}%></div><%}
                                         
-                              else if(Rs.getString(2).equals("Datepicker")){%>
+                              else if(Rs.getString(2).equals("Datepicker")){
+                            	   if(Rs.getString("idname").equals("rod")){ 
+                                      String date_query="select read_date from app_prior where prj_name='"+project_NAME+"' and proj_name='"+rs4.getString("appname")+"'";
+                                      Statement dt_st = conn.createStatement();
+                                      ResultSet rslt_dt = dt_st.executeQuery(date_query);
+                                      String result_date="0";
+                                      if(rslt_dt.next()){
+                                    	  if(rslt_dt.getString(1)!=null)
+                                    		  result_date=rslt_dt.getString(1);
+                                    	  
+                                      %>
+                                        <input type="text" class="form-control" id="legappname" name="<%= Rs.getString("idname") %>" <% if(rowCount.equals("0")) {%>value="<%= result_date %>"<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value="<%= result_date %>"<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>/>      
+                                             <%}}
+                                      else{    %>
                               
                                         <input placeholder="mm/dd/yyyy" id="rod<%=k %>" name="<%= Rs.getString("idname") %>" class="form-control ember-text-field zf-date-picker date-picker ember-view" <% if(rowCount.equals("0")) {%>value=""<%} else {if(rs11.getString(Rs.getString("idname"))==null){ %>value=""<%} else { %> value= "<%=  rs11.getString(Rs.getString("idname"))%>" <%}} %>>  
                              
-                              <%
+                              <%}
                               k++;
                               } else if(Rs.getString(2).equals("Check box")){
                             	  String box[]=Rs.getString(5).split("/");
