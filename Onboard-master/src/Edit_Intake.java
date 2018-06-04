@@ -86,7 +86,7 @@ public class Edit_Intake extends HttpServlet {
 	 	          conn.close();
 	 	         response.sendRedirect("Intake_Business.jsp");
 	          }
-	          if(servlet_name.equals("Technical"))
+	          if(servlet_name.equals("'Technical'"))
 	          {
 	        	   query="update samp_technical set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";  
 	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -94,7 +94,7 @@ public class Edit_Intake extends HttpServlet {
 	 	          conn.close();
 	 	        response.sendRedirect("Intake_TechnicalDetails.jsp");
 	          }
-	          if(servlet_name.equals("Requirements"))
+	          if(servlet_name.equals("'Requirements'"))
 	          {
 	        	   query="update samp_archivalrequirement set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
 	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);

@@ -85,13 +85,13 @@ try{
     		String query4 = "delete from samp_technical where idname='"+Idname+"' and projectname='"+project_name+"' and appname='"+app_name+"'";
         	PreparedStatement preparedStmt4 = conn.prepareStatement(query4);
         	 preparedStmt4.execute();
-
+        	 DEL_count++;
      		String query5 = "alter table technical drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
          	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
          	 preparedStmt5.execute();
          	 System.out.println("*********Deletion quey**********");
          	 System.out.println(query4+"\n"+query5);
-         	 DEL_count++;
+         	
          	 
     	}
     		
@@ -141,7 +141,13 @@ try{
          System.err.println(e.getMessage());
        }
        // return response
+System.out.println("dekete count is "+DEL_count);
+if(DEL_count==0){
+	response.sendRedirect("Intake_ArchiveRequirements.jsp");
+	}
+else{
        response.sendRedirect("Intake_TechnicalDetails.jsp");
+}
 
 }
 

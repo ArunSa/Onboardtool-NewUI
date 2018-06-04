@@ -76,13 +76,13 @@ public class Business_sam extends HttpServlet {
         		String query4 = "delete from samp_business where idname='"+Idname+"' and projectname='"+project_name+"' and appname='"+app_name+"'";
             	PreparedStatement preparedStmt4 = conn.prepareStatement(query4);
             	 preparedStmt4.execute();
-
+            	 DEL_count++;
          		String query5 = "alter table sample_business drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
              	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
              	 preparedStmt5.execute();
              	 System.out.println("*********Deletion quey**********");
              	 System.out.println(query4+"\n"+query5);
-             	 DEL_count++;
+             	
              	 
         	}
         		
@@ -127,7 +127,12 @@ public class Business_sam extends HttpServlet {
 	         System.err.println(e.getMessage());
 	       }
 	       // return response
-	       response.sendRedirect("Intake_Business.jsp");
+	if(DEL_count==0){
+	response.sendRedirect("Intake_TechnicalDetails.jsp");
+	}
+	else{
+	response.sendRedirect("Intake_Business.jsp");
+	}
 	}
 
 }
