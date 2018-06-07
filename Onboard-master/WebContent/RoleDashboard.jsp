@@ -162,7 +162,7 @@ ArrayList<String> final_count = new ArrayList<String>();
 Statement st_line_chart_month= con.createStatement(); 
 
 
-ResultSet rs_line_chart_month=st_line_chart_month.executeQuery("select monthname(date),SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits ");
+ResultSet rs_line_chart_month=st_line_chart_month.executeQuery("select monthname(date),SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname = '+ uname +'");
 while (rs_line_chart_month.next())
 {
 	%>
@@ -354,8 +354,6 @@ HttpSession details=request.getSession();
 String roles=(String)details.getAttribute("role");
 String uname=(String)details.getAttribute("username");
 String info=(String)details.getAttribute("app_emp");
-String proname=(String)details.getAttribute("nameofproject");
-System.out.println(proname);
 try {
 String det=(String)session.getAttribute("theName");
 Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -381,7 +379,7 @@ ResultSet rs5 = st5.executeQuery(query5);
 String query6 = "select count(roles) from logs";
 Statement st6 = conn.createStatement();
 ResultSet rs6 = st6.executeQuery(query6);
-String query7 = "select sum(count) from visits where module= 'Logged in' and uname='"+uname+"' ";
+String query7 = "select sum(count) from visits";
 Statement st7 = conn.createStatement();
 ResultSet rs7 = st6.executeQuery(query7);
 
@@ -521,14 +519,16 @@ if(rs.next()){
                                     </li>
    <li class="has-children"><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                </li> 
-               
-                <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
+               <li class="nav-header">
+                                        <a href='Applications.jsp'><span class="">Report Module</span></a>
+                                    </li>
+                                      <li class="has-children">
+                                        <a href=""><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
+                                         <ul class="child-nav">
                                             <li><a href="RoleDashboard.jsp" class="active-menu"> <span>Role Dashboard</span></a></li>
-                                            <li><a href="ProjectDashboard.jsp"> <span>Project Dashboard</span></a></li>
+                                            <li><a href="ProjectDashboard.jsp" > <span>Project Dashboard</span></a></li>
                                             <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
-                                        </ul>
+                                          </ul>
                                     </li>
                                 </ul>
 										
@@ -640,28 +640,18 @@ hypercare="0";
 <div class="panel panel-default">
       <div class="panel-heading">
         <div class="row">
-        <div class="col-lg-1 col-md-1">
-         <label>Roles :</label>
+        <div class="col-lg-2 col-md-1">
+        <label>FromDate :</label>
         </div>
-          <div class="col-lg-4 col-md-4">
-          <select id="slct1" name="slct1" onchange="getValue(this.value)">
-  <option  disabled selected>Please Select any Option</option>
-   
-  </select>
-   </div>
-   <div class="col-lg-2 col-md-1">
-        <label>UserName :</label>
+          <div class="col-lg-3 col-md-3">
+           <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDate"></p>
+          </div>
+           <div class="col-lg-2 col-md-1">
+        <label>ToDate :</label>
         </div>
-     <div class="col-lg-4 col-md-5">
- 
- <span id="state">
-      <select name='state' id="username" onchange="filter(this.id,'slct1')">  
-     <option disabled selected>Please Select any Option</option>
-      </select>  
-    </span>  
-
-    </div>
-         
+          <div class="col-lg-3 col-md-3">
+           <p>  <input type="text" data-provide="datepicker" class="form-control" id="toDate" onchange="filter(this.id,'slct1')"></p>
+          </div>
         </div>
       </div>
  
@@ -678,7 +668,7 @@ hypercare="0";
              
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tbody">
           <%
 while(rs2.next())
 {
@@ -714,112 +704,7 @@ while(rs2.next())
        <br>
         
         <!-- graph -->
-      <div class="container-fluid">
       
-      <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-7 col-md-7">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                  <div class="col-lg-8 col-md-5">
-                                    <h3 class="title">&nbsp;&nbsp;Overview of Visits</h3>
-                                      </div>
-                                     <!-- dropdown -->
-                                     <div class="col-lg-12 col-md-12">
-                                      <div class="col-lg-4 col-md-4">
-                                        
-										   <span>
-										      <select id='linedrop' onchange="linechartvalues(this.value)"> 
-										      <option disabled selected>Select any option </option>
-										      <option  value="daily"> Daily &nbsp;&nbsp; </option>
-										      <option  value="weekly"> Weekly &nbsp;&nbsp; </option>
-										       <option  value="monthly"> Monthly</option>
-										        <option value="yearly"> Yearly</option>
-										      </select>  
-										    </span>  
-										   
-										    </div>
-										    <div class="col-lg-4 col-md-4">
-										    
-										    <span>
-										     <select id='month' onchange="val(this.value)" hidden> 
-										      <option disabled >-- Select --</option>
-										      <option  value="January"> Jan </option>
-										       <option  value="February"> Feb </option>
-										        <option  value="March"> Mar </option>
-										         <option  value="April" selected> Apr</option>
-										          <option  value="May"> May </option>
-										           <option  value="June"> June </option>
-										            <option  value="July"> July </option>
-										             <option  value="August"> Aug </option>
-										              <option  value="September"> Sep </option>
-										               <option  value="October"> Oct </option>
-										                <option  value="November"> Nov </option>
-										                 <option  value="December"> Dec </option>
-										     
-										      </select>  
-										    
-										   
-										     <select id="year1"  onchange="weeklyline_chart(this.value)"  hidden> 
-										      <option disabled > -- Select --  </option>
-										      <option  value="2015">2015</option>
-										      <option  value="2016">2016</option>
-										      <option  value="2017">2017</option>
-										      <option  value="2018" selected>2018</option>
-										      <option  value="2019">2019</option>
-										      <option  value="2020">2020</option>
-										      <option  value="2021">2021</option>
-										       
-										     
-										      </select>  
-										    </span>
-										    </div>
-										    <div class="col-lg-4 col-md-4">
-										   
-										    <span>
-										     <select id="year"  onchange="line_chart(this.value)"  hidden> 
-										      <option disabled > -- Select --  </option>
-										      <option  value="2015">2015</option>
-										      <option  value="2016">2016</option>
-										      <option  value="2017">2017</option>
-										      <option  value="2018" selected>2018</option>
-										      <option  value="2019">2019</option>
-										      <option  value="2020">2020</option>
-										      <option  value="2021">2021</option>
-										       
-										     
-										      </select>  
-										    </span>
-										   
-										 
-										  
-										    </div>
-										 <div>
-										 </div>
-										 </div>
-                                    <div id="curve_chart" style="height: 250px; width:800px;"></div>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">Role Status</h3>
-                                <h6 class="card-subtitle"></h6>
-                             <div id="piechart"></div>
-                            </div>
-                            
-                            
-                        </div>
-                    </div>
-                </div>
-      
-      
-      
-      </div>      
             <script type="text/javascript">
 
 function Pager(tableName, itemsPerPage) {
@@ -947,48 +832,6 @@ pager.showPage(1);
 </script>      
 
   
-                   
-   <!--  script for role,piechart curvechart-->
-   <script language="javascript" type="text/javascript">  
-      var xmlHttp  
-      var xmlHttp
-      function getValue(str){
-      var input,filter, table, tr, td, i;
-     
-      
-     
-      
-      if (typeof XMLHttpRequest != "undefined"){
-      xmlHttp= new XMLHttpRequest();
-      }
-      else if (window.ActiveXObject){
-      xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      if (xmlHttp==null){
-      alert("Browser does not support XMLHTTP Request")
-      return;
-      } 
-      
-      var url="state.jsp";
-      url +="?count=" +str;
-      xmlHttp.onreadystatechange = stateChange;
-      xmlHttp.open("GET", url, true);
-      xmlHttp.send(null);
-      
-            }
-
-      function stateChange(){   
-      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-      document.getElementById("username").innerHTML=xmlHttp.responseText   
- 
-     
-      }   
-      
-    
-      }
-      
-      
-      </script> 
      
       <%
       String query8 = "select * from user_details where roles='"+roles+"'and uname='"+uname+"'"; 
@@ -1115,28 +958,28 @@ function drawChart() {
 </script>
 
 <%
-String query10 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() and uname='"+uname+"'";
+String query10 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() and uname = '"+uname +"'";
 Statement st10 = conn.createStatement();
 ResultSet rs10 = st10.executeQuery(query10);
-String query12 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 20 DAY) AND NOW() and uname='"+uname+"'";
+String query12 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 20 DAY) AND NOW() and uname = '"+uname +"'";
 Statement st12 = conn.createStatement();
 ResultSet rs12 = st12.executeQuery(query12);
-String query13 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() and uname='"+uname+"'";
+String query13 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() and uname = '"+uname +"'";
 Statement st13 = conn.createStatement();
 ResultSet rs13 = st13.executeQuery(query13);
-String query11 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 50 DAY) AND NOW() and uname='"+uname+"'";
+String query11 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 50 DAY) AND NOW() and uname = '"+uname +"'";
 Statement st11 = conn.createStatement();
 ResultSet rs11 = st11.executeQuery(query11);
-String query15 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
+String query15 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname = '"+uname +"'";
 Statement st15 = conn.createStatement();
 ResultSet rs15 = st15.executeQuery(query15);
-String query16 = "select SUBSTR(date,1,4), MONTHNAME(date),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
+String query16 = "select SUBSTR(date,1,4), MONTHNAME(date),SUBSTR(date,9,2),count from  visits";
 Statement st16 = conn.createStatement();
 ResultSet rs16 = st16.executeQuery(query16);
-String query17 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
+String query17 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits";
 Statement st17 = conn.createStatement();
 ResultSet rs17 = st17.executeQuery(query17);
-String query19 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
+String query19 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname = '"+uname +"'";
 Statement st19 = conn.createStatement();
 ResultSet rs19 = st19.executeQuery(query19);
 
@@ -1150,399 +993,15 @@ while(rs12.next())
 while(rs13.next())
 	last_30+=Integer.parseInt(rs13.getString(4));
 %>
-<!-- date dropdown values  -->
+
+ <!-- date dropdown values  -->
  
- <script language="javascript" type="text/javascript">  
-      var xmlHttp  
-      var xmlHttp
-     
-      function dateFunction(){
-      var input,filter, table, tr, td, i;
-     
-      var v3 = "<%= uname %>";
-     
-      
-      if (typeof XMLHttpRequest != "undefined"){
-      xmlHttp= new XMLHttpRequest();
-      }
-      else if (window.ActiveXObject){
-      xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      if (xmlHttp==null){
-      alert("Browser does not support XMLHTTP Request")
-      return;
-      } 
-      
-      var url="DateList.jsp";
-      url +="?dataView=" +v3;
-      xmlHttp.onreadystatechange = stateChange;
-      xmlHttp.open("GET", url, true);
-      xmlHttp.send(null);
-      
-            }
-
-      function stateChange(){   
-      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-      document.getElementById("slct1").innerHTML=xmlHttp.responseText;
-      document.getElementById("username").innerHTML=xmlHttp.responseText   
-    
-      }   
-      
-    
-      }
-      
-      
-      </script> 
-      
-
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-    	  
-        var data = google.visualization.arrayToDataTable([
-        	
-          ['day', 'Visits'],
-          ['Last 10 days', <%= last_10 %> ],
-          ['Last 20 days', <%= last_20 %>],
-          ['Last 30 days', <%= last_30 %>],
-          ['Last 50 days', <%= last_50 %>]
-        ]);
-
-        var options = {
-          title: '',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script> 
-
-        <script type="text/javascript">
- function linechartvalues(){
-	 
- var lineweekly =document.getElementById("linedrop").value;
- 
- 
-
- 
-  
- if (lineweekly == 'daily') {
-	 
-	 document.getElementById('month').style.display = 'none';
-	 document.getElementById('year').style.display = 'none';
-	 document.getElementById('year1').style.display = 'none';
-	 
-	 google.charts.load('current', {'packages':['corechart','line']});
-     google.charts.setOnLoadCallback(drawChart);
-
-     function drawChart() {
-   	
-       var data = google.visualization.arrayToDataTable([
-       	
-         ['Date', 'No.of.Visits'],
-        
-        <%
-        while(rs15.next())
-        {
-        %>
-       	 
-       
-         [ new Date(<%=rs15.getString(1)%>,<%=rs15.getString(2)%>,<%=rs15.getString(3)%>), <%= rs15.getString(4)%>],
-        
-        <%}%>
-      
-       ]);
-
-       var options = {
-         title: '',
-         curveType: 'function',
-        
-         pointSize: 5,
-         colors: ['rgb(71, 0, 200)'],
-         hAxis: {
-             title: 'Date',
-             format: 'MM/dd/yy',
-            
-            	 titleTextStyle: {
-            		          		    fontSize: '16',
-            		  }
-         },
-         vAxis: {
-           title: 'No of visits',
-           minValue: 0,
-           ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
-         },
-         
-       
-       };
-
-       if (data.getNumberOfRows() === 0) {
-    	   data.addRows([
-    	        ['0', 0, null, 'No Data Copy']
-    	      ]);
-    	    }
-
-       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-       
-          
-       chart.draw(data, options);
-          
-     
-     
-	}
-	 
- }
-   
- else if(lineweekly == 'weekly'){
-	 
-	 document.getElementById('month').style.display = 'block';
-	 document.getElementById('year1').style.display = 'block';
-	 document.getElementById('year').style.display = 'none';
-	 
-	 val();
-	 
-	 
- } 
- else if(lineweekly == 'monthly'){
-	 document.getElementById('month').style.display = 'none';
-	 document.getElementById('year').style.display = 'block';
-	 document.getElementById('year1').style.display = 'none';
-	 line_chart();
-	 
- } 
- 
- else if(lineweekly == 'yearly'){
-	 document.getElementById('month').style.display = 'none';
-	 document.getElementById('year').style.display = 'none';
-	 document.getElementById('year1').style.display = 'none';
-	 google.charts.load('current', {'packages':['corechart','line']});
-     google.charts.setOnLoadCallback(drawChart);
-
-     function drawChart() {
-   	
-       var data = google.visualization.arrayToDataTable([
-    	   
-         ['Year', 'No.of.Visits'],
-        
-        <%
-        while(rs19.next())
-        {
-        %>
-       	 
-       
-         [new Date(<%=rs19.getString(1)%>,<%=rs19.getString(2)%>,<%=rs19.getString(3)%>), <%= rs19.getString(4)%>],
-        
-        <%}%>
-        
-      
-       
-       ]);
-
-       var options = {
-         title: '',
-         curveType: 'function',
-        
-         colors: ['rgb(255, 0, 200)'],
-         hAxis: {
-             title: 'Year',
-            format : 'yyyy',
-            pointSize: 5,
-             viewWindow: {min:new Date(2017,01,01),
-            	 max:new Date(2022,01,01), 
-             },
-            	 titleTextStyle: {
-            		          		    fontSize: '16',
-            		  }
-         },
-         vAxis: {
-           title: 'No of visits',
-           minValue: 0,
-           
-           ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
-         },
-         
-       
-       };
-
-       if (data.getNumberOfRows() === 0) {
-    	   data.addRows([
-    	        ['0', 0, null, 'No Data Copy']
-    	      ]);
-    	    }
-
-       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-       
-          
-       chart.draw(data, options);
-          
-     
-     
-	}
-	 
- } 
- }
- 
- 
-    </script> 
-    <script>
-    function val(){
-    	
-    	var month=document.getElementById("month").value;
-    	
-    	
-    	if (month != null ){
-    		
-    		weeklyline_chart();
-    		
-    	}
-	
-    	
-    }
-    
-    </script>
-<script>
-
-
-
-
-  function weeklyline_chart(){
-	   	var str_array=[];
-    	var form = $('#id');
-    	var month=document.getElementById("month").value;
-    	var year=document.getElementById("year").value;
-    	var select_val=document.getElementById("username").value;
-    	if(select_val == "Please Select any Option")
-    		select_val="none";
-    	alert("select_val = "+select_val);
-    	var uid;
-    	 if(select_val=="none")
-		 {
-		 uid="<%= details.getAttribute("username") %>";
-		 }
-	 else
-		 {
-		 uid=select_val;
-		 }
-    	 alert("UID = "+uid);
-    	
-    	$.ajax({
-    	      url: "Weekly_linechart",
-    	      type: "Post",
-    	      data: { field1: month, field2 : year,userid:uid},
-    	      dataType: "text",
-    	      
-    	    
-    	      success : function(data) {
-    	    	var str = data;
-    	    	str_array="";
-    	        str_array = str.split(',');
-
-    	        for(var i = 0; i < str_array.length; i++) {
-    	   
-    	        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
-    	     
-    	        //alert(str_array[i]);
-    	}
-    	    	  
-    	        google.charts.load('current', {'packages':['corechart','line']});
-    	    	google.charts.setOnLoadCallback(drawChart);
-
-    	    	function drawChart() {
-    	    		var name;
-    	    		
-    	    	    
-    	    	  var data = new google.visualization.DataTable();
-    	    	  data.addColumn('string','name');
-    	    	  data.addColumn('number','value');
-    	    	
-    	    	  for(var i=0;i<str_array.length;i=i+2)
-    	    		  {
-    	    		  alert(str_array[i]+","+str_array[i+1])
-    	    		  data.addRow([str_array[i],Number(str_array[i+1])]);
-    	    		  }
-    	    		
-    	    	
-    	    	  var options = {
-    	    	        title: '',
-    	    	        curveType: 'function',
-    	    	        pointSize: 5,
-    	    	        
-    	    	        colors: ['#fb8532'],
-    	    	       
-    	    	        vAxis: {
-    	    	          title: 'No of visits',
-    	    	          minValue: 0,
-    	    	          ticks: [{v:0, f:'0'},{v:10, f:'10'},{v:20, f:'20'},{v:30, f:'30'}],
-    	    	        },
-    	    	        
-    	    	        hAxis: {
-    	    	            title: 'No of weeks',
-    	    	            minValue: 0,
-    	    	           
-    	    	          },
-    	    	        backgroundColor: '#f6f8fa'
-    	    	      };
-
-    	    	  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-    	    	  
-
-    	    	  
-
-    	    	  chart.draw(data, options);
-    	    	 
-    	    	}        
-    	          
-    	      }   
-    });
-    	
-    	
-	  
-  }
-  
-  
-  </script>
-
-
  
     
-     
       <!-- filter Html table -->
       
-      <script>
-
-      function filter(input,s2)
-  	{  
-     var srole = new RegExp($('#slct1').val());
-     var user = new RegExp($('#username').val());
-  		if(user == "/all/")
-  		{
-  			clearFilter()
-  			
-  		}else{
-  			$('.content').hide();
-  			$('.content').filter(function() {
-  				 var tester = true;
-  				 tester = srole.test($(this).text());
-  				 var suser = user.test($(this).text());
-  				 tester = tester || suser;
-  			
-  			        return tester;
-  		
-  			}).show();
-  			
-  	}
-  	}
-  	
-	
-
-
-
-</script>      <!-- linechart  -->
+      
+     
       
   <%
 }
@@ -1574,14 +1033,7 @@ catch(Exception e){}
          
     
        <!-- ========== COMMON JS FILES ========== -->
-       
-      
-       
-       
-        
-        
-       
-        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+       <script src="js/jquery-ui/jquery-ui.min.js"></script>
         <script src="js/bootstrap/bootstrap.min.js"></script>
         <script src="js/pace/pace.min.js"></script>
         <script src="js/lobipanel/lobipanel.min.js"></script>
@@ -1607,60 +1059,77 @@ catch(Exception e){}
         <script src="js/task-list.js"></script>
        
         <!-- ========== PAGE JS FILES ========== -->
-        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="js/date-picker/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
         <script type="text/javascript" src="js/date-picker/datepair.js"></script>
         <script type="text/javascript" src="js/date-picker/moment.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
-        <!-- ========== THEME JS ========== -->
-        <script>
-            $(function($) {
-
-                // 1st  datepicker
-                $('#basicExample .time').timepicker({
-                'showDuration': true,
-                'timeFormat': 'g:ia'
-                });
-
-                $('#basicExample .date').datepicker({
-                'format': 'd/m/yyyy',
-                'autoclose': true
-                });
-
-                var basicExampleEl = document.getElementById('basicExample');
-                var datepair = new Datepair(basicExampleEl);
-
-                // 2nd  datepicker
-                $('#datetimepicker1').datetimepicker({
-                    debug: true
-                });
-
-                // 3rd  datepicker
-                $('#datetimepicker9').datetimepicker({
-                viewMode: 'years'
-                });
-
-                // 4th  datepicker
-                $('#datetimepicker10').datetimepicker({
-                viewMode: 'years',
-                format: 'MM/YYYY'
-                });
-
-                // 5th  datepicker
-                $('#datetimepicker11').datetimepicker({
-                daysOfWeekDisabled: [0, 6]
-                });
-
-                // 6th  datepicker
-                $('#datetimepicker12').datetimepicker({
-                    inline: true,
-                    sideBySide: true
-                });
-            });
-        </script>
+ 
+  <script>
+  $(function() {
+	    $( "#fromDate" ).datepicker({
+	        format: "yyyy-mm-dd",
+	        autoclose: true
+	    });
+	});
+	    
+  $(function() {
+	    $( "#toDate" ).datepicker({
+	        format: "yyyy-mm-dd",
+	        autoclose: true
+	    });
+	});
+  </script>
        
+       
+ <script>
+
+function filter(input,s2)
+	{  
+    
+    var fromdate = document.getElementById("fromDate").value;
+    var todate = document.getElementById("toDate").value;
+    
+    console.log("Date values :" + fromdate + ":" +todate);
+    
+    if (typeof XMLHttpRequest != "undefined"){
+    xmlHttp= new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject){
+    xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (xmlHttp==null){
+    alert("Browser does not support XMLHTTP Request")
+    return;
+    } 
+    
+    var url="table.jsp";
+    url +="?fdate="+fromdate+"&tdate="+todate;
+    xmlHttp.onreadystatechange = stateChange;
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send(null);
+    
+          }
+
+    function stateChange(){   
+    if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
+    document.getElementById("tbody").innerHTML=xmlHttp.responseText   
+
+   
+    }   
+    
+ 
+    }
+</script>
+       
+        
+        
+       
+      
         
 
         
