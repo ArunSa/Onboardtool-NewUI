@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html lang="en">
 <head>
 <title>Role Dashboard</title>
@@ -69,11 +71,15 @@ padding: 2px 4px 2px 4px;
 <%@ page import="java.util.ArrayList" %>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
+<%@ page import="onboard.daterange" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Date" %>
 <%@page import="java.util.Calendar" %>
-
+<%
+daterange dt = new daterange();
+dt.range_calc("5/1/2018","5/30/2018");
+%>
 <%
 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -646,82 +652,41 @@ hypercare="0";
                             <div class="card-body">
                                 <div class="row">
                                   <div class="col-lg-8 col-md-5">
-                                    <h3 class="title">&nbsp;&nbsp;Overview of Visits</h3>
+                                    <h3 class="title">&nbsp;&nbsp;Project Details</h3>
                                       </div>
                                      <!-- dropdown -->
+                                    <!-- dropdown -->
                                      <div class="col-lg-12 col-md-12">
-                                      <div class="col-lg-4 col-md-4">
-                                        
-										   <span>
-										      <select id='linedrop' onchange="linechartvalues(this.value)"> 
-										      <option disabled selected>Select any option </option>
-										      <option  value="daily"> Daily &nbsp;&nbsp; </option>
-										      <option  value="weekly"> Weekly &nbsp;&nbsp; </option>
-										       <option  value="monthly"> Monthly</option>
-										        <option value="yearly"> Yearly</option>
-										      </select>  
-										    </span>  
-										   
-										    </div>
-										    <div class="col-lg-4 col-md-4">
+                                      <div class="col-lg-2 col-md-2">
+                                         <label>FromDate</label>
+        </div>
+          <div class="col-lg-2 col-md-2">
+           <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDate" placeholder="Select date"></p>
+          </div>
 										    
-										    <span>
-										     <select id='month' onchange="val(this.value)" hidden> 
-										      <option disabled >-- Select --</option>
-										      <option  value="January"> Jan </option>
-										       <option  value="February"> Feb </option>
-										        <option  value="March"> Mar </option>
-										         <option  value="April" selected> Apr</option>
-										          <option  value="May"> May </option>
-										           <option  value="June"> June </option>
-										            <option  value="July"> July </option>
-										             <option  value="August"> Aug </option>
-										              <option  value="September"> Sep </option>
-										               <option  value="October"> Oct </option>
-										                <option  value="November"> Nov </option>
-										                 <option  value="December"> Dec </option>
-										     
-										      </select>  
-										    
-										   
-										     <select id="year1"  onchange="weeklyline_chart(this.value)"  hidden> 
-										      <option disabled > -- Select --  </option>
-										      <option  value="2015">2015</option>
-										      <option  value="2016">2016</option>
-										      <option  value="2017">2017</option>
-										      <option  value="2018" selected>2018</option>
-										      <option  value="2019">2019</option>
-										      <option  value="2020">2020</option>
-										      <option  value="2021">2021</option>
-										       
-										     
-										      </select>  
-										    </span>
-										    </div>
-										    <div class="col-lg-4 col-md-4">
-										   
-										    <span>
-										     <select id="year"  onchange="line_chart(this.value)"  hidden> 
-										      <option disabled > -- Select --  </option>
-										      <option  value="2015">2015</option>
-										      <option  value="2016">2016</option>
-										      <option  value="2017">2017</option>
-										      <option  value="2018" selected>2018</option>
-										      <option  value="2019">2019</option>
-										      <option  value="2020">2020</option>
-										      <option  value="2021">2021</option>
-										       
-										     
-										      </select>  
-										    </span>
-										   
-										 
+										  
+										    <div class="col-lg-2 col-md-1">
+										     <label>ToDate</label>
+        </div>
+          <div class="col-lg-2 col-md-2">
+           <p>  <input type="text" data-provide="datepicker" class="form-control" id="toDate" onchange="getDateValue(this.id,'fromDate')" placeholder="Select date"></p>
+          </div>
+         <div class="col-lg-2 col-md-2">
+										     <label>Projects</label>
+        </div>
+          <div class="col-lg-2 col-md-2">
+          <span>
+          <select class="form-control">
+  <option value="CGEN2">CGEN2</option>
+  <option value="CGEN1">CGEN1</option>
+  <option value="CGEN4">CGEN4</option>
+  <option value="Medtronic">Medtronic</option>
+</select>
+</span>
+          </div>
 										  
 										    </div>
-										 <div>
-										 </div>
-										 </div>
-                                    <div id="curve_chart" style="height: 250px; width:800px;"></div>
+                                    <div id="tooltip_action" style="width: 850px; height:350px;"></div> 
                                    
                                 </div>
                             </div>
@@ -743,6 +708,39 @@ hypercare="0";
       
       
       </div>      
+      
+  <!-- FromDate and todate Picker -->
+  <script type="text/javascript">
+  
+   function getDateValue(){
+	   
+	   var fromD = document.getElementById("fromDate").value;
+	   var toD = document.getElementById("toDate").value;
+	   
+	   console.log("FROMDATE : " + fromD + " TODATE " +toD);
+	   
+	   $.ajax({
+           url:'/onboard/daterange',
+           data:{fromD:fromD,toD : toD},
+           type:'POST',
+           cache:false,
+           success:function(value){
+               console.log("data",value);
+              
+           },
+           error:function(){
+               console.log('error');
+           }
+       }
+   );
+	   
+   }
+  
+  
+  </script>
+      
+      
+      
             <script type="text/javascript">
 
 function Pager(tableName, itemsPerPage) {
@@ -862,6 +860,9 @@ element.innerHTML = pagerHtml;
 }
 
 </script>
+<!-- date -->
+
+
     <script type="text/javascript"><!--
 var pager = new Pager('tablepaging', 10);
 pager.init();
@@ -1073,6 +1074,15 @@ while(rs12.next())
 while(rs13.next())
 	last_30+=Integer.parseInt(rs13.getString(4));
 %>
+
+
+
+
+
+
+
+
+
 <!-- date dropdown values  -->
  
  <script language="javascript" type="text/javascript">  
@@ -1524,7 +1534,75 @@ ttl_cnt++;
 System.out.println("Total count is "+ttl_cnt);
 
 
-%>
+ArrayList<String> project = new ArrayList<String>();
+ArrayList<String> task = new ArrayList<String>();
+ArrayList<String> resource = new ArrayList<String>();
+ArrayList<String> actual_start = new ArrayList<String>();
+ArrayList<String> actual_end = new ArrayList<String>();
+ArrayList<String> result_task = new ArrayList<String>();
+ArrayList<String> result_index = new ArrayList<String>();
+ArrayList<String> result_levels = new ArrayList<String>();
+ArrayList<String> level = new ArrayList<String>(); 
+Statement week = con.createStatement();
+ResultSet rs_week = week.executeQuery("select projects,name,act_srt_date,act_end_date,level from archive_exec ORDER BY seq_num");
+while (rs_week.next()) {
+project.add(rs_week.getString(1));
+task.add(rs_week.getString(2));
+actual_start.add(rs_week.getString(3));
+actual_end.add(rs_week.getString(4));
+level.add(rs_week.getString(5));
+}
+int index=0;
+for(int k=0;k<ttl_cnt;k++)
+{
+for (int i=0; i<project.size();i++)
+{
+if(project.get(i).equals(Project_names[k]))
+{
+if(level.get(i).equals("1"))
+{
+result_levels.add(task.get(i));
+result_index.add(Integer.toString(index));
+index=i;
+continue;
+}
+else
+{
+if(!actual_start.get(i).isEmpty() && !actual_end.get(i).isEmpty() )
+{
+}
+else if(!actual_start.get(i).isEmpty() && actual_end.get(i).isEmpty())
+{
+index=i;
+}
+else
+{
+}
+}
+}
+else
+{
+continue;
+}
+}
+}
+result_index.remove(0);
+result_index.add(Integer.toString(index));
+System.out.println("results size "+result_index.size());
+String[][] tasks=new String[10][10];
+for (int i=0,q=0,k=0;i<result_index.size();i++)
+{
+System.out.println("-----> "+result_levels.get(i));
+System.out.println("-----> "+task.get(Integer.parseInt(result_index.get(i))));
+tasks[k][q]=task.get(Integer.parseInt(result_index.get(i)));
+q++;
+if(q%4==0)
+{
+q=0;
+k++;
+}
+}
+%> 
  <script type="text/javascript">
  google.charts.load('current', {'packages':['corechart']});
  google.charts.setOnLoadCallback(draw_Chart);
@@ -1536,18 +1614,19 @@ System.out.println("Total count is "+ttl_cnt);
    // A column for custom tooltip content
    dataTable.addColumn({type: 'string', role: 'tooltip'});
    dataTable.addRows([
-     ['Ideation and Initiate', <%= count1 %>,"Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Ideation and Initiate")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"],
-     ['Plan', <%= count2 %>, "Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Plan")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"],
-     ['Execute', <%= count3 %>, "Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Execute")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"],
-     ['Hypercare', <%= count4 %>, "Project name Percentage No.of.Resource Ass\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Closure")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> \n<% }}%>"]
-   ]);
+	   ['Ideation and Initiate', <%= count1 %>,"Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Ideation and Initiate")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> , <%=tasks[j][0]%> \n<% }}%>"],
+	   ['Plan', <%= count2 %>, "Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Plan")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%>, <%=tasks[j][1]%> \n<% }}%>"],
+	   ['Execute', <%= count3 %>, "Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Execute")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%>, <%=tasks[j][2]%> \n<% }}%>"],
+	   ['Hypercare', <%= count4 %>, "Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Closure")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%>, <%=tasks[j][3]%> \n<% }}%>"]
+
+	   ]);
 
    var options = { legend: 'none' };
    var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
    chart.draw(dataTable, options);
  }
     </script>
-    <div id="tooltip_action" style="width: 800px; height: 500px;"></div>      
+         
   <%
 }
 
