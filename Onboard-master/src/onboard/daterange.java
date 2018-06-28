@@ -48,6 +48,7 @@ public class daterange extends HttpServlet {
 		Statement week = con.createStatement();
 		pro_name.clear();
 		int_date.clear();
+		System.out.println("HI");
 		ResultSet rs = week.executeQuery("select projectname,Intdate from projinfo ");
 		while (rs.next()) {
 			
