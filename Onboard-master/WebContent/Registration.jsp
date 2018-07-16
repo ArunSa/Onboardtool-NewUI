@@ -149,7 +149,7 @@ ResultSet rs = st.executeQuery(query);
 <script>
 function www()
 {
-	
+
 var ffname=document.getElementById("reg_fname").value;
 var llname=document.getElementById("reg_lname").value;
 var uuname=document.getElementById("reg_uname").value;

@@ -37,6 +37,8 @@
 	<!-- graph -->
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
+  
+  
   <style>
    .breadcrumb-div {
                 background-color: #e7e7e7;
@@ -77,8 +79,8 @@ padding: 2px 4px 2px 4px;
 <%@page import="java.util.Date" %>
 <%@page import="java.util.Calendar" %>
 <%
-daterange dt = new daterange();
-dt.range_calc("5/1/2018","5/30/2018");
+//daterange dt = new daterange();
+//dt.range_calc("5/1/2018","5/30/2018");
 %>
 <%
 
@@ -93,275 +95,20 @@ response.sendRedirect("Login.jsp");
 %>
 
 
-<script type="text/javascript">
-function line_chart()
-{
-
-var samp=document.getElementById("year").value;
-
-var date =[];
-var month =[];
-var year =[];
-var no_of_visits =[];
-var monthname =[];
-var distinct_monthname =[];
-var final_count =[];
-var final_month=[];
-var final_visits=[];
-var result_months=[];
-var result_visits=[];
-result_months.push("January");
-result_months.push("February");
-result_months.push("March");
-result_months.push("April");
-result_months.push("May");
-result_months.push("June");
-result_months.push("July");
-result_months.push("August");
-result_months.push("September");
-result_months.push("October");
-result_months.push("November");
-result_months.push("December");
-
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-result_visits.push("0");
-
-var flag=0;
-
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 
 
 <%
-String[] values_name = new String[5];
-ArrayList<String> date = new ArrayList<String>();
-ArrayList<String> month = new ArrayList<String>();
-ArrayList<String> year = new ArrayList<String>();
-ArrayList<String> no_of_visits = new ArrayList<String>();
-ArrayList<String> monthname = new ArrayList<String>();
-ArrayList<String> distinct_monthname = new ArrayList<String>();
-ArrayList<String> final_count = new ArrayList<String>();
-//ArrayList<String> final_month = new ArrayList<String>();
-
     DBconnection d=new DBconnection();
     Connection con = (Connection)d.getConnection();
     Statement st_distinct= con.createStatement(); 
-
-
-    ResultSet rs_distinct=st_distinct.executeQuery("select distinct(monthname(date)) from  visits ");
-    while (rs_distinct.next())
-    {
-    %>
-    distinct_monthname.push("\"<%=rs_distinct.getString(1)%>\"");
-    <%}
-    
-Statement st_line_chart_month= con.createStatement(); 
-
-
-ResultSet rs_line_chart_month=st_line_chart_month.executeQuery("select monthname(date),SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits ");
-while (rs_line_chart_month.next())
-{
-	%>
-monthname.push("\"<%=rs_line_chart_month.getString(1)%>\"");
-year.push(<%=rs_line_chart_month.getString(2)%>);
-month.push(<%=rs_line_chart_month.getString(3)%>);
-date.push(<%=rs_line_chart_month.getString(4)%>);
-no_of_visits.push(<%=rs_line_chart_month.getString(5)%>);
-<%}%>   
-var count=0;
-var flag=0;
-for(var i=0;i<year.length;i++)
-	{
-	if(samp==year[i])
-	{
-		flag=1;
-		final_month.push(monthname[i]);
-		final_visits.push(no_of_visits[i]);
-	
-	}
-	else
-		{
-		
-		continue;
-		}
-	
-}
-for(var m=0;m<distinct_monthname.length;m++)
-{
-	
-	for(var j=0;j<final_month.length;j++)
-	{
-		if(distinct_monthname[m]==final_month[j])
-			{
-			
-			count=count+final_visits[j];
-			
-			}
-		else
-			{
-			continue;
-			}
-		
-	}
-	
-	final_count.push(count);
-	count=0;
-}
-
-for(var x=0;x<result_months.length;x++)
-	{
-	
-
-	
-	for(var y=0;y<distinct_monthname.length;y++)
-		{
-		
-		if(distinct_monthname[y].substr(1,distinct_monthname[y].length -2)==result_months[x])
-			{
-			
-			result_visits[x]=final_count[y];
-			
-			}
-		
-		else
-			{
-			continue;
-			}
-		}
-	
-	}
-	
-console.log("month with selected year " +samp );
-
-google.charts.load('current', {'packages':['corechart','line']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-	var name;
-	
-    
-  var data = new google.visualization.DataTable();
-  data.addColumn('string','name');
-  data.addColumn('number','value');
-
-  for(var i=0;i<result_months.length;i++)
-	  {
-	  
-	  data.addRow([result_months[i],Number(result_visits[i])]);
-	  }
-	
-	
-  var options = {
-        title: '',
-        curveType: 'function',
-        pointSize: 5,
-        
-        colors: ['rgb(255, 0, 0)'],
-       
-        vAxis: {
-          title: 'No of visits',
-          minValue: 0,
-          ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
-        },
-        
-        hAxis: {
-            title: 'Months',
-            minValue: 0,
-            format: 'mmm',
-            
-          },
-       
-      };
-
-  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-  
-
-  
-
-  chart.draw(data, options);
- 
-}
-	
-	
-	
-}
-
-
-
-function line_chart_view()
-{
-google.charts.load('current', {'packages':['corechart','line']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-	var name;
-
-  var data = google.visualization.arrayToDataTable([
-	 
-    ['Monthly', 'Visits','asd'],
-      
-   
-     <% 
-     String name=request.getParameter("year");
-    // System.out.println("Year"+name);
-     for(int a=0;a<year.size();a++)
-     {
-     %>
-    
-
-     [ '\'<%=monthname.get(a) %>\'', <%=no_of_visits.get(a)%>,'ads'],
-     
-    
-     <% }
-    %>
-  
-
-  ]);
-
-  var options = {
-        title: '',
-        curveType: 'function',
-        pointSize: 5,
-        
-        colors: ['#fb8532'],
-       
-        vAxis: {
-          title: 'No of visits',
-          minValue: 0,
-        },
-       
-      };
-
-  var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
-  
-
-  
-
-  chart.draw(data, options);
- 
-} 
-
-}
-</script>
-
-<%
-
 HttpSession details=request.getSession();
 String roles=(String)details.getAttribute("role");
 String uname=(String)details.getAttribute("username");
 String info=(String)details.getAttribute("app_emp");
 String proname=(String)details.getAttribute("nameofproject");
-System.out.println(proname);
+
 try {
 String det=(String)session.getAttribute("theName");
 Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -557,7 +304,17 @@ if(execute == null)
 execute="0";
 if(hypercare == null)
 hypercare="0";
-%>      
+%>    
+<script>
+function javascript_conv()
+{
+	var initiate =<%= initiate %>;
+	var plan = <%= plan %>;
+	var execute = <%= execute %>;
+    var hypercare = <%= hypercare %>;
+    
+	}
+</script>
             
                     <div class="main-page">
                      <div class="container-fluid">
@@ -676,12 +433,8 @@ hypercare="0";
         </div>
           <div class="col-lg-2 col-md-2">
           <span>
-          <select class="form-control">
-  <option value="CGEN2">CGEN2</option>
-  <option value="CGEN1">CGEN1</option>
-  <option value="CGEN4">CGEN4</option>
-  <option value="Medtronic">Medtronic</option>
-</select>
+          <select class="form-control" id="projectvaluepie">
+  </select>
 </span>
           </div>
 										  
@@ -708,905 +461,119 @@ hypercare="0";
       
       
       </div>      
+    
       
   <!-- FromDate and todate Picker -->
   <script type="text/javascript">
-  
+
    function getDateValue(){
-	   
+	 
 	   var fromD = document.getElementById("fromDate").value;
 	   var toD = document.getElementById("toDate").value;
 	   
 	   console.log("FROMDATE : " + fromD + " TODATE " +toD);
-	   
+	  
 	   $.ajax({
            url:'/onboard/daterange',
            data:{fromD:fromD,toD : toD},
            type:'POST',
-           cache:false,
+           cache:false,    
            success:function(value){
                console.log("data",value);
+               var num=value.split(",");
+               var select = document.getElementById("projectvaluepie"); 
+               //append the project list in to dropdown
+               select.innerHTML = "<select> <option value='' disabled selected>--ProjectList--</option>";
+               var myarray = value.split(',');
+               
+               for(var i = 0; i < num.length; i++)
+               {
+              var opt = num[i];
+                select.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+               }
               
+               select.innerHTML+="</select>";
+               demo(num);
            },
            error:function(){
                console.log('error');
            }
-       }
-   );
+       });
 	   
    }
+   </script>
+   <script>
+   var projectname1=[];
+   var projectname2=[];
+   var projectname3=[];
+   var projectname4=[];
+   var level1=[];
+   var progressbar=[];
+   var status=[];
+   var mem_ass=[];
+   var num_ass=[];
+   var count1=0,count2=0,count3=0,count4=0;
+     <%
+     String Project_names[]=new String[20];
+     String dbquery="select projectname from projinfo";
+     Statement dst = conn.createStatement();
+     ResultSet drs = dst.executeQuery(dbquery);
+     int ttl_cnt=0;
+     while(drs.next()){ 
+    	 Project_names[ttl_cnt]=drs.getString("projectname");
+     %>
+     <%
+     String db_query="select * from archive_exec where level=1 and projects='"+drs.getString("projectname")+"'";
+     Statement db_st = conn.createStatement();
+     ResultSet db_rs = db_st.executeQuery(db_query);
+     String db_query1="select count(*) from archive_exec where projects='"+drs.getString("projectname")+"' and mem_ass!=''";
+     Statement db_st1 = conn.createStatement();
+     ResultSet db_rs1 = db_st1.executeQuery(db_query1);
+     if(db_rs1.next()){%>
+   	  num_ass.push("<%=db_rs1.getString(1)%>");
+   	  <%}
+     while(db_rs.next())
+     {
+     	if(db_rs.getString("name").equals("Ideation and Initiate") && !db_rs.getString("progressbar").equals("100")){ %>
+     		count1++;
+     	     projectname1.push("<%=drs.getString(1)%>");
+     		progressbar.push("<%=db_rs.getString("progressbar")%>");
+     		
+     	<%	break;
+     	}
+     	else if(db_rs.getString("name").equals("Plan") && !db_rs.getString("progressbar").equals("100"))
+     	{ %>
+     	count2++;
+        projectname2.push("<%=drs.getString(1)%>");
+ 		  progressbar.push(<%=db_rs.getString("progressbar")%>);
+ 				
+     	<%	break;
+     	}
+     	else if(db_rs.getString("name").equals("Execute") && !db_rs.getString("progressbar").equals("100"))
+     	{ %>
+     	  count3++;
+          projectname3.push("<%=drs.getString(1)%>");
+ 		  progressbar.push("<%=db_rs.getString("progressbar")%>");
+ 		 
+     	<%	break;
+     	}
+     	else if(db_rs.getString("name").equals("Closure") && !db_rs.getString("progressbar").equals("100"))
+     	{ %>
+     	  count4++;
+          projectname4.push("<%=drs.getString(1)%>");
+ 		  progressbar.push("<%=db_rs.getString("progressbar")%>");
+ 		 
+     	<%	break;
+     	}
+     	
+     }
   
-  
-  </script>
-      
-      
-      
-            <script type="text/javascript">
-
-function Pager(tableName, itemsPerPage) {
-
-this.tableName = tableName;
-
-this.itemsPerPage = itemsPerPage;
-
-this.currentPage = 1;
-
-this.pages = 0;
-
-this.inited = false;
-
-this.showRecords = function(from, to) {
-
-var rows = document.getElementById(tableName).rows;
-
-// i starts from 1 to skip table header row
-
-for (var i = 1; i < rows.length; i++) {
-
-if (i < from || i > to)
-
-rows[i].style.display = 'none';
-
-else
-
-rows[i].style.display = '';
-
-}
-
-}
-
-this.showPage = function(pageNumber) {
-
-if (! this.inited) {
-
-alert("not inited");
-
-return;
-
-}
-
-var oldPageAnchor = document.getElementById('pg'+this.currentPage);
-
-oldPageAnchor.className = 'pg-normal';
-
-this.currentPage = pageNumber;
-
-var newPageAnchor = document.getElementById('pg'+this.currentPage);
-
-newPageAnchor.className = 'pg-selected';
-
-var from = (pageNumber - 1) * itemsPerPage + 1;
-
-var to = from + itemsPerPage - 1;
-
-this.showRecords(from, to);
-
-}
-
-this.prev = function() {
-
-if (this.currentPage > 1)
-
-this.showPage(this.currentPage - 1);
-
-}
-
-this.next = function() {
-
-if (this.currentPage < this.pages) {
-
-this.showPage(this.currentPage + 1);
-
-}
-
-}
-
-this.init = function() {
-
-var rows = document.getElementById(tableName).rows;
-
-var records = (rows.length - 1);
-
-this.pages = Math.ceil(records / itemsPerPage);
-
-this.inited = true;
-
-}
-
-this.showPageNav = function(pagerName, positionId) {
-
-if (! this.inited) {
-
-alert("not inited");
-
-return;
-
-}
-
-var element = document.getElementById(positionId);
-
-var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> « Prev </span>&nbsp;';
-
-for (var page = 1; page <= this.pages; page++)
-
-pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> ';
-
-pagerHtml += '<span onclick="'+pagerName+'.next();" class="pg-normal"> Next »</span>';
-
-element.innerHTML = pagerHtml;
-
-}
-
-}
-
-</script>
-<!-- date -->
-
-
-    <script type="text/javascript"><!--
-var pager = new Pager('tablepaging', 10);
-pager.init();
-pager.showPageNav('pager', 'pageNavPosition');
-pager.showPage(1);
-</script>      
-
-  
-                   
-   <!--  script for role,piechart curvechart-->
-   <script language="javascript" type="text/javascript">  
-      var xmlHttp  
-      var xmlHttp
-      function getValue(str){
-      var input,filter, table, tr, td, i;
-     
-      
-     
-      
-      if (typeof XMLHttpRequest != "undefined"){
-      xmlHttp= new XMLHttpRequest();
-      }
-      else if (window.ActiveXObject){
-      xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      if (xmlHttp==null){
-      alert("Browser does not support XMLHTTP Request")
-      return;
-      } 
-      
-      var url="state.jsp";
-      url +="?count=" +str;
-      xmlHttp.onreadystatechange = stateChange;
-      xmlHttp.open("GET", url, true);
-      xmlHttp.send(null);
-      
-            }
-
-      function stateChange(){   
-      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-      document.getElementById("username").innerHTML=xmlHttp.responseText   
+     ttl_cnt++;
+     }
+  %>
  
-     
-      }   
-      
-    
-      }
-      
-      
-      </script> 
-     
-      <%
-      String query8 = "select * from user_details where roles='"+roles+"'and uname='"+uname+"'"; 
-      Statement st8 = conn.createStatement();
-      ResultSet rs8 = st8.executeQuery(query8);
-      %>  
-  
-    <script type="text/javascript">
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-// Draw the chart and set the chart values
-function drawChart() {
-	 
-	 var selectedRole = $('#slct1').val();  
-	 var selecteduser = $('#username').val();  
-    
-	
-	var dataTable = new google.visualization.DataTable();
-    dataTable.addColumn('string', 'Year');
-    dataTable.addColumn('number', 'Sales');
-    // A column for custom tooltip content
-    dataTable.addColumn({type: 'string', role: 'tooltip'});
-    dataTable.addRows([
-  <% while(rs8.next()){ 
-	 
-  String query22 = "select * from archive_exec where projects='"+rs8.getString("projects")+"' and level=1";
-	Statement st22 = conn.createStatement();
-	ResultSet rs22 = st22.executeQuery(query22);
-	
-	while(rs22.next())
-	{
-	if(rs22.getString("progressbar")=="100")
-	continue;
-	else
-	break;
-	}
-
-	String status=rs22.getString("name");
-	String progressBar=rs22.getString("progressbar");
-	
-	if(progressBar.equals("0"))
-		progressBar="1";
-	  String query23 = "select sum(count) from visits where module= 'Logged in' and uname='"+uname+"'";
-		Statement st23 = conn.createStatement();
-		ResultSet rs23 = st23.executeQuery(query23);
-		String ttl_visits="",CurntDay_visits="",last_visited_Module="",last_visited_App="";
-		while(rs23.next())
-			 ttl_visits=rs23.getString(1);
-		 String query24 = "select sum(count) from visits where date=CURDATE() and uname='"+uname+"'";
-			Statement st24 = conn.createStatement();
-			ResultSet rs24 = st24.executeQuery(query24);
-			while(rs24.next())
-				CurntDay_visits=rs24.getString(1);
-		String query25 = "select module from visits where projects='"+rs8.getString("projects")+"' order by date desc,time desc";
-				Statement st25 = conn.createStatement();
-				ResultSet rs25 = st25.executeQuery(query25);
-				if(rs25.next())
-					last_visited_Module=rs25.getString(1);
-  
-				String query30 = "select Applications from visits where projects='"+rs8.getString("projects")+"' and module='Intake Module' order by date desc,time desc";
-				Statement st30 = conn.createStatement();
-				ResultSet rs30 = st30.executeQuery(query30);
-				if(rs30.next())
-					last_visited_App=rs30.getString(1);
-	
-	String query26 = "select seq_num from archive_exec where projects='"+rs8.getString("projects")+"' and name='"+rs8.getString("application")+"'";
-	Statement st26 = conn.createStatement();
-	ResultSet rs26 = st26.executeQuery(query26);
-	String seqnum="";
-	if(rs26.next())
-	seqnum=rs26.getString(1);
-
-	String query27="select * from archive_exec where projects='"+rs8.getString("projects")+"' and seq_num>"+seqnum+" and seq_num<="+(Integer.parseInt(seqnum)+70)+" and level=3 order by seq_num";
-	//System.out.println(query3);
-	Statement st27 = conn.createStatement();
-	ResultSet rs27 = st27.executeQuery(query27);
-
-	String Stats="",ProgresBar="";
-	while(rs27.next())
-	{
-	if(rs27.getString("name").equals("Requirements") && Integer.parseInt(rs27.getString("progressbar"))<100 ){
-	Stats="Requirements";
-	ProgresBar=rs27.getString("progressbar");
-	break;
-	}
-	if(rs27.getString("name").equals("Build and Test") && Integer.parseInt(rs27.getString("progressbar"))<100){
-	Stats="Development";
-	ProgresBar=rs27.getString("progressbar");
-	break;
-	}
-	if(rs27.getString("name").equals("Implement") && Integer.parseInt(rs27.getString("progressbar"))<100 ){
-	Stats="Implement";
-	ProgresBar=rs27.getString("progressbar");
-	break;
-	}
-	}
-			
-	System.out.println(Stats);
-
-		
-	
-    %>
-    ['<%= rs8.getString(6) %>', <%= progressBar %>, "Total Visits : <%= ttl_visits %>\nVisits in current day : <%= CurntDay_visits %>\n Last Visited Module : <%= last_visited_Module %>\n Last Visited Application : <%= last_visited_App %>\n Application : <%= rs8.getString(11)%>,Status : <%= Stats %>\n Percentage of Completion : <%= progressBar %>%"],
-  <% }  %>
-]);
-
-  // Optional; add a title and set the width and height of the chart
-  var options = {
-		  'title':'',
-		  'width':400,
-		  'height':350,
-		
-		  pieSliceText: 'label',
-		  legend : 'none'
-  };
-  
-
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(dataTable, options);
-}
-</script>
-
-<%
-String query10 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() and uname='"+uname+"'";
-Statement st10 = conn.createStatement();
-ResultSet rs10 = st10.executeQuery(query10);
-String query12 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 20 DAY) AND NOW() and uname='"+uname+"'";
-Statement st12 = conn.createStatement();
-ResultSet rs12 = st12.executeQuery(query12);
-String query13 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() and uname='"+uname+"'";
-Statement st13 = conn.createStatement();
-ResultSet rs13 = st13.executeQuery(query13);
-String query11 = "SELECT    * FROM visits WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 50 DAY) AND NOW() and uname='"+uname+"'";
-Statement st11 = conn.createStatement();
-ResultSet rs11 = st11.executeQuery(query11);
-String query15 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
-Statement st15 = conn.createStatement();
-ResultSet rs15 = st15.executeQuery(query15);
-String query16 = "select SUBSTR(date,1,4), MONTHNAME(date),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
-Statement st16 = conn.createStatement();
-ResultSet rs16 = st16.executeQuery(query16);
-String query17 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
-Statement st17 = conn.createStatement();
-ResultSet rs17 = st17.executeQuery(query17);
-String query19 = "select SUBSTR(date,1,4), (SUBSTR(date,6,2)-1),SUBSTR(date,9,2),count from  visits where uname='"+uname+"'";
-Statement st19 = conn.createStatement();
-ResultSet rs19 = st19.executeQuery(query19);
-
-int last_10=0,last_30=0,last_50=0,last_20=0;
-while(rs10.next())
-	last_10+=Integer.parseInt(rs10.getString(4));
-while(rs11.next())
-	last_50+=Integer.parseInt(rs11.getString(4));
-while(rs12.next())
-	last_20+=Integer.parseInt(rs12.getString(4));
-while(rs13.next())
-	last_30+=Integer.parseInt(rs13.getString(4));
-%>
-
-
-
-
-
-
-
-
-
-<!-- date dropdown values  -->
- 
- <script language="javascript" type="text/javascript">  
-      var xmlHttp  
-      var xmlHttp
-     
-      function dateFunction(){
-      var input,filter, table, tr, td, i;
-     
-      var v3 = "<%= uname %>";
-     
-      
-      if (typeof XMLHttpRequest != "undefined"){
-      xmlHttp= new XMLHttpRequest();
-      }
-      else if (window.ActiveXObject){
-      xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      if (xmlHttp==null){
-      alert("Browser does not support XMLHTTP Request")
-      return;
-      } 
-      
-      var url="DateList.jsp";
-      url +="?dataView=" +v3;
-      xmlHttp.onreadystatechange = stateChange;
-      xmlHttp.open("GET", url, true);
-      xmlHttp.send(null);
-      
-            }
-
-      function stateChange(){   
-      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-      document.getElementById("slct1").innerHTML=xmlHttp.responseText;
-      document.getElementById("username").innerHTML=xmlHttp.responseText   
-    
-      }   
-      
-    
-      }
-      
-      
-      </script> 
-      
-
-<script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-    	  
-        var data = google.visualization.arrayToDataTable([
-        	
-          ['day', 'Visits'],
-          ['Last 10 days', <%= last_10 %> ],
-          ['Last 20 days', <%= last_20 %>],
-          ['Last 30 days', <%= last_30 %>],
-          ['Last 50 days', <%= last_50 %>]
-        ]);
-
-        var options = {
-          title: '',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script> 
-
-        <script type="text/javascript">
- function linechartvalues(){
-	 
- var lineweekly =document.getElementById("linedrop").value;
- 
- 
-
- 
-  
- if (lineweekly == 'daily') {
-	 
-	 document.getElementById('month').style.display = 'none';
-	 document.getElementById('year').style.display = 'none';
-	 document.getElementById('year1').style.display = 'none';
-	 
-	 google.charts.load('current', {'packages':['corechart','line']});
-     google.charts.setOnLoadCallback(drawChart);
-
-     function drawChart() {
-   	
-       var data = google.visualization.arrayToDataTable([
-       	
-         ['Date', 'No.of.Visits'],
-        
-        <%
-        while(rs15.next())
-        {
-        %>
-       	 
-       
-         [ new Date(<%=rs15.getString(1)%>,<%=rs15.getString(2)%>,<%=rs15.getString(3)%>), <%= rs15.getString(4)%>],
-        
-        <%}%>
-      
-       ]);
-
-       var options = {
-         title: '',
-         curveType: 'function',
-        
-         pointSize: 5,
-         colors: ['rgb(71, 0, 200)'],
-         hAxis: {
-             title: 'Date',
-             format: 'MM/dd/yy',
-            
-            	 titleTextStyle: {
-            		          		    fontSize: '16',
-            		  }
-         },
-         vAxis: {
-           title: 'No of visits',
-           minValue: 0,
-           ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
-         },
-         
-       
-       };
-
-       if (data.getNumberOfRows() === 0) {
-    	   data.addRows([
-    	        ['0', 0, null, 'No Data Copy']
-    	      ]);
-    	    }
-
-       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-       
-          
-       chart.draw(data, options);
-          
-     
-     
-	}
-	 
- }
-   
- else if(lineweekly == 'weekly'){
-	 
-	 document.getElementById('month').style.display = 'block';
-	 document.getElementById('year1').style.display = 'block';
-	 document.getElementById('year').style.display = 'none';
-	 
-	 val();
-	 
-	 
- } 
- else if(lineweekly == 'monthly'){
-	 document.getElementById('month').style.display = 'none';
-	 document.getElementById('year').style.display = 'block';
-	 document.getElementById('year1').style.display = 'none';
-	 line_chart();
-	 
- } 
- 
- else if(lineweekly == 'yearly'){
-	 document.getElementById('month').style.display = 'none';
-	 document.getElementById('year').style.display = 'none';
-	 document.getElementById('year1').style.display = 'none';
-	 google.charts.load('current', {'packages':['corechart','line']});
-     google.charts.setOnLoadCallback(drawChart);
-
-     function drawChart() {
-   	
-       var data = google.visualization.arrayToDataTable([
-    	   
-         ['Year', 'No.of.Visits'],
-        
-        <%
-        while(rs19.next())
-        {
-        %>
-       	 
-       
-         [new Date(<%=rs19.getString(1)%>,<%=rs19.getString(2)%>,<%=rs19.getString(3)%>), <%= rs19.getString(4)%>],
-        
-        <%}%>
-        
-      
-       
-       ]);
-
-       var options = {
-         title: '',
-         curveType: 'function',
-        
-         colors: ['rgb(255, 0, 200)'],
-         hAxis: {
-             title: 'Year',
-            format : 'yyyy',
-            pointSize: 5,
-             viewWindow: {min:new Date(2017,01,01),
-            	 max:new Date(2022,01,01), 
-             },
-            	 titleTextStyle: {
-            		          		    fontSize: '16',
-            		  }
-         },
-         vAxis: {
-           title: 'No of visits',
-           minValue: 0,
-           
-           ticks: [{v:0, f:'0'},{v:100, f:'100'},{v:200, f:'200'},{v:300, f:'300'}],
-         },
-         
-       
-       };
-
-       if (data.getNumberOfRows() === 0) {
-    	   data.addRows([
-    	        ['0', 0, null, 'No Data Copy']
-    	      ]);
-    	    }
-
-       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-       
-          
-       chart.draw(data, options);
-          
-     
-     
-	}
-	 
- } 
- }
- 
- 
-    </script> 
-    <script>
-    function val(){
-    	
-    	var month=document.getElementById("month").value;
-    	
-    	
-    	if (month != null ){
-    		
-    		weeklyline_chart();
-    		
-    	}
-	
-    	
-    }
-    
-    </script>
-<script>
-
-
-
-
-  function weeklyline_chart(){
-	   	var str_array=[];
-    	var form = $('#id');
-    	var month=document.getElementById("month").value;
-    	var year=document.getElementById("year").value;
-    	var select_val=document.getElementById("username").value;
-    	if(select_val == "Please Select any Option")
-    		select_val="none";
-    	alert("select_val = "+select_val);
-    	var uid;
-    	 if(select_val=="none")
-		 {
-		 uid="<%= details.getAttribute("username") %>";
-		 }
-	 else
-		 {
-		 uid=select_val;
-		 }
-    	 alert("UID = "+uid);
-    	
-    	$.ajax({
-    	      url: "Weekly_linechart",
-    	      type: "Post",
-    	      data: { field1: month, field2 : year,userid:uid},
-    	      dataType: "text",
-    	      
-    	    
-    	      success : function(data) {
-    	    	var str = data;
-    	    	str_array="";
-    	        str_array = str.split(',');
-
-    	        for(var i = 0; i < str_array.length; i++) {
-    	   
-    	        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
-    	     
-    	        //alert(str_array[i]);
-    	}
-    	    	  
-    	        google.charts.load('current', {'packages':['corechart','line']});
-    	    	google.charts.setOnLoadCallback(drawChart);
-
-    	    	function drawChart() {
-    	    		var name;
-    	    		
-    	    	    
-    	    	  var data = new google.visualization.DataTable();
-    	    	  data.addColumn('string','name');
-    	    	  data.addColumn('number','value');
-    	    	
-    	    	  for(var i=0;i<str_array.length;i=i+2)
-    	    		  {
-    	    		  alert(str_array[i]+","+str_array[i+1])
-    	    		  data.addRow([str_array[i],Number(str_array[i+1])]);
-    	    		  }
-    	    		
-    	    	
-    	    	  var options = {
-    	    	        title: '',
-    	    	        curveType: 'function',
-    	    	        pointSize: 5,
-    	    	        
-    	    	        colors: ['#fb8532'],
-    	    	       
-    	    	        vAxis: {
-    	    	          title: 'No of visits',
-    	    	          minValue: 0,
-    	    	          ticks: [{v:0, f:'0'},{v:10, f:'10'},{v:20, f:'20'},{v:30, f:'30'}],
-    	    	        },
-    	    	        
-    	    	        hAxis: {
-    	    	            title: 'No of weeks',
-    	    	            minValue: 0,
-    	    	           
-    	    	          },
-    	    	        backgroundColor: '#f6f8fa'
-    	    	      };
-
-    	    	  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-    	    	  
-
-    	    	  
-
-    	    	  chart.draw(data, options);
-    	    	 
-    	    	}        
-    	          
-    	      }   
-    });
-    	
-    	
-	  
-  }
-  
-  
-  </script>
-
-
- 
-    
-     
-      <!-- filter Html table -->
-      
-      <script>
-
-      function filter(input,s2)
-  	{  
-     var srole = new RegExp($('#slct1').val());
-     var user = new RegExp($('#username').val());
-  		if(user == "/all/")
-  		{
-  			clearFilter()
-  			
-  		}else{
-  			$('.content').hide();
-  			$('.content').filter(function() {
-  				 var tester = true;
-  				 tester = srole.test($(this).text());
-  				 var suser = user.test($(this).text());
-  				 tester = tester || suser;
-  			
-  			        return tester;
-  		
-  			}).show();
-  			
-  	}
-  	}
-  	
-	
-
-
-
-</script>      <!-- linechart  -->
-<%
-String[] Project_names=new String[20];
-String[] Progressbar=new String[20];
-String[] status=new String[20];
-String[] num_ass=new String[20];
-int count1=0,count2=0,count3=0,count4=0;
-String dbquery="select * from projinfo";
-Statement dst = conn.createStatement();
-ResultSet drs = dst.executeQuery(dbquery);
-int ttl_cnt=0;
-while(drs.next()){
-String db_query="select * from archive_exec where level=1 and projects='"+drs.getString("projectname")+"'";
-Statement db_st = conn.createStatement();
-ResultSet db_rs = db_st.executeQuery(db_query);
-
-String db_query1="select count(*) from archive_exec where projects='"+drs.getString("projectname")+"' and mem_ass!=''";
-Statement db_st1 = conn.createStatement();
-ResultSet db_rs1 = db_st1.executeQuery(db_query1);
-  if(db_rs1.next())
-	  num_ass[ttl_cnt]=db_rs1.getString(1);
-
-Project_names[ttl_cnt]=drs.getString("projectname");
-while(db_rs.next())
-{
-	if(db_rs.getString("name").equals("Ideation and Initiate") && !db_rs.getString("progressbar").equals("100")){
-		count1++;
-		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
-		status[ttl_cnt]=db_rs.getString("name");
-		break;
-	}
-	else if(db_rs.getString("name").equals("Plan") && !db_rs.getString("progressbar").equals("100"))
-	{
-		count2++;
-		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
-		status[ttl_cnt]=db_rs.getString("name");
-		break;
-	}
-	else if(db_rs.getString("name").equals("Execute") && !db_rs.getString("progressbar").equals("100"))
-	{
-		count3++;
-		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
-		status[ttl_cnt]=db_rs.getString("name");
-		break;
-	}
-	else if(db_rs.getString("name").equals("Closure") && !db_rs.getString("progressbar").equals("100"))
-	{
-		count4++;
-		Progressbar[ttl_cnt]=db_rs.getString("progressbar");
-		status[ttl_cnt]=db_rs.getString("name");
-		break;
-	}
-	
-}
-ttl_cnt++;
-}
-System.out.println("Total count is "+ttl_cnt);
-
-
-ArrayList<String> project = new ArrayList<String>();
-ArrayList<String> task = new ArrayList<String>();
-ArrayList<String> resource = new ArrayList<String>();
-ArrayList<String> actual_start = new ArrayList<String>();
-ArrayList<String> actual_end = new ArrayList<String>();
-ArrayList<String> result_task = new ArrayList<String>();
-ArrayList<String> result_index = new ArrayList<String>();
-ArrayList<String> result_levels = new ArrayList<String>();
-ArrayList<String> level = new ArrayList<String>(); 
-Statement week = con.createStatement();
-ResultSet rs_week = week.executeQuery("select projects,name,act_srt_date,act_end_date,level from archive_exec ORDER BY seq_num");
-while (rs_week.next()) {
-project.add(rs_week.getString(1));
-task.add(rs_week.getString(2));
-actual_start.add(rs_week.getString(3));
-actual_end.add(rs_week.getString(4));
-level.add(rs_week.getString(5));
-}
-int index=0;
-for(int k=0;k<ttl_cnt;k++)
-{
-for (int i=0; i<project.size();i++)
-{
-if(project.get(i).equals(Project_names[k]))
-{
-if(level.get(i).equals("1"))
-{
-result_levels.add(task.get(i));
-result_index.add(Integer.toString(index));
-index=i;
-continue;
-}
-else
-{
-if(!actual_start.get(i).isEmpty() && !actual_end.get(i).isEmpty() )
-{
-}
-else if(!actual_start.get(i).isEmpty() && actual_end.get(i).isEmpty())
-{
-index=i;
-}
-else
-{
-}
-}
-}
-else
-{
-continue;
-}
-}
-}
-result_index.remove(0);
-result_index.add(Integer.toString(index));
-System.out.println("results size "+result_index.size());
-String[][] tasks=new String[10][10];
-for (int i=0,q=0,k=0;i<result_index.size();i++)
-{
-System.out.println("-----> "+result_levels.get(i));
-System.out.println("-----> "+task.get(Integer.parseInt(result_index.get(i))));
-tasks[k][q]=task.get(Integer.parseInt(result_index.get(i)));
-q++;
-if(q%4==0)
-{
-q=0;
-k++;
-}
-}
-%> 
- <script type="text/javascript">
- google.charts.load('current', {'packages':['corechart']});
  google.charts.setOnLoadCallback(draw_Chart);
-
  function draw_Chart() {
    var dataTable = new google.visualization.DataTable();
    dataTable.addColumn('string', 'Status');
@@ -1614,10 +581,10 @@ k++;
    // A column for custom tooltip content
    dataTable.addColumn({type: 'string', role: 'tooltip'});
    dataTable.addRows([
-	   ['Ideation and Initiate', <%= count1 %>,"Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Ideation and Initiate")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%> , <%=tasks[j][0]%> \n<% }}%>"],
-	   ['Plan', <%= count2 %>, "Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Plan")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%>, <%=tasks[j][1]%> \n<% }}%>"],
-	   ['Execute', <%= count3 %>, "Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Execute")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%>, <%=tasks[j][2]%> \n<% }}%>"],
-	   ['Hypercare', <%= count4 %>, "Project name - Percentage - No.of.Resource Ass - Last active task\n<%for(int j=0;j<ttl_cnt;j++ ){ if(status[j].equals("Closure")){ %><%=Project_names[j] %> , <%=Progressbar[j]%> , <%=num_ass[j]%>, <%=tasks[j][3]%> \n<% }}%>"]
+	   ['Ideation and Initiate',count1,"Projects:'"+projectname1+"'"], 
+	   ['Plan',count2,"Projects:'"+projectname2+"'"],
+	   ['Execute', count3,"Projects:'"+projectname3+"'"],
+	   ['Hypercare', count4,"Projects:'"+projectname4+"'"] 
 
 	   ]);
 
@@ -1625,8 +592,70 @@ k++;
    var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
    chart.draw(dataTable, options);
  }
-    </script>
-         
+ function demo(num)
+ {
+	 var project_Name1=[];
+	 var project_Name2=[];
+	 var project_Name3=[];
+	 var project_Name4=[];
+	 var cnt1=0,cnt2=0,cnt3=0,cnt4=0;
+	   for(var i=0;i<num.length;i+=1){
+		   for(var j=0;j<count1;j+=1)
+			   {
+		   if(num[i]==projectname1[j])
+			   {
+			   project_Name1.push(projectname1[j]);
+			   cnt1++;
+			   }
+			   }
+		   for(var j=0;j<count2;j+=1)
+		   {
+	   if(num[i]==projectname2[j])
+		   {
+		   project_Name2.push(projectname2[j]);
+		   cnt2++;
+		   }
+		   }
+		   for(var j=0;j<count3;j+=1)
+		   {
+	   if(num[i]==projectname3[j])
+		   {
+		   project_Name3.push(projectname3[j]);
+		   cnt3++;
+		   }
+		   }
+		   for(var j=0;j<count4;j+=1)
+		   {
+	   if(num[i]==projectname4[j])
+		   {
+		   project_Name4.push(projectname4[j]);
+		   cnt4++;
+		   }
+		   }
+	   }
+		   var dataTable = new google.visualization.DataTable();
+		   dataTable.addColumn('string', 'Status');
+		   dataTable.addColumn('number', 'Visits');
+		   // A column for custom tooltip content
+		   dataTable.addColumn({type: 'string', role: 'tooltip'});
+		   dataTable.addRows([
+			   ['Ideation and Initiate',cnt1,"Projects:'"+project_Name1+"'"], 
+			   ['Plan',cnt2,"Projects:'"+project_Name2+"'"],
+			   ['Execute', cnt3,"Projects:'"+project_Name3+"'"],
+			   ['Hypercare', cnt4,"Projects:'"+project_Name4+"'"] 
+
+			   ]);
+
+		   var options = { legend: 'none' };
+		   var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
+		   chart.draw(dataTable, options);
+	 
+	   //alert("num is "+num);
+ }
+ 
+      </script>
+      
+      
   <%
 }
 
@@ -1655,7 +684,7 @@ catch(Exception e){}
                           
          </div>
          
-    
+    <input type="button" onclick="" value="click">
        <!-- ========== COMMON JS FILES ========== -->
        
       

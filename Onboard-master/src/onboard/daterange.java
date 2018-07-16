@@ -30,7 +30,7 @@ public class daterange extends HttpServlet {
 	ArrayList<String> Range_dates = new ArrayList<String>();
 	ArrayList<String> Range_dates_conv = new ArrayList<String>();
 	ArrayList<String> result_projects = new ArrayList<String>();
-	
+	String Res="";
 	
 	private static final long serialVersionUID = 1L;
        
@@ -39,28 +39,7 @@ public class daterange extends HttpServlet {
      */
     public daterange() {
         super();
-        try
-		{
-		DBconnection d;
-		Connection con;
-		d = new DBconnection();
-		con = (Connection) d.getConnection();
-		Statement week = con.createStatement();
-		pro_name.clear();
-		int_date.clear();
-		System.out.println("HI");
-		ResultSet rs = week.executeQuery("select projectname,Intdate from projinfo ");
-		while (rs.next()) {
-			
-			pro_name.add(rs.getString(1));
-			int_date.add(rs.getString(2));
-			
-		}
-		}
-		catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
+        
         // TODO Auto-generated constructor stub
     }
 
@@ -72,11 +51,35 @@ public class daterange extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	public void Db_Connection() {
+		System.out.println("Inside dbconnection funtion");
+		try {
+			DBconnection d;
+			Connection con;
+			d = new DBconnection();
+			con = (Connection) d.getConnection();
+			Statement week = con.createStatement();
+			pro_name.clear();
+			int_date.clear();
+			ResultSet rs = week.executeQuery("select projectname,Intdate from projinfo ");
+			while (rs.next()) {
+				
+				pro_name.add(rs.getString(1));
+				int_date.add(rs.getString(2));
+				
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	public void project_select()
 	{
 		try
 		{
 		result_projects.clear();
+		
+		
 		for(int i=0;i<Range_dates_conv.size();i++)
 		{
 			for(int j=0;j<int_date_mod.size();j++)
@@ -88,14 +91,16 @@ public class daterange extends HttpServlet {
 			}
 		}
 		
+	    Res="";
 		for(int i=0;i<result_projects.size();i++)
 		{
 			System.out.println("result_projecs : "+result_projects.get(i));
+			Res=Res+result_projects.get(i)+",";
 		}
 		}
 		catch(Exception e)
 		{
-			System.out.println("HI Helo :"+e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		
 	}
@@ -104,8 +109,9 @@ public class daterange extends HttpServlet {
 	{
 	try
 	{
-		System.out.println("HIIIIIIIII");
+		
 	totalDates.clear();
+	
 	String arr[]=s1.split("/");
 	String arr1[]=s2.split("/");
 	if(arr[1].length()==1)
@@ -120,16 +126,20 @@ public class daterange extends HttpServlet {
 	String to=arr1[2]+"-"+arr1[0]+"-"+arr1[1];
 	LocalDate start = LocalDate.parse(from);
 	LocalDate end = LocalDate.parse(to);
-	
+	System.out.println("Hell");
 	while (!start.isAfter(end)) {
 	    totalDates.add(start.toString());
 	    start = start.plusDays(1);
+	}
+	for (int i=0;i<totalDates.size();i++)
+	{
+		System.out.println(" "+totalDates.get(i));
 	}
 	
 	}
 	catch(Exception e)
 	{
-	System.out.println("HIIIIIII : " + e.getMessage());	
+	System.out.println(e.getMessage());	
 	}
 	}
 	
@@ -137,7 +147,7 @@ public class daterange extends HttpServlet {
 	{
 		try
 		{
-		Range_dates_conv.clear();
+		
 		int_date_mod.clear();
 		String delimiter ="";
 		if(range.get(0).contains("/"))
@@ -153,10 +163,12 @@ public class daterange extends HttpServlet {
 			String newdate=arr[0]+"/"+arr[1]+"/"+arr[2];
 			
 			int_date_mod.add(newdate);
+			
 			}
 				}
 		else
 		{
+			Range_dates_conv.clear();
 			delimiter="-";
 			for(int i=0;i<range.size();i++)
 			{
@@ -164,12 +176,13 @@ public class daterange extends HttpServlet {
 			String newdate=arr[1]+"/"+arr[2]+"/"+arr[0];
 			
 			Range_dates_conv.add(newdate);
+			
 			}
 		}
 		}
 		catch(Exception e)
 		{
-			System.out.println("HELLO : "+e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		
 	}
@@ -180,18 +193,37 @@ public class daterange extends HttpServlet {
 		// TODO Auto-generated method stub
 		try
 		{
-		System.out.println("----------dateRange page------------");
+			
+			String fromDate = request.getParameter("fromD");
+			String toDate = request.getParameter("toD");
+			
+			System.out.println("FromDate : " + fromDate  + "TODate :" + toDate);
+			//System.out.println("HI");
+			
+			Db_Connection();
+			range_calc(fromDate,toDate);
+			System.out.print("Tot : " +totalDates.size());
+			System.out.print("int :"+int_date.size());
+			monthToYear(totalDates);
+			monthToYear(int_date);
+			project_select();
+			System.out.println("Result :"+Res);
+			
+			String text = Res.substring(0, Res.length() - 1);
+			response.setContentType("text/plain"); // Set content type of the response so that jQuery knows what it can// expect.
+			response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+			response.getWriter().write(text);
+		/*System.out.println("----------dateRange page------------");
 		
 		String fromDate = request.getParameter("fromD");
 		String toDate = request.getParameter("toD");
 		
 		System.out.println("FromDate : " + fromDate  + "TODate :" + toDate);
 		//System.out.println("HI");
-		//range_calc(fromDate,toDate);
-		range_calc("5/1/2018","5/1/2018");
-		monthToYear(totalDates);
-		monthToYear(int_date);
-		project_select();
+		range_calc(fromDate,toDate);
+		//srange_calc("5/1/2018","5/1/2018");
+		
+		project_select();*/
 		}
 		catch(Exception e)
 		{

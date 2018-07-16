@@ -61,6 +61,7 @@ public class Login extends HttpServlet {
 		HttpSession session=request.getSession();
 		String userid=request.getParameter("usr");
 		String pwd=request.getParameter("pwd"); 
+		System.out.println("bala");
 		session.setAttribute("username",userid);
 		details.setAttribute("u_Name",userid);
 		

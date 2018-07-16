@@ -445,6 +445,7 @@ if(hypercare == null)
        
       
       <%
+      System.out.println("appname.size  "+appname.size());
       for(int k=0;k<appname.size();k++){
       for(int j=0;j<appname.size();j++) 
       {     
@@ -465,7 +466,9 @@ if(hypercare == null)
        break;
        }
     	}
-      } %>
+      }
+      %>
+      <input type="text" id="appname_size" name="appname_size" style="display:none" value="<%=appname.size() %>"/>
          
          
         </tr>

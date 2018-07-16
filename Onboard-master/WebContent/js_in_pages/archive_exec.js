@@ -3,7 +3,7 @@
 	  {
 		 
 		 // window.alert(pln_srt+" "+pln_end+" "+act_srt+" "+status.id+" "+pln_hrs.id+" "+act_hrs.id+" "+progressbar.id);
-		 var startDate =pln_srt;
+		 var startDate =pln_srt;w
 		  var endDate =pln_end;
 		  var actual_startdate =act_srt;
 		  var percentage;
