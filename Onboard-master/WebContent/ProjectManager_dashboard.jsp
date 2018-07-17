@@ -278,8 +278,8 @@ if(rs.next()){
                 <li class="has-children">
                                         <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="RoleDashboard.jsp" class="active-menu"> <span>Role Dashboard</span></a></li>
-                                            <li><a href="ProjectDashboard.jsp"> <span>Project Dashboard</span></a></li>
+                                            <li><a href="RoleDashboard.jsp" > <span>Role Dashboard</span></a></li>
+                                            <li><a href="ProjectDashboard.jsp" class="active-menu"> <span>Project Dashboard</span></a></li>
                                             <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
                                         </ul>
                                     </li>
@@ -925,7 +925,7 @@ catch(Exception e){}
                           
          </div>
          
-    <input type="button" onclick="" value="click">
+   
        <!-- ========== COMMON JS FILES ========== -->
        
       
