@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <html lang="en">
 <head>
-<title>Role Dashboard</title>
+<title>ProjectManager Dashboard</title>
  <meta charset="UTF-8" />
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -434,6 +434,7 @@ function javascript_conv()
           <div class="col-lg-2 col-md-2">
           <span>
           <select class="form-control" id="projectvaluepie">
+            <option value="" disabled selected>-Project list--</option>
   </select>
 </span>
           </div>
@@ -445,18 +446,54 @@ function javascript_conv()
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- pie chart -->
+                    
+                    
+                     <!-- piechart -->
                     <div class="col-lg-5 col-md-5">
-                        <div class="card">
+              
+                          <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title">Role Status</h3>
-                                <h6 class="card-subtitle"></h6>
-                             <div id="piechart"></div>
+                            
+                                <div class="row">
+                               
+                                  <div class="col-lg-6 col-md-6">
+                                     <h3 >Percentage (%)</i></h3>
+                                      
+                                      </div>
+                                 
+                                    <br>
+                                     <div class="col-lg-12 col-md-12" id="content">
+                                    <div class="col-lg-4 col-md-4">
+           <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDatepie" placeholder="Select from date"></p>
+          </div>
+
+          <div class="col-lg-4 col-md-4">
+           <p>  <input type="text" data-provide="datepicker" class="form-control" id="toDatepie" onchange="getDateValuepie(this.id,'fromDatepie')" placeholder="Select to date"></p>
+          </div>
+        
+          <div class="col-lg-4 col-md-4" id="project_list1">
+          <span>
+		          <select class="form-control" id="projectvaluepiechart"  onchange="getPiechart(this.value)">  
+		                <option value="" disabled selected>-Project list--</option>
+		              
+						      </select> 
+</span>
+          </div>
+										  
+										    </div>
+                                    <div id="piechart" style="width:100%; height:350px;padding:10px;"></div> 
+                                   
+                                </div>
                             </div>
-                            
-                            
                         </div>
-                    </div>
+                        
+                   
+                   
+                   
                 </div>
+                                    </div>
       
       
       
@@ -502,6 +539,48 @@ function javascript_conv()
 	   
    }
    </script>
+   <script type="text/javascript">
+
+   function getDateValuepie(){
+		
+		var piefrom = document.getElementById("fromDatepie").value;
+		var pieto = document.getElementById("toDatepie").value;
+		
+		//console.log("Piechartfromdate : " +piefrom + "Piecharttodate :" + pieto );
+		 $.ajax({
+	         url:'/onboard/piedaterange',
+	         data:{piefrom:piefrom,pieto : pieto},
+	         type:'POST',
+	         cache:false,
+	         success:function(value){
+	             console.log("project data : ", value);
+	             var num=value.split(",");
+	             var select = document.getElementById("projectvaluepiechart"); 
+	             //append the project list in to dropdown
+	             select.innerHTML = "<select> <option value='' disabled selected>--ProjectList--</option>";
+	             var myarray = value.split(',');
+	             
+	             for(var i = 0; i < myarray.length; i++)
+	             {
+	            	 var opt = myarray[i];
+	         	    select.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+	             }
+	            
+	             select.innerHTML+="</select>";
+	             
+	             dateRange(num);
+	             
+	         },
+	         error:function(){
+	             console.log('error');
+	         }
+	     }
+	 );
+		
+	}
+
+   </script>
+   
    <script>
    var projectname1=[];
    var projectname2=[];
@@ -652,10 +731,172 @@ function javascript_conv()
 	 
 	   //alert("num is "+num);
  }
- 
       </script>
-      
-      
+     
+    <!-- Piechart -->
+    
+    <script type="text/javascript">
+    var projectName1=[];
+    var projectName2=[];
+    var projectName3=[];
+    var projectName4=[];
+    var level2=[];
+    var progressBar=[];
+    var status1=[];
+    var mem_Ass=[];
+    var num_Ass=[];
+    var count1p=0,count2p=0,count3p=0,count4p=0;
+    <%
+    String Project_Names[]=new String[20];
+    String dbQuery="select projectname from projinfo";
+    Statement dstp = conn.createStatement();
+    ResultSet drsp = dst.executeQuery(dbquery);
+    int ttl_cntp=0;
+    while(drsp.next()){ 
+   	 Project_Names[ttl_cntp]=drsp.getString("projectname");
+   	  	 
+    %>
+    <%
+    String db_query="select * from archive_exec where level=1 and projects='"+drsp.getString("projectname")+"'";
+    Statement db_st = conn.createStatement();
+    ResultSet db_rs = db_st.executeQuery(db_query);
+    String db_query1="select count(*) from archive_exec where projects='"+drsp.getString("projectname")+"' and mem_Ass!=''";
+    Statement db_st1 = conn.createStatement();
+    ResultSet db_rs1 = db_st1.executeQuery(db_query1);
+    if(db_rs1.next()){%>
+    num_Ass.push("<%=db_rs1.getString(1)%>");
+    <%}
+    while(db_rs.next())
+    {
+    	if(db_rs.getString("name").equals("Ideation and Initiate") && !db_rs.getString("progressbar").equals("100")){ %>
+    		count1p++;
+    	     projectName1.push("<%=drsp.getString(1)%>");
+    		progressbar.push("<%=db_rs.getString("progressbar")%>");
+    		<%	break;
+     	}
+     	else if(db_rs.getString("name").equals("Plan") && !db_rs.getString("progressbar").equals("100"))
+     	{ %>
+     	count2p++;
+        projectName2.push("<%=drsp.getString(1)%>");
+ 		  progressbar.push(<%=db_rs.getString("progressbar")%>);
+ 				
+     	<%	break;
+     	}
+     	else if(db_rs.getString("name").equals("Execute") && !db_rs.getString("progressbar").equals("100"))
+     	{ %>
+     	  count3p++;
+          projectName3.push("<%=drsp.getString(1)%>");
+ 		  progressbar.push("<%=db_rs.getString("progressbar")%>");
+ 		 
+     	<%	break;
+     	}
+     	else if(db_rs.getString("name").equals("Closure") && !db_rs.getString("progressbar").equals("100"))
+     	{ %>
+     	  count4p++;
+          projectName4.push("<%=drsp.getString(1)%>");
+ 		  progressbar.push("<%=db_rs.getString("progressbar")%>");
+    		
+    <%	break;
+     	}
+     	
+     }
+  
+     ttl_cntp++;
+     }
+  %>
+    
+    
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(draw_Chart);
+  function draw_Chart() {
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn('string', 'Status');
+    dataTable.addColumn('number', 'Visits');
+    // A column for custom tooltip content
+    dataTable.addColumn({type: 'string', role: 'tooltip'});
+    dataTable.addRows([
+    	  ['Ideation and Initiate',count1p,"Projects:'"+projectName1+"'"], 
+   	   ['Plan',count2p,"Projects:'"+projectName2+"'"],
+   	   ['Execute', count3p,"Projects:'"+projectName3+"'"],
+   	   ['Hypercare', count4p,"Projects:'"+projectName4+"'"] 
+ 	   ]);
+
+    var options = { legend: 'bottom',
+    		      is3D: true,
+    		
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(dataTable, options);
+  }
+    
+  
+  function dateRange(num){
+	  
+	  var project_Name1=[];
+		 var project_Name2=[];
+		 var project_Name3=[];
+		 var project_Name4=[];
+		 var cnt1=0,cnt2=0,cnt3=0,cnt4=0;
+		   for(var i=0;i<num.length;i+=1){
+			   for(var j=0;j<count1;j+=1)
+				   {
+			   if(num[i]==projectname1[j])
+				   {
+				   project_Name1.push(projectname1[j]);
+				   cnt1++;
+				   }
+				   }
+			   for(var j=0;j<count2;j+=1)
+			   {
+		   if(num[i]==projectname2[j])
+			   {
+			   project_Name2.push(projectname2[j]);
+			   cnt2++;
+			   }
+			   }
+			   for(var j=0;j<count3;j+=1)
+			   {
+		   if(num[i]==projectname3[j])
+			   {
+			   project_Name3.push(projectname3[j]);
+			   cnt3++;
+			   }
+			   }
+			   for(var j=0;j<count4;j+=1)
+			   {
+		   if(num[i]==projectname4[j])
+			   {
+			   project_Name4.push(projectname4[j]);
+			   cnt4++;
+			   }
+			   }
+		   }
+			   var dataTable = new google.visualization.DataTable();
+			   dataTable.addColumn('string', 'Status');
+			   dataTable.addColumn('number', 'Visits');
+			   
+			   // A column for custom tooltip content
+			   dataTable.addColumn({type: 'string', role: 'tooltip'});
+			   dataTable.addRows([
+				   ['Ideation and Initiate',cnt1,"Projects:'"+project_Name1+"'"], 
+				   ['Plan',cnt2,"Projects:'"+project_Name2+"'"],
+				   ['Execute', cnt3,"Projects:'"+project_Name3+"'"],
+				   ['Hypercare', cnt4,"Projects:'"+project_Name4+"'"] 
+
+				   ]);
+
+			   var options = { legend: 'bottom',
+		    		      is3D: true}
+			   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+			   chart.draw(dataTable, options);
+	  
+	  
+	  
+	  
+	  
+  }
+  
+   </script>
   <%
 }
 
