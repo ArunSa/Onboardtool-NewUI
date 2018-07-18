@@ -433,8 +433,8 @@ function javascript_conv()
         </div>
           <div class="col-lg-2 col-md-2">
           <span>
-          <select class="form-control" id="projectvaluepie">
-            <option value="" disabled selected>-Project list--</option>
+      
+  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value)">
   </select>
 </span>
           </div>
@@ -531,6 +531,54 @@ function javascript_conv()
               
                select.innerHTML+="</select>";
                demo(num);
+           },
+           error:function(){
+               console.log('error');
+           }
+       });
+	   
+   }
+   </script>
+          <script type="text/javascript">
+
+   function application_bar(x){
+	  window.alert("project dropdown "+x);
+	  alert("as");
+	   $.ajax({
+           url:'/onboard/application_graph',
+           data:{projects:x},
+           type:'POST',
+           cache:false,    
+           success:function(value){
+               console.log("data",value);
+               var num=value.split("/");
+               var cnt0=0,cnt1=0,cnt2=0,cnt3=0;
+               if(num[0]!="")
+            	   var cnt0=num[0].split(',').length-1;
+               if(num[1]=="")
+            	   var cnt1=num[1].split(',').length-1;
+               if(num[2]=="")
+            	   var cnt2=num[2].split(',').length-1;
+                if(num[3]=="")
+            	   var cnt3=num[3].split(',').length-1;
+                alert(cnt0+" "+cnt1+" "+cnt2+" "+cnt3);
+                           var dataTable = new google.visualization.DataTable();
+    		   dataTable.addColumn('string', 'Status');
+    		   dataTable.addColumn('number', 'Visits');
+    		   // A column for custom tooltip content
+    		   dataTable.addColumn({type: 'string', role: 'tooltip'});
+    		   dataTable.addRows([
+    			   ['Requirements',cnt0,"Applications:'"+num[0]+"'"], 
+    			   ['Development',cnt1,"Applications:'"+num[1]+"'"],
+    			   ['Testing', cnt2,"Applications:'"+num[2]+"'"],
+    			   ['Deployment',cnt3,"Applications:'"+num[3]+"'"] 
+
+    			   ]);
+
+    		   var options = { legend: 'none' };
+    		   var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
+    		   chart.draw(dataTable, options);
+    	 
            },
            error:function(){
                console.log('error');
@@ -732,6 +780,9 @@ function javascript_conv()
 	   //alert("num is "+num);
  }
       </script>
+      
+ 
+      
      
     <!-- Piechart -->
     
@@ -897,6 +948,8 @@ function javascript_conv()
   }
   
    </script>
+ 
+      
   <%
 }
 
