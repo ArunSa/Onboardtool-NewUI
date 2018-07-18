@@ -553,13 +553,17 @@ function javascript_conv()
                console.log("data",value);
                var num=value.split("/");
                var cnt0=0,cnt1=0,cnt2=0,cnt3=0;
+               alert(num[0]);
+               alert(num[1]);
+               alert(num[2]);
+               alert(num[3]);
                if(num[0]!="")
             	   var cnt0=num[0].split(',').length-1;
-               if(num[1]=="")
+               if(num[1]!="")
             	   var cnt1=num[1].split(',').length-1;
-               if(num[2]=="")
+               if(num[2]!="")
             	   var cnt2=num[2].split(',').length-1;
-                if(num[3]=="")
+                if(num[3]!="" || num[3] != null)
             	   var cnt3=num[3].split(',').length-1;
                 alert(cnt0+" "+cnt1+" "+cnt2+" "+cnt3);
                            var dataTable = new google.visualization.DataTable();
@@ -587,6 +591,59 @@ function javascript_conv()
 	   
    }
    </script>
+   <!-- get Piechart value -->
+
+<script type="text/javascript">
+
+   function getPiechart(x){
+	 
+	  	   $.ajax({
+           url:'/onboard/application_piechart',
+           data:{projects:x},
+           type:'POST',
+           cache:false,    
+           success:function(value){
+               console.log("data",value);
+               var num=value.split("/");
+               var cnt0=0,cnt1=0,cnt2=0,cnt3=0;
+               
+               if(num[0]!="")
+            	   var cnt0=num[0].split(',').length-1;
+               if(num[1]!="")
+            	   var cnt1=num[1].split(',').length-1;
+               if(num[2]!="")
+            	   var cnt2=num[2].split(',').length-1;
+                if(num[3]!="")
+            	   var cnt3=num[3].split(',').length-1;
+                alert(cnt0+" "+cnt1+" "+cnt2+" "+cnt3);
+                           var dataTable = new google.visualization.DataTable();
+    		   dataTable.addColumn('string', 'Status');
+    		   dataTable.addColumn('number', 'Visits');
+    		   // A column for custom tooltip content
+    		   dataTable.addColumn({type: 'string', role: 'tooltip'});
+    		   dataTable.addRows([
+    			   ['Requirements',cnt0,"Applications:'"+num[0]+"'"], 
+    			   ['Development',cnt1,"Applications:'"+num[1]+"'"],
+    			   ['Testing', cnt2,"Applications:'"+num[2]+"'"],
+    			   ['Deployment',cnt3,"Applications:'"+num[3]+"'"] 
+
+    			   ]);
+
+    		   var options = { legend: 'bottom',
+		    		      is3D: true}
+    		   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    		   chart.draw(dataTable, options);
+    	 
+           },
+           error:function(){
+               console.log('error');
+           }
+       });
+	   
+   }
+   </script>   
+   
+   
    <script type="text/javascript">
 
    function getDateValuepie(){
