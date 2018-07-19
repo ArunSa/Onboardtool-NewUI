@@ -34,6 +34,27 @@
         
 </head>
 <body class="top-navbar-fixed">
+<%@page language="java"%>
+<%@page import="java.sql.*"%>
+<%@ page import="onboard.DBconnection" %>
+<%
+
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+response.setHeader("Expires", "0"); // Proxies.
+
+if (session.getAttribute("username")==null)
+{
+response.sendRedirect("Login.jsp");
+}
+%>
+<%
+  HttpSession role_ses=request.getSession(); 
+  String frole=(String)role_ses.getAttribute("role");
+  System.out.println("Selected User Name :" +frole );
+  HttpSession details=request.getSession();
+  try{
+  %>
  <div class="main-wrapper">
    <nav class="navbar top-navbar bg-white box-shadow">
    <div class="container-fluid">
@@ -43,6 +64,20 @@
                     <img src="images/logo1.png" alt="Options - Admin Template" class="logo">
                 </a>
                    </div>
+                   <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                			
+                            <!-- /.nav navbar-nav -->
+ <ul class="nav navbar-nav navbar-right">
+ 
+  <%
+                         String uname=(String)details.getAttribute("username");
+                         String role=(String)details.getAttribute("role");%>                   
+	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
+<li><a href="Logout" class=" text-center"><i class="fa fa-sign-out"></i> Logout</a>
+                        </li>
+                    </ul>
+					
+                		</div>
                 </div>
    </div>
    </nav>
@@ -79,7 +114,9 @@
     <div class="row mt-50 grid1">
         <div class="container">
             <div class="col-md-12">
-
+<% 
+	if(frole.equals("admin") ||frole.equals("ArchivalAdmin") ||frole.equals("LegacyTechnicalSME") || frole.equals("LegacyBusinessSME")  || frole.equals("LegacyProgramManager")  || frole.equals("ArchivalBusinessAnalyst")  || frole.equals("ArchivalProgramManager")  ||frole.equals("ArchivalDeveloper")|| frole.equals("TestLead") ){
+	%>
                 <div class="col-md-3 col-sm-3">
                   <a href="RoleDashboard.jsp">
                    <center>
@@ -88,9 +125,23 @@
                    </center>
                   </a>
                 </div>
-
+ <%
+ }
+	else if(frole.equals("ArchivalProjectManager"))
+{
+   %>    
+                
                 <div class="col-md-3 col-sm-3">
-                  <a href="Project_List.jsp">
+                  <a href="ProjectManager_dashboard.jsp">
+                 <center>
+                   <img src="images/Role2.jpg" class="img-rounded" height="100" width="100" alt="Avatar">
+                   <h6 class="mt-5">Project</h6>
+               </center>
+                  </a>
+                </div>
+<% }%>
+                <div class="col-md-3 col-sm-3">
+                  <a href="ProjectDashboard.jsp">
                  <center>
                    <img src="images/Project.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Project</h6>
@@ -98,7 +149,10 @@
                   </a>
                 </div>
 
-                <div class="col-md-3 col-sm-3">
+
+ 
+
+              <div class="col-md-3 col-sm-3">
                   <a href="ApplicationDashbpard.jsp">
                    <center>
                    <img src="images/Application.png" class="img-rounded" height="100" width="100" alt="Avatar">
@@ -125,7 +179,13 @@
    </div>
    </div>
     
+   <%
+   }
    
+catch(Exception e){
+e.printStackTrace();
+}
+%>
  </div>
 </body>
 </html>
