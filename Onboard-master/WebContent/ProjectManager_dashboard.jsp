@@ -434,7 +434,7 @@ function javascript_conv()
           <div class="col-lg-2 col-md-2">
           <span>
       
-  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value)">
+  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value,barchart)">
   </select>
 </span>
           </div>
@@ -475,9 +475,7 @@ function javascript_conv()
         
           <div class="col-lg-4 col-md-4" id="project_list1">
           <span>
-		          <select class="form-control" id="projectvaluepiechart"  onchange="getPiechart(this.value)">  
-		                <option value="" disabled selected>-Project list--</option>
-		              
+		          <select class="form-control" id="projectvaluepiechart"  onchange="application_bar(this.value,piechart)">  
 						      </select> 
 </span>
           </div>
@@ -541,9 +539,8 @@ function javascript_conv()
    </script>
           <script type="text/javascript">
 
-   function application_bar(x){
+   function application_bar(x,name){
 	  window.alert("project dropdown "+x);
-	  alert("as");
 	   $.ajax({
            url:'/onboard/application_graph',
            data:{projects:x},
@@ -557,15 +554,28 @@ function javascript_conv()
                alert(num[1]);
                alert(num[2]);
                alert(num[3]);
-               if(num[0]!="")
-            	   var cnt0=num[0].split(',').length-1;
-               if(num[1]!="")
-            	   var cnt1=num[1].split(',').length-1;
-               if(num[2]!="")
-            	   var cnt2=num[2].split(',').length-1;
-                if(num[3]!="" || num[3] != null)
-            	   var cnt3=num[3].split(',').length-1;
+               if(num[0]===undefined)
+            	   cnt0=0;
+               else if(num[0]!="")
+            	    cnt0=num[0].split(',').length-1;
+               
+               if(num[1]===undefined)
+            	   cnt1=0;
+               else if(num[1]!="")
+            	    cnt1=num[1].split(',').length-1;
+               
+               if(num[2]===undefined)
+            	   cnt2=0;
+               else if(num[2]!="")
+            	    cnt2=num[2].split(',').length-1;
+               
+               if(num[3]===undefined)
+            	   cnt3=0;
+               else if(num[3]!="")
+            	    cnt3=num[3].split(',').length-1;
                 alert(cnt0+" "+cnt1+" "+cnt2+" "+cnt3);
+                if(name=="barchart"){
+                	alert("barchart");
                            var dataTable = new google.visualization.DataTable();
     		   dataTable.addColumn('string', 'Status');
     		   dataTable.addColumn('number', 'Visits');
@@ -582,41 +592,10 @@ function javascript_conv()
     		   var options = { legend: 'none' };
     		   var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
     		   chart.draw(dataTable, options);
-    	 
-           },
-           error:function(){
-               console.log('error');
-           }
-       });
-	   
-   }
-   </script>
-   <!-- get Piechart value -->
-
-<script type="text/javascript">
-
-   function getPiechart(x){
-	 
-	  	   $.ajax({
-           url:'/onboard/application_piechart',
-           data:{projects:x},
-           type:'POST',
-           cache:false,    
-           success:function(value){
-               console.log("data",value);
-               var num=value.split("/");
-               var cnt0=0,cnt1=0,cnt2=0,cnt3=0;
-               
-               if(num[0]!="")
-            	   var cnt0=num[0].split(',').length-1;
-               if(num[1]!="")
-            	   var cnt1=num[1].split(',').length-1;
-               if(num[2]!="")
-            	   var cnt2=num[2].split(',').length-1;
-                if(num[3]!="")
-            	   var cnt3=num[3].split(',').length-1;
-                alert(cnt0+" "+cnt1+" "+cnt2+" "+cnt3);
-                           var dataTable = new google.visualization.DataTable();
+                }
+                else
+                	{
+    		   var dataTable = new google.visualization.DataTable();
     		   dataTable.addColumn('string', 'Status');
     		   dataTable.addColumn('number', 'Visits');
     		   // A column for custom tooltip content
@@ -633,7 +612,7 @@ function javascript_conv()
 		    		      is3D: true}
     		   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     		   chart.draw(dataTable, options);
-    	 
+                	}    	 
            },
            error:function(){
                console.log('error');
@@ -641,8 +620,9 @@ function javascript_conv()
        });
 	   
    }
-   </script>   
-   
+   </script>
+   <!-- get Piechart value -->
+     
    
    <script type="text/javascript">
 

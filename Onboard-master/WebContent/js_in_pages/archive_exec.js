@@ -1,9 +1,144 @@
-
-	  function getID(lev,pln_srt,pln_end,act_srt,status,pln_hrs,act_hrs,progressbar,actual_enddate)
+ function getID(lev,pln_srt,pln_end,act_srt,status,pln_hrs,act_hrs,progressbar,actual_enddate)
 	  {
+		  var actual_Hours="";
+		  var planned_Hours="";
+		  var str_array=[];
+		  //alert(" "+pln_srt+" "+pln_end+" "+act_srt);
+		  if (pln_srt!="" && pln_end!="" && act_srt!= "") {
+		  $.ajax({
+			 
+	            url: 'Count',
+	            type: 'POST',
+	            data: { field1: pln_srt, field2 : pln_end,field3 :act_srt },
+	            dataType: "text",
+	            success: function (data) {
+	            	str_array=" ";
+	            	str_array = data.split(',');
+	            	planned_Hours=parseInt(str_array[0])*8;
+	            	actual_Hours=parseInt(str_array[1])*8;
+	                console.log("SUCCESS : ", data);
+	               
+	                var percent = (actual_Hours/planned_Hours) * 100;
+	                  if(lev!=1){
+	     	   		  document.getElementById(pln_hrs.id).value=planned_Hours;
+	     	   		  document.getElementById(act_hrs.id).value=actual_Hours;
+	     	   		  }
+	      		 
+	                if (percent < 0 ) {
+	      		  percent=0;
+	      		  $('#'+progressbar.id).reportprogress(percent);
+	      		  } 
+	      		  else if(percent>100)
+	      		  {
+	      			 
+	      			  percent=100;
+	      			  $('#'+progressbar.id).reportprogress(percent);
+	      			  $('#'+status.id).css({background:'green'});
+	      		  }  
+	      		  else if (percent < 35) 
+	      		  { $('#'+progressbar.id).reportprogress(percent);
+	      		  $('#'+status.id).css({background:'red'});
+	      		  }
+	      		  else if (percent > 35) 
+	      		  { $('#'+progressbar.id).reportprogress(percent);
+	      		  $('#'+status.id).css({background:'yellow'});
+	      		  }
+	      		               else if (percent < 75) 
+	      		  { $('#'+progressbar.id).reportprogress(percent);
+	      		  $('#'+status.id).css({background:'yellow'});
+	      		  }
+	      		               else if (percent >76 ) 
+	      		  { $('#'+progressbar.id).reportprogress(percent);
+	      		  $('#'+status.id).css({background:'green'});
+	      		  }
+	      		   
+	      		   
+	      		   
+	      		   
+	      		   
+	      		 var first,last;
+	   		  
+	   		 if(seq_no>initiate_seqno)
+	   			  {
+	   			  if(seq_no>plan_seqno)
+	   				  {
+	   				  if(seq_no>execute_seqno)
+	   					  {
+	   					  if(seq_no>hypercare_seqno)
+	   						  {
+	   						  first=hypercare_seqno;
+	   						  last=hypercare_seqno+7;
+	   						  }
+	   					  else
+	   						  {
+	   						  first=execute_seqno;
+	   						  last=hypercare_seqno;
+	   						  }
+	   					  }
+	   				  else
+	   				  {
+	   				  first=plan_seqno;
+	   				  last=execute_seqno;
+	   				  }
+	   				  }
+	   			  else
+	   			  {
+	   			  first=initiate_seqno;
+	   			  last=plan_seqno;
+	   			  }
+	   			  }
+	   		 // window.alert("first "+first+" last "+last);
+	   		  for(var i=first;i<last-1;i++)
+	   			  {
+	   			  var q=document.getElementById("pln_srt_date"+first).value;
+	   			  if(q!="")
+	   				  date_count++;
+	   			  }
+	   		 // window.alert(date_count+" "+(last-1-first));
+	   		  
+	   		  
+	   		  if(date_count==(last-1-first)){
+	   			  percent=100;
+	   			  $('#'+progressbar.id).reportprogress(percent);
+	   			  $('#'+status.id).css({background:'green'});
+	   		  }
+	   		   if (percent < 0 ) {
+	   		  percent=0;
+	   		  $('#'+progressbar.id).reportprogress(percent);
+	   		  } 
+	   		  else if(percent>100)
+	   		  {
+	   			  percent=100;
+	   			  $('#'+progressbar.id).reportprogress(percent);
+	   			  $('#'+status.id).css({background:'green'});
+	   		  }  
+	   		  else if (percent < 35) 
+	   		  { $('#'+progressbar.id).reportprogress(percent);
+	   		  $('#'+status.id).css({background:'red'});
+	   		  }
+	   		  else if (percent > 35) 
+	   		  { $('#'+progressbar.id).reportprogress(percent);
+	   		  $('#'+status.id).css({background:'yellow'});
+	   		  }
+	   		               else if (percent < 75) 
+	   		  { $('#'+progressbar.id).reportprogress(percent);
+	   		  $('#'+status.id).css({background:'yellow'});
+	   		  }
+	   		               else if (percent >76 ) 
+	   		  { $('#'+progressbar.id).reportprogress(percent);
+	   		  $('#'+status.id).css({background:'green'});
+	   		  }
+	            },
+	            error: function (e) {
+	            	//salert("err");
+	                console.log("ERROR : ", e);
+
+	            }
+		  });
+		//  }
 		 
 		 // window.alert(pln_srt+" "+pln_end+" "+act_srt+" "+status.id+" "+pln_hrs.id+" "+act_hrs.id+" "+progressbar.id);
-		 var startDate =pln_srt;w
+		/* var startDate =pln_srt;
 		  var endDate =pln_end;
 		  var actual_startdate =act_srt;
 		  var percentage;
@@ -26,83 +161,9 @@
 
 		  percentage=100;
 		  console.log("actual_Hours : "+actual_Hours);
-		  console.log("total_hours : "+total_hours);
-		  var first,last;
-		  if(lev!=1){
-		  document.getElementById(pln_hrs.id).value=total_hours;
-		  document.getElementById(act_hrs.id).value=actual_Hours;
-		  }
-		/*  if(seq_no>initiate_seqno)
-			  {
-			  if(seq_no>plan_seqno)
-				  {
-				  if(seq_no>execute_seqno)
-					  {
-					  if(seq_no>hypercare_seqno)
-						  {
-						  first=hypercare_seqno;
-						  last=hypercare_seqno+7;
-						  }
-					  else
-						  {
-						  first=execute_seqno;
-						  last=hypercare_seqno;
-						  }
-					  }
-				  else
-				  {
-				  first=plan_seqno;
-				  last=execute_seqno;
-				  }
-				  }
-			  else
-			  {
-			  first=initiate_seqno;
-			  last=plan_seqno;
-			  }
-			  }
-		  window.alert("first "+first+" last "+last);
-		  for(var i=first;i<last-1;i++)
-			  {
-			  var q=document.getElementById("pln_srt_date"+first).value;
-			  if(q!="")
-				  date_count++;
-			  }
-		  window.alert(date_count+" "+(last-1-first));
-		  
-		  
-		  if(date_count==(last-1-first)){
-			  percent=100;
-			  $('#'+progressbar.id).reportprogress(percent);
-			  $('#'+status.id).css({background:'green'});
-		  }*/
-		   if (percent < 0 ) {
-		  percent=0;
-		  $('#'+progressbar.id).reportprogress(percent);
-		  } 
-		  else if(percent>100)
-		  {
-			  percent=100;
-			  $('#'+progressbar.id).reportprogress(percent);
-			  $('#'+status.id).css({background:'green'});
-		  }  
-		  else if (percent < 35) 
-		  { $('#'+progressbar.id).reportprogress(percent);
-		  $('#'+status.id).css({background:'red'});
-		  }
-		  else if (percent > 35) 
-		  { $('#'+progressbar.id).reportprogress(percent);
-		  $('#'+status.id).css({background:'yellow'});
-		  }
-		               else if (percent < 75) 
-		  { $('#'+progressbar.id).reportprogress(percent);
-		  $('#'+status.id).css({background:'yellow'});
-		  }
-		               else if (percent >76 ) 
-		  { $('#'+progressbar.id).reportprogress(percent);
-		  $('#'+status.id).css({background:'green'});
-		  }
-		  }
+		  console.log("total_hours : "+total_hours);*/
+		 
+	  }
 		  }
 	
 	  function getDetID(total_hours,actual_Hours,progressbar,status,actual_enddate,datecount)
@@ -167,13 +228,15 @@
 		  
 	  }
 	  
-	  function call_fun(name,a,b,c,d,e,g,h,i,j,k,l)
+	  function call_fun(mem_ass,name,a,b,c,d,e,g,h,i,j,k,l)
 	  {
+		  
 		 
 		  var comments=document.getElementById("cmnts"+(a-1)).value;
 		 var f=document.loginForm;
 		    f.method="post";
-		    f.action='date_update?name='+name+'&sequence_no='+a+'&plan_start='+b+'&plan_end='+c+'&actual_start='+d+'&actual_hrs='+g+'&plan_hrs='+e+'&actual_end='+h+'&initiate_seqno='+i+'&plan_seqno='+j+'&execute_seqno='+k+'&hypercare_seqno='+l+"'&cmnts="+comments;
+		    f.action='date_update?mem_ass='+mem_ass+'&name='+name+'&sequence_no='+a+'&plan_start='+b+'&plan_end='+c+'&actual_start='+d+'&actual_hrs='+g+'&plan_hrs='+e+'&actual_end='+h+'&initiate_seqno='+i+'&plan_seqno='+j+'&execute_seqno='+k+'&hypercare_seqno='+l+"'&cmnts="+comments;
+		   // f.action='date_update?name='+name+'&sequence_no='+a+'&plan_start='+b+'&plan_end='+c+'&actual_start='+d+'&actual_hrs='+g+'&plan_hrs='+e+'&actual_end='+h+'&initiate_seqno='+i+'&plan_seqno='+j+'&execute_seqno='+k+'&hypercare_seqno='+l+"'&cmnts="+comments;
 		    f.submit();  
 	  }
 	function remove(x)
@@ -317,5 +380,4 @@ $.jstree.reference('#jstree').select_node('child_node_1');
 });
 });
  
-
 

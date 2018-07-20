@@ -154,7 +154,7 @@ if(rs4.next()){
 	%>
 	
 	 <div class="main-wrapper">
-
+	 
             <!-- ========== TOP NAVBAR ========== -->
             <nav class="navbar top-navbar bg-white box-shadow">
             	<div class="container-fluid">
@@ -307,12 +307,26 @@ String execute_seqno=(String)session.getAttribute("Execute1");
 String hypercare_seqno=(String)session.getAttribute("Closure1");
 if(initiate == null)
 	initiate="0";
+if(Integer.parseInt(initiate)>100)
+	initiate="100";
+	
 if(plan == null)
 	plan="0";
+
+if(Integer.parseInt(plan) > 100)
+	plan="100";
+
 if(execute == null)
 	execute="0";
+
+if(Integer.parseInt(execute) > 100)
+	execute="100";
+
 if(hypercare == null)
 	hypercare="0";
+
+if(Integer.parseInt(hypercare) > 100)
+	hypercare="100";
 System.out.println(plan);
 %>                            
 
@@ -436,13 +450,13 @@ int progress=0;
 	
 <td style="display:none"><input type="text" id="seqnum<%=i %>" name="seqnum<%=i %>" value="<%=rs3.getInt(1) %>" hidden /></td>
 <td style="display:none"><input type="text" id="level<%=i %>" name="level<%=i %>" value="<%=rs3.getInt(2) %>" hidden /></td>
-<td><input  type="text" class="in"   placeholder="enter" name="mem_ass<%=i %>" value="<%=rs3.getString(4) %>" /></td>
+<td><input  type="text" class="in"  id="mem_ass<%=i %>" placeholder="enter" name="mem_ass<%=i %>" value="<%=rs3.getString(4) %>" /></td>
 <td id="basicExample"><input  type="text" class="in date start" id="pln_srt_date<%=i %>" name="pln_srt_date<%=i %>" value="<%=rs3.getString(7) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',1);"  /></td>
 <td id="basicExample"><input  type="text" class="in date start" id="pln_end_date<%=i %>" name="pln_end_date<%=i %>" value="<%=rs3.getString(8) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',2);"  /></td>
 <td id="basicExample"><input type="text" class="in date start" id="act_srt_date<%=i %>" name="act_srt_date<%=i %>" value="<%=rs3.getString(5) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',3);"  /></td>
 <td id="basicExample"><input  type="text" class="in date start" id="act_end_date<%=i %>" name="act_end_date<%=i %>" value="<%=rs3.getString(6) %>" onClick="check_previous('<%=rs3.getInt(1) %>','<%=rs3.getInt(2) %>',document.getElementById('level<%=i-1 %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>',4);"  /></td>
-<td id="basicExample"><input  type="text" class="in date start"  id="phours<%=i %>" name="phrs<%=i %>" value="<%=rs3.getString(13)%>" onclick="getID('<%=rs3.getInt(2) %>',document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('status<%=i %>'),document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('act_end_date<%=i %>').value);call_fun(document.getElementById('name<%=i %>').value,document.getElementById('seqnum<%=i %>').value,document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('phours<%=i %>').value,document.getElementById('hours<%=i %>').value,document.getElementById('act_end_date<%=i %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>');"/></td>
-<td id="basicExample"><input  type="text" class="in date start" id="hours<%=i %>" name="hrs<%=i %>" value="<%=rs3.getString(9) %>" onclick="call_fun(document.getElementById('name<%=i %>').value,document.getElementById('seqnum<%=i %>').value,document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('phours<%=i %>').value,document.getElementById('hours<%=i %>').value,document.getElementById('act_end_date<%=i %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>');" /></td>
+<td id="basicExample"><input  type="text" class="in date start"  id="phours<%=i %>" name="phrs<%=i %>" value="<%=rs3.getString(13)%>" onclick="getID('<%=rs3.getInt(2) %>',document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('status<%=i %>'),document.getElementById('phours<%=i %>'),document.getElementById('hours<%=i %>'),document.getElementById('progressbar<%=i %>'),document.getElementById('act_end_date<%=i %>').value)"/></td>
+<td id="basicExample"><input  type="text" class="in date start" id="hours<%=i %>" name="hrs<%=i %>" value="<%=rs3.getString(9) %>" onclick="call_fun(document.getElementById('mem_ass<%=i %>').value,document.getElementById('name<%=i %>').value,document.getElementById('seqnum<%=i %>').value,document.getElementById('pln_srt_date<%=i %>').value,document.getElementById('pln_end_date<%=i %>').value,document.getElementById('act_srt_date<%=i %>').value,document.getElementById('phours<%=i %>').value,document.getElementById('hours<%=i %>').value,document.getElementById('act_end_date<%=i %>').value,'<%=initiate_seqno %>','<%=plan_seqno %>','<%=execute_seqno %>','<%=hypercare_seqno %>');" /></td>
 <td><div class="progressbar" id="progressbar<%=i%>"></div></td>
 <td><input type="text" style="background-color:transparent;display:none;width:20%;" /></td>
 <td><input type="text" id="cmnts<%=i %>" name="cmnts<%=i %>" value="<%=rs3.getString(17) %>" /></td>
