@@ -63,7 +63,7 @@ try {
 	String Project_Name=(String)details.getAttribute("projects");
 	DBconnection d=new DBconnection();
 	Connection conn = (Connection)d.getConnection();
-String query3 = "select * from projinfo where id = "+ID;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+ID;
 
 String Project_name="";
 
@@ -76,11 +76,11 @@ if(rs3.next())
 session.setAttribute("newname",Project_name);
 String query1="";
 if(Project_Name.equals("all"))
-	 query1 = "select * from appinfo where prjname = '"+Project_name+"' and complexity is not null";
+	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_name+"' and complexity is not null";
 else
-	 query1 = "select * from appinfo where prjname = '"+Project_Name+"' and appname='"+Application_Name+"' and complexity is not null";
+	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_Name+"' and appname='"+Application_Name+"' and complexity is not null";
 ResultSet rs1 = st1.executeQuery(query1);
-String query2= "select count(prjname) As total from appinfo where prjname='"+Project_name+"' and complexity is not null";
+String query2= "select count(prjname) As total from AppEmphazize_ApplicationInfo where prjname='"+Project_name+"' and complexity is not null";
 ResultSet rs2 = st2.executeQuery(query2);
 {
 %>

@@ -98,7 +98,7 @@ hr[i]=request.getParameter("hrs"+i);
         {
           // create a mysql database connection
           String myDriver = "org.gjt.mm.mysql.Driver";
-          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
           Class.forName(myDriver);
           Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
         
@@ -115,7 +115,7 @@ hr[i]=request.getParameter("hrs"+i);
           String pln_end_date=pln_end_dat[a];
           String hrs=hr[a];
  
-      st.executeUpdate("update archive_exec set name='"+nam+"',mem_ass='"+mem_ass+"',act_srt_date='"+act_srt_date+"',act_end_date='"+act_end_date+"',pln_srt_date='"+pln_srt_date+"',pln_end_date='"+pln_end_date+"',hours='"+hrs+"' where seq_num='"+seq_num+"'");
+      st.executeUpdate("update ArchiveExecution_Details set name='"+nam+"',mem_ass='"+mem_ass+"',act_srt_date='"+act_srt_date+"',act_end_date='"+act_end_date+"',pln_srt_date='"+pln_srt_date+"',pln_end_date='"+pln_end_date+"',hours='"+hrs+"' where seq_num='"+seq_num+"'");
   	
            }
           
@@ -133,7 +133,7 @@ hr[i]=request.getParameter("hrs"+i);
 	        {
 	          // create a mysql database connection
 	          String myDriver = "org.gjt.mm.mysql.Driver";
-	          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	          Class.forName(myDriver);
 	          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	          
@@ -155,10 +155,10 @@ hr[i]=request.getParameter("hrs"+i);
 	          if(level>1)
 	          {
 	        	  System.out.println("subtask");
-	        	  String query="update archive_exec  set seq_num=seq_num+1 where seq_num>"+seq_num;
+	        	  String query="update ArchiveExecution_Details  set seq_num=seq_num+1 where seq_num>"+seq_num;
 	        	  PreparedStatement preparedStmt = conn.prepareStatement(query);
 	        	  preparedStmt.execute();
-	        	  String query1 = " insert into archive_exec (seq_num,level,name,mem_ass,id,ref_id)"
+	        	  String query1 = " insert into ArchiveExecution_Details (seq_num,level,name,mem_ass,id,ref_id)"
 	      	            + " values (?,?,?,?,?,?)";
 	        	  PreparedStatement preparedStmt1 = conn.prepareStatement(query1);
 		          preparedStmt1.setInt (1, seq_num+1);
@@ -169,7 +169,7 @@ hr[i]=request.getParameter("hrs"+i);
 		          preparedStmt1.setString (6, rid);
 		          preparedStmt1.execute();
 		 
-		          String query2="select * from archive_exec order by seq_num";
+		          String query2="select * from ArchiveExecution_Details order by seq_num";
 		          PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
 	        	  preparedStmt2.execute();
 	        	  String query3="update dummy set value='"+x+"'";
@@ -180,7 +180,7 @@ hr[i]=request.getParameter("hrs"+i);
 	          }
 	          else{
 	        	  System.out.println("task");
-	          String query = " insert into archive_exec (seq_num,level,name,mem_ass,id,ref_id)"
+	          String query = " insert into ArchiveExecution_Details (seq_num,level,name,mem_ass,id,ref_id)"
 	            + " values (?,?,?,?,?,?)";
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);
 	          preparedStmt.setInt (1, seq_num);

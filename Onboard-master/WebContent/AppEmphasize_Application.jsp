@@ -61,7 +61,7 @@ try {
 	DBconnection d=new DBconnection();
 	Connection con = (Connection)d.getConnection();
 
-String query3 = "select * from projinfo where id = "+Project_Id;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+Project_Id;
 Statement st3 = con.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 if(rs3.next())
@@ -70,9 +70,9 @@ Project_name=rs3.getString("projectname");
 System.out.println("Project_name of the project is "+Project_name);
 String query1="";
 if(Project_Name.equals("all"))
-	 query1 = "select * from appinfo where prjname = '"+Project_name+"'";
+	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_name+"'";
 else
-	 query1 = "select * from appinfo where prjname = '"+Project_Name+"' and appname='"+Application+"'";
+	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_Name+"' and appname='"+Application+"'";
 st1 = con.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
 

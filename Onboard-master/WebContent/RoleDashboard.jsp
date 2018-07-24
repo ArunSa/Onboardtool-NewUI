@@ -357,23 +357,23 @@ String info=(String)details.getAttribute("app_emp");
 try {
 String det=(String)session.getAttribute("theName");
 Class.forName("com.mysql.jdbc.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
-String query = "select * from projinfo";
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "password123");
+String query = "select * from AppEmphazize_ProjectDetails";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 String query2 = "select * from logs where USER_ID='"+uname+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
-String query1 = "SELECT role FROM role_details";
+String query1 = "SELECT role FROM Role_Details";
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
-String query4 = "select count(uname) from user_details";
+String query4 = "select count(uname) from Admin_UserDetails";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
-String query5 = "select count(role) from role_details";
+String query5 = "select count(role) from Role_Details";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
 String query6 = "select count(roles) from logs";
@@ -418,7 +418,7 @@ if(rs.next()){
 																					  
 					   
                     <%
-                    String q2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                    String q2="select * from ArchiveExecution_Details where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
                     ResultSet rss = s2.executeQuery(q2);
                     while(rss.next())
@@ -941,7 +941,7 @@ pager.showPage(1);
   
      
       <%
-      String query8 = "select * from user_details where roles='"+roles+"'and uname='"+uname+"'"; 
+      String query8 = "select * from Admin_UserDetails where roles='"+roles+"'and uname='"+uname+"'"; 
       Statement st8 = conn.createStatement();
       ResultSet rs8 = st8.executeQuery(query8);
       %>  
@@ -966,7 +966,7 @@ function drawChart() {
     dataTable.addRows([
   <% while(rs8.next()){ 
 	 
-  String query22 = "select * from archive_exec where projects='"+rs8.getString("projects")+"' and level=1";
+  String query22 = "select * from ArchiveExecution_Details where projects='"+rs8.getString("projects")+"' and level=1";
 	Statement st22 = conn.createStatement();
 	ResultSet rs22 = st22.executeQuery(query22);
 	
@@ -1006,14 +1006,14 @@ function drawChart() {
 				if(rs30.next())
 					last_visited_App=rs30.getString(1);
 	
-	String query26 = "select seq_num from archive_exec where projects='"+rs8.getString("projects")+"' and name='"+rs8.getString("application")+"'";
+	String query26 = "select seq_num from ArchiveExecution_Details where projects='"+rs8.getString("projects")+"' and name='"+rs8.getString("application")+"'";
 	Statement st26 = conn.createStatement();
 	ResultSet rs26 = st26.executeQuery(query26);
 	String seqnum="";
 	if(rs26.next())
 	seqnum=rs26.getString(1);
 
-	String query27="select * from archive_exec where projects='"+rs8.getString("projects")+"' and seq_num>"+seqnum+" and seq_num<="+(Integer.parseInt(seqnum)+70)+" and level=3 order by seq_num";
+	String query27="select * from ArchiveExecution_Details where projects='"+rs8.getString("projects")+"' and seq_num>"+seqnum+" and seq_num<="+(Integer.parseInt(seqnum)+70)+" and level=3 order by seq_num";
 	//System.out.println(query3);
 	Statement st27 = conn.createStatement();
 	ResultSet rs27 = st27.executeQuery(query27);

@@ -128,10 +128,10 @@ String info=(String)details.getAttribute("archive_exec");
 		      // execute the preparedstatement
 		      preparedStmt.execute();
 	}
-String query = "select * from projinfo where id = "+det;
+String query = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
-String query9 = "select * from projinfo where id = "+det;
+String query9 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st9 = conn.createStatement();
 ResultSet rs9 = st9.executeQuery(query9);
 String query4 = "select * from dummy";
@@ -139,14 +139,14 @@ Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
 if(rs9.next()){
 }
-String query3 = "select * from archive_exec where projects='"+rs9.getString("projectname")+"' order by seq_num";
+String query3 = "select * from ArchiveExecution_Details where projects='"+rs9.getString("projectname")+"' order by seq_num";
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-String query5 = "select * from archive_exec where projects='"+rs9.getString("projectname")+"' order by seq_num";
+String query5 = "select * from ArchiveExecution_Details where projects='"+rs9.getString("projectname")+"' order by seq_num";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
 
-String query7 = "select * from projinfo where id = "+det;
+String query7 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st7 = conn.createStatement();
 ResultSet rs7 = st7.executeQuery(query7);
 
@@ -178,7 +178,7 @@ if(rs4.next()){
                 		   <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%=rs.getString("projectname") %></a>
                        <input type="text" id="project_name" name="project_name" value="<%=rs.getString("projectname")%>" style="display:none;">                              
                     <%
-                    String q2="select * from archive_exec where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
+                    String q2="select * from ArchiveExecution_Details where level=1 and projects='"+rs.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
                     ResultSet rss = s2.executeQuery(q2);
                     while(rss.next())

@@ -99,9 +99,9 @@ if (session.getAttribute("username")==null)
 HttpSession details=request.getSession();
 String info=(String)details.getAttribute("admin");
 Class.forName("com.mysql.jdbc.Driver"); 
-java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123"); 
-String query="select * from role_details";
-String query1="select * from user_details";
+java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding","root","password123"); 
+String query="select * from Role_Details";
+String query1="select * from Admin_UserDetails";
 Statement s=conn.createStatement();
 Statement s1=conn.createStatement();
 ResultSet rs=s.executeQuery(query);

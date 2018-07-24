@@ -169,10 +169,10 @@ String det=(String)session.getAttribute("theName");
 String idd=(String)session.getAttribute("appidd");
 DBconnection d=new DBconnection();
 Connection conn = (Connection)d.getConnection();
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-String query4 = "select * from appinfo where appname ='"+idd+"'";
+String query4 = "select * from AppEmphazize_ApplicationInfo where appname ='"+idd+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
 String imp_id="";
@@ -210,10 +210,10 @@ ArrayList<String> list=new ArrayList<String>();
                    
                     <% if(rs4.next()){ 
                     	String rowCount="";
-                   	 String query11 = "select * from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
+                   	 String query11 = "select * from Intake_TechnicalDetails where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from Intake_TechnicalDetails where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
                         Statement st11 = conn.createStatement();
                         ResultSet rs11 = st11.executeQuery(query11); 
-                        String query12 = "select count(*) from technical where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                        String query12 = "select count(*) from Intake_TechnicalDetails where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement st12 = conn.createStatement();
                         ResultSet rs12 = st12.executeQuery(query12);
                         if(rs12.next())
@@ -226,19 +226,19 @@ ArrayList<String> list=new ArrayList<String>();
                     
                        <input type="text" id="appln_name" name="appln_name" value="<%= idd %>" style="display:none;">             
                     <%
-                    String quer2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                    String quer2="select * from ArchiveExecution_Details where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
                    ResultSet rss = s2.executeQuery(quer2);
                    while(rss.next())
                    	session.setAttribute(rss.getString(3),rss.getString(15));
                    
-                   String quer3="select id from archive_exec where name='"+rs4.getString("appname")+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                   String quer3="select id from ArchiveExecution_Details where name='"+rs4.getString("appname")+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
                    Statement s3 = conn.createStatement();
                   ResultSet rss1 = s3.executeQuery(quer3);
                   while(rss1.next())
                 	  imp_id=rss1.getString(1);
      
-                  String quer4="select * from archive_exec where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                  String quer4="select * from ArchiveExecution_Details where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
                   Statement s4 = conn.createStatement();
                  ResultSet rss2 = s4.executeQuery(quer4);
                 
@@ -247,13 +247,13 @@ ArrayList<String> list=new ArrayList<String>();
        
                   }
                   
-                  String quer5="select seq_num from archive_exec where name='Build and Test'";
+                  String quer5="select seq_num from ArchiveExecution_Details where name='Build and Test'";
                   Statement s5 = conn.createStatement();
                   ResultSet rss3 = s5.executeQuery(quer5);
                   if(rss3.next())
                 	  sequenceNumber=rss3.getString(1);
      
-                  String quer6="select * from archive_exec where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
+                  String quer6="select * from ArchiveExecution_Details where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
                   Statement s6 = conn.createStatement();
                   ResultSet rss4 = s6.executeQuery(quer6);
                   int knt=0;
@@ -557,13 +557,13 @@ if(implement == null)
 </div>
 
 <% 
- String query22 = "SELECT * from samp_technical";
+ String query22 = "SELECT * from Intake_TechnicalCustomization";
  Statement st22 = conn.createStatement();
  ResultSet rs22 = st22.executeQuery(query22);
  while(rs22.next())
 	 list.add(rs22.getString("idname"));
  ArrayList<String> list2=new ArrayList<String>();
- String query20 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'technical' ORDER BY ORDINAL_POSITION";
+ String query20 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'Intake_TechnicalDetails' ORDER BY ORDINAL_POSITION";
  Statement st20 = conn.createStatement();
  ResultSet rs20 = st20.executeQuery(query20);
  while(rs20.next())
@@ -578,13 +578,13 @@ if(implement == null)
   if( retval == false)
   {
       Statement st21 = conn.createStatement();
-      st21.executeUpdate("alter table technical add column "+value+" varchar(255) DEFAULT ''");
+      st21.executeUpdate("alter table Intake_TechnicalDetails add column "+value+" varchar(255) DEFAULT ''");
       
   }
  }  
  
  if (rs11.next() || rowCount.equals("0")) { 
- String qury="select * from samp_technical where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+ String qury="select * from Intake_TechnicalCustomization where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
  Statement stm = conn.createStatement();
  ResultSet Rs = stm.executeQuery(qury);
 %>  
@@ -701,7 +701,7 @@ if(implement == null)
                         function validateform(){
                         	var count=0;
                         <% 
-                        String q1="select * from samp_technical where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                        String q1="select * from Intake_TechnicalCustomization where panels='P1' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq = conn.createStatement();
                         ResultSet rsq = stq.executeQuery(q1);
                         while(rsq.next())
@@ -726,7 +726,7 @@ if(implement == null)
                      
                         
 <%
-String qury1="select * from samp_technical where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+String qury1="select * from Intake_TechnicalCustomization where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
 Statement stm1 = conn.createStatement();
 ResultSet Rs1 = stm1.executeQuery(qury1);
 %>     
@@ -814,7 +814,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         function validateform1(){
                         	 var count1=0;
                         <% 
-                        String q2="select * from samp_technical where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                        String q2="select * from Intake_TechnicalCustomization where panels='P2' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                         Statement stq2 = conn.createStatement();
                         ResultSet rsq2 = stq2.executeQuery(q2);
                         while(rsq2.next())
@@ -838,7 +838,7 @@ ResultSet Rs1 = stm1.executeQuery(qury1);
                         
                         </script>
                 <%
-String qury3="select * from samp_technical where panels='P3' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+String qury3="select * from Intake_TechnicalCustomization where panels='P3' and appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
 Statement stm3 = conn.createStatement();
 ResultSet Rs3 = stm3.executeQuery(qury3);
 %>                        

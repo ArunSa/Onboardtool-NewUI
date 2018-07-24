@@ -103,7 +103,7 @@ public class comp extends HttpServlet {
 		        {
 		          // create a mysql database connection
 		          String myDriver = "org.gjt.mm.mysql.Driver";
-		          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+		          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 		          Class.forName(myDriver);
 		          Connection conn = DriverManager.getConnection(myUrl, "root", "root");
 		        

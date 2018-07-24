@@ -50,7 +50,7 @@ response.sendRedirect("Login.jsp");
 String det=(String)session.getAttribute("theName");
 DBconnection d=new DBconnection();
 Connection con = (Connection)d.getConnection();
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st3 = con.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 

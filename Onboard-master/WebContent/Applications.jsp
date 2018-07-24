@@ -97,9 +97,9 @@ String strDate=ft.format(date);
 String strTime=ft1.format(date);
 
 if(Project_name.equals("all"))
-	 query3 = "select * from projinfo where id="+ID;
+	 query3 = "select * from AppEmphazize_ProjectDetails where id="+ID;
 	else
-	 query3 = "select * from projinfo where projectname='"+Project_name+"'";
+	 query3 = "select * from AppEmphazize_ProjectDetails where projectname='"+Project_name+"'";
 
 Statement st3 = con.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
@@ -120,9 +120,9 @@ ResultSet rs3 = st3.executeQuery(query3);
                     	 System.out.println("the projectname is "+Project_Name);
                     	 String query="";
                     	 if(Project_name.equals("all"))
-                    	  query = "select * from appinfo where prjname = '"+Project_Name+"'";
+                    	  query = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_Name+"'";
                     	 else
-                    		 query = "select * from appinfo where prjname = '"+Project_Name+"' and appname='"+Applications+"'";
+                    		 query = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_Name+"' and appname='"+Applications+"'";
                     	 Statement st = con.createStatement();
                     	 ResultSet rs = st.executeQuery(query);
                      
@@ -308,13 +308,13 @@ while(rs.next()){
 							<h3 class="cbp-vm-title left-col primary" name="name"><%= rs.getString("appname")%></h3>
 <% 
 String detail="";
-String q3="select seq_num from archive_exec where projects='"+Project_Name +"' and name='"+rs.getString("appname")+"'";
+String q3="select seq_num from ArchiveExecution_Details where projects='"+Project_Name +"' and name='"+rs.getString("appname")+"'";
 Statement stt = con.createStatement();
 ResultSet rst = stt.executeQuery(q3);
 if(rst.next())
 	detail=rst.getString(1);
 
-String q1="select * from archive_exec where projects='"+Project_Name+"' and seq_num>"+detail+" and seq_num<"+(detail+70)+" and level=3";
+String q1="select * from ArchiveExecution_Details where projects='"+Project_Name+"' and seq_num>"+detail+" and seq_num<"+(detail+70)+" and level=3";
 Statement st2 = con.createStatement();
 ResultSet rs2 = st2.executeQuery(q1);
 int l=-1;

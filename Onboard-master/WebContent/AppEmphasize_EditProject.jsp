@@ -107,10 +107,10 @@ if(flag==1)
 	      // execute the preparedstatement
 	      preparedStmt.execute();
 }
-String query = "select * from projinfo";
+String query = "select * from AppEmphazize_ProjectDetails";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 if(rs.next()){
@@ -149,7 +149,7 @@ if(rs.next()){
 																					  
 					   
                     <%
-                    String q2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                    String q2="select * from ArchiveExecution_Details where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
                     ResultSet rss = s2.executeQuery(q2);
                     while(rss.next())

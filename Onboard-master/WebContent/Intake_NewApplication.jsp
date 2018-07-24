@@ -91,10 +91,10 @@ String strDate=ft.format(date);
 String strTime=ft1.format(date);
 
 
-String query3 = "select * from projinfo where id = "+ID;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+ID;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-String query4 = "select * from appinfo where appname ='"+app_Name+"'";
+String query4 = "select * from AppEmphazize_ApplicationInfo where appname ='"+app_Name+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
 String imp_id="";

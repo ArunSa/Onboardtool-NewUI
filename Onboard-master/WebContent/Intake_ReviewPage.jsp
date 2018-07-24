@@ -111,7 +111,7 @@ padding-left:20px;
 try {
 HttpSession details=request.getSession();
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "password123");
 String role_info=(String)details.getAttribute("intake");
 String roles=(String)details.getAttribute("role");
 String ID=(String)session.getAttribute("theName");
@@ -120,14 +120,14 @@ if (app_Name != null && !app_Name.isEmpty()) {
 session.setAttribute("appidd", app_Name);
 }
 app_Name=(String)session.getAttribute("appidd");
-String query4 = "select * from appinfo where appname ='"+app_Name+"'";
+String query4 = "select * from AppEmphazize_ApplicationInfo where appname ='"+app_Name+"'";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
 String query1 = "select * from business where appname ='"+app_Name+"'";
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
 
-String query2 = "select * from technical where appname ='"+app_Name+"'";
+String query2 = "select * from Intake_TechnicalDetails where appname ='"+app_Name+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
 System.out.println("appname in review : "+app_Name);
@@ -135,7 +135,7 @@ System.out.println("appname in review : "+app_Name);
 String query3 = "select * from archivalRequirement where appname ='"+app_Name+"'";
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-String query5= "select * from newRequirements where appname ='"+app_Name+"'";
+String query5= "select * from Intake_NewRequirements where appname ='"+app_Name+"'";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
  

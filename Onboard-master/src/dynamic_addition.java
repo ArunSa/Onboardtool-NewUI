@@ -77,7 +77,7 @@ public class dynamic_addition extends HttpServlet {
 	        {
 	          // create a mysql database connection
 	          String myDriver = "org.gjt.mm.mysql.Driver";
-	          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	          Class.forName(myDriver);
 	          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	          String query="";
@@ -85,15 +85,15 @@ public class dynamic_addition extends HttpServlet {
 	         
 	          // the mysql insert statement
 	          if(servlet_name.equals("Business")){
-	           query = " insert into samp_business (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+	           query = " insert into Intake_BuisnessCustomization (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
 	            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	          }
 	          if(servlet_name.equals("Technical")){
-		           query = " insert into samp_technical (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+		           query = " insert into Intake_TechnicalCustomization (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
 		            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		          }
 	          if(servlet_name.equals("Requirements")){
-		           query = " insert into samp_archivalrequirement (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
+		           query = " insert into Intake_ArchivalRequirementCustomization (label,type_of_box,mandatory,no_of_box,checkbox_labels,no_of_Rbox,radiobox_labels,no_of_drpdwn,dropdown_labels,idname,panels,projectname,appname)"
 		            + " values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		          }
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);

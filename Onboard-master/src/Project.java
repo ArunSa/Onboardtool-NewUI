@@ -83,11 +83,11 @@ public class Project extends HttpServlet {
 		        	
 		          // create a mysql database connection
 		          String myDriver = "org.gjt.mm.mysql.Driver";
-		          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+		          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 		          Class.forName(myDriver);
 		          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 		     
-		          String query = " insert into projinfo (projectname, descr,appno,Startdate,Intdate,Plandate,Execdate,Hyperdate,Enddate)"
+		          String query = " insert into AppEmphazize_ProjectDetails (projectname, descr,appno,Startdate,Intdate,Plandate,Execdate,Hyperdate,Enddate)"
 		            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		          PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -102,7 +102,7 @@ public class Project extends HttpServlet {
 		          preparedStmt.setString (9, Enddate);
 		          preparedStmt.execute();
 		          
-		          String query4 = " insert into app_prior (prj_name, IA_lic_cst, IA_maint_cst, Infrastrct_cst, strg_est, lab_cst, proj_name, data_size, data_source, curnt_users, complexity, est_archive, est_scrn, est_db_size, est_hrs, est_cst, ttl_IA_cst, ttl_infra_cst, ttl_IA_prdct_cst, ttl, ttl_cst_fr_app, add_cst_fr_contigency, add_cst, IA_app_sprt_cst, est_archive_cst,no_of_app_complexity, read_date,sme_date)"
+		          String query4 = " insert into AppEmphazize_ApplicationPrioritization (prj_name, IA_lic_cst, IA_maint_cst, Infrastrct_cst, strg_est, lab_cst, proj_name, data_size, data_source, curnt_users, complexity, est_archive, est_scrn, est_db_size, est_hrs, est_cst, ttl_IA_cst, ttl_infra_cst, ttl_IA_prdct_cst, ttl, ttl_cst_fr_app, add_cst_fr_contigency, add_cst, IA_app_sprt_cst, est_archive_cst,no_of_app_complexity, read_date,sme_date)"
 		  	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
           
 		  	          PreparedStatement preparedStmt1 = conn.prepareStatement(query4);
@@ -136,13 +136,13 @@ public class Project extends HttpServlet {
 		  	        preparedStmt1.setString(28, " ");	
 		           preparedStmt1.execute();
 		           
-		          String query1="select * from archive_details";
+		          String query1="select * from ArchiveExecution_Defaultvalues";
 		          Statement st1 = conn.createStatement();
 				     ResultSet rs1 = st1.executeQuery(query1);
 				     while(rs1.next())
 				     {
 				    	 
-				    	 String query2="insert into archive_exec(seq_num,level,name,mem_ass,act_srt_date,act_end_date,pln_srt_date,pln_end_date,hours,planned_hrs,id,ref_id,projects,progressbar)"+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				    	 String query2="insert into ArchiveExecution_Details(seq_num,level,name,mem_ass,act_srt_date,act_end_date,pln_srt_date,pln_end_date,hours,planned_hrs,id,ref_id,projects,progressbar)"+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				    	 PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
 				          preparedStmt2.setInt (1,rs1.getInt(1));
 				          preparedStmt2.setInt (2,rs1.getInt(2));

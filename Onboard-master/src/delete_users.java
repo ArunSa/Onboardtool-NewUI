@@ -45,7 +45,7 @@ public class delete_users extends HttpServlet {
 	      {
 	        // create a mysql database connection
 	        String myDriver = "org.gjt.mm.mysql.Driver";
-	        String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	        String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	        Class.forName(myDriver);
 	        Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	        Statement st = conn.createStatement();
@@ -53,7 +53,7 @@ public class delete_users extends HttpServlet {
 	        for(int i=0;i<names.length;i++)
 	        {
 	        	String z=names[i];
-	        	st.executeUpdate("delete from user_details where uname='"+z+"'");
+	        	st.executeUpdate("delete from Admin_UserDetails where uname='"+z+"'");
 	        }
 
 		         

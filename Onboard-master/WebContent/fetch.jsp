@@ -18,7 +18,7 @@
  <%@page import="java.sql.*"%>
 <%
 String myDriver = "org.gjt.mm.mysql.Driver";
-String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 Class.forName(myDriver);
 Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 String data1=request.getParameter("s2");  
@@ -27,7 +27,7 @@ String data2=request.getParameter("input");
 System.out.println("ROle : " + data1 + "userid :" +data2);
 
 
-String query = "select * from user_details where roles='ArchivalAdmin' and uname='bala'";
+String query = "select * from Admin_UserDetails where roles='ArchivalAdmin' and uname='bala'";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
 
@@ -35,7 +35,7 @@ ResultSet rs = st.executeQuery(query);
 while(rs.next())
 {
  
-String query1 = "select * from archive_exec where projects='"+rs.getString("projects")+"' and level=1";
+String query1 = "select * from ArchiveExecution_Details where projects='"+rs.getString("projects")+"' and level=1";
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
 
@@ -52,7 +52,7 @@ break;
 String status=rs1.getString("name");
 
 
-String query2 = "select seq_num from archive_exec where projects='"+rs.getString("projects")+"' and name='"+rs.getString("application")+"'";
+String query2 = "select seq_num from ArchiveExecution_Details where projects='"+rs.getString("projects")+"' and name='"+rs.getString("application")+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
 String seqnum="";
@@ -60,7 +60,7 @@ if(rs2.next())
 seqnum=rs2.getString(1);
 
 System.out.println(seqnum);
-String query3="select * from archive_exec where projects='"+rs.getString("projects")+"' and seq_num>"+seqnum+" and seq_num<="+(Integer.parseInt(seqnum)+70)+" and level=3 order by seq_num";
+String query3="select * from ArchiveExecution_Details where projects='"+rs.getString("projects")+"' and seq_num>"+seqnum+" and seq_num<="+(Integer.parseInt(seqnum)+70)+" and level=3 order by seq_num";
 System.out.println(query3);
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);

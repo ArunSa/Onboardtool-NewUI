@@ -84,7 +84,7 @@ else{
 	  HttpSession details=request.getSession(); 
 Connection con = null;
 String url = "jdbc:mysql://localhost:3306/";
-String db = "strutsdb";
+String db = "Onboarding";
 String driver = "com.mysql.jdbc.Driver";
 String userName ="root";
 String password="password123";
@@ -98,7 +98,7 @@ con = DriverManager.getConnection(url+db,userName,password);
 Statement st1;
 
 
-String query1 = "select * from projinfo where id = "+name;
+String query1 = "select * from AppEmphazize_ProjectDetails where id = "+name;
 st1 = con.createStatement();
 ResultSet rs = st1.executeQuery(query1);
 if(rs.next())

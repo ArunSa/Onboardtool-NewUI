@@ -41,7 +41,7 @@ public class Retrive extends HttpServlet {
         out.println("<html><body>");
         try {
             Class.forName("org.gjt.mm.mysql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "root");
             // Here dsnname- mydsn,user id- system(for oracle 10g),password is pintu.
             Statement stmt = (Statement) con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from appdetails");

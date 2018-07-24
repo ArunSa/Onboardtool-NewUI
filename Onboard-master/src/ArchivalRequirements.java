@@ -63,15 +63,15 @@ public class ArchivalRequirements extends HttpServlet {
 		int DEL_count=0;
 	try{
 	    String myDriver = "org.gjt.mm.mysql.Driver";
-	    String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	    String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	    Class.forName(myDriver);
 	    Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 		
-		/*String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'sample_business' ORDER BY ORDINAL_POSITION";
+		/*String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'Intake_BuisnessDetails' ORDER BY ORDINAL_POSITION";
 	    Statement st = conn.createStatement();
 	    ResultSet rs = st.executeQuery(query);*/
 	   int i=2;
-	   String query21 = "SELECT * from samp_archivalrequirement where panels='P"+i+"'";
+	   String query21 = "SELECT * from Intake_ArchivalRequirementCustomization where panels='P"+i+"'";
 	    Statement st21 = conn.createStatement();
 	    ResultSet rs21 = st21.executeQuery(query21);
 	    while(rs21.next())
@@ -80,7 +80,7 @@ public class ArchivalRequirements extends HttpServlet {
 	    	String Idname=rs21.getString("idname");
 	    	if(val != null)
 	    	{
-	    		String query4 = "delete from samp_archivalrequirement where idname='"+Idname+"'and projectname='"+project_name+"'";
+	    		String query4 = "delete from Intake_ArchivalRequirementCustomization where idname='"+Idname+"'and projectname='"+project_name+"'";
 	        	PreparedStatement preparedStmt4 = conn.prepareStatement(query4);
 	        	 preparedStmt4.execute();
 
@@ -96,7 +96,7 @@ public class ArchivalRequirements extends HttpServlet {
 	    }
 	    
 	    if(DEL_count==0){
-	    String query = "SELECT * from samp_archivalrequirement where appname='"+app_name+"' and projectname='"+project_name+"'";
+	    String query = "SELECT * from Intake_ArchivalRequirementCustomization where appname='"+app_name+"' and projectname='"+project_name+"'";
 	    Statement st = conn.createStatement();
 	    ResultSet rs = st.executeQuery(query);
 	    int cnt=0;

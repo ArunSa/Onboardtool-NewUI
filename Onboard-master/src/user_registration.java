@@ -63,11 +63,11 @@ public class user_registration extends HttpServlet {
       {
         // create a mysql database connection
         String myDriver = "org.gjt.mm.mysql.Driver";
-        String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+        String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
         Class.forName(myDriver);
         Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
       
-        String query = " insert into user_details (uname, fname, lname, email, pwd, projects, roles,stats,question,answer,application)"
+        String query = " insert into Admin_UserDetails (uname, fname, lname, email, pwd, projects, roles,stats,question,answer,application)"
 	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);

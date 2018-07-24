@@ -107,9 +107,9 @@
 
   
   if(Projets.equals("all"))
-     query = "select * from projinfo";
+     query = "select * from AppEmphazize_ProjectDetails";
   else
-     query = "select * from projinfo where projectname='"+Projets+"'";
+     query = "select * from AppEmphazize_ProjectDetails where projectname='"+Projets+"'";
   st = con.createStatement();
   ResultSet rs = st.executeQuery(query);
 %>
@@ -189,7 +189,7 @@ while(rs.next()){
 %>
 <li>
 <h3 class="cbp-vm-title left-col primary" name="name"><%=rs.getString(1)%></h3>
-<% String q="select * from archive_exec where level=1 and projects='"+rs.getString(1)+"'order by seq_num";
+<% String q="select * from ArchiveExecution_Details where level=1 and projects='"+rs.getString(1)+"'order by seq_num";
 st1 = con.createStatement();
 ResultSet rs1 = st1.executeQuery(q);
 while(rs1.next())

@@ -60,12 +60,12 @@ public class NewRequirements extends HttpServlet {
 	    	   String idd=(String)details.getAttribute("appidd");
 	         // create a mysql database connection
 	         String myDriver = "org.gjt.mm.mysql.Driver";
-	         String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	         String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	         Class.forName(myDriver);
 	         Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	         
 	         // the mysql insert statement
-	         String query = " insert into newRequirements (requirements,appname)" + " values (?,'"+idd+"')";
+	         String query = " insert into Intake_NewRequirements (requirements,appname)" + " values (?,'"+idd+"')";
 
 	         System.out.println("Insert query :" +  query);
 	         PreparedStatement preparedStmt = conn.prepareStatement(query);

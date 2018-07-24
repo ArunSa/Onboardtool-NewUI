@@ -280,13 +280,13 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 		        {
 		          // create a mysql database connection
 		          String myDriver = "org.gjt.mm.mysql.Driver";
-		          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+		          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 		          Class.forName(myDriver);
 		          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 		          
 		          try{
 			          for(int j=0;j<63;j++){
-			        	    String query = " insert into samp_business (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
+			        	    String query = " insert into Intake_BuisnessCustomization (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
 			        	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			        	          PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -315,7 +315,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 			          }
 			          try{
 			          for(int j=0;j<41;j++){
-			        	    String query1 = " insert into samp_technical (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
+			        	    String query1 = " insert into Intake_TechnicalCustomization (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
 			        	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			        	          PreparedStatement preparedStmt1 = conn.prepareStatement(query1);
@@ -344,7 +344,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 			          }
 			         try{
 			          for(int j=0;j<18;j++){
-			        	    String query2 = " insert into samp_archivalrequirement (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
+			        	    String query2 = " insert into Intake_ArchivalRequirementCustomization (`label`,`type_of_box`,`mandatory`,`no_of_box`,`checkbox_labels`,`no_of_Rbox`,`radiobox_labels`,`no_of_drpdwn`,`dropdown_labels`,`panels`,`idname`,`appname`,`projectname`)"
 			        	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			        	          PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
 			        	          preparedStmt2.setString(1, ar[j].label);
@@ -370,7 +370,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 		        
 		         
 		          // the mysql insert statement
-		          String query = " insert into appinfo (appname,prjname)"
+		          String query = " insert into AppEmphazize_ApplicationInfo (appname,prjname)"
 		            + " values (? ,?)";
 
 		          // create the mysql insert preparedstatement
@@ -388,7 +388,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 
 		          // execute the preparedstatement
 		          preparedStmt.execute();
-		          String query1 = "select appname from appinfo where prjname='"+prjname+"'"; 
+		          String query1 = "select appname from AppEmphazize_ApplicationInfo where prjname='"+prjname+"'"; 
 		          Statement st = conn.createStatement();
 				     ResultSet rs = st.executeQuery(query1);
 				     int x=20;
@@ -400,15 +400,15 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 				    	 System.out.println("Application name :"+rs.getString(1));
 				    	 
 					     
-				    	 String query2="select seq_num from archive_exec where name='Closure' and projects='"+prjname+"'";
+				    	 String query2="select seq_num from ArchiveExecution_Details where name='Closure' and projects='"+prjname+"'";
 				    	 Statement st2 = conn.createStatement();
 					     ResultSet rs2 = st2.executeQuery(query2);
-					     String query7="select id from archive_exec where name='Execute'";
+					     String query7="select id from ArchiveExecution_Details where name='Execute'";
 				    	 Statement st7 = conn.createStatement();
 					     ResultSet rs7 = st7.executeQuery(query7);
 					      if(rs2.next() && rs7.next()){
 					    	  
-					    	  String query9="select name from archive_exec where level=2 and seq_num>=22 and seq_num<"+rs2.getInt(1)+" and projects='"+prjname+"'";
+					    	  String query9="select name from ArchiveExecution_Details where level=2 and seq_num>=22 and seq_num<"+rs2.getInt(1)+" and projects='"+prjname+"'";
 						    	 Statement st9 = conn.createStatement();
 							     ResultSet rs9 = st9.executeQuery(query9);
 							     while(rs9.next()){
@@ -421,10 +421,10 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 							   System.out.println("aaa... "+cnt);  
 					    	  
 					    	  if(cnt==0){
-				    	 String query3="update archive_exec set seq_num=seq_num+62 where seq_num>="+rs2.getInt(1);
+				    	 String query3="update ArchiveExecution_Details set seq_num=seq_num+62 where seq_num>="+rs2.getInt(1);
 				    	 PreparedStatement preparedStmt1 = conn.prepareStatement(query3);
 				    	 preparedStmt1.execute();
-				    	 String query4="insert into archive_exec(seq_num,level,name,mem_ass,act_srt_date,act_end_date,pln_srt_date,pln_end_date,hours,planned_hrs,id,ref_id,projects,progressbar)"+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				    	 String query4="insert into ArchiveExecution_Details(seq_num,level,name,mem_ass,act_srt_date,act_end_date,pln_srt_date,pln_end_date,hours,planned_hrs,id,ref_id,projects,progressbar)"+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				    	 PreparedStatement preparedStmt2 = conn.prepareStatement(query4);
 				          preparedStmt2.setInt (1, rs2.getInt(1));
 				          preparedStmt2.setInt (2, 2);
@@ -447,7 +447,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 						     ResultSet rs5 = st5.executeQuery(query5);
 				         while(rs5.next()){
 				        	//"" System.out.println(count);
-				        	 String query6="insert into archive_exec(seq_num,level,name,mem_ass,act_srt_date,act_end_date,pln_srt_date,pln_end_date,hours,planned_hrs,id,ref_id,projects,progressbar)"+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				        	 String query6="insert into ArchiveExecution_Details(seq_num,level,name,mem_ass,act_srt_date,act_end_date,pln_srt_date,pln_end_date,hours,planned_hrs,id,ref_id,projects,progressbar)"+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 						    		 PreparedStatement preparedStmt3 = conn.prepareStatement(query6);
 						          preparedStmt3.setInt (1,++count);
 						          preparedStmt3.setInt (2,rs5.getInt(1));

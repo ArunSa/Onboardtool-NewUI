@@ -77,7 +77,7 @@ plan_hrs[i]=request.getParameter("phrs"+i);
         {
           // create a mysql database connection
           String myDriver = "org.gjt.mm.mysql.Driver";
-          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
           Class.forName(myDriver);
           Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
         
@@ -95,7 +95,7 @@ plan_hrs[i]=request.getParameter("phrs"+i);
           String hrs=hr[a];
           String pln_hrs=plan_hrs[a];
  
-      st.executeUpdate("update archive_exec set name='"+nam+"',mem_ass='"+mem_ass+"',act_srt_date='"+act_srt_date+"',act_end_date='"+act_end_date+"',pln_srt_date='"+pln_srt_date+"',pln_end_date='"+pln_end_date+"',hours='"+hrs+"',planned_hrs='"+pln_hrs+"' where seq_num='"+seq_num+"'");
+      st.executeUpdate("update ArchiveExecution_Details set name='"+nam+"',mem_ass='"+mem_ass+"',act_srt_date='"+act_srt_date+"',act_end_date='"+act_end_date+"',pln_srt_date='"+pln_srt_date+"',pln_end_date='"+pln_end_date+"',hours='"+hrs+"',planned_hrs='"+pln_hrs+"' where seq_num='"+seq_num+"'");
   	
            }
           

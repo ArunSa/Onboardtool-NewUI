@@ -77,11 +77,11 @@ try
         {
           // create a mysql database connection
           String myDriver = "org.gjt.mm.mysql.Driver";
-          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
           Class.forName(myDriver);
           Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
      
-          String query = "update projinfo set projectname=?, descr=?, appno=? ,Startdate=?, Intdate=?, Plandate=?, Execdate=?, Hyperdate=?, Enddate=? where id=?";
+          String query = "update AppEmphazize_ProjectDetails set projectname=?, descr=?, appno=? ,Startdate=?, Intdate=?, Plandate=?, Execdate=?, Hyperdate=?, Enddate=? where id=?";
 
           PreparedStatement preparedStmt = conn.prepareStatement(query);
           preparedStmt.setString (1, projectname);
@@ -96,19 +96,19 @@ try
           preparedStmt.setString (10, id);
           preparedStmt.execute();
           
-          String query1="update app_prior set prj_name=? where prj_name=?";
+          String query1="update AppEmphazize_ApplicationPrioritization set prj_name=? where prj_name=?";
           PreparedStatement preparedStmt1 = conn.prepareStatement(query1);
           preparedStmt1.setString (1, projectname);
           preparedStmt1.setString   (2, prjname);
           preparedStmt1.execute();
           
-          String query2="update appinfo set prjname=? where prjname=?";
+          String query2="update AppEmphazize_ApplicationInfo set prjname=? where prjname=?";
           PreparedStatement preparedStmt2 = conn.prepareStatement(query2);
           preparedStmt2.setString (1, projectname);
           preparedStmt2.setString   (2, prjname);
           preparedStmt2.execute();
           
-          String query3="update archive_exec set projects=? where projects=?";
+          String query3="update ArchiveExecution_Details set projects=? where projects=?";
           PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
           preparedStmt3.setString (1, projectname);
           preparedStmt3.setString   (2, prjname);

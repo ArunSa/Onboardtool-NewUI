@@ -272,9 +272,9 @@ try {
 	String roles=(String)details.getAttribute("role");
 	String det=(String)session.getAttribute("theName");
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "password123");
 
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 String name=(String)session.getAttribute("newname");
 
 System.out.println("testinpreview"+name);
@@ -282,9 +282,9 @@ Statement st1 = conn.createStatement();
 Statement st2 = conn.createStatement();
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-String query1= "SELECT * from appinfo where prjname='"+name+"'";
+String query1= "SELECT * from AppEmphazize_ApplicationInfo where prjname='"+name+"'";
 ResultSet rs1 = st1.executeQuery(query1);
-String query2= "select count(prjname) As total from appinfo where prjname='"+name+"'";
+String query2= "select count(prjname) As total from AppEmphazize_ApplicationInfo where prjname='"+name+"'";
 ResultSet rs2 = st2.executeQuery(query2);
 {
 %>

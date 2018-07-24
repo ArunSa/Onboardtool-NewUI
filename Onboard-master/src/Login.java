@@ -120,18 +120,18 @@ public class Login extends HttpServlet {
 try
 {
 	Class.forName("com.mysql.jdbc.Driver"); 
-	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123");
+	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding","root","password123");
 
 	
 	
 	Statement st5= con.createStatement(); 
-	ResultSet rs5=st5.executeQuery("select * from archive_details");
+	ResultSet rs5=st5.executeQuery("select * from ArchiveExecution_Defaultvalues");
 	Statement st6= con.createStatement(); 
 	ResultSet rs6=st6.executeQuery("select * from details");
 	Statement st7= con.createStatement(); 
 	ResultSet rs7=st7.executeQuery("select * from dummy");
 	Statement st8= con.createStatement(); 
-	ResultSet rs8=st8.executeQuery("select * from role_details");
+	ResultSet rs8=st8.executeQuery("select * from Role_Details");
 	while(rs8.next())
 	lm++;
 	while(rs5.next())
@@ -154,7 +154,7 @@ try
 		r[8]=new Role("ArchivalDeveloper", "N", "R", "R", "R", "N", "N", "R", "N");
 		r[9]=new Role("TestLead", "N", "N", "N", "R", "N", "N", "R", "N");
 		for(int j=0;j<10;j++){
-		    String query = " insert into role_details (role, admin, app_emp, intake, arch_exe, decomm, prgm_governance, reporting, finance)"
+		    String query = " insert into Role_Details (role, admin, app_emp, intake, arch_exe, decomm, prgm_governance, reporting, finance)"
 		            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		          PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -217,7 +217,7 @@ try
 		s[27]=new Samp("28", "2", "Final finances and invoices", "10031", "10025");
 		
 	for(int j=0;j<28;j++){
-	    String query = " insert into archive_details (seq_num, level, name, id, ref_id, mem_ass, act_srt_date, act_end_date, pln_srt_date, pln_end_date,  hours, stats, planned_hrs)"
+	    String query = " insert into ArchiveExecution_Defaultvalues (seq_num, level, name, id, ref_id, mem_ass, act_srt_date, act_end_date, pln_srt_date, pln_end_date,  hours, stats, planned_hrs)"
 	            + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	          PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -321,7 +321,7 @@ try
 
 
 	Statement st= con.createStatement(); 
-	ResultSet rs=st.executeQuery("select * from user_details where uname='"+userid+"'");
+	ResultSet rs=st.executeQuery("select * from Admin_UserDetails where uname='"+userid+"'");
 
 
 	if(userid.equals("admin")&&pwd.equals("admin"))
@@ -354,7 +354,7 @@ try
 		details.setAttribute("projects",rs.getString(6));
 		details.setAttribute("applications",rs.getString(11));
 		Statement st1= con.createStatement(); 
-		ResultSet rs1=st.executeQuery("select * from role_details where role='"+rs.getString(7)+"'"); 
+		ResultSet rs1=st.executeQuery("select * from Role_Details where role='"+rs.getString(7)+"'"); 
 		if(rs1.next())
 		{
 			details.setAttribute("admin",rs1.getString(2));

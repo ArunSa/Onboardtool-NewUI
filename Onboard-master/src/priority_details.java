@@ -65,7 +65,7 @@ public class priority_details extends HttpServlet {
         {
           // create a mysql database connection
           String myDriver = "org.gjt.mm.mysql.Driver";
-          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
           Class.forName(myDriver);
           Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
         
@@ -80,9 +80,9 @@ public class priority_details extends HttpServlet {
           String estcst=est_cst[a];
           String priorities=priority[a];
  
-      st.executeUpdate("update app_prior set complexity='"+complexitye+"',est_db_size='"+estdbsize+"',est_cst='"+estcst+"',priorities='"+priorities+"' where proj_name='"+projectname+"'");
+      st.executeUpdate("update AppEmphazize_ApplicationPrioritization set complexity='"+complexitye+"',est_db_size='"+estdbsize+"',est_cst='"+estcst+"',priorities='"+priorities+"' where proj_name='"+projectname+"'");
   	
-      //System.out.println("update app_prior set complexity='"+complexitye+"',est_db_size='"+estdbsize+"',est_cst='"+estcst+"',priorities='"+priorities+"' where proj_name='"+projectname+"'");
+      //System.out.println("update AppEmphazize_ApplicationPrioritization set complexity='"+complexitye+"',est_db_size='"+estdbsize+"',est_cst='"+estcst+"',priorities='"+priorities+"' where proj_name='"+projectname+"'");
            }
           
           conn.close();

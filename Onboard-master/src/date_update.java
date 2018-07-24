@@ -183,7 +183,7 @@ public class date_update extends HttpServlet {
 
 			String myDriver = "org.gjt.mm.mysql.Driver";
 
-			String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+			String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 
 			Class.forName(myDriver);
 
@@ -191,9 +191,9 @@ public class date_update extends HttpServlet {
 
 			int db_count = 0;
 
-			String query1 = "select count(*) from archive_exec where projects='" + prjname + "' order by seq_num";
+			String query1 = "select count(*) from ArchiveExecution_Details where projects='" + prjname + "' order by seq_num";
 
-			String query = "select * from archive_exec where projects='" + prjname + "' order by seq_num";
+			String query = "select * from ArchiveExecution_Details where projects='" + prjname + "' order by seq_num";
 
 			Statement st = conn.createStatement();
 
@@ -561,14 +561,14 @@ public class date_update extends HttpServlet {
 					//System.out.println("balaalala");
 
 					if (seq_num.get(n) == Integer.parseInt(sequence_no))
-						st.executeUpdate("update archive_exec set comments='" + comments
+						st.executeUpdate("update ArchiveExecution_Details set comments='" + comments
 								+ "',progressbar='100', act_srt_date='" + actual_startdate.get(n) + "',act_end_date='"
 								+ actual_enddate.get(n) + "',pln_srt_date='" + plan_startdate.get(n)
 								+ "',pln_end_date='" + plan_enddate.get(n) + "',planned_hrs='" + planned_hours.get(n)
 								+ "',mem_ass='" + mem_ass+ "',hours='" + actual_hours.get(n) + "' where seq_num=" + seq_num.get(n)
 								+ " and projects='" + prjname + "'");
 					else
-						st.executeUpdate("update archive_exec set progressbar='100', act_srt_date='"
+						st.executeUpdate("update ArchiveExecution_Details set progressbar='100', act_srt_date='"
 								+ actual_startdate.get(n) + "',act_end_date='" + actual_enddate.get(n)
 								+ "',pln_srt_date='" + plan_startdate.get(n) + "',pln_end_date='" + plan_enddate.get(n)
 								+ "',planned_hrs='" + planned_hours.get(n) + "',hours='" + actual_hours.get(n)
@@ -582,14 +582,14 @@ public class date_update extends HttpServlet {
 
 					//System.out.println("Progressbar updating");
 					if (seq_num.get(n) == Integer.parseInt(sequence_no))
-						st.executeUpdate("update archive_exec set comments='" + comments
+						st.executeUpdate("update ArchiveExecution_Details set comments='" + comments
 								+ "',progressbar='100', act_srt_date='" + actual_startdate.get(n) + "',act_end_date='"
 								+ actual_enddate.get(n) + "',pln_srt_date='" + plan_startdate.get(n)
 								+ "',pln_end_date='" + plan_enddate.get(n) + "',planned_hrs='" + planned_hours.get(n)
 								+ "',mem_ass='" + mem_ass+ "',hours='" + actual_hours.get(n) + "' where seq_num=" + seq_num.get(n)
 								+ " and projects='" + prjname + "'");
 					else
-						st.executeUpdate("update archive_exec set progressbar='" + prog + "', act_srt_date='"
+						st.executeUpdate("update ArchiveExecution_Details set progressbar='" + prog + "', act_srt_date='"
 								+ actual_startdate.get(n) + "',act_end_date='" + actual_enddate.get(n)
 								+ "',pln_srt_date='" + plan_startdate.get(n) + "',pln_end_date='" + plan_enddate.get(n)
 								+ "',planned_hrs='" + planned_hours.get(n) + "',hours='" + actual_hours.get(n)
@@ -616,7 +616,7 @@ public class date_update extends HttpServlet {
 		{
 			String myDriver = "org.gjt.mm.mysql.Driver";
 
-			String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+			String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 
 			Class.forName(myDriver);
 
@@ -710,10 +710,10 @@ public class date_update extends HttpServlet {
 
 			if (date_count == (last - 1 - first)) {
 
-			//	System.out.println("update archive_exec set progressbar='100',stats_date='True' where seq_num=" + first
+			//	System.out.println("update ArchiveExecution_Details set progressbar='100',stats_date='True' where seq_num=" + first
 			//			+ " and projects='" + prjname + "'");
 
-				sr.executeUpdate("update archive_exec set progressbar='100',stats_date='True' where seq_num=" + first
+				sr.executeUpdate("update ArchiveExecution_Details set progressbar='100',stats_date='True' where seq_num=" + first
 						+ " and projects='" + prjname + "'");
 
 			}
@@ -724,7 +724,7 @@ public class date_update extends HttpServlet {
 
 			//	System.out.println("kjadkjakdjj");
 
-				sr.executeUpdate("update archive_exec set stats_date='False' where seq_num=" + first + " and projects='"
+				sr.executeUpdate("update ArchiveExecution_Details set stats_date='False' where seq_num=" + first + " and projects='"
 						+ prjname + "'");
 
 			}

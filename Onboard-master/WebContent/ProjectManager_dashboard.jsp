@@ -112,29 +112,29 @@ String proname=(String)details.getAttribute("nameofproject");
 try {
 String det=(String)session.getAttribute("theName");
 Class.forName("com.mysql.jdbc.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
-String query = "select * from projinfo";
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "password123");
+String query = "select * from AppEmphazize_ProjectDetails";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 String query2 = "select * from logs where USER_ID='"+uname+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
-String query1 = "SELECT role FROM role_details";
+String query1 = "SELECT role FROM Role_Details";
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
-String query4 = "select count(*) from projinfo";
+String query4 = "select count(*) from AppEmphazize_ProjectDetails";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
-String query5 = "select count(mem_ass) from archive_exec where mem_ass!=''";
+String query5 = "select count(mem_ass) from ArchiveExecution_Details where mem_ass!=''";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
 String query6 = "select count(roles) from logs";
 Statement st6 = conn.createStatement();
 ResultSet rs6 = st6.executeQuery(query6);
-String query7 = "select count(*) from appinfo";
+String query7 = "select count(*) from AppEmphazize_ApplicationInfo";
 Statement st7 = conn.createStatement();
 ResultSet rs7 = st6.executeQuery(query7);
 
@@ -173,7 +173,7 @@ if(rs.next()){
 																					  
 					   
                     <%
-                    String q2="select * from archive_exec where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
+                    String q2="select * from ArchiveExecution_Details where level=1 and projects='"+rs3.getString("projectname")+"'order by seq_num";
                     Statement s2 = conn.createStatement();
                     ResultSet rss = s2.executeQuery(q2);
                     while(rss.next())
@@ -679,7 +679,7 @@ function javascript_conv()
    var count1=0,count2=0,count3=0,count4=0;
      <%
      String Project_names[]=new String[20];
-     String dbquery="select projectname from projinfo";
+     String dbquery="select projectname from AppEmphazize_ProjectDetails";
      Statement dst = conn.createStatement();
      ResultSet drs = dst.executeQuery(dbquery);
      int ttl_cnt=0;
@@ -687,10 +687,10 @@ function javascript_conv()
     	 Project_names[ttl_cnt]=drs.getString("projectname");
      %>
      <%
-     String db_query="select * from archive_exec where level=1 and projects='"+drs.getString("projectname")+"'";
+     String db_query="select * from ArchiveExecution_Details where level=1 and projects='"+drs.getString("projectname")+"'";
      Statement db_st = conn.createStatement();
      ResultSet db_rs = db_st.executeQuery(db_query);
-     String db_query1="select count(*) from archive_exec where projects='"+drs.getString("projectname")+"' and mem_ass!=''";
+     String db_query1="select count(*) from ArchiveExecution_Details where projects='"+drs.getString("projectname")+"' and mem_ass!=''";
      Statement db_st1 = conn.createStatement();
      ResultSet db_rs1 = db_st1.executeQuery(db_query1);
      if(db_rs1.next()){%>
@@ -836,7 +836,7 @@ function javascript_conv()
     var count1p=0,count2p=0,count3p=0,count4p=0;
     <%
     String Project_Names[]=new String[20];
-    String dbQuery="select projectname from projinfo";
+    String dbQuery="select projectname from AppEmphazize_ProjectDetails";
     Statement dstp = conn.createStatement();
     ResultSet drsp = dst.executeQuery(dbquery);
     int ttl_cntp=0;
@@ -845,10 +845,10 @@ function javascript_conv()
    	  	 
     %>
     <%
-    String db_query="select * from archive_exec where level=1 and projects='"+drsp.getString("projectname")+"'";
+    String db_query="select * from ArchiveExecution_Details where level=1 and projects='"+drsp.getString("projectname")+"'";
     Statement db_st = conn.createStatement();
     ResultSet db_rs = db_st.executeQuery(db_query);
-    String db_query1="select count(*) from archive_exec where projects='"+drsp.getString("projectname")+"' and mem_Ass!=''";
+    String db_query1="select count(*) from ArchiveExecution_Details where projects='"+drsp.getString("projectname")+"' and mem_Ass!=''";
     Statement db_st1 = conn.createStatement();
     ResultSet db_rs1 = db_st1.executeQuery(db_query1);
     if(db_rs1.next()){%>

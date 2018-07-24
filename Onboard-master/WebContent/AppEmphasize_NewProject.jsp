@@ -94,7 +94,7 @@ int count=0;
 Statement st= con.createStatement(); 
 
 
-ResultSet rs=st.executeQuery("select projectname from projinfo ");
+ResultSet rs=st.executeQuery("select projectname from AppEmphazize_ProjectDetails ");
 while (rs.next())
 {
 zoom.add(rs.getString(1));

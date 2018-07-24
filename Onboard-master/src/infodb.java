@@ -42,7 +42,7 @@ public class infodb extends HttpServlet {
 		
 	         
 	        final String myDriver = "org.gjt.mm.mysql.Driver";
-	          final String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	          final String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	       
 	        try
 	        {
@@ -50,7 +50,7 @@ public class infodb extends HttpServlet {
 	        	Class.forName(myDriver);
 	          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	          
-	          PreparedStatement preparedStmt = conn.prepareStatement("update appinfo set complexity=?, est_db_size=?, est_cst=? where appname=?");
+	          PreparedStatement preparedStmt = conn.prepareStatement("update AppEmphazize_ApplicationInfo set complexity=?, est_db_size=?, est_cst=? where appname=?");
 	          preparedStmt.setString(1, complexity);
 	          preparedStmt.setString(2, est_db_size);
 	          preparedStmt.setString(3, est_cst);

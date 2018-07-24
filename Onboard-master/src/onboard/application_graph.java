@@ -50,18 +50,18 @@ public class application_graph extends HttpServlet {
 		DBconnection d=new DBconnection();
 		Connection con = (Connection)d.getConnection();
 		System.out.println("Projects is "+projects);
-		 String db_query1="select appname from appinfo where prjname='"+projects+"'";
+		 String db_query1="select appname from AppEmphazize_ApplicationInfo where prjname='"+projects+"'";
 	        Statement db_st1 = con.createStatement();
 	        ResultSet db_rs1 = db_st1.executeQuery(db_query1);
 	        while(db_rs1.next()){
 	         	System.out.println(db_rs1.getString(1));
-		 String db_query="select seq_num from archive_exec where projects='"+projects+"' and name='"+db_rs1.getString(1)+"'";
+		 String db_query="select seq_num from ArchiveExecution_Details where projects='"+projects+"' and name='"+db_rs1.getString(1)+"'";
 	        Statement db_st = con.createStatement();
 	        ResultSet db_rs = db_st.executeQuery(db_query);
 	        if(db_rs.next()){
 	       
 	        	int seq_num=Integer.parseInt(db_rs.getString(1));
-	        	 String db_query2="select * from archive_exec where seq_num>"+seq_num+" and seq_num<"+(seq_num+62)+" and level=3 order by seq_num";
+	        	 String db_query2="select * from ArchiveExecution_Details where seq_num>"+seq_num+" and seq_num<"+(seq_num+62)+" and level=3 order by seq_num";
 	             System.out.println(db_query2);
 	             Statement db_st2 = con.createStatement();
 	             ResultSet db_rs2 = db_st2.executeQuery(db_query2);

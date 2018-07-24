@@ -141,8 +141,8 @@ String project=(String)ses.getAttribute("project");
 String app=(String)ses.getAttribute("application");
 System.out.println(fname+"   "+lname);
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
-String query="select uname from user_details";
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "password123");
+String query="select uname from Admin_UserDetails";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
 %>

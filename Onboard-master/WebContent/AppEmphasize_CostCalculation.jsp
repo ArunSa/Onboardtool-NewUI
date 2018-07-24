@@ -60,25 +60,25 @@ System.out.println("-- "+info+"-- "+appno+"---"+projectname+"---"+det);
  
 DBconnection d=new DBconnection();
 Connection conn = (Connection)d.getConnection();
-String query = "SELECT * from app_prior where prj_name='"+projectname+"'";
+String query = "SELECT * from AppEmphazize_ApplicationPrioritization where prj_name='"+projectname+"'";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
-String query3 = "select * from projinfo where id = "+det;
+String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 System.out.println(projectname);
 String query1="";
 if(prj.equals("all"))
-	 query1 = "select * from appinfo where prjname = '"+projectname+"'";
+	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+projectname+"'";
 else
-	 query1 = "select * from appinfo where prjname = '"+prj+"' and appname='"+appl+"'";
+	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+prj+"' and appname='"+appl+"'";
 System.out.println(query1);
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
-String query2= "SELECT * from app_prior where prj_name='"+projectname+"'";
+String query2= "SELECT * from AppEmphazize_ApplicationPrioritization where prj_name='"+projectname+"'";
 Statement st2 = conn.createStatement();
 ResultSet rs2 = st2.executeQuery(query2);
-PreparedStatement statement =  conn.prepareStatement("select sum(ttl_cst_fr_app) from app_prior where prj_name='"+projectname+"'");
+PreparedStatement statement =  conn.prepareStatement("select sum(ttl_cst_fr_app) from AppEmphazize_ApplicationPrioritization where prj_name='"+projectname+"'");
 ResultSet result = statement.executeQuery();
 result.next();
 String sum=result.getString(1);
@@ -263,7 +263,7 @@ document.loginForm.est_archive_cst.value="$"+sum.toFixed(2);
                     <a class="navbar-brand" href="Project_list.jsp" id="sitetitle">
                 			    <img src="images/logo1.png" alt="Onboarding Tool" class="logo">
                 			</a>
-             <%        String q2="select * from archive_exec where level=1 and projects='"+projectname+"'order by seq_num";
+             <%        String q2="select * from ArchiveExecution_Details where level=1 and projects='"+projectname+"'order by seq_num";
 Statement s2 = conn.createStatement();
 ResultSet rss = s2.executeQuery(q2);
 while(rss.next())
@@ -616,7 +616,7 @@ for(var i=0; i<edit_row.length; i++) {
     var projectname_value=document.getElementById('proj_name').value;
     var knt=0;
  <%
- String query8= "SELECT * from app_prior where prj_name='"+projectname+"'";
+ String query8= "SELECT * from AppEmphazize_ApplicationPrioritization where prj_name='"+projectname+"'";
  Statement st8 = conn.createStatement();
  ResultSet rs8 = st8.executeQuery(query8);
  while(rs8.next())

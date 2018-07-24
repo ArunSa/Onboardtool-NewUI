@@ -173,14 +173,14 @@ String prjname=(String)details.getAttribute("nameofproject");
 String info=(String)details.getAttribute("admin");
 
 Class.forName("com.mysql.jdbc.Driver"); 
-java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123"); 
-String query="select * from user_details";
-String query1="select * from user_details";
+java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding","root","password123"); 
+String query="select * from Admin_UserDetails";
+String query1="select * from Admin_UserDetails";
 Statement s=conn.createStatement();
 Statement s1=conn.createStatement();
 ResultSet rs=s.executeQuery(query);
 ResultSet rs1=s1.executeQuery(query1);
-String query2="select * from projinfo";
+String query2="select * from AppEmphazize_ProjectDetails";
 Statement s2=conn.createStatement();
 ResultSet rs2=s2.executeQuery(query2);
 int count=0;
@@ -358,7 +358,7 @@ $(function() {
 							var i;
 							var prjarray=[];
 							var apparray=[];
-							<% String query3="select appname,prjname from appinfo";
+							<% String query3="select appname,prjname from AppEmphazize_ApplicationInfo";
 							Statement s3=conn.createStatement();
 							ResultSet rs3=s3.executeQuery(query3);
 							

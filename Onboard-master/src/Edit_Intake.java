@@ -72,7 +72,7 @@ public class Edit_Intake extends HttpServlet {
 	        {
 	          // create a mysql database connection
 	          String myDriver = "org.gjt.mm.mysql.Driver";
-	          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	          Class.forName(myDriver);
 	          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	        
@@ -80,7 +80,7 @@ public class Edit_Intake extends HttpServlet {
 	          // the mysql insert statement
 	          if(servlet_name.equals("Business"))
 	          {
-	        	   query="update samp_business set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
+	        	   query="update Intake_BuisnessCustomization set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
 	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);
 	 	          preparedStmt.execute();
 	 	          conn.close();
@@ -88,7 +88,7 @@ public class Edit_Intake extends HttpServlet {
 	          }
 	          if(servlet_name.equals("'Technical'"))
 	          {
-	        	   query="update samp_technical set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";  
+	        	   query="update Intake_TechnicalCustomization set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";  
 	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);
 	 	          preparedStmt.execute();
 	 	          conn.close();
@@ -96,7 +96,7 @@ public class Edit_Intake extends HttpServlet {
 	          }
 	          if(servlet_name.equals("'Requirements'"))
 	          {
-	        	   query="update samp_archivalrequirement set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
+	        	   query="update Intake_ArchivalRequirementCustomization set label='"+label+"',type_of_box='"+type+"',mandatory='"+mandatory+"',no_of_box='"+number+"',checkbox_labels='"+c_labels+"',no_of_Rbox='"+Rnumber+"',radiobox_labels='"+r_labels+"',no_of_drpdwn='"+Dnumber+"',dropdown_labels='"+d_labels+"' where idname='"+col_name+"'";
 	        	   PreparedStatement preparedStmt = conn.prepareStatement(query);
 	 	          preparedStmt.execute();
 	 	          conn.close();

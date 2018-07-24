@@ -48,7 +48,7 @@ public class deactivate extends HttpServlet {
 	      {
 	        // create a mysql database connection
 	        String myDriver = "org.gjt.mm.mysql.Driver";
-	        String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	        String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	        Class.forName(myDriver);
 	        Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	        Statement st = conn.createStatement();
@@ -58,13 +58,13 @@ public class deactivate extends HttpServlet {
 	        {
 	        	String z=names[i];
 	        	System.out.println("first   --- "+z);
-	        	st.executeUpdate("update user_details set stats='deactive' where uname='"+z+"'");
+	        	st.executeUpdate("update Admin_UserDetails set stats='deactive' where uname='"+z+"'");
 	        }
 	        for(int i=0;i<nam.length;i++)
 	        {
 	        	String z=nam[i];
 	        	System.out.println("sec   --- "+z);
-	        	st.executeUpdate("update user_details set stats='active' where uname='"+z+"'");
+	        	st.executeUpdate("update Admin_UserDetails set stats='active' where uname='"+z+"'");
 	        }
 
 		         

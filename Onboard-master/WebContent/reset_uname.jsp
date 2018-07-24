@@ -43,8 +43,8 @@ String Qn="";
 String ans="";
 String uname="";
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
-String query = "SELECT * from user_details where email='"+x+"' and roles='"+rl+"' and projects='"+pj+"'";
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "password123");
+String query = "SELECT * from Admin_UserDetails where email='"+x+"' and roles='"+rl+"' and projects='"+pj+"'";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
 if(rs.next()){

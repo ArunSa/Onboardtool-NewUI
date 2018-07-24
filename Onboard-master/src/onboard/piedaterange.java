@@ -61,7 +61,7 @@ public class piedaterange extends HttpServlet {
 			Statement week = con.createStatement();
 			pro_name.clear();
 			int_date.clear();
-			ResultSet rs = week.executeQuery("select projectname,Intdate from projinfo ");
+			ResultSet rs = week.executeQuery("select projectname,Intdate from AppEmphazize_ProjectDetails ");
 			while (rs.next()) {
 				
 				pro_name.add(rs.getString(1));

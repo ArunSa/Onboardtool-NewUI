@@ -56,15 +56,15 @@ public class Business_sam extends HttpServlet {
 		int DEL_count=0;
 	try{
         String myDriver = "org.gjt.mm.mysql.Driver";
-        String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+        String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
         Class.forName(myDriver);
         Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 		
-		/*String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'sample_business' ORDER BY ORDINAL_POSITION";
+		/*String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA. COLUMNS WHERE TABLE_NAME = 'Intake_BuisnessDetails' ORDER BY ORDINAL_POSITION";
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);*/
         for(int i=1;i<=4;i++){
-       String query21 = "SELECT * from samp_business where panels='P"+i+"'";
+       String query21 = "SELECT * from Intake_BuisnessCustomization where panels='P"+i+"'";
         Statement st21 = conn.createStatement();
         ResultSet rs21 = st21.executeQuery(query21);
         while(rs21.next())
@@ -73,11 +73,11 @@ public class Business_sam extends HttpServlet {
         	String Idname=rs21.getString("idname");
         	if(val != null)
         	{
-        		String query4 = "delete from samp_business where idname='"+Idname+"' and projectname='"+project_name+"' and appname='"+app_name+"'";
+        		String query4 = "delete from Intake_BuisnessCustomization where idname='"+Idname+"' and projectname='"+project_name+"' and appname='"+app_name+"'";
             	PreparedStatement preparedStmt4 = conn.prepareStatement(query4);
             	 preparedStmt4.execute();
             	 DEL_count++;
-         		String query5 = "alter table sample_business drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
+         		String query5 = "alter table Intake_BuisnessDetails drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
              	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
              	 preparedStmt5.execute();
              	 System.out.println("*********Deletion quey**********");
@@ -89,7 +89,7 @@ public class Business_sam extends HttpServlet {
         }
         }
         if(DEL_count==0){
-        String query = "SELECT * from samp_business where appname='"+app_name+"' and projectname='"+project_name+"'";
+        String query = "SELECT * from Intake_BuisnessCustomization where appname='"+app_name+"' and projectname='"+project_name+"'";
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         int cnt=0;
@@ -100,7 +100,7 @@ public class Business_sam extends HttpServlet {
         	String n=request.getParameter(rs.getString("idname"));
         	ref_id=n;
         	cnt++;
-        	String query1 = "insert into sample_business("+rs.getString("idname")+",appname,projectname) values('"+n+"','"+app_name+"','"+project_name+"')";
+        	String query1 = "insert into Intake_BuisnessDetails("+rs.getString("idname")+",appname,projectname) values('"+n+"','"+app_name+"','"+project_name+"')";
 
         	PreparedStatement preparedStmt = conn.prepareStatement(query1);
         	 preparedStmt.execute();
@@ -111,7 +111,7 @@ public class Business_sam extends HttpServlet {
         			n="no";
 
         
-        	String query2 = "update sample_business set "+rs.getString("idname")+" = '"+n+"' where legappname = '"+ref_id+"'";
+        	String query2 = "update Intake_BuisnessDetails set "+rs.getString("idname")+" = '"+n+"' where legappname = '"+ref_id+"'";
         	PreparedStatement preparedStmt1 = conn.prepareStatement(query2);
         	 preparedStmt1.execute();
         	}

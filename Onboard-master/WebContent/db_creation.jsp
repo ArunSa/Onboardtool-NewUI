@@ -20,7 +20,7 @@ Class.forName("com.mysql.jdbc.Driver");
 con = DriverManager.getConnection(url, "root", "password123"); 
 
 stmt = con.createStatement();
-stmt.executeUpdate("CREATE DATABASE strutsdb");
+stmt.executeUpdate("CREATE DATABASE Onboarding");
 con.close();
 }
 catch(Exception e)

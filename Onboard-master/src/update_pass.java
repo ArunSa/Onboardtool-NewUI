@@ -48,13 +48,13 @@ public class update_pass extends HttpServlet {
 	      {
 	        // create a mysql database connection
 	        String myDriver = "org.gjt.mm.mysql.Driver";
-	        String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+	        String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
 	        Class.forName(myDriver);
 	        Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
 	      
 	        Statement st=conn.createStatement();
 		        
-		   st.executeUpdate("update user_details set pwd='"+pwd+"' where email='"+email+"'");     
+		   st.executeUpdate("update Admin_UserDetails set pwd='"+pwd+"' where email='"+email+"'");     
 		             
 	        
 	        conn.close();

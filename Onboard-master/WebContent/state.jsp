@@ -17,9 +17,9 @@ String country=request.getParameter("count");
  String buffer="<select name='state'> <option disabled selected>Please Select any Option</option>";  
  try{
  Class.forName("com.mysql.jdbc.Driver").newInstance();  
- Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123");  
+ Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding","root","password123");  
  Statement stmt = con.createStatement();  
- ResultSet rs = stmt.executeQuery("Select * from user_details where roles='"+country+"' ");  
+ ResultSet rs = stmt.executeQuery("Select * from Admin_UserDetails where roles='"+country+"' ");  
    while(rs.next()){
    buffer=buffer+"<option value='"+rs.getString(1)+"'>"+rs.getString(1)+"</option>";  
    }  

@@ -22,7 +22,7 @@ System.out.println("fromDate:" + fromdate +" toDate :" + todate);
  String buffer="<tbody>";  
  try{
  Class.forName("com.mysql.jdbc.Driver").newInstance();  
- Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123");  
+ Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding","root","password123");  
  Statement stmt = con.createStatement();  
  ResultSet rs = stmt.executeQuery("select * from logs where substring(DATED,1,10) >= '"+fromdate+"' and substring(DATED,1,10) <= '"+todate+"' and USER_ID='"+uname+"'");  
    while(rs.next()){

@@ -70,7 +70,7 @@ public class Role_details extends HttpServlet {
         {
           // create a mysql database connection
           String myDriver = "org.gjt.mm.mysql.Driver";
-          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
           Class.forName(myDriver);
           Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
         
@@ -87,8 +87,8 @@ public class Role_details extends HttpServlet {
           String _prgm_gov=prgm_gov[a];
           String _report=report[a];
           String _finance=finance[a];
-      st.executeUpdate("update role_details set admin='"+_admin+"',app_emp='"+_app_emp+"',intake='"+_intake+"',arch_exe='"+_arch_exe+"',decomm='"+_decomm+"',prgm_governance='"+_prgm_gov+"',reporting='"+_report+"',finance='"+_finance+"' where role='"+_role+"'");                                           
-  	System.out.println("update role_details set admin='"+_admin+"',app_emp='"+_app_emp+"',intake='"+_intake+"',arch_exe='"+_arch_exe+"',decomm='"+_decomm+"',prgm_governance='"+_prgm_gov+"',reporting='"+_report+"',finance='"+_finance+"' where role='"+_role+"'");
+      st.executeUpdate("update Role_Details set admin='"+_admin+"',app_emp='"+_app_emp+"',intake='"+_intake+"',arch_exe='"+_arch_exe+"',decomm='"+_decomm+"',prgm_governance='"+_prgm_gov+"',reporting='"+_report+"',finance='"+_finance+"' where role='"+_role+"'");                                           
+  	System.out.println("update Role_Details set admin='"+_admin+"',app_emp='"+_app_emp+"',intake='"+_intake+"',arch_exe='"+_arch_exe+"',decomm='"+_decomm+"',prgm_governance='"+_prgm_gov+"',reporting='"+_report+"',finance='"+_finance+"' where role='"+_role+"'");
            }
           
           conn.close();

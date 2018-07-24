@@ -79,7 +79,7 @@ $(function() {
 <%
 try {
 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "root");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "root");
 String query = "select * from app_info where id=(select max(id) from app_info)";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);

@@ -90,8 +90,8 @@ String det=(String)session.getAttribute("theName");
 String proj_count="",active_users="";
 int Serial_No=0;
 Class.forName("com.mysql.jdbc.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb", "root", "password123");
-String query = "select count(*) from projinfo";
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding", "root", "password123");
+String query = "select count(*) from AppEmphazize_ProjectDetails";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
 while(rs.next())
@@ -100,7 +100,7 @@ while(rs.next())
 	
 }
 
-String query1 = "select count(*) from user_details where stats = 'active'";
+String query1 = "select count(*) from Admin_UserDetails where stats = 'active'";
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st.executeQuery(query1);
 while(rs1.next())
@@ -108,7 +108,7 @@ while(rs1.next())
 	active_users=rs1.getString(1);
 	
 }
-String query3 = "select * from projinfo";
+String query3 = "select * from AppEmphazize_ProjectDetails";
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st.executeQuery(query3);
 

@@ -302,7 +302,7 @@ function drawChart() {
 <select id = "myList">
 <option value="none">select</option>
  <%
- ResultSet rs_name=st_distinct.executeQuery("select uname from user_details ");
+ ResultSet rs_name=st_distinct.executeQuery("select uname from Admin_UserDetails ");
  while (rs_name.next())
  {
  

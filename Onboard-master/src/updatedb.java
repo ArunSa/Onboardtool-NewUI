@@ -82,7 +82,7 @@ if(priority[i]!=null)
         {
           // create a mysql database connection
           String myDriver = "org.gjt.mm.mysql.Driver";
-          String myUrl = "jdbc:mysql://localhost:3306/strutsdb";
+          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
           Class.forName(myDriver);
           Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
         
@@ -97,9 +97,9 @@ if(priority[i]!=null)
 
         		 logger.info("modified priority of the application "+projectname); 
         		 
-          System.out.println("update app_prior set complexity='"+complexitye+"',priorities='"+priorities+"' where proj_name='"+projectname+"'and prj_name='"+Project_Name+"'");
+          System.out.println("update AppEmphazize_ApplicationPrioritization set complexity='"+complexitye+"',priorities='"+priorities+"' where proj_name='"+projectname+"'and prj_name='"+Project_Name+"'");
                 
-     st.executeUpdate("update app_prior set complexity='"+complexitye+"',priorities='"+priorities+"' where proj_name='"+projectname+"' and prj_name='"+Project_Name+"'");
+     st.executeUpdate("update AppEmphazize_ApplicationPrioritization set complexity='"+complexitye+"',priorities='"+priorities+"' where proj_name='"+projectname+"' and prj_name='"+Project_Name+"'");
  
           }
           

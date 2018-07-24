@@ -17,7 +17,7 @@ String Date=request.getParameter("dataView");
  String buffer="<select name='slct1'> <option disabled selected>Please Select any Option</option>";  
  try{
  Class.forName("com.mysql.jdbc.Driver").newInstance();  
- Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/strutsdb","root","password123");  
+ Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Onboarding","root","password123");  
  Statement stmt = con.createStatement();  
  ResultSet rs = stmt.executeQuery("Select DISTINCT(substring(DATED,1,10)) from logs where USER_ID='"+Date+"' ");  
    while(rs.next()){
