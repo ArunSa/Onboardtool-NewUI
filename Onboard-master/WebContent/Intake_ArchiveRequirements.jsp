@@ -196,11 +196,11 @@ if(rs3.next()){
           
                  <% if(rs4.next()){ 
                  String rowCount="";
-                	 String query11 = "select * from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
+                	 String query11 = "select * from Intake_ArchivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from Intake_ArchivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
                      Statement st11 = conn.createStatement();
                      ResultSet rs11 = st11.executeQuery(query11); 
                      System.out.println(query11);
-                    String query12 = "select count(*) from archivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
+                    String query12 = "select count(*) from Intake_ArchivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                      Statement st12 = conn.createStatement();
                      ResultSet rs12 = st12.executeQuery(query12);
                      if(rs12.next())
@@ -844,7 +844,7 @@ $(function() {
      $( "#rod"+i ).datepicker({
         format: "dd/mm/yyyy",
         autoclose: true
-    });
+    }); 
 });
 </script>
        
