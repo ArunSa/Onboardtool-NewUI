@@ -186,7 +186,12 @@ form[role=login] {
 <body background="onboard/images/bg.jpg" onLoad="Clear();">
 <br/><br/><br/><br/><br/>
 
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Login JSP PAGE-----[INFO]");  %>
 <jsp:include page="db_creation.jsp"/>
 	<jsp:include page="tablecreation.jsp"/>
 	

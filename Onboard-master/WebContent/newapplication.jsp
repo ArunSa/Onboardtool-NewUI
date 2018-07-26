@@ -31,6 +31,12 @@
 
   </head><!--from  w  w w  . ja  va 2 s.co  m-->
   <body>
+  <%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed newapplications JSP PAGE-----[INFO]");  %>
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>

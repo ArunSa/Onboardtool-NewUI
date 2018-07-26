@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +35,9 @@ public class infodb extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Infodb servlet-----[INFO]");  
 		HttpSession app_details=request.getSession();
 		
 		 String proj_name = (String)app_details.getAttribute("proj_name");
@@ -62,9 +67,7 @@ preparedStmt.execute();
 	        }
 	        catch (Exception e)
 	        {
-	        	 System.out.println("Sorry Your order for today has been already taken");
-	          System.err.println("Got an exception!");
-	          System.err.println(e.getMessage());
+	        	 System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 	        }
 	        response.sendRedirect("AppEmphasize_CostCalculation.jsp");	
 

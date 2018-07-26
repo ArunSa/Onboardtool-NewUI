@@ -6,9 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+
 import java.util.*;
-import java.util.Locale;
 import java.sql.Connection;
 
 import java.sql.ResultSet;
@@ -92,11 +91,7 @@ public class piedaterange extends HttpServlet {
 		}
 		
 	    Res="";
-		for(int i=0;i<result_projects.size();i++)
-		{
-			System.out.println("result_projecs : "+result_projects.get(i));
-			Res=Res+result_projects.get(i)+",";
-		}
+	
 		}
 		catch(Exception e)
 		{
@@ -131,10 +126,7 @@ public class piedaterange extends HttpServlet {
 	    totalDates.add(start.toString());
 	    start = start.plusDays(1);
 	}
-	for (int i=0;i<totalDates.size();i++)
-	{
-		System.out.println(" "+totalDates.get(i));
-	}
+	
 	
 	}
 	catch(Exception e)
@@ -193,7 +185,9 @@ public class piedaterange extends HttpServlet {
 		// TODO Auto-generated method stub
 		try
 		{
-			
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+		    Date date = new Date();  
+		    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed PieDateRange servlet-----[INFO]");  
 			String fromDate = request.getParameter("piefrom");
 			String toDate = request.getParameter("pieto");
 			
@@ -217,7 +211,7 @@ public class piedaterange extends HttpServlet {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		}
 		
 	}

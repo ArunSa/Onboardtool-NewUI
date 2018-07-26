@@ -2,6 +2,8 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -36,6 +38,9 @@ public class confirmation extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Confirmation servlet-----[INFO]");  
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter pw=response.getWriter();
 		Properties props = new Properties();

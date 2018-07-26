@@ -37,6 +37,12 @@
 <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed RoleUIDashboard JSP PAGE-----[INFO]");  %>
 <%
 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -51,7 +57,7 @@ response.sendRedirect("Login.jsp");
 <%
   HttpSession role_ses=request.getSession(); 
   String frole=(String)role_ses.getAttribute("role");
-  System.out.println("Selected User Name :" +frole );
+ // System.out.println("Selected User Name :" +frole );
   HttpSession details=request.getSession();
   try{
   %>

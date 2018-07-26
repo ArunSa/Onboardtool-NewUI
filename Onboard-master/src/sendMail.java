@@ -1,6 +1,8 @@
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -36,6 +38,10 @@ public class sendMail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Sendmail servlet-----[INFO]");  
 		response.setContentType("text/html");
 		PrintWriter pw=response.getWriter();
 		String rol=request.getParameter("roless");
@@ -45,7 +51,7 @@ public class sendMail extends HttpServlet {
 		String lname=request.getParameter("lname");
 		String project=request.getParameter("project");
 		String application=request.getParameter("application");
-		System.out.println(msg);
+	//	System.out.println(msg);
 		Properties props = new Properties();
 		 HttpSession ses=request.getSession();  
 	        ses.setAttribute("My_Roles",rol); 
@@ -93,7 +99,7 @@ pw.close();
 		
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		}
 	}
 

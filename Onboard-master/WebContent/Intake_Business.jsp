@@ -140,7 +140,12 @@ color:white;
  
   
   <body class="top-navbar-fixed">
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date1 = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date1)+"-----Accessed Intake_Business JSP PAGE-----[INFO]");  %>
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>

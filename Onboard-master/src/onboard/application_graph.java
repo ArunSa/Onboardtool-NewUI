@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +41,9 @@ public class application_graph extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Application Graph servlet-----[INFO]");  
 		String projects = request.getParameter("projects");
 		String appname1[]=new String[10];
 		String appname2[]=new String[10];
@@ -49,7 +53,7 @@ public class application_graph extends HttpServlet {
 		try{
 		DBconnection d=new DBconnection();
 		Connection con = (Connection)d.getConnection();
-		System.out.println("Projects is "+projects);
+		//System.out.println("Projects is "+projects);
 		 String db_query1="select appname from AppEmphazize_ApplicationInfo where prjname='"+projects+"'";
 	        Statement db_st1 = con.createStatement();
 	        ResultSet db_rs1 = db_st1.executeQuery(db_query1);
@@ -62,13 +66,13 @@ public class application_graph extends HttpServlet {
 	       
 	        	int seq_num=Integer.parseInt(db_rs.getString(1));
 	        	 String db_query2="select * from ArchiveExecution_Details where seq_num>"+seq_num+" and seq_num<"+(seq_num+62)+" and level=3 order by seq_num";
-	             System.out.println(db_query2);
+	            // System.out.println(db_query2);
 	             Statement db_st2 = con.createStatement();
 	             ResultSet db_rs2 = db_st2.executeQuery(db_query2);
 	             while(db_rs2.next()){
 	         if(db_rs2.getString("name").equals("Requirements") && !db_rs2.getString("progressbar").equals("100")){
 	        	 appname1[count1++]=db_rs1.getString(1);
-	        	 System.out.println(db_rs1.getString(1));
+	        	// System.out.println(db_rs1.getString(1));
 	      		break;
 	      	}
 	      	else if(db_rs2.getString("name").equals("Gate 2 Approval to Build") && !db_rs2.getString("progressbar").equals("100"))
@@ -101,7 +105,7 @@ public class application_graph extends HttpServlet {
 	        apps=text1+"/"+text2+"/"+text3+"/"+text4;
 	        String applications=apps.substring(0, apps.length() - 1);
 	        
-	        System.out.println(applications);
+	        //System.out.println(applications);
 			response.setContentType("text/plain"); // Set content type of the response so that jQuery knows what it can// expect.
 			response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
 			response.getWriter().write(applications);
@@ -109,7 +113,7 @@ public class application_graph extends HttpServlet {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		}
 	       
 	}

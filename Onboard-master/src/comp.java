@@ -6,6 +6,9 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.log4j.BasicConfigurator;
 
 import org.apache.log4j.Logger;
@@ -57,6 +60,10 @@ public class comp extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed java servlet-----[INFO]");  
 		HttpSession details=request.getSession(); 
 		String u_name=(String)details.getAttribute("username");
 		String u_role=(String)details.getAttribute("role");
@@ -153,9 +160,9 @@ public class comp extends HttpServlet {
 		        }
 		        catch (Exception e)
 		        {
-		        	 System.out.println("Sorry Your order for today has been already taken");
-		          System.err.println("Got an exception!");
-		          System.err.println(e.getMessage());
+		        	
+		        	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
+		        
 		        }
 		        // return response
 		        response.sendRedirect("Intake_TechnicalDetails.jsp");

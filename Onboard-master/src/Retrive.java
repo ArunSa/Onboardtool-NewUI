@@ -1,5 +1,6 @@
 
-
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +38,10 @@ public class Retrive extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Retrieve servlet-----[INFO]");  
 		PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         out.println("<html><body>");

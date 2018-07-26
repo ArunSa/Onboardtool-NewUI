@@ -39,7 +39,12 @@
   
 </head>
 <body class="top-navbar-fixed">
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed AppEmphazize_CostCalculation JSP PAGE-----[INFO]");  %>
     <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="java.text.NumberFormat" %>
@@ -56,7 +61,7 @@ String projectname=(String)details.getAttribute("nameofproject");
 String det=(String)session.getAttribute("theName");
 String appl=(String)details.getAttribute("applications");
 String prj=(String)details.getAttribute("projects");
-System.out.println("-- "+info+"-- "+appno+"---"+projectname+"---"+det);
+//System.out.println("-- "+info+"-- "+appno+"---"+projectname+"---"+det);
  
 DBconnection d=new DBconnection();
 Connection conn = (Connection)d.getConnection();
@@ -66,13 +71,13 @@ ResultSet rs = st.executeQuery(query);
 String query3 = "select * from AppEmphazize_ProjectDetails where id = "+det;
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-System.out.println(projectname);
+//System.out.println(projectname);
 String query1="";
 if(prj.equals("all"))
 	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+projectname+"'";
 else
 	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+prj+"' and appname='"+appl+"'";
-System.out.println(query1);
+//System.out.println(query1);
 Statement st1 = conn.createStatement();
 ResultSet rs1 = st1.executeQuery(query1);
 String query2= "SELECT * from AppEmphazize_ApplicationPrioritization where prj_name='"+projectname+"'";

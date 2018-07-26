@@ -31,6 +31,12 @@
 	</script>
 </head>
 <body style="background-color:#4169E1">
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed reset_uname JSP PAGE-----[INFO]");  %>
  <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <% 

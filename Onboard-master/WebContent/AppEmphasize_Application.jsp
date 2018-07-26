@@ -33,7 +33,12 @@
 </head>
   
 <body class="top-navbar-fixed">
-  
+  <%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed AppEmphazize_Application JSP PAGE-----[INFO]");  %>
 <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
@@ -67,7 +72,7 @@ ResultSet rs3 = st3.executeQuery(query3);
 if(rs3.next())
 Project_name=rs3.getString("projectname");
 
-System.out.println("Project_name of the project is "+Project_name);
+//System.out.println("Project_name of the project is "+Project_name);
 String query1="";
 if(Project_Name.equals("all"))
 	 query1 = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_name+"'";

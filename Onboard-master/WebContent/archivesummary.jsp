@@ -537,7 +537,12 @@ function remove(x)
 
 
 <body class="top-navbar-fixed">
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed ArchiveSummary JSP PAGE-----[INFO]");  %>
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
 		<%
@@ -698,7 +703,7 @@ if(rs9.next()){
 String query3 = "select * from ArchiveExecution_Details where projects='"+rs9.getString("projectname")+"' order by seq_num";
 Statement st3 = conn.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
-System.out.println(rs9.getString("projectname"));
+//System.out.println(rs9.getString("projectname"));
 String query5 = "select * from ArchiveExecution_Details where projects='"+rs9.getString("projectname")+"' order by seq_num";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
@@ -787,7 +792,7 @@ if(execute == null)
 	execute="0";
 if(hypercare == null)
 	hypercare="0";
-System.out.println(plan);
+//System.out.println(plan);
 %>                            
 
 <div class="row">

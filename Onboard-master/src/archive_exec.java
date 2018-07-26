@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.log4j.BasicConfigurator;
 
 import org.apache.log4j.Logger;
@@ -57,6 +60,9 @@ public class archive_exec extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Archiveexecution servlet-----[INFO]"); 
 		HttpSession details=request.getSession(); 
 		String u_name=(String)details.getAttribute("username");
 		String u_role=(String)details.getAttribute("role");
@@ -76,7 +82,7 @@ public class archive_exec extends HttpServlet {
 		String progres[]=new String[10];
 		String hr[]=new String[10];
 		
-	System.out.println("In servlet");
+	//System.out.println("In servlet");
 		
 		
 		for(int i=0;i<10;i++){
@@ -124,8 +130,8 @@ hr[i]=request.getParameter("hrs"+i);
         catch (Exception e)
         {
         	 
-          System.err.println("Got an exception!");
-          System.err.println("gfghfhgfhgg"+e.getMessage());
+        	System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
+         // System.err.println("gfghfhgfhgg"+e.getMessage());
         }
 
 		
@@ -154,7 +160,7 @@ hr[i]=request.getParameter("hrs"+i);
 
 	          if(level>1)
 	          {
-	        	  System.out.println("subtask");
+	        	//  System.out.println("subtask");
 	        	  String query="update ArchiveExecution_Details  set seq_num=seq_num+1 where seq_num>"+seq_num;
 	        	  PreparedStatement preparedStmt = conn.prepareStatement(query);
 	        	  preparedStmt.execute();
@@ -179,7 +185,7 @@ hr[i]=request.getParameter("hrs"+i);
 	        	  
 	          }
 	          else{
-	        	  System.out.println("task");
+	        	 // System.out.println("task");
 	          String query = " insert into ArchiveExecution_Details (seq_num,level,name,mem_ass,id,ref_id)"
 	            + " values (?,?,?,?,?,?)";
 	          PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -203,9 +209,9 @@ hr[i]=request.getParameter("hrs"+i);
 		 catch (Exception e)
 	        {
 	        	 
-	          System.err.println("Got an exception!ffddhdhgdh");
-	          System.err.println("egdsggfhg"+e.getMessage());
-	          e.printStackTrace(System.out);
+	          System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
+	         // System.err.println("egdsggfhg"+e.getMessage());
+	          //e.printStackTrace(System.out);
 	        }
 	        
 	        // return response

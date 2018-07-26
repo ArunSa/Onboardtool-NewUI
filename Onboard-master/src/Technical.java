@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.log4j.BasicConfigurator;
 
@@ -59,9 +61,12 @@ response.getWriter().append("Served at: ").append(request.getContextPath());
 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 */
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+    Date date = new Date();  
+    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Technical servlet-----[INFO]"); 
 	String project_name=request.getParameter("project_name");
 	String app_name=request.getParameter("appln_name");
-	System.out.println(project_name+" "+app_name);
+	//System.out.println(project_name+" "+app_name);
 	int DEL_count=0;
 try{
     String myDriver = "org.gjt.mm.mysql.Driver";
@@ -89,8 +94,8 @@ try{
      		String query5 = "alter table Intake_TechnicalDetails drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
          	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
          	 preparedStmt5.execute();
-         	 System.out.println("*********Deletion quey**********");
-         	 System.out.println(query4+"\n"+query5);
+         	// System.out.println("*********Deletion quey**********");
+         	 //System.out.println(query4+"\n"+query5);
          	
          	 
     	}
@@ -137,11 +142,10 @@ try{
        catch (Exception e)
        {
        
-         System.err.println("Got an exception!");
-         System.err.println(e.getMessage());
+    	   System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
        }
        // return response
-System.out.println("dekete count is "+DEL_count);
+//System.out.println("dekete count is "+DEL_count);
 if(DEL_count==0){
 	response.sendRedirect("Intake_ArchiveRequirements.jsp");
 	}

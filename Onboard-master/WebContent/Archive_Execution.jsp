@@ -57,6 +57,12 @@
 </head>
 
 <body class="top-navbar-fixed">
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date1 = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date1)+"-----Accessed Archive_Execution JSP PAGE-----[INFO]");  %>
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
 		<%@ page import="onboard.DBconnection" %>
@@ -327,7 +333,7 @@ if(hypercare == null)
 
 if(Integer.parseInt(hypercare) > 100)
 	hypercare="100";
-System.out.println(plan);
+//System.out.println(plan);
 %>                            
 
 <div class="row">

@@ -141,6 +141,13 @@ color:white;
 /*END Form Wizard*/
 </style>
   <body class="top-navbar-fixed">
+  
+  <%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed IntakeArchiveRequirements JSP PAGE-----[INFO]");  %>
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
@@ -199,7 +206,7 @@ if(rs3.next()){
                 	 String query11 = "select * from Intake_ArchivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"' and id=(select max(id) from Intake_ArchivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"')";
                      Statement st11 = conn.createStatement();
                      ResultSet rs11 = st11.executeQuery(query11); 
-                     System.out.println(query11);
+                     //System.out.println(query11);
                     String query12 = "select count(*) from Intake_ArchivalRequirement where appname='"+rs4.getString("appname")+"' and projectname='"+rs3.getString("projectname")+"'";
                      Statement st12 = conn.createStatement();
                      ResultSet rs12 = st12.executeQuery(query12);
@@ -224,14 +231,14 @@ if(rs3.next()){
                   ResultSet rss1 = s3.executeQuery(quer3);
                   while(rss1.next())
                 	  imp_id=rss1.getString(1);
-                  System.out.println(imp_id);
+                //  System.out.println(imp_id);
                   String quer4="select * from ArchiveExecution_Details where ref_id='"+imp_id+"' and projects='"+rs3.getString("projectname")+"'order by seq_num";
                   Statement s4 = conn.createStatement();
                  ResultSet rss2 = s4.executeQuery(quer4);
                 
                   while(rss2.next()){
                   	session.setAttribute(rss2.getString(3),rss2.getString(15));
-                  	System.out.println(rss2.getString(3));
+                //  	System.out.println(rss2.getString(3));
                   }
                   
                   String quer5="select seq_num from ArchiveExecution_Details where name='Build and Test'";
@@ -239,7 +246,7 @@ if(rs3.next()){
                   ResultSet rss3 = s5.executeQuery(quer5);
                   if(rss3.next())
                 	  sequenceNumber=rss3.getString(1);
-                  System.out.println(sequenceNumber);
+                 // System.out.println(sequenceNumber);
                   String quer6="select * from ArchiveExecution_Details where projects='"+rs3.getString("projectname")+"' and seq_num>"+sequenceNumber+" and seq_num<"+(sequenceNumber+33)+" and level=4";
                   Statement s6 = conn.createStatement();
                   ResultSet rss4 = s6.executeQuery(quer6);
@@ -268,7 +275,7 @@ if(rs3.next()){
                 			  plannedHours+=0;
                 		  else
                 		  plannedHours+=Integer.parseInt(rss4.getString(13)); 
-                		  System.out.println(actualHours);
+                		 // System.out.println(actualHours);
                 	  }
                 	 knt++;
                   }
@@ -758,7 +765,7 @@ if(implement == null)
         <!-- /.main-wrapper -->
                              <script>
                 function validateform9() {
-                	alert("inside servlet");
+                	
                     var f=document.loginForm;
                     f.method="post";
                     f.action='ArchivalRequirements';

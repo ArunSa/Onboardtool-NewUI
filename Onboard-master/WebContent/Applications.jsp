@@ -53,7 +53,12 @@
 	
 	<!--from  w  w w  . ja  va 2 s.co  m-->
   <body class="top-navbar-fixed">
-  
+  <%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date1 = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date1)+"-----Accessed Applications JSP PAGE-----[INFO]");  %>
   <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
@@ -117,7 +122,7 @@ ResultSet rs3 = st3.executeQuery(query3);
                 
                      <%if (rs3.next()) {
                     	 String Project_Name=rs3.getString("projectname");
-                    	 System.out.println("the projectname is "+Project_Name);
+                    	 //System.out.println("the projectname is "+Project_Name);
                     	 String query="";
                     	 if(Project_name.equals("all"))
                     	  query = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_Name+"'";

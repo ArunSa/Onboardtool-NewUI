@@ -101,6 +101,10 @@ public class date_update extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Date_Update servlet-----[INFO]");  
 
 		HttpSession session = request.getSession();
 
@@ -605,9 +609,7 @@ public class date_update extends HttpServlet {
 
 		{
 
-			System.err.println("Got an exceptionnnnn!");
-
-			System.err.println(e.getMessage());
+			 System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 
 		}
 
@@ -735,10 +737,7 @@ public class date_update extends HttpServlet {
 
 		{
 
-			System.err.println("End  Date exception!");
-
-			System.err.println(e.getMessage());
-
+			 System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		}
 
 		response.sendRedirect("Archive_Execution.jsp");

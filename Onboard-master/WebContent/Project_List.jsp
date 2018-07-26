@@ -33,6 +33,12 @@
 </head>
 
 <body class="top-navbar-fixed">
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date1 = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date1)+"-----Accessed Project_List JSP PAGE-----[INFO]");  %>
   <%@page language="java"%>
   <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -56,7 +62,7 @@
   String query;
   HttpSession details=request.getSession();
   String Projets=(String)details.getAttribute("projects");
-  System.out.println(Projets);
+  //System.out.println(Projets);
   String roles=(String)details.getAttribute("role");
   DBconnection d=new DBconnection();
   Connection con = (Connection)d.getConnection();
@@ -87,7 +93,7 @@
   }
 
   }
-  System.out.println("the flag value is "+flag);
+  //System.out.println("the flag value is "+flag);
   if(flag==1)
   {
   	String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"
@@ -185,7 +191,7 @@
 int k=0;
 while(rs.next()){
            k++;
-           System.out.println("pname is "+rs.getString(1));
+          // System.out.println("pname is "+rs.getString(1));
 %>
 <li>
 <h3 class="cbp-vm-title left-col primary" name="name"><%=rs.getString(1)%></h3>

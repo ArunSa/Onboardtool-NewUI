@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,6 +57,10 @@ String proj_name = request.getParameter("proj_name");
 */
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	HttpSession details=request.getSession(); 
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+    Date date = new Date();  
+    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Updated servlet-----[INFO]");  
 	String u_name=(String)details.getAttribute("username");
 	String Project_Name=(String)details.getAttribute("nameofproject");
 
@@ -69,7 +75,7 @@ for(int i=0;i<cnt;i++){
 project_name[i]=request.getParameter("project_name"+i);
 complexity[i]=request.getParameter("complexity"+i);
 priority[i]=request.getParameter("priority"+i);
-System.out.println(project_name[i]);
+//System.out.println(project_name[i]);
 if(priority[i]!=null)
 	 count++;
 }
@@ -97,7 +103,7 @@ if(priority[i]!=null)
 
         		 logger.info("modified priority of the application "+projectname); 
         		 
-          System.out.println("update AppEmphazize_ApplicationPrioritization set complexity='"+complexitye+"',priorities='"+priorities+"' where proj_name='"+projectname+"'and prj_name='"+Project_Name+"'");
+         // System.out.println("update AppEmphazize_ApplicationPrioritization set complexity='"+complexitye+"',priorities='"+priorities+"' where proj_name='"+projectname+"'and prj_name='"+Project_Name+"'");
                 
      st.executeUpdate("update AppEmphazize_ApplicationPrioritization set complexity='"+complexitye+"',priorities='"+priorities+"' where proj_name='"+projectname+"' and prj_name='"+Project_Name+"'");
  
@@ -108,8 +114,7 @@ if(priority[i]!=null)
         catch (Exception e)
         {
          
-          System.err.println("Got an exception!");
-          System.err.println(e.getMessage());
+        	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
         }
         // return response
         response.sendRedirect("AppEmphasize_Preview.jsp");

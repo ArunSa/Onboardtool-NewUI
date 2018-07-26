@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,11 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import com.google.gson.Gson;
 
 import onboard.DBconnection;
 
@@ -82,7 +80,7 @@ public class Weekly_linechart extends HttpServlet {
 	 */
 
 	public void Db_Connection() {
-		System.out.println("Inside dbconnection funtion");
+		//System.out.println("Inside dbconnection funtion");
 		try {
 			db_date.clear();
 			db_count.clear();
@@ -98,15 +96,15 @@ public class Weekly_linechart extends HttpServlet {
 			}
 			con.close();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			 System.err.println("[ERROR]-----Got an exception!-----"+e.getMessage()+"----[ERROR]");
 		}
 	}
 
 	public void Date_Formation() {
-		System.out.println("inside date_formation function");
+		//System.out.println("inside date_formation function");
 		String mon = month;
-		System.out.println(" Month " + month);
-		System.out.println(" Year " + year);
+		//System.out.println(" Month " + month);
+		//System.out.println(" Year " + year);
 		int year_converted = Integer.parseInt(year);
 		int date_from = 0;
 		int date_new = 0;
@@ -177,7 +175,7 @@ public class Weekly_linechart extends HttpServlet {
 		
 		final_count.clear();
 		
-		System.out.println("inside visits_calculation function");
+		//System.out.println("inside visits_calculation function");
 		for (int i = 0; i < from_dates.size(); i++) {
 			String s = from_dates.get(i);
 			String e = end_dates.get(i);
@@ -205,6 +203,9 @@ public class Weekly_linechart extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Weekly Linechart servlet-----[INFO]");  
 		String text="";
 		month = request.getParameter("field1");
 		year = request.getParameter("field2");
@@ -217,7 +218,7 @@ public class Weekly_linechart extends HttpServlet {
 			result = result + from_dates.get(i) + "," + final_count.get(i).toString() + ",";
 		}
 		
-		System.out.println(result.substring(0, result.length() - 1));
+		//System.out.println(result.substring(0, result.length() - 1));
 		text = result.substring(0, result.length() - 1);
 		response.setContentType("text/plain"); // Set content type of the response so that jQuery knows what it can// expect.
 		response.setCharacterEncoding("UTF-8"); // You want world domination, huh?

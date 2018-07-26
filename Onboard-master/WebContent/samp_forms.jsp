@@ -58,7 +58,12 @@ document.getElementById("demo"+q).innerHTML=s;
 		   }
    }
    </script>
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed samp_forms JSP PAGE-----[INFO]");  %>
 <%
 String ProjectName=request.getParameter("ProjectName");
 String AppName=request.getParameter("AppName");

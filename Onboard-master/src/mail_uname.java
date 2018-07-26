@@ -2,6 +2,8 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -36,11 +38,14 @@ public class mail_uname extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Mail_uname servlet-----[INFO]");  
 		PrintWriter pw=response.getWriter();
 		HttpSession passwd=request.getSession();
 		String email=(String)passwd.getAttribute("emailid");
 		String uname=request.getParameter("uname");
-		System.out.println(email+" "+uname);
+		//System.out.println(email+" "+uname);
 			Properties props = new Properties();
 				
 		props.put("mail.smtp.auth", "true");
@@ -78,7 +83,7 @@ pw.close();
 		
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		}	
 		}
 

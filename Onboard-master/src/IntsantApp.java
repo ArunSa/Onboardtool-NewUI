@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -58,6 +60,9 @@ public class IntsantApp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed InstantApp servlet-----[INFO]");  
 		HttpSession details=request.getSession(); 
 		String u_name=(String)details.getAttribute("username");
 
@@ -70,7 +75,7 @@ public class IntsantApp extends HttpServlet {
 				String prjname = request.getParameter("prjname");
 				logger.info("created application "+appname+" in project "+prjname+" for AppEmphasize module");
 				
-				System.out.println(appname+" "+prjname);
+				//System.out.println(appname+" "+prjname);
 				class Application
 				{
 					
@@ -300,7 +305,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 		          }
 		          catch(Exception e)
 		          {
-		        	  System.err.println("Business page");
+		        	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----Buisness Page-----"+e.getMessage()+"----[ERROR]");
 		          }
 		          try{
 		          for(int j=0;j<41;j++){
@@ -329,7 +334,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 		          }
 		          catch(Exception e)
 		          {
-		        	  System.err.println("Technical page");  
+		        	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----Technical page-----"+e.getMessage()+"----[ERROR]");
 		          }
 		         try{
 		          for(int j=0;j<18;j++){
@@ -354,7 +359,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 		         }
 		          catch(Exception e)
 		         {
-		        	  System.err.println("Requirement page");   
+		        	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----Requirement Page"+e.getMessage()+"----[ERROR]");
 		         }
 
 				     int i=0;
@@ -393,13 +398,13 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 						    	 Statement st9 = conn.createStatement();
 							     ResultSet rs9 = st9.executeQuery(query9);
 							     while(rs9.next()){
-							    	 System.out.println("projects name --- "+rs9.getString(1));
+							    	// System.out.println("projects name --- "+rs9.getString(1));
 							    	 if(rs9.getString(1).equals(rs.getString(1)))
 							    	 {
 							    		cnt++; 
 							    	 }}
 							     
-							   System.out.println("aaa... "+cnt);  
+							 //  System.out.println("aaa... "+cnt);  
 					    	  
 					    	  if(cnt==0){
 				    	 String query3="update ArchiveExecution_Details set seq_num=seq_num+62 where seq_num>="+rs2.getInt(1);
@@ -464,8 +469,7 @@ ar[17]=new Arch_Req(" ", "Check box", "No", "1", "Based on search parameters, da
 		        catch (Exception e)
 		        {
 		        	
-		          System.err.println("Got an exception!");
-		          System.err.println(e.getMessage());
+		        	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		        }
 		        // return response
 		      

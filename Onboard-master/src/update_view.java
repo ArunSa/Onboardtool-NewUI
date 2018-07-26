@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +42,9 @@ public class update_view extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Update View servlet-----[INFO]");
 		String seqnum[]=new String[200];
 		String name[]=new String[200];
 		String mem_as[]=new String[200];
@@ -104,8 +109,7 @@ plan_hrs[i]=request.getParameter("phrs"+i);
         catch (Exception e)
         {
         	 
-          System.err.println("Got an exception!");
-          System.err.println(e.getMessage());
+        	 System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
         }
         // return response
         response.sendRedirect("Archive_Execution.jsp");

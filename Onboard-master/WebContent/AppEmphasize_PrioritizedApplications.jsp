@@ -36,6 +36,12 @@
    
 </head>
 <body class="top-navbar-fixed">
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed AppEmphazize_Prioriized JSP PAGE-----[INFO]");  %>
     <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="java.text.NumberFormat" %>
@@ -88,7 +94,7 @@ ResultSet rs2 = st2.executeQuery(query2);
 <%if(rs2.next())
 {
 App_Priorities=rs2.getInt("total");
-System.out.println(App_Priorities);
+//System.out.println(App_Priorities);
 //System.out.println(rs2.getString(2));
 
 
@@ -362,7 +368,7 @@ if(hypercare == null)
           
             
            filter(complexity, priorities, indexes);
-           System.out.println("c "+indexes);
+           //System.out.println("c "+indexes);
            int size=0;
            for(Object obj:indexes)
            {
@@ -435,9 +441,9 @@ if(hypercare == null)
         	x[j]=(String)priorityMap.get(j);
         }
          Arrays.sort(x);
-      System.out.println("the elements are");
+     // System.out.println("the elements are");
       for(int j=0;j<appname.size();j++)
-        System.out.print(x[j]);
+    //    System.out.print(x[j]);
         
           
     	  %>
@@ -445,7 +451,7 @@ if(hypercare == null)
        
       
       <%
-      System.out.println("appname.size  "+appname.size());
+    //  System.out.println("appname.size  "+appname.size());
       for(int k=0;k<appname.size();k++){
       for(int j=0;j<appname.size();j++) 
       {     

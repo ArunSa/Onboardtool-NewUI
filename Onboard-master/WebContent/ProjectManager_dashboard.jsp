@@ -68,7 +68,12 @@ padding: 2px 4px 2px 4px;
 </style>
  
   <body class="top-navbar-fixed">
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed ProjectManagaer_Dashboard JSP PAGE-----[INFO]");  %>
 <%@page language="java"%>
 <%@ page import="java.util.ArrayList" %>
 <%@page import="java.sql.*"%>

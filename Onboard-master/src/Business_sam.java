@@ -7,6 +7,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.log4j.BasicConfigurator;
 
 import org.apache.log4j.Logger;
@@ -48,9 +51,14 @@ public class Business_sam extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		System.out.println("----------Business_sam page------------");
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Buisness Customzation servlet-----[INFO]");  
+		//System.out.println("----------Business_sam page------------");
 		String project_name=request.getParameter("project_name");
 		String app_name=request.getParameter("appln_name");
 		int DEL_count=0;
@@ -80,8 +88,7 @@ public class Business_sam extends HttpServlet {
          		String query5 = "alter table Intake_BuisnessDetails drop "+Idname+" where projectname='"+project_name+"' and appname='"+app_name+"'";
              	PreparedStatement preparedStmt5 = conn.prepareStatement(query5);
              	 preparedStmt5.execute();
-             	 System.out.println("*********Deletion quey**********");
-             	 System.out.println(query4+"\n"+query5);
+             	
              	
              	 
         	}
@@ -123,8 +130,8 @@ public class Business_sam extends HttpServlet {
 	       catch (Exception e)
 	       {
 	       
-	         System.err.println("Got an exception!");
-	         System.err.println(e.getMessage());
+	    	   System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
+	        
 	       }
 	       // return response
 	if(DEL_count==0){

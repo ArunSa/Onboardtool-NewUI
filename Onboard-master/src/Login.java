@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.log4j.BasicConfigurator;
 
 import org.apache.log4j.Logger;
@@ -56,12 +59,15 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println("HI");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	   System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Login servlet-----[INFO]");  
 		// TODO Auto-generated method stub
 		HttpSession details=request.getSession(); 
 		HttpSession session=request.getSession();
 		String userid=request.getParameter("usr");
 		String pwd=request.getParameter("pwd"); 
-		System.out.println("bala");
 		session.setAttribute("username",userid);
 		details.setAttribute("u_Name",userid);
 		
@@ -347,7 +353,7 @@ try
 		
 		encryption et=new encryption();
 		  String passw=(String)et.decrypt(rs.getString(5));
-		 System.out.println("decrypted pass is "+passw+" and entered passw is "+pwd);
+		// System.out.println("decrypted pass is "+passw+" and entered passw is "+pwd);
 			if((passw.equals(pwd)))
 	{ 
 		details.setAttribute("role",rs.getString(7));
@@ -389,7 +395,7 @@ try
 	}
 		else 
 		{ 
-			System.out.println("if");
+			//System.out.println("if");
 			response.sendRedirect("Login_Error.jsp");
 		}
 		}
@@ -401,12 +407,11 @@ try
 				MDC.put("USERROLE", u_role);
 				
    
-
-logger.info("Logged In"); 
+				logger.info("Logged In"); 
 }
 catch( Exception e)
 {
-	System.out.println(e.getMessage());
+	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 }
 	
 		

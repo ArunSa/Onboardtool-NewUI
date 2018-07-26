@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -43,6 +45,9 @@ public class user_registration extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed User Registration servlet-----[INFO]");  
 		String roles=request.getParameter("reg_roles");
 	String username=request.getParameter("reg_uname");
 	String firstname=request.getParameter("reg_fname");
@@ -58,7 +63,7 @@ public class user_registration extends HttpServlet {
 	
 	encryption et=new encryption();
 	String passw=et.encrypt(pass);
-	System.out.println("enpt pass is "+passw);
+	//System.out.println("enpt pass is "+passw);
 	 try
       {
         // create a mysql database connection
@@ -92,9 +97,7 @@ public class user_registration extends HttpServlet {
       }
       catch (Exception e)
       {
-      	 
-        System.err.println("Got an exception!");
-        System.err.println(e.getMessage());
+    	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
       }		
 	}
 

@@ -83,9 +83,13 @@ function checkk()
 
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
+		<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
 		<%
-
-response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Admin_RoleDetails JSP PAGE-----[INFO]");  %>
+<%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setHeader("Expires", "0"); // Proxies.
 

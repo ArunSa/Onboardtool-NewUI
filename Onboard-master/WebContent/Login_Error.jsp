@@ -136,7 +136,12 @@
 	
 	<body background="assets/images/bg.jpg"> 
 	
-	
+	<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Login_Error JSP PAGE-----[INFO]");  %>
 	
 	
 	

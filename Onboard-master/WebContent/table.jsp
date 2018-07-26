@@ -11,6 +11,12 @@
 </head>
 <body>
  <%@page import="java.sql.*"%>
+ <%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed table JSP PAGE-----[INFO]");  %>
 <%
 HttpSession details=request.getSession();
 String uname=(String)details.getAttribute("username");

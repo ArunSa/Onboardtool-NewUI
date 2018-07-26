@@ -42,7 +42,15 @@
 
 </head>
 <body class="top-navbar-fixed">
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed AppEmphazize NewProject JSP PAGE-----[INFO]");  %>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="java.util.ArrayList" %>
 
 <%@page import="java.sql.*"%>
 <%@ page import="java.text.NumberFormat" %>
@@ -77,9 +85,6 @@ var ExecuteStartdate = document.getElementsByName("Execdate")[0].value;
 var HyperStartdate = document.getElementsByName("Hyperdate")[0].value;
 var ProjectEnddate = document.getElementsByName("Enddate")[0].value;
 var flag=0;
-<%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.*"%>
-<%@ page import="java.util.ArrayList" %>
 
 <%
 String[] values_name = new String[5];

@@ -129,7 +129,12 @@ label .imp { color:#f83223; }
 </head>
 
 <body class="top-navbar-fixed" background="images/bg.jpg">
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Registration JSP PAGE-----[INFO]");  %>
 <%@page import="java.sql.*"%>
 <%
 HttpSession ses=request.getSession(); 

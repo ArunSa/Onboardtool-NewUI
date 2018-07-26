@@ -32,7 +32,12 @@
   </head>
   
   <body class="top-navbar-fixed">
-
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date1 = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date1)+"-----Accessed AppEmphazize_EditProject JSP PAGE-----[INFO]");  %>
 <%@page language="java"%>
 <%@page import="java.sql.*"%>
 <%@ page import="onboard.DBconnection" %>
@@ -59,7 +64,7 @@ String roles=(String)details.getAttribute("role");
 String info=(String)details.getAttribute("app_emp");
 String username=(String)details.getAttribute("u_Name");
 String Project_Name=(String)details.getAttribute("nameofproject");
-System.out.println("the prjname is "+Project_Name);
+//System.out.println("the prjname is "+Project_Name);
 
 try {
 String det=(String)session.getAttribute("theName");
@@ -90,7 +95,7 @@ while(visit_rs.next())
 }
 
 }
-System.out.println("the flag value is "+flag);
+//System.out.println("the flag value is "+flag);
 if(flag==1)
 {
 	String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"

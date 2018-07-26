@@ -11,6 +11,12 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Weekly_linechart JSP PAGE-----[INFO]");  %>
 <% HttpSession details=request.getSession(); %>
   <%
             DBconnection d=new DBconnection();

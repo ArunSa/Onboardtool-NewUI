@@ -2,6 +2,12 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
+		<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed TableCreation JSP PAGE-----[INFO]");  %>
 
   <%
             String connectionURL = "jdbc:mysql://localhost:3306/Onboarding";
@@ -69,7 +75,7 @@
                         %> 
         <%	} catch (Exception ex) {
       
-        	System.out.println("Tables are already available");
+        	 System.err.println("[ERROR]-----Got an exception!-----Tables are already created----[ERROR]");
             } finally {
                 // close all the connections.
                 statement.close();

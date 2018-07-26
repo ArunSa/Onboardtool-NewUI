@@ -154,6 +154,12 @@ function checkk()
 </script> 
 </head>
 <body class="top-navbar-fixed">
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Admin_UserConfiguration JSP PAGE-----[INFO]");  %>
 <%
 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.

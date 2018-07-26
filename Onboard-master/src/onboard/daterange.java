@@ -1,14 +1,16 @@
 package onboard;
-
+import java.text.SimpleDateFormat;  
+import java.util.Date; 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;   
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+
 import java.util.*;
-import java.util.Locale;
 import java.sql.Connection;
 
 import java.sql.ResultSet;
@@ -52,7 +54,7 @@ public class daterange extends HttpServlet {
 	}
 
 	public void Db_Connection() {
-		System.out.println("Inside dbconnection funtion");
+		//System.out.println("Inside dbconnection funtion");
 		try {
 			DBconnection d;
 			Connection con;
@@ -94,7 +96,7 @@ public class daterange extends HttpServlet {
 	    Res="";
 		for(int i=0;i<result_projects.size();i++)
 		{
-			System.out.println("result_projecs : "+result_projects.get(i));
+			//System.out.println("result_projecs : "+result_projects.get(i));
 			Res=Res+result_projects.get(i)+",";
 		}
 		}
@@ -126,14 +128,10 @@ public class daterange extends HttpServlet {
 	String to=arr1[2]+"-"+arr1[0]+"-"+arr1[1];
 	LocalDate start = LocalDate.parse(from);
 	LocalDate end = LocalDate.parse(to);
-	System.out.println("Hell");
+	//System.out.println("Hell");
 	while (!start.isAfter(end)) {
 	    totalDates.add(start.toString());
 	    start = start.plusDays(1);
-	}
-	for (int i=0;i<totalDates.size();i++)
-	{
-		System.out.println(" "+totalDates.get(i));
 	}
 	
 	}
@@ -193,41 +191,35 @@ public class daterange extends HttpServlet {
 		// TODO Auto-generated method stub
 		try
 		{
-			
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+		    Date date = new Date();  
+		    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed DateRange servlet-----[INFO]");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+			   LocalDateTime now = LocalDateTime.now();  
+			   System.out.println(dtf.format(now));  
 			String fromDate = request.getParameter("fromD");
 			String toDate = request.getParameter("toD");
 			
-			System.out.println("FromDate : " + fromDate  + "TODate :" + toDate);
-			//System.out.println("HI");
+			//System.out.println("FromDate : " + fromDate  + "TODate :" + toDate);
+
 			
 			Db_Connection();
 			range_calc(fromDate,toDate);
-			System.out.print("Tot : " +totalDates.size());
-			System.out.print("int :"+int_date.size());
+			
 			monthToYear(totalDates);
 			monthToYear(int_date);
 			project_select();
-			System.out.println("Result :"+Res);
+			//System.out.println("Result :"+Res);
 			
 			String text = Res.substring(0, Res.length() - 1);
 			response.setContentType("text/plain"); // Set content type of the response so that jQuery knows what it can// expect.
 			response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
 			response.getWriter().write(text);
-		/*System.out.println("----------dateRange page------------");
 		
-		String fromDate = request.getParameter("fromD");
-		String toDate = request.getParameter("toD");
-		
-		System.out.println("FromDate : " + fromDate  + "TODate :" + toDate);
-		//System.out.println("HI");
-		range_calc(fromDate,toDate);
-		//srange_calc("5/1/2018","5/1/2018");
-		
-		project_select();*/
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			 System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		}
 		
 	}

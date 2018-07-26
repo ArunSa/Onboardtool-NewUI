@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +42,9 @@ public class Edit_Intake extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Edit_Intake servlet-----[INFO]");  
 		String servlet_name=request.getParameter("servlet_name");
 		String c_labels="",r_labels="",d_labels="";
 		String label = request.getParameter("label");
@@ -65,7 +70,7 @@ public class Edit_Intake extends HttpServlet {
 		for(int i=1;i<=Integer.parseInt(Dnumber);i++)
 			d_labels+=request.getParameter("drp_label"+i)+"/";
 		
-		System.out.println("servlet_name is "+servlet_name);
+		//System.out.println("servlet_name is "+servlet_name);
 			
 		
 		   try
@@ -108,9 +113,7 @@ public class Edit_Intake extends HttpServlet {
 	        }
 	        catch (Exception e)
 	        {
-	        	
-	          System.err.println("Got an exception!");
-	          System.err.println(e.getMessage());
+	        	 System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 	        }
 		 
 	}

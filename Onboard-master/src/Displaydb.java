@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -49,6 +52,10 @@ public class Displaydb extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Displaydb servlet-----[INFO]");  
 		HttpSession details=request.getSession(); 
 		String u_name=(String)details.getAttribute("username");
 		String u_role=(String)details.getAttribute("role");
@@ -87,8 +94,8 @@ public class Displaydb extends HttpServlet {
 	        String read_date = request.getParameter("read_date");
 	        String sme_date = request.getParameter("sme_date");
 	        
-	        System.out.println("complexitie is   s s  "+no_of_app_complexity);
-	        System.out.println("est_scrn value is "+complexity);
+	       // System.out.println("complexitie is   s s  "+no_of_app_complexity);
+	      //  System.out.println("est_scrn value is "+complexity);
 	        
 	      /*  HttpSession app_details=request.getSession();
 	        app_details.setAttribute("proj_name",proj_name);
@@ -154,7 +161,7 @@ public class Displaydb extends HttpServlet {
      	        preparedStmt1.setString(28, proj_name);
 
               preparedStmt1.execute();
-              System.out.println("est_scrn value from if pstmt1 "+est_scrn);
+             // System.out.println("est_scrn value from if pstmt1 "+est_scrn);
               
               PreparedStatement preparedStmt2 = conn.prepareStatement("update AppEmphazize_ApplicationInfo set complexity=?, est_db_size=?, est_scrn=? where appname=?");
 	          preparedStmt2.setString(1, complexity);
@@ -162,7 +169,7 @@ public class Displaydb extends HttpServlet {
 	          preparedStmt2.setString(3, est_scrn);
 	          preparedStmt2.setString(4, proj_name);
 	          preparedStmt2.execute();
-	          System.out.println("est_scrn value from if pstmt2 "+est_scrn);
+	          //System.out.println("est_scrn value from if pstmt2 "+est_scrn);
      	      // System.out.println(est_scrn); 
            	            
                }
@@ -201,22 +208,20 @@ public class Displaydb extends HttpServlet {
 	          preparedStmt.setString(28, sme_date);	
          preparedStmt.execute();
          
-         System.out.println("est_scrn value from else pstmt1 "+est_scrn);
+         //System.out.println("est_scrn value from else pstmt1 "+est_scrn);
          PreparedStatement preparedStmt2 = conn.prepareStatement("update AppEmphazize_ApplicationInfo set complexity=?, est_db_size=?, est_scrn=? where appname=?");
          preparedStmt2.setString(1, complexity);
          preparedStmt2.setString(2, est_db_size);
          preparedStmt2.setString(3, est_scrn);
          preparedStmt2.setString(4, proj_name);
 preparedStmt2.execute();
-System.out.println("est_scrn value from else pstmt2 "+est_scrn);
+//System.out.println("est_scrn value from else pstmt2 "+est_scrn);
 	          conn.close();
 	        
 	        }}
 	        catch (Exception e)
 	        {
-	        	 System.out.println("Sorry Your order for today has been already taken");
-	          System.err.println("Got an exception!");
-	          System.err.println(e.getMessage());
+	        	  System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 	        }
 	        response.sendRedirect("AppEmphasize_PrioritizedApplications.jsp");
 

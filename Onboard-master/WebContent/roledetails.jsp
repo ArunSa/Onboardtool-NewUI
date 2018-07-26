@@ -84,6 +84,12 @@ input[type="text"] { width:90px; }
 
 <%@ page import="java.sql.*"%>
 		<%@ page import="javax.sql.*"%>
+		<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Roledetails JSP PAGE-----[INFO]");  %>
 		<%
 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.

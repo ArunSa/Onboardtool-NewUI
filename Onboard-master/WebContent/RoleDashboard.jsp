@@ -73,6 +73,12 @@ padding: 2px 4px 2px 4px;
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Date" %>
 <%@page import="java.util.Calendar" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+		<%@ page import="java.util.Date"%>
+		<%
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date1 = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date1)+"-----Accessed RoleDashboard JSP PAGE-----[INFO]");  %>
 
 <%
 

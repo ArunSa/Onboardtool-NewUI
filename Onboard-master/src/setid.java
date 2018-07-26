@@ -1,6 +1,9 @@
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,13 +38,17 @@ public class setid extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Setid servlet-----[INFO]"); 
 	String id=request.getParameter("id");
 	String name=request.getParameter("name");
 	HttpSession session=request.getSession();
 	session.setAttribute("ID",id);
 	   HttpSession details=request.getSession(); 
        details.setAttribute("Myproject",name);
-       System.out.println("setid");
+       //System.out.println("setid");
 
        
 	response.sendRedirect("grid.jsp");

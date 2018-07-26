@@ -13,6 +13,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,6 +59,10 @@ public class Project extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Project servlet-----[INFO]");  
 		HttpSession details=request.getSession(); 
 		String u_name=(String)details.getAttribute("username");
 		String u_role=(String)details.getAttribute("role");
@@ -165,9 +171,7 @@ public class Project extends HttpServlet {
 		        }
 		        catch (Exception e)
 		        {
-		        	 
-		          System.err.println("Got an exception!");
-		          System.err.println(e.getMessage());
+		        	System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 		        }
 		        // return response
 		        response.sendRedirect("Project_List.jsp");
