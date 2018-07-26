@@ -143,6 +143,9 @@ var flag=0;
 
 
 <%
+HttpSession details=request.getSession();
+String roles=(String)details.getAttribute("role");
+String uname=(String)details.getAttribute("username");
 String[] values_name = new String[5];
 ArrayList<String> date = new ArrayList<String>();
 ArrayList<String> month = new ArrayList<String>();
@@ -356,9 +359,7 @@ function drawChart() {
 
 <%
 
-HttpSession details=request.getSession();
-String roles=(String)details.getAttribute("role");
-String uname=(String)details.getAttribute("username");
+
 String info=(String)details.getAttribute("app_emp");
 try {
 String det=(String)session.getAttribute("theName");
@@ -711,7 +712,7 @@ while(rs2.next())
         
         <!-- graph -->
       <div class="container-fluid">
-      
+      <input type="text" id="getUname" value="<%=uname %>" style="display:none"/>
       <div class="row">
                     <!-- Column -->
                     <div class="col-lg-7 col-md-7">
@@ -1329,30 +1330,27 @@ while(rs13.next())
 
 
   function weeklyline_chart(){
-	  var str_array=[];
+	   var str_array=[];
   
   	var month=document.getElementById("month").value;
   	var year=document.getElementById("year1").value;
-  	console.log(" month : " + month + "  year  : " + year);
+  	var uname=document.getElementById("getUname").value;
   	
   	$.ajax({
   	      url: "Weekly_linechart",
   	      type: "Post",
-  	      data: { field1: month, field2 : year},
+  	      data: { field1: month, field2 : year, field3: uname},
   	      dataType: "text",
   	      
   	    
   	      success : function(data) {
   	    	var str = data;
-  	    	console.log("Result : " + str);
   	    	str_array=" ";
   	        str_array = str.split(',');
   	    
   	        for(var i = 0; i < str_array.length; i++) {
   	   
   	        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
-  	     
-  	        
   	}
   	    	  
   	      google.charts.load('current', {'packages':['corechart','line']});

@@ -439,7 +439,7 @@ function javascript_conv()
           <div class="col-lg-2 col-md-2">
           <span>
       
-  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value,barchart)">
+  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value,'barchart')">
   </select>
 </span>
           </div>
@@ -480,7 +480,7 @@ function javascript_conv()
         
           <div class="col-lg-4 col-md-4" id="project_list1">
           <span>
-		          <select class="form-control" id="projectvaluepiechart"  onchange="application_bar(this.value,piechart)">  
+		          <select class="form-control" id="projectvaluepiechart" onChange="application_bar(this.value,'piechart')"> 
 						      </select> 
 </span>
           </div>

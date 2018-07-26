@@ -209,7 +209,7 @@ public class Weekly_linechart extends HttpServlet {
 		String text="";
 		month = request.getParameter("field1");
 		year = request.getParameter("field2");
-		user_id=request.getParameter("userid");
+		user_id=request.getParameter("field3");
 		Db_Connection();
 		Date_Formation();
 		Visits_Calculation();

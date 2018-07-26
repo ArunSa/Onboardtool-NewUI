@@ -41,7 +41,7 @@ public class confirmation extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 	    Date date = new Date();  
 	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Confirmation servlet-----[INFO]");  
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+			response.setContentType("text/html");
 		PrintWriter pw=response.getWriter();
 		Properties props = new Properties();
 	  String email=request.getParameter("email");
