@@ -187,7 +187,7 @@ ResultSet rs3 = st.executeQuery(query3);
                                         <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
                                     </li>
                                     <li class="has-children">
-                                        <a href="AppEmphasize_EditProject.jsp" class="active-menu"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="AppEmphasize_EditProject.jsp" ><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
@@ -236,6 +236,17 @@ ResultSet rs3 = st.executeQuery(query3);
                                     </li>
    <li class="has-children"><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                </li> 
+                <li class="nav-header">
+                                        <a href='Applications.jsp'><span class="">Report Module</span></a>
+                                    </li>
+                                      <li class="has-children">
+                                        <a href=""><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
+                                         <ul class="child-nav">
+                                            <li><a href="RoleDashboard.jsp" > <span>Role Dashboard</span></a></li>
+                                            <li><a href="ProjectDashboard.jsp" class="active-menu"> <span>Project Dashboard</span></a></li>
+                                            <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
+                                          </ul>
+                                    </li>
                                 </ul>
 										
                             </div>

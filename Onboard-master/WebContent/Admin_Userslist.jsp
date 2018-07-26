@@ -336,7 +336,7 @@ ResultSet rs=s.executeQuery(query);
                                 <div class="col-md-12">
  <input type="hidden" id="role_conf" value="<%= info %>" hidden>
  &nbsp;&nbsp;
- <button type="button" id="add_btn" class="btn btn-primary" onclick="window.location.href='Admin_UserConfiguration.jsp'">Add User</button>
+ <button type="button" id="add_btn" class="btn btn-primary" onclick="window.location.href='Registration.jsp'">Add User</button>
  &nbsp;&nbsp;
  <input type="button" id="del_btn" class="btn btn-primary" onclick="del(<%=count %>);deluser();" value="DeleteUser">
  &nbsp;&nbsp;

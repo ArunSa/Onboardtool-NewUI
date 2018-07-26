@@ -685,7 +685,7 @@ else if(roles.equals("ArchivalProgramManager"))
                  </div>
 				 
                                <div class="col-md-2 col-sm-2" >
-                  <a href="RoleUIDashboard.jsp">
+                  <a href="ProjectManager_dashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -1103,7 +1103,7 @@ else if(roles.equals("LegacyProgramManager"))
                  </div>
                
                 <div class="col-md-2 col-sm-2" >
-                  <a href="RoleUIDashboard.jsp">
+                  <a href="ProjectManager_dashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>
@@ -1517,7 +1517,7 @@ else if(roles.equals("ArchivalProjectManager"))
                  </div>
 
                 <div class="col-md-2 col-sm-2" >
-                  <a href="RoleUIDashboard.jsp">
+                  <a href="ProjectManager_dashboard.jsp">
                  <center>
                    <img src="images/grid/reporting.png" class="img-rounded" height="100" width="100" alt="Avatar">
                    <h6 class="mt-5">Reporting</h6>

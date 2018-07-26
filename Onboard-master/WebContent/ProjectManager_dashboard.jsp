@@ -197,7 +197,7 @@ if(rs.next()){
                          
                          String role=(String)details.getAttribute("role");%>                   
 	<li><a href="#"><span id="nav_userid"><%=uname%>&nbsp;</span>logged in as &nbsp;<span id='nav_role'><%=role%></span></a></li>
-							<li> <a href="logout.jsp" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
+							<li> <a href="Logout" class="text-center"><i class="fa fa-sign-out"></i> Logout</a> </li>
                      </ul>
 					
                 		</div>
@@ -283,9 +283,9 @@ if(rs.next()){
                 <li class="has-children">
                                         <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="RoleDashboard.jsp" > <span>Role Dashboard</span></a></li>
-                                            <li><a href="ProjectDashboard.jsp" class="active-menu"> <span>Project Dashboard</span></a></li>
-                                            <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
+                                          
+                                            <li><a href="ProjectManager_dashboard.jsp" class="active-menu"> <span>Project Manager Dashboard</span></a></li>
+                                          
                                         </ul>
                                     </li>
                                 </ul>

@@ -120,9 +120,7 @@ response.sendRedirect("Login.jsp");
     <div class="row mt-50 grid1">
         <div class="container">
             <div class="col-md-12">
-<% 
-	if(frole.equals("admin") ||frole.equals("ArchivalAdmin") ||frole.equals("LegacyTechnicalSME") || frole.equals("LegacyBusinessSME")  || frole.equals("LegacyProgramManager")  || frole.equals("ArchivalBusinessAnalyst")  || frole.equals("ArchivalProgramManager")  ||frole.equals("ArchivalDeveloper")|| frole.equals("TestLead") ){
-	%>
+
                 <div class="col-md-3 col-sm-3">
                   <a href="RoleDashboard.jsp">
                    <center>
@@ -131,21 +129,6 @@ response.sendRedirect("Login.jsp");
                    </center>
                   </a>
                 </div>
- <%
- }
-	else if(frole.equals("ArchivalProjectManager"))
-{
-   %>    
-                
-                <div class="col-md-3 col-sm-3">
-                  <a href="ProjectManager_dashboard.jsp">
-                 <center>
-                   <img src="images/Role2.jpg" class="img-rounded" height="100" width="100" alt="Avatar">
-                   <h6 class="mt-5">Project</h6>
-               </center>
-                  </a>
-                </div>
-<% }%>
                 <div class="col-md-3 col-sm-3">
                   <a href="ProjectDashboard.jsp">
                  <center>
@@ -154,10 +137,6 @@ response.sendRedirect("Login.jsp");
                </center>
                   </a>
                 </div>
-
-
- 
-
               <div class="col-md-3 col-sm-3">
                   <a href="ApplicationDashbpard.jsp">
                    <center>
