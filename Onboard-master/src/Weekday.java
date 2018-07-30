@@ -17,12 +17,12 @@ public class Weekday {
 	       try
 	       {
 	         currentdate = df2.format(todaysDate);
-	           System.out.println(currentdate);
+	          //s System.out.println(currentdate);
 	           
 	        }
 	       catch (Exception ex )
 	       {
-	          System.out.println(ex);
+	          System.err.println("[ERROR]----Got An Exception!-----"+ex.getMessage()+"-----[ERROR]");
 	       }
 	       return(splittingoperation(fromdate,currentdate));
 	}
@@ -56,7 +56,7 @@ public class Weekday {
 		if(fromy>toy||fromm>tom&&fromy==toy||fromy==toy&&fromm==tom&&fromd>tod)
 		{
 			incorrect=true;
-			System.out.println("Fromdate and Todate is incorrect");
+			System.err.println("[ERROR]-----Fromdate and Todate is incorrect-----[ERROR]");
 			
 		}
 		else if(fromy==toy&&fromm==tom)
@@ -73,7 +73,7 @@ public class Weekday {
 			{
 				if(weekday1!=day(i,fromm,fromy)&&weekday2!=day(i,fromm,fromy))
 				{
-					System.out.println(fromm+"/"+i+"/"+fromy);
+					//System.out.println(fromm+"/"+i+"/"+fromy);
 					al.add(fromm+"/"+i+"/"+fromy);
 					count++;
 				}
@@ -99,7 +99,7 @@ public class Weekday {
 					{
 						if(weekday1!=day(k,i,fromy)&&weekday2!=day(k,i,fromy))
 						{
-							System.out.println(i+"/"+k+"/"+fromy);
+							//System.out.println(i+"/"+k+"/"+fromy);
 							al.add(i+"/"+k+"/"+fromy);
 						count++;
 						}
@@ -112,7 +112,7 @@ public class Weekday {
 					{
 						if(weekday1!=day(n,i,fromy)&&weekday2!=day(n,i,fromy))
 						{
-							System.out.println(i+"/"+n+"/"+fromy);
+							//System.out.println(i+"/"+n+"/"+fromy);
 							al.add(i+"/"+n+"/"+fromy);
 						count++;
 						}
@@ -125,7 +125,7 @@ public class Weekday {
 				{
 						if(weekday1!=day(j,i,fromy)&&weekday2!=day(j,i,fromy))
 					{
-							System.out.println(i+"/"+j+"/"+fromy);
+							//System.out.println(i+"/"+j+"/"+fromy);
 							al.add(i+"/"+j+"/"+fromy);
 					count++;
 					}
@@ -152,7 +152,7 @@ public class Weekday {
 			{
 				if(weekday1!=day(d,fromm,fromy)&&weekday2!=day(d,fromm,fromy))
 				{
-					System.out.println(fromm+"/"+d+"/"+fromy);
+					//System.out.println(fromm+"/"+d+"/"+fromy);
 					al.add(fromm+"/"+d+"/"+fromy);
 					count++;
 				} 
@@ -189,7 +189,7 @@ public class Weekday {
 				{
 					if(weekday1!=day(d,m,y)&&weekday2!=day(d,m,y))
 					{
-						System.out.println(m+"/"+d+"/"+y);
+						//System.out.println(m+"/"+d+"/"+y);
 					al.add(m+"/"+d+"/"+y);
 						count++;
 					}
@@ -207,7 +207,7 @@ public class Weekday {
 			{
 				if(weekday1!=day(d,tom,toy)&&weekday2!=day(d,tom,toy))
 				{
-					System.out.println(tom+"/"+d+"/"+toy);
+					//System.out.println(tom+"/"+d+"/"+toy);
 					al.add(tom+"/"+d+"/"+toy);
 					count++;
 				}
@@ -216,7 +216,7 @@ public class Weekday {
 			//System.out.println("total number of days: "+count);
 
 		}
-System.out.println("Total days not including saturday and sunday:"+count+" total days:"+c);
+//System.out.println("Total days not including saturday and sunday:"+count+" total days:"+c);
 return(count);
 	}
 	public static boolean Leap(int year)
