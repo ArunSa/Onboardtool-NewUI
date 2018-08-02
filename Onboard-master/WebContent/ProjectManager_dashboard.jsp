@@ -38,7 +38,6 @@
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   
-  
   <style>
    .breadcrumb-div {
                 background-color: #e7e7e7;
@@ -64,6 +63,9 @@ background: #269af8;
 padding: 2px 4px 2px 4px; 
 }
 
+.btn-group{
+float:right;
+}
 
 </style>
  
@@ -133,7 +135,7 @@ ResultSet rs1 = st1.executeQuery(query1);
 String query4 = "select count(*) from AppEmphazize_ProjectDetails";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
-String query5 = "select count(mem_ass) from ArchiveExecution_Details where mem_ass!=''";
+String query5 = "select count(mem_ass) from archiveexecution_details where mem_ass!=''";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
 String query6 = "select count(roles) from logs";
@@ -142,6 +144,11 @@ ResultSet rs6 = st6.executeQuery(query6);
 String query7 = "select count(*) from AppEmphazize_ApplicationInfo";
 Statement st7 = conn.createStatement();
 ResultSet rs7 = st6.executeQuery(query7);
+
+String query8 = "select * from AppEmphazize_ProjectDetails";
+Statement st8 = conn.createStatement();
+ResultSet rs8 = st8.executeQuery(query8);
+
 
 if(rs.next()){
 %>
@@ -405,61 +412,136 @@ function javascript_conv()
        <br>
         
         <!-- graph -->
-      <div class="container-fluid">
-      
+      <div class="container-fluid" >
       <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-7 col-md-7">
-                        <div class="card">
+                  <div class="col-lg-7 col-md-7">
+       <div class="card">
                             <div class="card-body">
-                                <div class="row">
-                                  <div class="col-lg-8 col-md-5">
-                                    <h3 class="title">&nbsp;&nbsp;Project Details</h3>
-                                      </div>
-                                     <!-- dropdown -->
-                                    <!-- dropdown -->
-                                     <div class="col-lg-12 col-md-12">
-                                      <div class="col-lg-2 col-md-2">
-                                         <label>FromDate</label>
-        </div>
-          <div class="col-lg-2 col-md-2">
-           <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDate" placeholder="Select date"></p>
-          </div>
-										    
-										  
-										    <div class="col-lg-2 col-md-1">
-										     <label>ToDate</label>
-        </div>
-          <div class="col-lg-2 col-md-2">
-           <p>  <input type="text" data-provide="datepicker" class="form-control" id="toDate" onchange="getDateValue(this.id,'fromDate')" placeholder="Select date"></p>
-          </div>
-         <div class="col-lg-2 col-md-2">
-										     <label>Projects</label>
-        </div>
-          <div class="col-lg-2 col-md-2">
-          <span>
-      
-  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value,'barchart')">
-  </select>
-</span>
-          </div>
-										  
-										    </div>
-                                    <div id="tooltip_action" style="width: 850px; height:350px;"></div> 
-                                   
+                                  <div class="row" id="rowdate">
+						             <div class="col-lg-8 col-md-12">
+						                         <h3 class="title">&nbsp;&nbsp;Project Details</h3>
+											</div>	 
+											<div class="col-lg-4 col-md-12">
+											<div class="btn-group">
+						                         <button id="column" class="btn btn-default btn-sm" onclick="myColumnchart()">
+												    <span class="fa fa-bar-chart fa-2x"></span>
+												 </button> 
+												 <button href="#" id="grid" class="btn btn-default btn-sm" onclick="myTablechart()">
+												 <span class="fa fa-table fa-2x"></span>
+												 </button>
+						                    </div>
+						                    </div>
+                                  </div>
+                                  <br>
+                                  <br>
+                                  <!-- charts -->
+                                <!-- bar chart -->  <div class="container-fluid" >
+                                  <div class="row" id="rowbarchart" >
+                                   <div class="col-lg-12 col-md-12">
+                         <div class="col-lg-2 col-md-2">
+                              <label>FromDate</label>
+                         </div>
+                         <div class="col-lg-2 col-md-2" id="fromdate">
+                         <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDate" placeholder="Select date"></p>
+                         </div>
+						 <div class="col-lg-2 col-md-1">
+							<label>ToDate</label>
+						 </div>
+                         <div class="col-lg-2 col-md-2">
+                         <p> <input type="text" data-provide="datepicker" class="form-control" id="toDate" onchange="getDateValue(this.id,'fromDate')" placeholder="Select date"></p>
+                         </div>
+                         <div class="col-lg-2 col-md-2">
+		                     <label>Projects</label>
+                         </div>
+                         <div class="col-lg-2 col-md-2">
+                             <span>
+                                  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value,'barchart')"></select>
+                             </span>
+                         </div>
+                     </div>
+                          <br><br> 
+					 <div id="tooltip_action" style="width:750px;padding:20px ;height:350px;"></div>	   
+                                  </div>
+                                  </div>  <!-- bar chart -->
+                                  <!-- end of barchart row -->
+                                  <!-- start of table row -->
+                             
+                                   <!-- bar chart -->  <div class="container-fluid" id="rowtable" hidden>
+                          <div class="row">
+                          <div class="col-lg-12 col-md-12">
+                                  <div id="portlet" class="panel-collapse">
+                                <div class="portlet-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Project Name</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Status</th>
+                                                <th>Assign</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                            while(rs.next())
+                                            {
+                                            	
+                                            String query9 = "select * from archiveexecution_details where level='1' and projects='"+rs.getString(1)+"' order by seq_num";
+                                            Statement st9 = conn.createStatement();
+                                            ResultSet rs9 = st9.executeQuery(query9);
+                                            System.out.println("query9 :" + query9 );
+                                            
+                                            while(rs8.next())
+                                            {
+                                            	  
+                                            
+                    
+                                            	
+                                            	%>
+                                            <tr>
+                                                <td><%=rs8.getString(10)%></td>
+                                                <td><%=rs8.getString(1)%></td>
+                                                <td><%=rs8.getString(5)%></td>
+                                                <td><%=rs8.getString(9)%></td>
+                                                <td>Ideation and Initiate</td>
+                                                <td>Arun</td>
+                                                
+                                            </tr>
+                                      <%}
+                                                   
+                    }
+                    
+                    %>
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            </div>
+                                  </div>
+                           
+				   
+                                 
+                                  </div>  <!-- bar chart -->
+                                  
+                            </div>
+            </div>
+        				  
+				       
+                                
+                       
                     </div>
                     
-                    <!-- pie chart -->
-                    
-                    
-                     <!-- piechart -->
+                  
+                            <!-- piechart -->
                     <div class="col-lg-5 col-md-5">
               
                           <div class="card">
                             <div class="card-body">
+                            
                             
                                 <div class="row">
                                
@@ -468,7 +550,7 @@ function javascript_conv()
                                       
                                       </div>
                                  
-                                    <br>
+                                    <br><br><br>
                                      <div class="col-lg-12 col-md-12" id="content">
                                     <div class="col-lg-4 col-md-4">
            <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDatepie" placeholder="Select from date"></p>
@@ -496,11 +578,13 @@ function javascript_conv()
                    
                    
                 </div>
-                                    </div>
+                    
+           
+                                    </div><!-- end of row-->
       
       
       
-      </div>      
+      </div>    <!-- end of container fluid -->
     
       
   <!-- FromDate and todate Picker -->
@@ -991,6 +1075,37 @@ function javascript_conv()
   
    </script>
  
+
+    
+   <script>
+function myColumnchart(){
+	
+	
+	var x = document.getElementById("rowtable").style.display='none';
+	var y = document.getElementById("rowbarchart").style.display='block';
+	
+	
+	
+   
+	
+}
+
+</script>
+
+<script>
+function myTablechart(){
+	
+	
+	var x = document.getElementById("rowtable").style.display='block';
+	var y = document.getElementById("rowbarchart").style.display='none';
+	
+   
+	
+}
+
+</script> 
+    
+    
       
   <%
 }
