@@ -143,7 +143,7 @@ public class ArchivalRequirements extends HttpServlet {
 	    	   System.err.println("[ERROR]-----Got an exception!"+formatter.format(date)+"-----"+e.getMessage()+"----[ERROR]");
 	       }
 	       // return response
-	       response.sendRedirect("Intake_ArchiveRequirements.jsp");
+	       response.sendRedirect("Intake_ReviewPage.jsp");
 
 	}
 

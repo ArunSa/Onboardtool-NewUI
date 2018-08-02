@@ -263,7 +263,7 @@ int count=0;
                                     </li>
 
                                     <li>
-                                        <a href="Admin_Roledetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
+                                        <a href="Admin_RoleDetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
                                     </li>
                                 </ul>
 										
