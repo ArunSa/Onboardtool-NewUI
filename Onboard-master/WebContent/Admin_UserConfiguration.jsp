@@ -12,6 +12,16 @@
     
  <link rel="stylesheet" href="styles/styles.css" type="text/css" />
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        
+        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+      rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+      rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
     
      <!-- ========== COMMON STYLES ========== -->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
@@ -37,6 +47,65 @@
                 background-color: #e7e7e7;
                 color: #010101; }
         </style>
+        <style>
+        .selectBox {
+  position: relative;
+}
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.overSelect1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  width: 514px;
+  height: 110px;
+  overflow: scroll;
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #eff5f5;
+}
+#checkboxes
+{
+background-color: white;
+}
+#app {
+ width: 514px;
+ height: 110px;
+  overflow:scroll;
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#app label {
+  display: block;
+}
+
+#app label:hover {
+  background-color: #eff5f5;
+}
+#app
+{
+background-color: white;
+}
+
+</style>
 
 	<style>
 	
@@ -120,7 +189,7 @@ font-size:6px;
 		var llname=document.getElementById("lname").value;
 		var email=document.getElementById("email_val").value;
 		var project=document.getElementById('proj').value;
-		var app=document.getElementById('app').value;
+		var app=document.getElementById('projapp').value;
 		//window.alert(project);
 		if(ffname==="" || llname==="" || arr==="")
 			window.alert("fill the mandatory fileds");
@@ -263,7 +332,7 @@ int count=0;
                                     </li>
 
                                     <li>
-                                        <a href="Admin_RoleDetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
+                                        <a href="Admin_Roledetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
                                     </li>
                                 </ul>
 										
@@ -338,15 +407,18 @@ $(function() {
 						
 							<div class="row">					
 					<div class="col-sm-6 form-group">
+						<div class="multiselect">
 						<label>Projects</label>
-						 <select id="proj" class="form-control" name="proj" onChange="calx()" required > 
-						 <option></option>
-						 
+						<div class="selectBox" onclick="showCheckboxes();">
+						 <input type="textbox" style="background-color:white;" id="proj" class="form-control" name="proj" onChange="" onclick="" value="" readonly required >   
+						 <div class="overSelect"> </div>
+						 </div>
+						 <div id="checkboxes">
                                          <% while(rs2.next()) { %>
-                                                <option><%=rs2.getString("projectname") %></option>
-                                                
-                                          <%}%>                                                 
-                                            </select>
+                                                <label for=<%=rs2.getString("projectname")%>><input type="checkbox"  id=<%=rs2.getString("projectname")%> class="op" value=<%= rs2.getString("projectname")%> onclick="CheckForm(this.value);ChecForm();"> <%=rs2.getString("projectname") %></label>                   
+                                          <%}%>  
+                                          </div>                                               
+                                            </div>
 					</div>	
 					<script>
 						function calx()
@@ -394,9 +466,158 @@ $(function() {
 						}
 							
 										</script>	
+										<script type="text/javascript">
+function CheckForm(val){
+	var element = document.getElementsByClassName("op");
+	var txt="";
+	var options1;
+	var eindex=0;
+	for(var i=0; i < element.length; i++){
+	if(element[i].checked){
+		txt = txt + element[i].value + ",";
+	eindex=eindex+1;	
+	}
+        }
+	var txt1=txt.substring(0,txt.length-1);
+		/*  alert(txt1); */
+	document.getElementById("proj").value=txt1;
+		var checking=document.getElementById(val).checked;
+appdrop(eindex,val,checking);
+}
+		</script>
+		<script type="text/javascript">
+function ChecForm(){
+	var element = document.getElementsByClassName("oppp");
+	var txt="";
+	for(var i=0; i < element.length; i++){
+	if(element[i].checked)
+		txt = txt + element[i].value + ",";
+        }
+	var txt1=txt.substring(0,txt.length-1);
+		document.getElementById("projapp").value=txt1;
+ 
+}
+		</script>
+		<script type="text/javascript">
+		var lindex=0;
+		function appdrop(eindex,val,checking)
+		{
+		
+	    	var txt1=document.getElementById("proj").value;
+			var pro=[];
+			var ap=[];
+			var txt=txt1.split(",");
+		var projects="";
+		var apps="";
+		<% String query4="select appname,prjname from AppEmphazize_ApplicationInfo";
+		Statement s4=conn.createStatement();
+	     ResultSet rs4=s4.executeQuery(query4);
+         while(rs4.next())
+		{%>
+		<% String str=rs4.getString("prjname"); %>
+		 pro.push("<%=str%>");
+		   projects=projects+","+"<%=str%>";
+		   <% String str1=rs4.getString("appname");%>
+		   ap.push("<%=str1%>");
+		   apps=apps+","+"<%=str1%>";
+		<%}%>
+		var projects1=projects.substring(1,projects.length-1);
+		var apps1=apps.substring(1,apps.length-1);
+		var apps2=apps1.split(",");
+		var projects2=projects1.split(",");
+		var labeop=document.getElementById("proj").value;
+		var select = $('#app');
+		var len=0;
+		var oplen=document.getElementsByClassName("oppp").length;
+		var options1=[];
+		/*if statement get executed when a project check box is true  */
+			if(checking==true)
+				{
+			var k=0;
+			while(k<pro.length)
+				{
+				
+				var projw=pro[k].toString();
+				var appw=ap[k].toString();
+			     
+				  if(val===projw)
+				{ 
+			     var pa=val+"-"+appw;
+			     var appww=ap[k].replace(/\s/g,'');
+			     options1.push(pa);
+			     var str3='<label for="'+val+"-"+appww+'"> <input type="checkbox" id="'+val+"-"+appww+'"class="oppp" value="'+val+"-"+appw+'"onclick="ChecForm();"> '+val+"-"+appw+'</label>';
+			     /*adding applications in application drop down for respective checked project  */
+			     select.append(str3);
+			     len=len+1;
+				}
+				k=k+1;
+			   }
+				}
+		/*else statement get executed when project check box is false  */
+			else
+				{
+				var k=0;
+				while(k<pro.length)
+					{
+					
+					var projw=pro[k].toString();
+					var appw=ap[k].toString();
+					  if(val===projw)
+					{ 	  
+					 var appww=ap[k].replace(/\s/g,'');
+				     var pa="label[for="+val+"-"+appww+"]";
+				     options1.push(pa);
+				     var val1=pa.toString();
+				     /*removing applications in application drop down for respective unchecked project  */
+				   $(val1).remove();
+				     var elem=document.getElementById(pa);
+				     }
+					k=k+1;
+				}
+				}
+		}
+		</script>
+		<script>
+var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+    /* CheckForm(); */
+  }
+}
+</script>
+<script>
+var expanded = false;
+
+function shoCheckboxes() {
+  var checkboxes = document.getElementById("app");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+    /* CheckForm(); */
+  }
+}
+</script>
 					<div class="col-sm-6 form-group" id="cont">
+						<div class="multiselect">
 						<label>Applications</label>
-						<select id="app" class="form-control"></select>
+						<div class="selectBox" onclick="shoCheckboxes();">
+						 <input type="textbox" style="background-color:white;" id="projapp" class="form-control" name="proj" onChange="" onclick="CheckForm();" value="" readonly required >   
+						 <div class="overSelect1"> </div>
+						 </div>
+						 <div id="app">
+						
+                                          </div>                                               
+                                            </div>
 						</div>	
 					</div>
 					<br/>

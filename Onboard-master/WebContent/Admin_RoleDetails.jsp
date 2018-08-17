@@ -34,7 +34,63 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-   
+   <style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 16px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 9px;
+  width: 9px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 30px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
     <style type="text/css">
             .breadcrumb-div {
                 background-color: #e7e7e7;
@@ -238,18 +294,20 @@ int count=0;
                                       int i=0;
                                       while(rs.next()){ 
                                       %>
+                                     
                                       <tr>
                                       <td><input class="act" style="width:170px;" type="text" name="role<%=i %>" value="<%= rs.getString(1) %>"></td>
-                                      <td><input class="act" type="text" name="admin<%=i %>" value="<%= rs.getString(2) %>"></td>
-                                      <td><input class="act" type="text" name="app_emp<%=i %>" value="<%= rs.getString(3) %>"></td>
-                                      <td><input class="act" type="text" name="intake<%=i %>" value="<%= rs.getString(4) %>"></td>
-                                      <td><input class="act" type="text" name="arch_exe<%=i %>" value="<%= rs.getString(5) %>"></td>
-                                      <td><input class="act" type="text" name="decomm<%=i %>" value="<%= rs.getString(6) %>"></td>
-                                      <td><input class="act" type="text" name="prgm_gov<%=i %>" value="<%= rs.getString(7) %>"></td>
-                                      <td><input class="act" type="text" name="report<%=i %>" value="<%= rs.getString(8) %>"></td>
-                                      <td><input class="act" type="text" name="finance<%=i %>" value="<%= rs.getString(9) %>"></td>
+                                      <td><label class="switch"><input type="checkbox" id="slideradmin<%=i %>" onclick=chk("admin<%=i %>","slideradmin<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="admin<%=i %>" name="admin<%=i %>" value="<%= rs.getString(2) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
+                                      <td><label class="switch"><input type="checkbox" id="sliderapp_emp<%=i %>" onclick=chk("app_emp<%=i %>","sliderapp_emp<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="app_emp<%=i %>" name="app_emp<%=i %>" value="<%= rs.getString(3) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
+                                      <td><label class="switch"><input type="checkbox" id="sliderintake<%=i %>" onclick=chk("intake<%=i %>","sliderintake<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="intake<%=i %>" name="intake<%=i %>" value="<%= rs.getString(4) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
+                                      <td><label class="switch"><input type="checkbox" id="sliderarch_exe<%=i %>" onclick=chk("arch_exe<%=i %>","sliderarch_exe<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="arch_exe<%=i %>" name="arch_exe<%=i %>" value="<%= rs.getString(5) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
+                                      <td><label class="switch"><input type="checkbox" id="sliderdecomm<%=i %>" onclick=chk("decomm<%=i %>","sliderdecomm<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="decomm<%=i %>" name="decomm<%=i %>" value="<%= rs.getString(6) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
+                                      <td><label class="switch"><input type="checkbox" id="sliderprgm_gov<%=i %>" onclick=chk("prgm_gov<%=i %>","sliderprgm_gov<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="prgm_gov<%=i %>" name="prgm_gov<%=i %>" value="<%= rs.getString(7) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
+                                      <td><label class="switch"><input type="checkbox" id="sliderreport<%=i %>" onclick=chk("report<%=i %>","sliderreport<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="report<%=i %>" name="report<%=i %>" value="<%= rs.getString(8) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
+                                      <td><label class="switch"><input type="checkbox" id="sliderfinance<%=i %>" onclick=chk("finance<%=i %>","sliderfinance<%=i %>") ><span class="slider round"></span></label><input class="act" type="text" id="finance<%=i %>" name="finance<%=i %>" value="<%= rs.getString(9) %>" style="background-color:lightgrey; " readonly="readonly"/></td>
                                       </tr> 
                                       <%
+                                      i++;
                                       }
                                  
 %>  
@@ -271,6 +329,22 @@ int count=0;
   <script>
  if(document.getElementById('rolecheck').value=="R")
 	 checkk();
+ function chk(textbox_id,slider_id)
+ {
+	 
+	 var boolean_val = document.getElementById(slider_id).checked;
+	 if(boolean_val==false)
+		 {
+		 document.getElementById(textbox_id).style.backgroundColor = "lightgrey";
+		 document.getElementById(textbox_id).readOnly = true;
+		 }
+	 else
+		 {
+		 document.getElementById(textbox_id).style.backgroundColor = "white";
+		 document.getElementById(textbox_id).removeAttribute('readonly');
+		 }
+	 
+ }
  </script>   
 </form>
 
