@@ -54,19 +54,19 @@ public class confirmation extends HttpServlet {
 		new javax.mail.Authenticator() {
 		protected PasswordAuthentication getPasswordAuthentication() {
 		//return new PasswordAuthentication("vkarun202@gmail.com","arun's@kumar");
-			return new PasswordAuthentication("balamurugan@platform3solutions.com","ilovecric123!");
+			return new PasswordAuthentication("shankarganesh.n@platform3solutions.com","Shankarganesh94");
 		}
 		});
 
 		try {
 
 		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress("balamurugan@platform3solutions.com"));
+		message.setFrom(new InternetAddress("shankarganesh.n@platform3solutions.com"));
 		
 		message.setRecipients(Message.RecipientType.TO,
 		InternetAddress.parse(email));
 		message.setSubject("Registration Successfull");
-		message.setText("Thanks for Registering...Please click on the below link\n\nhttp://localhost:8080/onboard/Login.jsp");
+		message.setText("Thanks for Registering...Please click on the below link\n\nhttp://localhost:8081/onboard/Login.jsp");
 
 		Transport.send(message);
 

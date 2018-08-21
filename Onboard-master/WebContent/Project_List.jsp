@@ -62,7 +62,7 @@
   String query;
   HttpSession details=request.getSession();
   String Projets=(String)details.getAttribute("projects");
-  //System.out.println(Projets);
+ System.out.println("projects-------------"+Projets);
   String roles=(String)details.getAttribute("role");
   DBconnection d=new DBconnection();
   Connection con = (Connection)d.getConnection();
@@ -109,16 +109,9 @@
 
   	      // execute the preparedstatement
   	      preparedStmt.execute();
-  }
+  }%>
 
-  
-  if(Projets.equals("all"))
-     query = "select * from AppEmphazize_ProjectDetails";
-  else
-     query = "select * from AppEmphazize_ProjectDetails where projectname='"+Projets+"'";
-  st = con.createStatement();
-  ResultSet rs = st.executeQuery(query);
-%>
+
  <form method="post" name="form" action="Appin">
  
  <div class="main-wrapper">
@@ -184,10 +177,36 @@
   New Project
 </button>
 <a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected gr" data-view="cbp-vm-view-grid">Grid View</a>
-<a href="#" class="cbp-vm-icon cbp-vm-list lis" data-view="cbp-vm-view-list">List View</a>
+<a href="#" class="cbp-vm-icon cbp-vm-list lis " data-view="cbp-vm-view-list">List View</a>
 </div>
 <ul>
-<%
+<%  String[] projets1=Projets.split(",");
+ //System.out.println("");
+  if(Projets.equals("all"))
+  {
+     query = "select * from AppEmphazize_ProjectDetails";
+     }
+  else
+  {
+	  int num=0;
+	  String projectname="";
+	  while(num<projets1.length)
+	  {
+		  System.out.println("project name --------arrrrrrr"+projets1[num]);
+		  projectname+="OR "+"projectname='"+projets1[num]+"' ";
+		  num++;
+		  }%>
+    <% String projectnam=projectname.substring(3,projectname.length());
+    /* System.out.println("project name --------"+projectname);
+    System.out.println("project nam substring-----"+projectnam); */
+    query = "select * from AppEmphazize_ProjectDetails where "+projectnam;%>
+ 
+  
+ <%}
+%>
+<% st = con.createStatement();
+  ResultSet rs = st.executeQuery(query);%>
+  <%
 int k=0;
 while(rs.next()){
            k++;
@@ -236,6 +255,7 @@ break;
 }
 %>
 </ul>
+  
 <%
 }
 catch(Exception e){

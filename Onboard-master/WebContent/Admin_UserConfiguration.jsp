@@ -67,7 +67,7 @@
 }
 
 #checkboxes {
-  width: 514px;
+  width: 683px;
   height: 110px;
   overflow: scroll;
   display: none;
@@ -86,7 +86,7 @@
 background-color: white;
 }
 #app {
- width: 514px;
+ width: 683px;
  height: 110px;
   overflow:scroll;
   display: none;

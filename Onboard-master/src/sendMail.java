@@ -70,18 +70,18 @@ public class sendMail extends HttpServlet {
 		new javax.mail.Authenticator() {
 		protected PasswordAuthentication getPasswordAuthentication() {
 		//return new PasswordAuthentication("vkarun202@gmail.com","arun's@kumar");
-			return new PasswordAuthentication("balamurugan@platform3solutions.com","ilovecric123!");
+			return new PasswordAuthentication("shankarganesh.n@platform3solutions.com","Shankarganesh94");
 		}
 		});
 
 		try {
 		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress("balamurugan@platform3solutions.com"));
+		message.setFrom(new InternetAddress("shankarganesh.n@platform3solutions.com"));
 		
 		message.setRecipients(Message.RecipientType.TO,
 		InternetAddress.parse(email));
 		message.setSubject("Access Granted - Register into Onboarding Tool");
-		message.setText("Dear "+fname+" "+lname+",\nWe are pleased to inform that you are granted access to Onboarding Tool as "+rol +" for the Project "+project+".\nPlease login to the below url for registering your account\n http://localhost:8080/onboard/Registration.jsp\n"+msg);
+		message.setText("Dear "+fname+" "+lname+",\nWe are pleased to inform that you are granted access to Onboarding Tool as "+rol +" for the Project "+project+".\nPlease login to the below url for registering your account\n http://localhost:8081/onboard/Registration.jsp\n"+msg);
 
 		Transport.send(message);
 //response.sendRedirect("user_reg.jsp");

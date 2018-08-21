@@ -92,6 +92,8 @@ String username=(String)details.getAttribute("u_Name");
 String visit_query="select * from visits";
 Statement visit_st = con.createStatement();
 ResultSet visit_rs = visit_st.executeQuery(visit_query);
+String selprj=(String)details.getAttribute("nameofproject");
+System.out.println("selprj---------"+selprj);
 int flag=1;
 
 Date date = new Date();
@@ -100,12 +102,13 @@ ft=new SimpleDateFormat ("yyyy-MM-dd");
 ft1=new SimpleDateFormat ("hh:mm:ss");
 String strDate=ft.format(date);
 String strTime=ft1.format(date);
-
+ System.out.println("project_name-------------applications------"+Project_name+"   "+Applications);
+String[] apparr=Applications.split(",");
+/* System.out.println("proarr-------"+proarr[1]);*/
 if(Project_name.equals("all"))
 	 query3 = "select * from AppEmphazize_ProjectDetails where id="+ID;
 	else
-	 query3 = "select * from AppEmphazize_ProjectDetails where projectname='"+Project_name+"'";
-
+	 query3 = "select * from AppEmphazize_ProjectDetails where projectname='"+selprj+"'";
 Statement st3 = con.createStatement();
 ResultSet rs3 = st3.executeQuery(query3);
 
@@ -122,12 +125,30 @@ ResultSet rs3 = st3.executeQuery(query3);
                 
                      <%if (rs3.next()) {
                     	 String Project_Name=rs3.getString("projectname");
-                    	 //System.out.println("the projectname is "+Project_Name);
+                    	 System.out.println("the projectname is "+Project_Name);
                     	 String query="";
+                    	 String applications="";
+                    	 String[] apparr2;
                     	 if(Project_name.equals("all"))
+                    	 {
                     	  query = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_Name+"'";
+                    	 }
                     	 else
-                    		 query = "select * from AppEmphazize_ApplicationInfo where prjname = '"+Project_Name+"' and appname='"+Applications+"'";
+                    	 {
+                    		 for(int i=0;i<apparr.length;i++)
+                    		 {
+                    			 apparr2=apparr[i].split("-");
+                    			 System.out.println("arr----------"+apparr[i]+"apparr2---------"+apparr2[1]+"apparr2---------"+apparr2[0]);
+                    			 if(apparr2[0].equals(selprj))
+                    			 {
+                    			 applications+="OR appname='"+apparr2[1]+"' ";
+                    			 }
+                    		 }
+                    		 System.out.println("applications test----------"+applications);
+                    		 String applications1=applications.substring(3,applications.length());
+                    		 System.out.println("applications1------------"+applications1+"selprj-----"+selprj);
+                    		 query = "select * from AppEmphazize_ApplicationInfo where prjname = '"+selprj+"' and "+applications1;
+                    	 }
                     	 Statement st = con.createStatement();
                     	 ResultSet rs = st.executeQuery(query);
                      
