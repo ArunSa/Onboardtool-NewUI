@@ -38,7 +38,6 @@
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   
-  
   <style>
    .breadcrumb-div {
                 background-color: #e7e7e7;
@@ -64,6 +63,9 @@ background: #269af8;
 padding: 2px 4px 2px 4px; 
 }
 
+.btn-group{
+float:right;
+}
 
 </style>
  
@@ -108,11 +110,14 @@ response.sendRedirect("Login.jsp");
     DBconnection d=new DBconnection();
     Connection con = (Connection)d.getConnection();
     Statement st_distinct= con.createStatement(); 
+    
 HttpSession details=request.getSession();
 String roles=(String)details.getAttribute("role");
 String uname=(String)details.getAttribute("username");
 String info=(String)details.getAttribute("app_emp");
 String proname=(String)details.getAttribute("nameofproject");
+
+
 
 try {
 String det=(String)session.getAttribute("theName");
@@ -133,7 +138,7 @@ ResultSet rs1 = st1.executeQuery(query1);
 String query4 = "select count(*) from AppEmphazize_ProjectDetails";
 Statement st4 = conn.createStatement();
 ResultSet rs4 = st4.executeQuery(query4);
-String query5 = "select count(mem_ass) from ArchiveExecution_Details where mem_ass!=''";
+String query5 = "select count(mem_ass) from archiveexecution_details where mem_ass!=''";
 Statement st5 = conn.createStatement();
 ResultSet rs5 = st5.executeQuery(query5);
 String query6 = "select count(roles) from logs";
@@ -143,6 +148,69 @@ String query7 = "select count(*) from AppEmphazize_ApplicationInfo";
 Statement st7 = conn.createStatement();
 ResultSet rs7 = st6.executeQuery(query7);
 
+String query8 = "select * from AppEmphazize_ProjectDetails";
+Statement st8 = conn.createStatement();
+ResultSet rs8 = st8.executeQuery(query8);
+
+
+
+String query16 = "select count(appname) from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2018'";
+Statement st16 = conn.createStatement();
+ResultSet rs16 = st16.executeQuery(query16);
+String query18 = "select appname from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2018' ";
+Statement st18 = conn.createStatement();
+ResultSet rs18 = st18.executeQuery(query18);
+
+
+String query17 = "select count(appname) from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2019' ";
+Statement st17 = conn.createStatement();
+ResultSet rs17 = st17.executeQuery(query17);
+
+String query19 = "select appname from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2019' ";
+Statement st19 = conn.createStatement();
+ResultSet rs19 = st19.executeQuery(query19);
+
+String query20 = "select count(appname) from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2018' and name='Requiirements';";
+Statement st20 = conn.createStatement();
+ResultSet rs20 = st20.executeQuery(query20);
+
+String query21 = "select count(*) from archiveexecution_details  join appemphazize_applicationinfo on appemphazize_applicationinfo.appname = archiveexecution_details.name and level=2  and substr(pln_srt_date,7,4) = '2018';";
+Statement st21 = conn.createStatement();
+ResultSet rs21 = st20.executeQuery(query21);
+
+String query22 = "select count(*) from archiveexecution_details  join appemphazize_applicationinfo on appemphazize_applicationinfo.appname = archiveexecution_details.name and level=2  and substr(pln_srt_date,7,4) = '2019';";
+Statement st22 = conn.createStatement();
+ResultSet rs22 = st22.executeQuery(query22);
+String query23 = "select appname from archiveexecution_details  join appemphazize_applicationinfo on appemphazize_applicationinfo.appname = archiveexecution_details.name and level=2  and substr(pln_srt_date,7,4) = '2018';";
+Statement st23 = conn.createStatement();
+ResultSet rs23 = st23.executeQuery(query23);
+String query24 = "select appname from archiveexecution_details  join appemphazize_applicationinfo on appemphazize_applicationinfo.appname = archiveexecution_details.name and level=2  and substr(pln_srt_date,7,4) = '2019';";
+Statement st24 = conn.createStatement();
+ResultSet rs24 = st24.executeQuery(query24);
+
+String query25 = "select count(*) from archiveexecution_details where  name = 'Build and Test'and level=3  and substr(pln_srt_date,7,4) = '2018'";
+Statement st25 = conn.createStatement();
+ResultSet rs25 = st25.executeQuery(query25);
+
+String query26 = "select count(*) from archiveexecution_details where  name = 'Build and Test' and level=3  and substr(pln_srt_date,7,4) = '2019'";
+Statement st26 = conn.createStatement();
+ResultSet rs26 = st26.executeQuery(query26);
+
+String query27 = "select count(*) from archiveexecution_details where  name = 'Build and Test'and level=3  and substr(pln_srt_date,7,4) = '2018'";
+Statement st27 = conn.createStatement();
+ResultSet rs27 = st27.executeQuery(query27);
+
+String query28 = "select count(*) from archiveexecution_details where  name = 'Build and Test' and level=3  and substr(pln_srt_date,7,4) = '2019'";
+Statement st28 = conn.createStatement();
+ResultSet rs28 = st28.executeQuery(query28);
+
+String query29 = "select count(*) from archiveexecution_details  join appemphazize_applicationinfo on appemphazize_applicationinfo.prjname = archiveexecution_details.projects and   substr(pln_srt_date,7,4) = '2018' and  level = 3 and name = 'Gate 3 Approval to Deploy'";
+Statement st29 = conn.createStatement();
+ResultSet rs29 = st29.executeQuery(query29);
+
+String query30 = "select count(*) from archiveexecution_details  join appemphazize_applicationinfo on appemphazize_applicationinfo.prjname = archiveexecution_details.projects and   substr(pln_srt_date,7,4) = '2019' and  level = 3 and name = 'Gate 3 Approval to Deploy'";
+Statement st30 = conn.createStatement();
+ResultSet rs30 = st30.executeQuery(query30);
 if(rs.next()){
 %>
  
@@ -405,61 +473,136 @@ function javascript_conv()
        <br>
         
         <!-- graph -->
-      <div class="container-fluid">
-      
+      <div class="container-fluid" >
       <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-7 col-md-7">
-                        <div class="card">
+                  <div class="col-lg-7 col-md-7">
+       <div class="card">
                             <div class="card-body">
-                                <div class="row">
-                                  <div class="col-lg-8 col-md-5">
-                                    <h3 class="title">&nbsp;&nbsp;Project Details</h3>
-                                      </div>
-                                     <!-- dropdown -->
-                                    <!-- dropdown -->
-                                     <div class="col-lg-12 col-md-12">
-                                      <div class="col-lg-2 col-md-2">
-                                         <label>FromDate</label>
-        </div>
-          <div class="col-lg-2 col-md-2">
-           <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDate" placeholder="Select date"></p>
-          </div>
-										    
-										  
-										    <div class="col-lg-2 col-md-1">
-										     <label>ToDate</label>
-        </div>
-          <div class="col-lg-2 col-md-2">
-           <p>  <input type="text" data-provide="datepicker" class="form-control" id="toDate" onchange="getDateValue(this.id,'fromDate')" placeholder="Select date"></p>
-          </div>
-         <div class="col-lg-2 col-md-2">
-										     <label>Projects</label>
-        </div>
-          <div class="col-lg-2 col-md-2">
-          <span>
-      
-  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value,'barchart')">
-  </select>
-</span>
-          </div>
-										  
-										    </div>
-                                    <div id="tooltip_action" style="width: 850px; height:350px;"></div> 
-                                   
+                                  <div class="row">
+						             <div class="col-lg-8 col-md-12">
+						                         <h3 class="title">&nbsp;&nbsp;Project Details</h3>
+											</div>	 
+											<div class="col-lg-4 col-md-12">
+											<div class="btn-group">
+						                         <button id="column" class="btn btn-default btn-sm" onclick="myColumnchart()">
+												    <span class="fa fa-bar-chart fa-2x"></span>
+												 </button> 
+												 <button href="#" id="grid" class="btn btn-default btn-sm" onclick="myTablechart()">
+												 <span class="fa fa-table fa-2x"></span>
+												 </button>
+						                    </div>
+						                    </div>
+                                  </div>
+                                  <br>
+                                  <br>
+                                  <!-- charts -->
+                                <!-- bar chart -->  <div class="container-fluid" >
+                                  <div class="row" id="rowbarchart" >
+                                   <div class="col-lg-12 col-md-12">
+                         <div class="col-lg-2 col-md-2">
+                              <label>FromDate</label>
+                         </div>
+                         <div class="col-lg-2 col-md-2" id="fromdate">
+                         <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDate" placeholder="Select date"></p>
+                         </div>
+						 <div class="col-lg-2 col-md-1">
+							<label>ToDate</label>
+						 </div>
+                         <div class="col-lg-2 col-md-2">
+                         <p> <input type="text" data-provide="datepicker" class="form-control" id="toDate" onchange="getDateValue(this.id,'fromDate')" placeholder="Select date"></p>
+                         </div>
+                         <div class="col-lg-2 col-md-2">
+		                     <label>Projects</label>
+                         </div>
+                         <div class="col-lg-2 col-md-2">
+                             <span>
+                                  <select class="form-control" id="projectvaluepie" onChange="application_bar(this.value,'barchart')"></select>
+                             </span>
+                         </div>
+                     </div>
+                          <br><br> 
+					 <div id="tooltip_action" style="width:750px;padding:20px ;height:350px;"></div>	   
+                                  </div>
+                                  </div>  <!-- bar chart -->
+                                  <!-- end of barchart row -->
+                                  <!-- start of table row -->
+                             
+                                   <!-- bar chart -->  <div class="container-fluid" id="rowtable" hidden>
+                          <div class="row">
+                          <div class="col-lg-12 col-md-12">
+                                  <div id="portlet" class="panel-collapse">
+                                <div class="portlet-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Project Name</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Status</th>
+                                                <th>Assign</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                            while(rs.next())
+                                            {
+                                            	
+                                            String query9 = "select * from archiveexecution_details where level='1' and projects='"+rs.getString(1)+"' order by seq_num";
+                                            Statement st9 = conn.createStatement();
+                                            ResultSet rs9 = st9.executeQuery(query9);
+                                           
+                                            
+                                            while(rs8.next())
+                                            {
+                                            	  
+                                            
+                    
+                                            	
+                                            	%>
+                                            <tr>
+                                                <td><%=rs8.getString(10)%></td>
+                                                <td><%=rs8.getString(1)%></td>
+                                                <td><%=rs8.getString(5)%></td>
+                                                <td><%=rs8.getString(9)%></td>
+                                                <td>Ideation and Initiate</td>
+                                                <td>Arun</td>
+                                                
+                                            </tr>
+                                      <%}
+                                                   
+                    }
+                    
+                    %>
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            </div>
+                                  </div>
+                           
+				   
+                                 
+                                  </div>  <!-- bar chart -->
+                                  
+                            </div>
+            </div>
+        				  
+				       
+                                
+                       
                     </div>
                     
-                    <!-- pie chart -->
-                    
-                    
-                     <!-- piechart -->
+                  
+                            <!-- piechart -->
                     <div class="col-lg-5 col-md-5">
               
                           <div class="card">
                             <div class="card-body">
+                            
                             
                                 <div class="row">
                                
@@ -468,7 +611,7 @@ function javascript_conv()
                                       
                                       </div>
                                  
-                                    <br>
+                                    <br><br><br>
                                      <div class="col-lg-12 col-md-12" id="content">
                                     <div class="col-lg-4 col-md-4">
            <p> <input type="text" data-provide="datepicker" class="form-control" id="fromDatepie" placeholder="Select from date"></p>
@@ -496,12 +639,289 @@ function javascript_conv()
                    
                    
                 </div>
-                                    </div>
+                    
+           
+                                    </div><!-- end of row-->
       
       
       
-      </div>      
+      </div>    <!-- end of container fluid -->
     
+    
+    <!-- start for line graph -->
+    
+    <div class="container-fluid">
+          <div class="col-lg-12 col-md-12">
+              
+                          <div class="card">
+                            <div class="card-body">
+                             <div class="row">
+						             <div class="col-lg-8 col-md-12">
+						                         <h3 class="title">&nbsp;&nbsp;Application Details</h3>
+											</div>	 
+											
+                                  </div>
+                            <div class="container-fluid" >
+                                  <div class="row" id="rowbarchart" >
+                                   <div class="col-lg-12 col-md-12">
+                         <div class="col-lg-1 col-md-1">
+                              <label>Filter By :</label>
+                         </div>
+                         <div class="col-lg-2 col-md-2" >
+                                      <select id='filter' class="form-control" onchange="getFilter()"> 
+										      <option value = "yearly" disabled selected>Yearly &nbsp;&nbsp;</option>
+										       <option  value="monthly"> Monthly</option>
+										       
+										      </select> 
+                         </div>
+						 
+                          <div class="col-lg-2 col-md-2" id="hiddendiv" hidden>
+                            <span>
+                                <select id="year" class="form-control" onchange="onSelect(this.value,filter)" > 
+										      <option value = " " disabled selected>--Select a year --</option>
+										       <option  value="2017"> 2017</option>
+										        <option  value="2018"> 2018</option>
+										         <option  value="2019"> 2019</option>
+										          <option  value="2020"> 2020</option>
+										           <option  value="2021"> 2021</option>
+										            <option  value="2022"> 2022</option>
+										       
+										      </select> 
+										        <span>
+                          </div>
+                     </div>
+                         	   
+                                  </div>
+                                  </div> 
+                            
+                           <div class="col-lg-12 col-md-12">
+   
+  <div id="line" style="width:height:500px; padding:10px;" ></div>
+  </div>
+                    
+                            </div>
+                           </div>
+         </div>
+    </div>
+     <!-- Line Graph -->
+     <script type="text/javascript">
+   
+    
+     
+     
+     google.charts.load('current', {'packages':['line']});
+     google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+    	  
+    	  var data = new google.visualization.DataTable();
+    	  data.addColumn('string', 'Year');
+          data.addColumn('number', 'Application started');
+          data.addColumn({type: 'string', role: 'tooltip'});
+          data.addColumn('number', 'Requirements');
+          data.addColumn({type: 'string', role: 'tooltip'});
+          data.addColumn('number', 'Development');
+          data.addColumn('number', 'Testing'); 
+          data.addColumn('number', 'Deployment');
+       
+          data.addRows([
+        	  
+        	  
+        	  ['2017', 0,"Application Started in the  year 2017 : \n ",0,"",0,0,0],
+        	<%while(rs16.next()){
+        		
+        		
+        	
+        	%>
+        	  ['2018',<%= rs16.getString(1)%>,"Application Started in the  year 2018 : \n  <% while(rs18.next()){%> <%=rs18.getString(1) %>,\n <%}%>",<% while(rs21.next()){%> <%=rs21.getString(1) %><%}%>,"Apps are in Requirements : \n<% while(rs23.next()){%> <%=rs23.getString(1) %>, \n<%}%>",<% while(rs25.next()){%> <%=rs25.getString(1) %><%}%>,<% while(rs27.next()){%> <%=rs27.getString(1) %><%}%>,<% while(rs29.next()){%> <%=rs29.getString(1) %><%}%>],
+            <%
+            }%>
+            <% while(rs17.next()){%>
+            ['2019',  <%= rs17.getString(1)%>,"Application Started in the  year 2019 : \n  <% while(rs19.next()){%> <%=rs19.getString(1) %>, \n<%}%>",<% while(rs22.next()){%> <%=rs22.getString(1) %><%}%>,"Apps are in Requirements : \n<% while(rs24.next()){%> <%=rs24.getString(1) %>, \n<%}%>",<% while(rs26.next()){%> <%=rs26.getString(1) %><%}%>,<% while(rs28.next()){%> <%=rs28.getString(1) %><%}%>,<% while(rs30.next()){%> <%=rs30.getString(1) %><%}%>],
+            <%}%>
+            ['2020',  0,"Application Started in the  year 2020 : \n ",0,"",0,0,0],
+            ['2021',  0,"Application Started in the  year 2021 : \n ",0,"",0,0,0],
+            
+          ]);
+    	
+
+        var options = {
+          title: '',
+          curveType: 'function',
+          width: 1050,
+          height: 350,
+          pointSize: 10,
+          pointShape: { type: 'star', rotation: 180 },
+          legend:'bottom',
+          colors: ['#9EC653', '#DF4B2B','#202AD5','#00CED1','#4B0082'],
+          gridlines: { count: 4 },
+          vAxis: {
+              title: '',
+              minValue: 0,
+              ticks:[0,5,10,15,20,25],
+              
+            
+            },
+            
+            
+         
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('line'));
+		   chart.draw(data, options);
+      }
+    </script> 
+      
+      <script>
+   
+    
+    
+     function  getFilter() {
+    	 
+    	 
+    	 var filter = document.getElementById("filter").value;
+    	 
+     	 //console.log(" filter By : " + filter);
+     	
+     	if(filter == 'monthly')
+     		{
+     		 document.getElementById('hiddendiv').style.display = 'block';
+     		}
+     	else{
+     		alert("Please select the Required Information");
+     	}
+    	 
+     
+     }
+     
+     
+     function onSelect(){
+    	 
+    	 
+    	 var result_months=[];
+    	 var result_values=[];
+    	 
+    	 result_months.push("Jan");
+    	 result_months.push("Feb");
+    	 result_months.push("Mar");
+    	 result_months.push("Apr");
+    	 result_months.push("May");
+    	 result_months.push("Jun");
+    	 result_months.push("July");
+    	 result_months.push("Aug");
+    	 result_months.push("Sep");
+    	 result_months.push("Oct");
+    	 result_months.push("Nov");
+    	 result_months.push("Dec");
+
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+    	 result_values.push("0");
+
+    	 var selected_Year = document.getElementById("year").value;
+    	// console.log("Selected Year is : " + selected_Year);
+    
+    	$.ajax({
+  	      url: "Project_Year",
+  	      type: "Post",
+  	      data: { year : selected_Year},
+  	      dataType: "text",
+  	      
+  	    
+  	      success : function(data) {
+  	    	var str = data.split(":");
+  	    	for(var i=0;i<str.length;i++)
+  	    		{
+  	    		var x=str[i].split(",");
+  	    		result_values[x[0]-1]=x[1];
+  	    		}
+  	    		google.charts.load('current', {'packages':['line']});
+  	        google.charts.setOnLoadCallback(drawChart);
+
+  	         function drawChart() {
+  	       	  
+  	       	  var data = new google.visualization.DataTable();
+  	       	  data.addColumn('string', 'Year');
+  	       	 data.addColumn('number', 'Application started');
+
+  	       	 for(var i=0;i<result_months.length;i++)
+  	   	  {
+  	   	  
+  	   	  data.addRow([result_months[i],Number(result_values[i])]);
+  	   	  }
+  	   	
+  	       	
+
+  	           var options = {
+  	             title: '',
+  	             curveType: 'function',
+  	             width: 1050,
+  	             height: 350,
+  	             hAxis: {title: 'Month'},
+  	             vAxis: {title: 'No of Apps',
+  	            	  minValue: 0,
+  	            	ticks:[0,1,2,3,4,5],
+  	            	gridlines: { count: 4 },
+  	            	
+  	             }, 
+  	             pointSize: 10,
+  	             pointShape: { type: 'star', rotation: 180 },
+  	             legend:'right',
+  	             colors: ['#9EC653', '#DF4B2B'],
+  	             gridThickness: 2,
+  	             vAxis: {
+  	                 title: '',
+  	                 minValue: 0,
+  	                 
+  	               
+  	               },
+  	               
+  	               
+  	            
+  	           };
+
+  	           var chart = new google.visualization.LineChart(document.getElementById('line'));
+  	   		   chart.draw(data, options);
+  	         }
+  	    	
+  	      
+  	      }
+    	});
+    		
+    	 
+    	
+    
+    	 
+    	
+    	
+    	
+  
+  	   
+    }
+      
+      </script>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
   <!-- FromDate and todate Picker -->
   <script type="text/javascript">
@@ -555,10 +975,7 @@ function javascript_conv()
                console.log("data",value);
                var num=value.split("/");
                var cnt0=0,cnt1=0,cnt2=0,cnt3=0;
-               alert(num[0]);
-               alert(num[1]);
-               alert(num[2]);
-               alert(num[3]);
+             
                if(num[0]===undefined)
             	   cnt0=0;
                else if(num[0]!="")
@@ -991,6 +1408,37 @@ function javascript_conv()
   
    </script>
  
+
+    
+   <script>
+function myColumnchart(){
+	
+	
+	var x = document.getElementById("rowtable").style.display='none';
+	var y = document.getElementById("rowbarchart").style.display='block';
+	
+	
+	
+   
+	
+}
+
+</script>
+
+<script>
+function myTablechart(){
+	
+	
+	var x = document.getElementById("rowtable").style.display='block';
+	var y = document.getElementById("rowbarchart").style.display='none';
+	
+   
+	
+}
+
+</script> 
+    
+    
       
   <%
 }
