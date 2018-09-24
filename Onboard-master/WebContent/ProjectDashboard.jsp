@@ -29,8 +29,8 @@
 
         <!-- ========== MODERNIZR ========== -->
         <script src="js/modernizr/modernizr.min.js"></script>
-         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-             <script type="text/javascript" src="js/paging.js"></script> 
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/paging.js"></script> 
        
   	
 	<script type="text/javascript" src="js_in_pages/tree.js"></script>
@@ -75,7 +75,7 @@ float:right;
 		<%
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 	    Date date = new Date();  
-	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed ProjectManagaer_Dashboard JSP PAGE-----[INFO]");  %>
+	    System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Project_Dashboard JSP PAGE-----[INFO]");  %>
 <%@page language="java"%>
 <%@ page import="java.util.ArrayList" %>
 <%@page import="java.sql.*"%>
@@ -152,21 +152,21 @@ String query8 = "select * from AppEmphazize_ProjectDetails";
 Statement st8 = conn.createStatement();
 ResultSet rs8 = st8.executeQuery(query8);
 
-
-
-String query16 = "select count(appname) from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2018'";
+String query16 = "select count(*) as proj  from ArchiveExecution_Details where pln_srt_date != '' and seq_num = '1' and level = '1' and substr(pln_srt_date,7,4)='2018' ";
 Statement st16 = conn.createStatement();
 ResultSet rs16 = st16.executeQuery(query16);
-String query18 = "select appname from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2018' ";
+
+
+String query18 = "select projects from ArchiveExecution_Details where pln_srt_date != '' and seq_num = '1' and level = '1' and substr(pln_srt_date,7,4)='2018'";
 Statement st18 = conn.createStatement();
 ResultSet rs18 = st18.executeQuery(query18);
 
 
-String query17 = "select count(appname) from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2019' ";
+String query17 = "select count(*) as proj  from ArchiveExecution_Details where pln_srt_date != '' and seq_num = '1' and level = '1' and substr(pln_srt_date,7,4)='2019' ";
 Statement st17 = conn.createStatement();
 ResultSet rs17 = st17.executeQuery(query17);
 
-String query19 = "select appname from ArchiveExecution_Details join AppEmphazize_ApplicationInfo on AppEmphazize_ApplicationInfo.prjname = ArchiveExecution_Details.projects and level =1  and seq_num = 1 and substr(pln_srt_date,7,4)='2019' ";
+String query19 = "select projects from ArchiveExecution_Details where pln_srt_date != '' and seq_num = '1' and level = '1' and substr(pln_srt_date,7,4)='2019'";
 Statement st19 = conn.createStatement();
 ResultSet rs19 = st19.executeQuery(query19);
 
@@ -348,11 +348,15 @@ if(rs.next()){
    <li class="has-children"><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                </li> 
                
-                <li class="has-children">
+               <li class="has-children">
                                         <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                           
-                                            <li><a href="ProjectManager_dashboard.jsp" class="active-menu"> <span>Project Manager Dashboard</span></a></li>
+                                           <ul class="child-nav">
+                                            <li><a href="RoleDashboard.jsp" > <span>Role Dashboard</span></a></li>
+                                            <li><a href="ProjectDashboard.jsp"  class="active-menu"> <span>Project Dashboard</span></a></li>
+                                            <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
+                                          </ul>
                                           
                                         </ul>
                                     </li>
@@ -608,12 +612,130 @@ function javascript_conv()
       
       
       </div>    <!-- end of container fluid -->
-    
+      <div class="container-fluid">
+          <div class="col-lg-12 col-md-12">
+              
+                          <div class="card">
+                            <div class="card-body">
+                             <div class="row">
+						             <div class="col-lg-8 col-md-12">
+						                         <h3 class="title">&nbsp;&nbsp;Projects Details</h3>
+											</div>	 
+											
+                                  </div>
+                                       <div class="container-fluid" >
+                                  <div class="row" id="rowbarchart" >
+                                   <div class="col-lg-12 col-md-12">
+                         <div class="col-lg-1 col-md-1">
+                              <label>Filter By :</label>
+                         </div>
+                         <div class="col-lg-2 col-md-2" >
+                                      <select id='filter' class="form-control" onchange="getFilter()"> 
+										      <option value = "yearly" disabled selected>Yearly &nbsp;&nbsp;</option>
+										       <option  value="monthly"> Monthly</option>
+										       
+										      </select> 
+                         </div>
+						 
+                          <div class="col-lg-2 col-md-2" id="hiddendiv" hidden>
+                            <span>
+                                <select id="year" class="form-control" onchange="onSelectYear(this.value,filter)" > 
+										      <option value = " " disabled selected>--Select a year --</option>
+										       <option  value="2017"> 2017</option>
+										        <option  value="2018"> 2018</option>
+										         <option  value="2019"> 2019</option>
+										          <option  value="2020"> 2020</option>
+										           <option  value="2021"> 2021</option>
+										            <option  value="2022"> 2022</option>
+										       
+										      </select> 
+										        <span>
+                          </div>
+                     </div>
+                         	   
+                                  </div>
+                                  </div> 
+                            <div class="container-fluid" >
+                             
+                                  </div> 
+                            
+                           <div class="col-lg-12 col-md-12">
+   
+  <div id="line" style="width:height:500px; padding:10px;" ></div>
+  </div>
+                    
+                            </div>
+                           </div>
+         </div>
+    </div>
     
     <!-- start for line graph -->
 
- 
-      
+    <!-- Line Graph -->
+     <script type="text/javascript">
+   
+    
+     
+     
+     google.charts.load('current', {'packages':['line']});
+     google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+    	  
+    	  var data = new google.visualization.DataTable();
+    	  data.addColumn('string', 'Year');
+          data.addColumn('number', 'Project');
+          data.addColumn({type: 'string', role: 'tooltip'});
+       
+          data.addRows([
+        	  
+        	  
+        	  ['2017', 0,""],
+        	  <%while(rs16.next()){
+          		
+          		
+              	
+              	%>
+              	  ['2018',<%= rs16.getString(1)%>,"Projects Started in the  year 2018 : \n  <% while(rs18.next()){%> <%=rs18.getString(1) %>,\n <%}%>"],
+                  <%
+                  }%>
+                  <% while(rs17.next()){%>
+                  ['2019',  <%= rs17.getString(1)%>,"Application Started in the  year 2019 : \n  <% while(rs19.next()){%> <%=rs19.getString(1) %>, \n<%}%>"],
+                  <%}%>
+        	  ['2020',  0,""],
+              ['2021',  0,""],
+        	
+            
+            
+          ]);
+    	
+
+        var options = {
+          title: '',
+          curveType: 'function',
+          width: 1050,
+          height: 350,
+          pointSize: 10,
+          pointShape: { type: 'star', rotation: 180 },
+          legend:'bottom',
+     
+          gridlines: { count: 4 },
+          vAxis: {
+              title: '',
+              minValue: 0,
+              ticks:[0,5,10,15,20,25],
+              
+            
+            },
+            
+            
+         
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('line'));
+		   chart.draw(data, options);
+      }
+    </script> 
       <script>
    
     
@@ -637,7 +759,7 @@ function javascript_conv()
      }
      
      
-     function onSelect(){
+     function onSelectYear(){
     	 
     	 
     	 var result_months=[];
@@ -670,21 +792,23 @@ function javascript_conv()
     	 result_values.push("0");
 
     	 var selected_Year = document.getElementById("year").value;
-    	// console.log("Selected Year is : " + selected_Year);
     
     	$.ajax({
-  	      url: "Project_Year",
+  	      url: "Selectproject_Year",
   	      type: "Post",
   	      data: { year : selected_Year},
   	      dataType: "text",
   	      
   	    
   	      success : function(data) {
+  	    
   	    	var str = data.split(":");
   	    	for(var i=0;i<str.length;i++)
   	    		{
   	    		var x=str[i].split(",");
+  	    	
   	    		result_values[x[0]-1]=x[1];
+  	    		
   	    		}
   	    		google.charts.load('current', {'packages':['line']});
   	        google.charts.setOnLoadCallback(drawChart);
@@ -693,12 +817,13 @@ function javascript_conv()
   	       	  
   	       	  var data = new google.visualization.DataTable();
   	       	  data.addColumn('string', 'Year');
-  	       	 data.addColumn('number', 'Application started');
+  	       	 data.addColumn('number', 'Project started');
 
   	       	 for(var i=0;i<result_months.length;i++)
   	   	  {
   	   	  
   	   	  data.addRow([result_months[i],Number(result_values[i])]);
+  	   	  
   	   	  }
   	   	
   	       	
@@ -709,7 +834,7 @@ function javascript_conv()
   	             width: 1050,
   	             height: 350,
   	             hAxis: {title: 'Month'},
-  	             vAxis: {title: 'No of Apps',
+  	             vAxis: {title: 'No of Projects',
   	            	  minValue: 0,
   	            	ticks:[0,1,2,3,4,5],
   	            	gridlines: { count: 4 },
